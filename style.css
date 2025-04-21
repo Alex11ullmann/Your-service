@@ -1,0 +1,486 @@
+.flotante {
+    display: flex;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 1%;
+    position: fixed;
+    background-color: white;
+    height: 3vw;
+    width: 98%;
+    text-align: center;
+    font-size: 1.5vw;
+    border: 1px solid blueviolet;
+    justify-content: space-between;
+    z-index: 1000; 
+}
+
+.fondo {
+    background-image: url('./Img/fondoalba.png');
+    border: 1px solid blueviolet;
+    width: 100%; 
+    height: 40vw;
+    background-size: cover;
+    background-position: center;
+    text-transform: capitalize;
+    align-items: center;
+}
+
+.enlaces {
+    display: flex;
+    padding: 4%;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.enlaces a {
+    font-size:3dvw;
+    color: white;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    border-color: black;
+    text-shadow: 
+        3px 3px 0px black,
+        -1px -1px 0px black,
+        1px -1px 0px black,
+        -1px 1px 0px black;
+    text-decoration: none;
+}
+
+.space{
+    width: 100%;
+    height: 5vw;
+    background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
+}
+
+.contador {
+    padding: 5%;
+}
+
+.contador1 {
+    display: flex;
+    color: #3F47CC;
+    font-size:4dvw;
+    justify-content: space-around;
+}
+.contador1 h2 {
+    font-size: 1.2dvw;
+    color: black;
+    font-weight: bold;
+}
+.contadorexpertos {
+    width: 50%;
+    box-sizing: border-box;
+    border-right: 3px solid rgb(195, 193, 193);
+    border-width: 5px;
+    text-align: center;
+}
+.contadorusuarios {
+    width: 50%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+.container {
+    padding: 4%;
+    
+    /*background-color: #c2c6f4;*/
+}
+
+.elporque {
+    text-align: center;
+    font-family: 'Calibri Light', 'Calibri', sans-serif;
+    color: black;
+    font-size:1.5dvw;
+}
+
+
+.iconos {
+    display: flex;
+    padding: 3%;
+    color: black;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+.seguridad {
+    display: flex;
+
+    background-image: url('./Img/seguridad.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50%;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.facilidad {
+    background-image: url('./Img/facilidad.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 50%;
+}
+.comodidad {
+    background-image: url('./Img/comodidad.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    width: 50%;
+    text-align: center;
+}
+.inmediatez {
+    background-image: url('./Img/inmediatez.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    width: 50%;
+    text-align: center;
+}
+.experiencias {
+    background-image: url('./Img/experiencias.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    width: 50%;
+    text-align: center;
+}
+.costos {
+    background-image: url('./Img/costos.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    width: 50%;
+    text-align: center;
+}
+
+.cuerpo{
+    background-color: white;
+    font-family: 'calibri', sans-serif;
+    padding-top: 5px;
+}
+
+.contenedorIntro {
+    position: relative; /* Mantiene la referencia para los hijos */
+    width: 100%;
+    height: 100vh;/* para ocupar toda la pantalla*/
+    display: flex;
+    justify-content:center;  /* para separar */
+    align-items: center;      
+    padding: 5px;            
+    background-color: #3F47CC;
+}
+
+.imgFondo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /*la imagen cubre todo el espacio del div*/
+    opacity: 0.4; /* transparencia para resaltar la letra*/
+    position: absolute; /* Para que no afecte el contenido */
+    top: 0;
+    left: 0;
+    padding: 5px;
+}
+
+.introduccion{
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align:center;
+    color: white;
+}
+
+.h1intro{
+    font-size:3.5 dvw;
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+.contIntro{
+    width: 450px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn1 {
+    display: inline-flex;
+    width: 50%;
+    height: 15%;
+    margin: 30px;
+    background-color: #3F47CC;; 
+    color: white;
+    font-size: 3dvw;
+    font-weight: bold;
+    justify-content: center; 
+    border-radius: 10px;
+    opacity: 0.6; 
+    cursor: pointer; /* Indica que es interactivo */
+    user-select: none; /* Evita la selección de texto */
+}
+
+.btn1:hover {
+    background-color: #007bffcb; ; /* Color más oscuro al pasar el mouse */
+}
+
+.btn1:active {
+    background-color: #004085; /* Color más oscuro al hacer click */
+}
+
+.explicacion{
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    padding-top: 5%;
+    padding-bottom: 10px;
+}
+
+.pasos{
+    display: flex;
+    width: 80%;
+    height: 40vh;
+    gap: 10px;
+    opacity: 0.7; 
+    flex-wrap: nowrap;
+    justify-content:center;
+    max-width: 90vw; /* Para que no se expanda demasiado */
+}
+
+.fase{
+    width: 50%;
+    height: 10vw;
+    border-radius: 10px;
+    display: flex;
+    align-items:flex-end;
+    justify-content:flex-end;
+    text-align:center;
+    margin: 3%;
+ }
+
+ .textito{
+    display: flex;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1dvw;;
+ }
+
+.filtro{
+    background-image: url('Img/filtro.jfif');
+    background-size:cover;
+}
+
+.siguiente{
+    background-image: url('Img/siguiente.png');
+    background-size:cover;
+}
+
+.seleccion{
+    background-image: url('Img/seleccion.jfif');
+    background-size:cover;
+}
+
+.contactar{
+    background-image: url('Img/contactar.jpg');
+    background-size:cover;
+}
+
+/* Media Queries para ajustar el ancho en distintos tamaños de pantalla */
+@media (max-width: 768px) {
+    .caja {
+        max-width: 80%; /* En tablets, usa el 80% del ancho */
+    }
+}
+
+@media (max-width: 480px) {
+    .caja {
+        max-width: 100%; /* En móviles, usa el 100% */
+    }
+}
+
+
+/*====================================*/
+/*-- Inicia area para cards oficios --*/
+
+.containerOficios{
+width: 95%;
+margin-top: 50px;
+margin-left: 5%;
+
+}
+
+.encabezado{
+margin-top: 15px;
+width: 100%;
+height: 3.5 dvw;
+text-align: center;
+padding: 15px;
+color:#3F47CC;
+font-size:3.5 dvw;
+}
+
+.cardOfi{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content:center;
+    margin-top: 20px;
+    padding: 30px;
+}
+
+.minicard{
+    width: 10%;
+    height: 10vw;
+    background-color: #3F47CC;
+    border-radius: 10px;
+    display: flex;
+    align-items:flex-end;
+    justify-content: center;
+    box-shadow: 2px 2px 10px  rgba(0, 0, 0, 0.1);
+} 
+
+a.textito{
+    font-size: 1dvw;
+    font-weight: bold;
+    text-align:center;
+    color:  #202478;
+    /*padding: 20px;*/
+}
+
+a.textito:hover {
+    color:   #2d6e8b;
+    font-size: 1.2dvw;
+}
+
+.plomero{
+   
+    background-image: url('Img/Plomero.jfif');
+    background-size:cover;
+}
+
+.gasista{
+    background-image: url('Img/Gasista.jfif');
+    background-size:cover;
+}
+
+.herrero{
+    background-image: url('Img/Herrero.jfif');
+    background-size:cover;
+}
+
+.fletero{
+    background-image: url('Img/Fletero.jfif');
+    background-size:cover;
+}
+
+.domestic{
+    background-image: url('Img/Domestico.jfif');
+    background-size:cover;
+}
+
+.cuidadoadultos{
+    background-image: url('Img/CuidadoAdultos.jfif');
+    background-size:cover;
+}
+
+.pintor{
+    background-image: url('Img/Pintor.jfif');
+    background-size:cover;
+}
+
+.alarmas{
+    background-image: url('Img/Alarmas.jfif');
+    background-size:cover;
+}
+
+.cerrajero{
+    background-image: url('Img/Cerrajero.jfif');
+    background-size:cover;
+}
+
+.carpintero{
+    background-image: url('Img/Carpintera.jfif');
+    background-size:cover;
+}
+
+.jardinero{
+    background-image: url('Img/Jardinero.jfif');
+    background-size:cover;
+}
+
+.albanil{
+    background-image: url('Img/Albanil.jfif');
+    background-size:cover;
+}
+
+.aireacond{
+    background-image: url('Img/Aire.jfif');
+    background-size:cover;
+}
+
+.limpalfombras{
+    background-image: url('Img/Alfombras.jfif');
+    background-size:cover;
+}
+
+.techista{
+    background-image: url('Img/Techista.jfif');
+    background-size:cover;
+}
+
+.viajante{
+    background-image: url('Img/Transportista.jfif');
+    background-size:cover;
+}
+
+/* Fin Card Oficios */
+
+/*---------- inicia Footer--------------------*/
+
+/*---------- inicia Footer--------------------*/
+
+.Pie{
+    width: 100%;
+    height: 10vw;
+    background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
+}
+
+footer {
+    background-color: #007BFF;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content h2 {
+    margin: 10px 0;
+}
+
+.footer-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-content ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.footer-content ul li a {
+    color: rgb(237, 242, 248);
+    text-decoration: none;
+}
+
+.footer-content ul li a:hover {
+    text-decoration: underline;
+}
