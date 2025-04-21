@@ -1,0 +1,185 @@
+body {
+    justify-content: center;
+    height: 120vh;
+    background-color: #f4f4f4;
+    flex-direction: column;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+}
+
+.flotante {
+    display: flex;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 1%;
+    position: fixed;
+    background-color: white;
+    height: 3vw;
+    width: 98%;
+    text-align: center;
+    font-size: 1.5vw;
+    border: 1px solid blueviolet;
+    justify-content: space-between;
+    z-index: 1000; 
+}
+
+.fondo {
+    border: 1px solid blueviolet;
+    width: 99%; 
+    height: 40vw;
+    background-size: cover;
+    background-position: center;
+    text-transform: capitalize;
+    align-items: center;
+}
+
+.enlaces {
+    display: flex;
+    padding: 4%;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.enlaces a {
+    font-size: 3vw;
+    color: white;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    border-color: black;
+    text-shadow: 
+        3px 3px 0px black,
+        -1px -1px 0px black,
+        1px -1px 0px black,
+        -1px 1px 0px black;
+    text-decoration: none;
+}
+
+.space {
+    width: 100%;
+    height: 5vw;
+    background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
+}
+
+.cuerpoLogIn {
+    display: flex;
+    flex-direction: column; /* Si querés centrar en vertical, podés usar column */
+    width: 100%;
+    height: 70vh; /* Usar 'vh' para altura relativa a la pantalla */
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+}
+
+.cuerpoRegistro {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 102vh;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+}
+
+.logRegistro-container {
+    background: white;
+    padding: 3%;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 1.5vw;
+    width: 80%;
+    height: 100vh;
+    max-width: 400px; /* Para evitar que crezca demasiado en pantallas grandes */
+    text-align: center;
+}
+
+.login-container {
+    background: white;
+    padding: 3%;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 1.5vw;
+    width: 80%;
+    max-width: 400px; /* Para evitar que crezca demasiado en pantallas grandes */
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 5%;
+    font-size: 150%;
+}
+
+.input-group {
+    width: 100%;
+    height: 8vh;
+    margin-bottom: 4%;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 2%;
+    font-size: 100%;
+    line-height: 300%;
+}
+
+.input-group input {
+    margin: 2%;
+    border: 1px solid #ccc;
+    border-radius: 0.5vw;
+    font-size: 100%;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 3%;
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    font-size: 110%;
+}
+
+.login-btn:hover {
+    background: #005f99;
+}
+
+/*---------- inicia Footer--------------------*/
+
+.Pie{
+    width: 100%;
+    height: 10vw;
+    background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
+}
+
+footer {
+    background-color: #007BFF;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content h2 {
+    margin: 10px 0;
+}
+
+.footer-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-content ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.footer-content ul li a {
+    color: rgb(237, 242, 248);
+    text-decoration: none;
+}
+
+.footer-content ul li a:hover {
+    text-decoration: underline;
+}
