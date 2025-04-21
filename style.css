@@ -90,7 +90,8 @@
     text-align: center;
     font-family: 'Calibri Light', 'Calibri', sans-serif;
     color: black;
-    font-size:1.5dvw;
+    font-size: 1.5vw;
+
 }
 
 
@@ -101,54 +102,58 @@
     flex-wrap:wrap;
     justify-content: space-between;
 }
+
+.text1 {
+    background-size: contain;
+    background-repeat: repeat;
+    width: 30%;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.5vw;
+}
+
 .seguridad {
+    display:flex;
     background-image: url('./Img/seguridad.png');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 50%;
+    width: 20%;
     margin-bottom: 10px;
-    text-align: center;
 }
-
 .facilidad {
     background-image: url('./Img/facilidad.png');
     background-size: contain;
     background-repeat: no-repeat;
+    width: 20%;
     margin-bottom: 10px;
-    text-align: center;
-    width: 50%;
 }
 .comodidad {
     background-image: url('./Img/comodidad.png');
     background-size: contain;
     background-repeat: no-repeat;
+    width: 20%;
     margin-bottom: 10px;
-    width: 50%;
-    text-align: center;
 }
 .inmediatez {
     background-image: url('./Img/inmediatez.png');
     background-size: contain;
     background-repeat: no-repeat;
+    width: 20%;
     margin-bottom: 10px;
-    width: 50%;
-    text-align: center;
 }
 .experiencias {
     background-image: url('./Img/experiencias.png');
     background-size: contain;
     background-repeat: no-repeat;
+    width: 20%;
     margin-bottom: 10px;
-    width: 50%;
-    text-align: center;
 }
 .costos {
     background-image: url('./Img/costos.png');
     background-size: contain;
     background-repeat: no-repeat;
+    width: 20%;
     margin-bottom: 10px;
-    width: 50%;
-    text-align: center;
 }
 
 .cuerpo{
