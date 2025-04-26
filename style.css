@@ -292,20 +292,6 @@
     background-size:cover;
 }
 
-/* Media Queries para ajustar el ancho en distintos tamaños de pantalla */
-@media (max-width: 768px) {
-    .caja {
-        max-width: 80%; /* En tablets, usa el 80% del ancho */
-    }
-}
-
-@media (max-width: 480px) {
-    .caja {
-        max-width: 100%; /* En móviles, usa el 100% */
-    }
-}
-
-
 /*====================================*/
 /*-- Inicia area para cards oficios --*/
 
@@ -447,43 +433,30 @@ a.textito:hover {
 /*---------- inicia Footer--------------------*/
 
 .Pie{
+    display: flex;
     width: 100%;
     height: 10vw;
     background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
+    text-align: center;
 }
 
 footer {
     background-color: #007BFF;
     padding: 20px 0;
-    text-align: center;
+    text-align: justify;
 }
 
 .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 3vw;
+    background-repeat: no-repeat;
+    text-align: center;
+    justify-content:space-around;
 }
 
-.footer-content h2 {
-    margin: 10px 0;
+.footer-content a {
+    color: white;
 }
 
-.footer-content ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-content ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-.footer-content ul li a {
-    color: rgb(237, 242, 248);
-    text-decoration: none;
-}
-
-.footer-content ul li a:hover {
-    text-decoration: underline;
-}
