@@ -513,6 +513,7 @@ footer {
 
 .submenu a:hover {
     background-color: #f1f1f1;
+    font-size: 18px;
 }
 
 /* Mostrar el submenu al pasar el mouse */
