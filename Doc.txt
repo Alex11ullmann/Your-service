@@ -1,0 +1,54 @@
+Your Service
+Encuentra Expertos, Facil y Rapido.
+Conectando trabajadores especializados con clientes potenciales.
+
+Quienes Somos
+Somos un grupo de Desarrolladores y Programadores Web, que tenemos como objetivo brindar una solución tecnológica e innovadora para conectar personas.
+Lo que destaca a nuestra empresa es la seriedad y el profesionalismo pensando en un futuro más accesible y rentable
+
+¿Qué es Your Service?
+Your Service, es una Web digital dedicada a facilitar la conexión entre profesionales en oficios y clientes que necesitan sus Servicios. 
+Brindando la posibilidad de simplificar la búsqueda de talento especializado y optimizar la contratación.
+
+Objetivo de la Web
+El Principal Objetivo de Your Service es ofrecer una solución eficiente para que trabajadores y clientes  se encuentren de forma rápida y directa. Esto generará oportunidades laborales y mejor accesibilidad a servicios especializados.
+
+Beneficio para Trabajadores
+Los trabajadores podrán acceder a una gama mucho más amplia de oportunidades laborales.  Y la posibilidad de mostrar su experiencia y habilidades a clientes potenciales. Además, la plataforma les permitirá gestionar su tiempo y servicios de manera más eficiente.
+
+Beneficios al Cliente
+El Cliente tendrá acceso a una red de profesionales, facilitando la selección de expertos según sus necesidades y en base a la referencia de otros usuarios. 
+Esto asegura la pluralidad de ofertas y la satisfacción del cliente al economizar tiempo en la búsqueda de un trabajador.
+
+Búsqueda del Trabajador
+La Web permite a los clientes buscar oficios específicos de manera sencilla. Se pueden filtrar resultados por ubicación, tipo de servicio y calificación, facilitando la elección del profesional que más se adecue a sus necesidades.
+
+Registro del Cliente
+El registro del Cliente es muy simple e intuitivo, los usuarios deben presentar solo datos personales. Una vez inscriptos podrán realizar la búsqueda y contratación de un trabajador. 
+Al finalizar el trabajo acordado, el profesional tendrá la opción de puntuar al cliente y así se valorará su perfil.
+
+Sistema de Calificaciones
+El sistema de Calificaciones permite a los clientes evaluar a los trabajadores, en varios aspectos como tiempo acordado, orden y limpieza, tarifa adecuada, calidad del trabajo, cordialidad y respeto.
+También permite a los trabajadores puntuar al cliente en plazo de pago, horario de trabajo acordado, cordialidad y respeto.
+
+En Resumen:
+“Lo importante no es saber, sino tener el teléfono del que sabe”  
+Les Luthiers.
+Y Nuestro propósito, 
+Ayudar a que ocurra..
+
+Estructura del proyecto
+-Home todos los Cards trabajadores
+-Página buscador.
+-Quienes somos
+-Log In
+-Registro Cliente 
+-Registro Trabajador (referencia)
+-Crud (Agregar, Modificar y Eliminar).
+
+Gracias por su tiempo…
+
+Desarrollado por:
+Alexis Ullmann
+Luis Pompei
+Lucas Laplace
