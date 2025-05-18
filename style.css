@@ -483,40 +483,54 @@ footer {
     text-decoration: underline;
 }
 
-.menu {
+/* Estilo del contenedor del menú */
+.menu-container {
     position: relative;
-    display: inline-block;
+    width: 200px;
 }
 
-.menu-btn {
-    background-color: #3498db;
+/* Botón del menú */
+.menu-button {
+    background-color: #007BFF;
     color: white;
-    padding: 5px 10px;
+    padding: 10px;
+    border: none;
     cursor: pointer;
+    width: 100%;
+    text-align: left;
 }
 
-.submenu {
-    display: none;
+/* Lista desplegable */
+.dropdown-menu {
     position: absolute;
-    background-color: white;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    min-width: 160px;
-    z-index: 1;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 150px;
+    /* Altura máxima con scroll */
+    overflow-y: auto;
+    /* Habilita el desplazamiento */
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    /* Oculto por defecto */
+    z-index: 1000;
 }
 
-.submenu a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
+/* Elementos del menú */
+.dropdown-menu a {
     display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
 }
 
-.submenu a:hover {
+.dropdown-menu a:hover {
     background-color: #f1f1f1;
-     font-size: 18px;
 }
 
-/* Mostrar el submenu al pasar el mouse */
-.menu:hover .submenu {
+/* Mostrar el menú al pasar el mouse */
+.menu-container:hover .dropdown-menu {
     display: block;
 }

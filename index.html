@@ -17,20 +17,35 @@
             <a href="./presentacion.html" class="enlace">¿Quiénes somos?</a>
             <a href="./capacitacion.html" class="enlace">Capacitate</a>
             <a href="./LogIn.html" class="enlace">Log In    .</a>
-            <div class="menu">
-                <div class="menu-btn">Profecionales</div>
-                <div class="submenu">
+            <div class="menu-container">
+                <button class="menu-button">Profecionales</button>
+                <div class="dropdown-menu">
                     <a href="#">Mayor de Obra</a>
-                    <a href="#">Gasista Matriculado</a>
-                    <a href="#">Eventos</a>
+                    <a href="#">Gasista</a>
+                    <a href="#">Electricista</a>
+                    <a href="#">Plomero</a>
+                    <a href="#">Carpintero</a>
+                    <a href="#">Maquinista</a>
+                    <a href="#">Fogista</a>
                 </div>
             </div>
-            <div class="language-country">
-                <p>🌍 País: Argentina</p> 
+            
+            <div class="logo">
+                <h2>🌍</h2>
             </div>
-            <div class="language-country">
-                <p>🗣 Idioma: Español</p>
+            
+            <div class="search-menu">
+                <select id="categoria">
+                    <option value="todos">Buscar...🌍</option>
+                    <option value="Arg">Argentina</option>
+                    <option value="Bra">Brasil</option>
+                    <option value="EEUU">Estados Unidos</option>
+                </select>
+            
+            
+                <button class="search-button" onclick="realizarBusqueda()"></button>
             </div>
+
            
             
         </div>
@@ -141,7 +156,7 @@
                         <a class="textito"  href="Plomero" >Plomeria</a>
                     </div>
                     <div class="minicard gasista">
-                        <a class="textito" href="Gasista" >Gasista</a>
+                        <a class="textito" href="gas.html" >Gasista</a>
                     </div>
                     <div class="minicard herrero">
                         <a class="textito" href="Herrero" >Herreria</a>
