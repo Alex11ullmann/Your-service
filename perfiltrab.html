@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil trabajador</title>
+    <link rel="stylesheet" href="./styleperfiltrab.css">
+</head>
+<body>
+
+    <div class="header">
+
+        <div class="flotante">
+
+            <img src="./Img/Logo.jpg" alt="logo" id="logo">
+            <a href="./Home.html" class="enlace">Home</a>
+            <a href="./Principal.html" class="enlace">Buscar</a>
+            <a href="./presentacion.html" class="enlace">¿Quiénes somos?</a>
+            <a href="./capacitacion.html" class="enlace">Capacitate</a>
+            <a href="./LogIn.html" class="enlace">Log In</a>
+        
+    </div>
+
+    <div class="tarjeta">
+
+        <div class="primeraparte">
+
+            <div class="divcarrusel">
+
+                <div class="carrusel" id="contenedorCarrusel">
+
+                    <img id="imgcarrusel" src="" alt="Vista previa">
+                </div>
+                <div id="divbtnagregarimg">
+
+                    <input type="file" id="btnagregarimg" accept="image/*" multiple hidden>
+                    <label for="btnagregarimg" class="labelbtnagregarimg" required>Subir foto</label>
+                </div>
+            </div>
+            <div class="trabajador">
+
+                <img id="imagenTrabajador" class="imagentrab" src="" alt="Imagen Seleccionada">
+            </div>
+
+            <div class="descripcion">
+
+                <h3>¿Quien soy?</h3>
+                <textarea name="texto" id="textareaqs" placeholder="Minimo 20 caracteres..."></textarea>
+                <input type="button" id="botonquiensoy" value="Publicar" required>
+            </div>
+
+        </div>
+
+        <div class="segundaparte">
+
+            <div class="valoracion">
+                <!-- radio se usa para que solo pueda seleccionar una estrella a la vez --> 
+                <input type="radio" id="estrella5" name="valoracion" value="5">
+                <label for="star5">★</label>
+                <input type="radio" id="estrella4" name="valoracion" value="4">
+                <label for="star4">★</label>
+                <input type="radio" id="estrella3" name="valoracion" value="3">
+                <label for="star3">★</label>
+                <input type="radio" id="estrella2" name="valoracion" value="2">
+                <label for="star2">★</label>
+                <input type="radio" id="estrella1" name="valoracion" value="1">
+                <label for="star1">★</label>
+            </div>
+
+            <div class="valor">
+
+                <a> 5.0 </a>
+            </div>
+
+        </div>
+
+        <div class="info">
+
+            <div>
+
+                <a>Trabaja en altura: </a>
+                <div class="wrapper">
+
+                    <input type="checkbox" class="checkbox" id="checkbox1">
+                    <label for="checkbox1" class="toggle">
+                    </label>
+                </div>
+                <a class="nosi">No  /  Si</a>
+            </div>
+
+            <div>
+
+                <a>Trabaja solo: </a>
+
+                <div class="wrapper">
+
+                    <input type="checkbox" class="checkbox" id="checkbox2">
+                    <label for="checkbox2" class="toggle">
+                    </label>
+                </div>
+                <a class="nosi">No  /  Si</a>
+
+            </div>
+            
+            <div>
+
+                <a>Servicio 24hs: </a>
+                
+                <div class="wrapper">
+
+                    <input type="checkbox" class="checkbox" id="checkbox4">
+                    <label for="checkbox4" class="toggle">
+                    </label>
+                </div>
+                <a class="nosi">No  /  Si</a>
+                
+            </div>
+
+            <div>
+
+                <a>Trabaja fines de semana: </a>
+                <div class="wrapper">
+
+                    <input type="checkbox" class="checkbox" id="checkbox5">
+                    <label for="checkbox5" class="toggle">
+                    </label>
+                </div>
+                <a class="nosi">No  /  Si</a>
+                
+            </div>
+
+            <div>
+                <a>Trabaja feriados: </a>
+                
+                <div class="wrapper">
+
+                    <input type="checkbox" class="checkbox" id="checkbox6">
+                    <label for="checkbox6" class="toggle">
+                    </label>
+                </div>
+                <a class="nosi">No  /  Si</a>
+                
+            </div>
+            
+            <div>
+
+                <a>Ciudad: </a>
+                <textarea name="texto" id="textareazona" placeholder="Min 4 caract." minlength="4"></textarea>
+            </div>
+            
+        </div>
+        
+        <div id="botonguardardatos">
+
+            <input type="button" value="Guardar Datos" id="botonguardar">
+        </div>
+
+    </div>
+    <footer class="Pie">
+        <div class="footer-content">
+
+            <a href="./Home.html">Home</a>
+            <a href="./presentacion.html">Sobre Nosotros</a>
+            <a href="./servicios.html">Politica y Privacidad</a>
+            <a href="contacto.html">Contacto</a>
+        </div>
+
+    </footer>
+    
+    <script type text="text/javascript" src="perfiltrab.js"></script>
+</body>
+</html>
