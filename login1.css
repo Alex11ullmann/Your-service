@@ -104,6 +104,11 @@ body {
     font-size: 150%;
 }
 
+#forminicio {
+    display: block;
+    flex-direction: column;
+}
+
 .input-group {
     width: 100%;
     height: 8vh;
