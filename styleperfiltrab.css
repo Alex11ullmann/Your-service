@@ -146,8 +146,8 @@ h3 {
     display: flex;
     flex-direction: column;
     text-align: center;
-    height: 100%; 
-    width: 100%; 
+    height: 30px; 
+    width: 50%; 
     align-items: center;
     justify-content: center;
     object-fit: contain;
@@ -187,6 +187,66 @@ h3 {
 .segundaparte{
     justify-content:space-evenly;
     width: 100%;
+}
+
+/*#divbtnagregarimg {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    margin-top: 2%;
+}
+
+.labelbtnagregarimg {
+    display: flex;
+    border: 2px solid rgb(176, 174, 174);
+    background-color: rgb(68, 156, 223);
+    border-radius: 30px 10px 30px 10px;
+    width: 8vw;
+    height: 1.5vw;
+    cursor: pointer;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-size: 1vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; 
+    margin-left: 3%;
+}*/
+
+.valor {
+    display: flex;
+    margin-top: 8px;
+    font-size: 3vw;
+    color:gray;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    border-color: black;
+    text-shadow: 
+        1px 1px 0px black,
+        -1px -1px 0px black,
+        1px -1px 0px black,
+        -1px 1px 0px black;
+    text-decoration: none;
+    flex-direction: row; 
+    justify-content: center;
+}
+
+.valoracion {
+    display: flex;
+    flex-direction: row-reverse; /*revierte el orden de las estrellas*/
+    justify-content: center;
+}
+.valoracion input {
+    display: none; /*Oculta los botones de radio*/
+}
+.valoracion label {
+    font-size: 4vw;
+    color: gray;
+    cursor: pointer; /*Convierte el cursor*/
+}
+.valoracion input:checked ~ label {
+    color: gold; /*Cambia el color del imput seleccionado y sus anteriores*/
+}
+.valoracion label:hover, .valoracion label:hover ~ label {
+    color: gold; /*Al pasar el mouse sobre una estrella, esa y las anteriores cambian de color*/
 }
 
 

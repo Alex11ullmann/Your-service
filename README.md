@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Your-Service
 
 **Your-Service** es una plataforma web desarrollada como parte del proyecto final de FIP. Está diseñada para conectar a personas que necesitan servicios especializados en el hogar con profesionales capacitados o semi-capacitados en distintas áreas.
@@ -52,4 +53,3 @@ Este proyecto está licenciado bajo la licencia **GPL**.
 ## 📬 Contacto
 
 Para cualquier consulta, sugerencia o colaboración, puedes comunicarte con nosotros por medio de este repositorio o vía correo electrónico. *(Yourservice@gmail.com)*.
-
