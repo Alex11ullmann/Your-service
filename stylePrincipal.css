@@ -15,6 +15,27 @@
     border-radius: 10px;
 }
 
+.enlaces {
+    display: flex;
+    padding: 4%;
+    text-align: center;
+    justify-content: space-around;
+    
+}
+
+.enlaces a {
+    font-size:3dvw;
+    color: white;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    border-color: black;
+    text-shadow: 
+        3px 3px 0px black,
+        -1px -1px 0px black,
+        1px -1px 0px black,
+        -1px 1px 0px black;
+    text-decoration: none;
+}
+
 .space{
     width: 100%;
     height: 5vw;
@@ -32,7 +53,6 @@
 }
 
 .contenedor-desplegables {
-    background: linear-gradient(90deg,  #007bff 0%,  #1486ff 47%,  #007bff 100%);
     display: flex;
     justify-content:space-around;
     align-items: center;
@@ -48,8 +68,8 @@
   }
   
   .boton-desplegable {
-    background-color: #007bff;
-    color: white;
+    background-color: #9ecbfc;
+    color: rgb(0, 1, 83);
     padding: 12px 18px;
     font-size: 16px;
     border: none;
@@ -146,16 +166,10 @@ button{
 }
 
 /*-- Aqui commienza las clases para el pie de pagina--*/
-.Pie {
-  display: flex;
-  width: 100%;
-  height: 10vw;
-  background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
-  text-align: center;
-}
+
 
 footer {
-  background-color: #007BFF;
+  background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
   padding: 40px 20px;
   text-align: justify;
   border-radius: 10px;
