@@ -1,0 +1,157 @@
+.flotante {
+    display: flex;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 1%;
+    position: fixed;
+    background-color: white;
+    height: 3vw;
+    width: 98%;
+    text-align: center;
+    font-size: 1.5vw;
+    border: 1px solid blueviolet;
+    justify-content: space-around;
+    z-index: 1000;
+    border-radius: 10px;
+
+}
+
+.fondo {
+    background-image: url('./Img/fondoalba.png');
+    border: 1px solid blueviolet;
+    width: 100%; 
+    height: 40vw;
+    background-size: cover;
+    background-position: center;
+    text-transform: capitalize;
+    align-items: center;
+}
+
+.enlace {
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    
+}
+
+.enlace a {
+    font-size:3dvw;
+    color: white;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    border-color: black;
+    text-shadow: 
+        3px 3px 0px black,
+        -1px -1px 0px black,
+        1px -1px 0px black,
+        -1px 1px 0px black;
+    text-decoration: none;
+}
+
+.space{
+    width: 100%;
+    height: 5vw;
+    background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
+    position: fixed;
+    border-radius: 10px;
+}
+
+.encabezado{
+    width: 100%;
+    height: 5vw;
+}
+
+.contactanos {
+    padding: 40px 20px;
+    text-align: center;
+}
+.contactanos h2 { 
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.contactanos p {
+    margin-bottom: 30px;
+    color: #555;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.contactanos1 { 
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    gap: 40px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+
+.contacto-formulario { 
+    flex: 1;
+    /* Permite que ocupen el espacio disponible */
+    min-width: 300px;
+    /* Ancho mínimo para evitar que se aplasten */
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+
+.contacto-formulario h3 { 
+    color: #34495e;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilos del formulario */
+
+
+.contacto-formulario1 label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.contacto-formulario1 input[type="text"],
+.contacto-formulario1 input[type="email"],
+.contacto-formulario1 input[type="tel"],
+.contacto-formulario1 textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.contacto-formulario1 textarea {
+    resize: vertical;
+    /* Permite redimensionar verticalmente */
+}
+
+.contacto-formulario1 input:focus,
+.contacto-formulario1 textarea:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.contacto-formulario1 .boton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    display: block;
+    width: 100%;
+}
+
+
+
