@@ -2,56 +2,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in</title>
+    <title>Register</title>
     <link rel="stylesheet" href="login1.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites/dist/css/foundation.min.css">
 </head>
 <body>
     <div class="header">
-        <div class="flotante">
-            <img src="./Img/Logo.jpg" alt="logo">
-            <a href="./Home.html" class="enlace">Home</a>
-            <a href="./Principal.html" class="enlace">Buscar</a>
-            <a href="./presentacion.html" class="enlace">¿Quiénes somos?</a>
-            <a href="./capacitacion.html" class="enlace">Capacitate</a>
-            <a href="./LogIn.html" class="enlace">Log In  .</a>
+        <div class="space">
+            <div class="flotante">
+                <img src="./Img/Logo.jpg" alt="logo">
+                <a href="./Home.html" class="enlace">Home</a>
+                <a href="./Principal.html" class="enlace">Buscar</a>
+                <a href="./presentacion.html" class="enlace">¿Quiénes somos?</a>
+                <a href="./capacitacion.html" class="enlace">Capacitate</a>
+                <a href="./LogIn.html" class="enlace">Log In</a>
+            </div>
         </div>
-        <div class="space"></div>
      </div>  
      <div class="cuerpoRegistro">
         <div class="logRegistro-container">
-            <h2>Iniciar Sesión</h2>
-            <form>
+            <h2>Registro</h2>
+            <form id="formdatos">
                 <div class="input-group">
                     <label for="usuario">Usuario</label>
-                    <input type="text" id="usuario" name="usuario" required>
+                    <input type="text" id="usuario" name="usuario" placeholder="Usuario" required>
+                    <p class="contenidoInputs">Solo se permiten letras minusculas, mayusculas y números.</p>
                 </div>
                 <div class="input-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <p class="contenidoInputs">Solo se permiten letras minusculas, mayusculas y números.</p>
                 </div>
                 
                 <div class="input-group">
-                    <label for="password">Rep.Contraseña</label>
-                    <input type="password" id="password" name="password" required>
+                    <label for="repPassword">Rep.Contraseña</label>
+                    <input type="repPassword" id="repPassword" name="repPassword" placeholder="Repetir Password" required>
+                    <p class="contenidoInputs">Repita la contraseña, debe ser igual a la anterior.</p>
                 </div>
                 <div class="input-group">
                     <label for="localidad"> Localidad </label>
-                    <input type="text" id="localidad" name="localidad" required>
+                    <input type="text" id="localidad" name="localidad" placeholder="Localidad" required>
+                    <p class="contenidoInputs">Solo se permiten letras minusculas y mayusculas. Ej: Olavarria</p>
                 </div>
                 <div class="input-group">
                     <label for="direccion"> Direccion </label>
-                    <input type="text" id="direccion" name="direccion" required>
+                    <input type="text" id="direccion" name="direccion" placeholder="Direccion" required>
+                    <p class="contenidoInputs">Solo se permiten letras minusculas, mayusculas y números. Ej: Lavalle123</p>
                 </div>
                 <div class="input-group">
                     <label for="telefono"> Telefono </label>
-                    <input type="number" id="telefono" name="telefono" required>
+                    <input type="text" id="telefono" name="telefono" placeholder="Telefono" maxlength="10" minlength="8" required>
+                    <p class="contenidoInputs">Solo se permiten numeros, sin puntos, ni comas. Ej: 2284121212</p>
                 </div>
                 <div class="input-group">
                     <label for="dni">D.N.I</label>
-                    <input type="number" id="dni" name="dni" required>
+                    <input type="text" id="dni" name="dni" placeholder="DNI" maxlength="8" required>
+                    <p class="contenidoInputs">Solo se permiten numeros, sin puntos, ni comas. Ej: 30123123</p>
                 </div>
-                <button type="submit" class="login-btn"> Registrarce</button>
+                <button type="submit" id="guardar-btn" class="guardar-btn">Guardar</button>
             </form>
         </div>
     </div>
@@ -65,5 +73,6 @@
             </ul>
         </div>
     </footer>
+    <script type="text/javascript" src="./LegIn.js"></script>
 </body>
 </html>
