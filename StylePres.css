@@ -15,14 +15,14 @@
     border-radius: 10px;
 }
 
-.enlaces {
+.enlace {
     display: flex;
-    padding: 4%;
+    
     text-align: center;
     justify-content: space-around;
 }
 
-.enlaces a {
+.enlace a {
     font-size:3dvw;
     color: white;
     border-color: black;
@@ -230,44 +230,81 @@ a.textito:hover {
 
 /*---------- inicia Footer--------------------*/
 
-.Pie{
-    width: 100%;
-    height: 10vw;
-    background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
-}
 
 footer {
-    background-color: #007BFF;
-    padding: 20px 0;
-    text-align: center;
+    background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
+    padding: 40px 20px;
+    text-align: justify;
+    border-radius: 10px;
 }
 
-.footer-content {
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin: auto;
+    justify-content: space-between;
 }
 
-.footer-content h2 {
-    margin: 10px 0;
+.footer-column {
+    flex: 1 1 220px;
+    margin: 15px;
 }
 
-.footer-content ul {
+.footer-column h3 {
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.footer-column ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
-.footer-content ul li {
-    display: inline;
-    margin: 0 15px;
+.footer-column ul li {
+    margin-bottom: 10px;
 }
 
-.footer-content ul li a {
-    color: rgb(237, 242, 248);
+.footer-column ul li a,
+.footer-column p,
+.social-links a {
+    color: #ccc;
     text-decoration: none;
+    transition: color 0.3s;
 }
 
-.footer-content ul li a:hover {
-    text-decoration: underline;
+.footer-column ul li a:hover,
+.social-links a:hover {
+    color: #fff;
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #444;
+    margin-top: 30px;
+    padding-top: 15px;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-column {
+        max-width: 90%;
+        text-align: center;
+    }
+
+    .social-links a {
+        display: block;
+        margin: 5px 0;
+    }
 }
