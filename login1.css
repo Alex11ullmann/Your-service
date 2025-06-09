@@ -148,7 +148,7 @@ body {
     background: #005f99;
 }
 
-/* ------------   ccs para terminos y condiciones -------------------*/
+/* ------------   ccs para servicios, terminos y condiciones -------------------*/
 .cuerpoTerminyCond{
     display: flex;
     background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
@@ -167,14 +167,27 @@ body {
     text-align: justify;
 }
 
+.containerTremyCond h2{
+    font-size: 2.5vw;
+}
+
+.containerTremyCond h3{
+    font-size: 2vw;
+}
+
+.containerTremyCond p{
+    font-size: 1.5vw;
+}
+
+.containerTremyCond li{
+    font-size: 1.5vw;
+}
 
 /*---------- inicia Footer--------------------*/
 
-
-
 footer {
-   background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
-    padding: 40px 20px;
+    background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
+    padding: 4.0vw 2.0vw;
     text-align: justify;
     border-radius: 10px;
 }
@@ -182,19 +195,32 @@ footer {
 .footer-container {
     display: flex;
     flex-wrap: wrap;
-    max-width: 1200px;
+    max-width: 120vw;
     margin: auto;
     justify-content: space-between;
 }
 
+.footer-container h3 {
+      font-size: 2vw;
+}
+
+.footer-container p {
+      font-size: 1.5vw;
+}
+
+.footer-container li {
+      font-size: 1.5vw;
+}
+
+
 .footer-column {
-    flex: 1 1 220px;
-    margin: 15px;
+    flex: 1 1 22vw;
+    margin: 3vw;
 }
 
 .footer-column h3 {
     color: #fff;
-    margin-bottom: 15px;
+    margin-bottom: 3vw;
 }
 
 .footer-column ul {
@@ -203,7 +229,7 @@ footer {
 }
 
 .footer-column ul li {
-    margin-bottom: 10px;
+    margin-bottom: 1.5vw;
 }
 
 .footer-column ul li a,
@@ -221,16 +247,16 @@ footer {
 
 .social-links a {
     display: inline-block;
-    margin-right: 10px;
-    font-size: 16px;
+    margin-right: 1.0vw;
+    font-size: 1.6vW;
 }
 
 .footer-bottom {
     text-align: center;
-    border-top: 1px solid #444;
-    margin-top: 30px;
-    padding-top: 15px;
-    font-size: 14px;
+    border-top: 1vw solid #444;
+    margin-top: 3.0vw;
+    padding-top: 1.5vw;
+    font-size: 1.4vw;
 }
 
 @media (max-width: 768px) {
