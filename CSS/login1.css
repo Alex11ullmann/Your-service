@@ -1,3 +1,5 @@
+@import url("./flotanteyFooter.css");
+
 body {
     justify-content: center;
     height: 120vh;
@@ -6,7 +8,7 @@ body {
     font-family: 'Calibri Light', Calibri, sans-serif;
     background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
 }
-
+/*
 .flotante {
     display: flex;
     background-size: contain;
@@ -20,7 +22,14 @@ body {
     font-size: 1.5vw;
     border: 1px solid blueviolet;
     justify-content: space-between;
-    z-index: 1000; 
+    z-index: 1000;
+    border-radius: 2px;
+    font-weight: bold;
+    color: rgb(47, 120, 255);
+}
+
+.flotante a {
+    text-decoration: none;
 }
 
 .fondo {
@@ -58,7 +67,7 @@ body {
     background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
     position: fixed;
     border-radius: 10px;
-}
+}*/
 
 .encabezado{
     background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
@@ -183,95 +192,3 @@ body {
     font-size: 1.5vw;
 }
 
-/*---------- inicia Footer--------------------*/
-
-footer {
-    background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
-    padding: 4.0vw 2.0vw;
-    text-align: justify;
-    border-radius: 10px;
-}
-
-.footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 120vw;
-    margin: auto;
-    justify-content: space-between;
-}
-
-.footer-container h3 {
-      font-size: 2vw;
-}
-
-.footer-container p {
-      font-size: 1.5vw;
-}
-
-.footer-container li {
-      font-size: 1.5vw;
-}
-
-
-.footer-column {
-    flex: 1 1 22vw;
-    margin: 3vw;
-}
-
-.footer-column h3 {
-    color: #fff;
-    margin-bottom: 3vw;
-}
-
-.footer-column ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-column ul li {
-    margin-bottom: 1.5vw;
-}
-
-.footer-column ul li a,
-.footer-column p,
-.social-links a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer-column ul li a:hover,
-.social-links a:hover {
-    color: #fff;
-}
-
-.social-links a {
-    display: inline-block;
-    margin-right: 1.0vw;
-    font-size: 1.6vW;
-}
-
-.footer-bottom {
-    text-align: center;
-    border-top: 1vw solid #444;
-    margin-top: 3.0vw;
-    padding-top: 1.5vw;
-    font-size: 1.4vw;
-}
-
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-column {
-        max-width: 90%;
-        text-align: center;
-    }
-
-    .social-links a {
-        display: block;
-        margin: 5px 0;
-    }
-}
