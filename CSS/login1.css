@@ -1,3 +1,5 @@
+@import url("./flotanteyFooter.css");
+
 body {
     justify-content: center;
     height: 120vh;
@@ -6,7 +8,7 @@ body {
     font-family: 'Calibri Light', Calibri, sans-serif;
     background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
 }
-
+/*
 .flotante {
     display: flex;
     background-size: contain;
@@ -20,7 +22,14 @@ body {
     font-size: 1.5vw;
     border: 1px solid blueviolet;
     justify-content: space-between;
-    z-index: 1000; 
+    z-index: 1000;
+    border-radius: 2px;
+    font-weight: bold;
+    color: rgb(47, 120, 255);
+}
+
+.flotante a {
+    text-decoration: none;
 }
 
 .fondo {
@@ -58,7 +67,7 @@ body {
     background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
     position: fixed;
     border-radius: 10px;
-}
+}*/
 
 .encabezado{
     background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
@@ -148,7 +157,7 @@ body {
     background: #005f99;
 }
 
-/* ------------   ccs para terminos y condiciones -------------------*/
+/* ------------   ccs para servicios, terminos y condiciones -------------------*/
 .cuerpoTerminyCond{
     display: flex;
     background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
@@ -165,87 +174,22 @@ body {
     border-radius: 1.5vw;
     width: 100%;
     text-align: justify;
+    color: #042b42;
 }
 
-
-/*---------- inicia Footer--------------------*/
-
-
-
-footer {
-   background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
-    padding: 40px 20px;
-    text-align: justify;
-    border-radius: 10px;
+.containerTremyCond h2{
+    font-size: 2.5vw;
 }
 
-.footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: auto;
-    justify-content: space-between;
+.containerTremyCond h3{
+    font-size: 2vw;
 }
 
-.footer-column {
-    flex: 1 1 220px;
-    margin: 15px;
+.containerTremyCond p{
+    font-size: 1.5vw;
 }
 
-.footer-column h3 {
-    color: #fff;
-    margin-bottom: 15px;
+.containerTremyCond li{
+    font-size: 1.5vw;
 }
 
-.footer-column ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-column ul li {
-    margin-bottom: 10px;
-}
-
-.footer-column ul li a,
-.footer-column p,
-.social-links a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer-column ul li a:hover,
-.social-links a:hover {
-    color: #fff;
-}
-
-.social-links a {
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 16px;
-}
-
-.footer-bottom {
-    text-align: center;
-    border-top: 1px solid #444;
-    margin-top: 30px;
-    padding-top: 15px;
-    font-size: 14px;
-}
-
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-column {
-        max-width: 90%;
-        text-align: center;
-    }
-
-    .social-links a {
-        display: block;
-        margin: 5px 0;
-    }
-}

@@ -1,3 +1,5 @@
+@import url("./flotanteyFooter.css");
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -33,7 +35,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background: #555;
+    color: #010e5e;
 }
 
 .contenido {
