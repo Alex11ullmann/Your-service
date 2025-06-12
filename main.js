@@ -10,19 +10,23 @@ const telefono    = [1111111,       22222222         ,3333333333       ,44444444
 function crearLista (dirimagenes,arraynombre,arrayCalificacion,telefono){
     for(let i=0;i<arraynombre.length;i++){
         let li=document.createElement("li");
-        let text=document.createTextNode(`${arraynombre[i]}: ${arrayCalificacion[i]}`);
+
+        let text = document.createElement("p");
+        text.textContent = `${arraynombre[i]}: ${arrayCalificacion[i]}`;
+        text.style.fontSize = "1.4vw"; // texto ajustable
+
         const img= document.createElement("img");
         img.src=dirimagenes[i];
-        img.width=170;
-        img.height=170;
-              
+        img.style.width = "17vw";    // altura para imagen
+        img.style.height = "17vw";   // ancho para imagen
+        
         let button=document.createElement("button");
-        button.setAttribute("class","button");
-        button.textContent = "Contactar";
-        button.addEventListener('click', function() {
-                contactarTrabajador(telefono[i])
-            }); //llama la funcion para mostrar los telefonos
-                 
+            button.setAttribute("class","button");
+            button.textContent = "Contactar";
+            button.addEventListener('click', function() {
+                    mostrarPerfilTrabajador(dirimagenes[i],arraynombre[i],arrayCalificacion[i],telefono[i]);
+                }); //llama la funcion para mostrar ltrabajador
+                    
         li.appendChild(img);//asigno la imagen dentro de la lista.
         li.appendChild(text);//asigno el texto(Nombre, calificacion) a la lista
         li.appendChild(button);
@@ -30,10 +34,15 @@ function crearLista (dirimagenes,arraynombre,arrayCalificacion,telefono){
     }
 }
 
-function contactarTrabajador(telefono) {
-    alert("Celular del trabajador: " + telefono);
-  }
+function mostrarPerfilTrabajador(imagen,nombre,calificacion,telefono){
+      alert(
+            " Perfil del Trabajador:\n" +
+            " Nombre: " + nombre + "\n" +
+            " Calificación: " + calificacion + "\n" +
+            " Imagen: " + imagen + "\n" +
+            " Celular: " + telefono
+            );
+}
 
 crearLista(dirImagenes,nombre,calificacion,telefono);
-
 
