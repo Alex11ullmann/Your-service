@@ -28,7 +28,7 @@
 .subCont {
     display: flex;
     justify-content: space-around;
-    font-size: 1.3vw;
+    font-size: 1.5vw;
     width: 95%;
     height: 20%;
     margin: 1%;
@@ -85,7 +85,7 @@
 .subCont1 {
     display: flex;
     justify-content: space-around;
-    font-size: 1.3vw;
+    font-size: 1.5vw;
     width: 95%;
     height: 20%;
     margin: 1%;
