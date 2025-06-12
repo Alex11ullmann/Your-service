@@ -1,11 +1,26 @@
 @import url("./flotanteyFooter.css");
 
+/* seccion flotante*/
+
 body {
     display: block;
 }
 
-/* seccion flotante*/
+.encabezado{
+    width: 100%;
+    height: 6vw;
+}
 
+.fondo {
+    background-image: url('../Img/Logo.jpg');
+    border: 1px solid blueviolet;
+    width: 100%; 
+    height: 25vw;
+    background-size: cover;
+    background-position: center;
+    text-transform: capitalize;
+    align-items: center;
+}
 
 
 /* seccion foto trabajador y carrucel*/
@@ -17,6 +32,7 @@ body {
     width: 100%; /* ancho */
     background-color: rgb(248, 245, 245);
     border-radius: 5px;
+    background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
 }
 
 .primeraparte {
@@ -26,23 +42,23 @@ body {
     flex-grow: 3;
     align-items: center; 
     object-fit: contain;
+    justify-content: space-around;
 }
 
 .divcarrusel {
     display: block; 
-    height: 30%px;
-    width: 50%;
+    height: 30%;
+    width: 30%;
     justify-items: center;
+    margin-bottom: 8%;
+    margin-top: 5%;
 }
 
 .carrusel {
     display: flex;
     margin-top: 1vw; /* Espacio entre el carrycel y el borde*/
-    margin-left: 1vw; /* Espacio entre el carrycel y el borde*/
-    min-height: 350px; 
-    min-width: 95%; 
-    max-height: 350px;
-    max-width: 95%;
+    height: 30vw;
+    min-width: 55%; 
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
@@ -52,7 +68,8 @@ body {
     overflow-x: hidden;
     border: 1px solid rgb(216, 213, 213);
     margin-bottom: 1vw;
-
+    background-color: rgb(248, 245, 245);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
 }
 .carrusel>img {
     display: none;
@@ -71,43 +88,50 @@ body {
     transform: scale(1.1); /* Agranda la imagen un 10% */
 }
 
-
-
-.labelbtnagregarimg {
+#divbtnagregarimg {
     display: flex;
-    border: 2px solid rgb(176, 174, 174);
+    height: 100%; 
+    width: 100%; 
+    justify-content: space-around;
+}
+
+.btnagregareliminarimg {
+    display: flex;
+    border: hidden;
     background-color: rgb(68, 156, 223);
     border-radius: 30px 30px 30px 30px;
-    width: 8vw;
-    height: 1.5vw;
+    width: 40%;
+    height: 2vw;
     cursor: pointer;
     font-family: 'Calibri Light', Calibri, sans-serif;
     font-size: 1vw;
     justify-content: center;
     align-items: center;
     flex-direction: row; 
-
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    color: white;
 }
 
 .trabajador{
     display: flex;
-    min-height: 40%; 
-    min-width: 40%; 
-    max-height: 40%;
-    max-width: 40%;
+    min-width: 30%; 
+    max-width: 30%;
     margin: 1px;
-    background-color: rgb(248, 245, 245);
     font-family: 'Calibri Light', Calibri, sans-serif;
     font-size: 1vw;
     justify-content: center;
+    background-color: rgb(248, 245, 245);
+    border-radius: 30px 30px 30px 30px;
+    text-align: center;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .imagentrab {
     display: flex;
     width: 100%;
     height: 100%;
-    max-height: 400px;
-    max-width: 400px;
+    max-height: 80%;
+    max-width: 80%;
     border-radius: 10px;
     margin: 8px;
     object-fit: contain;  /* mantiene la proporción y evita que se deforme */
@@ -125,8 +149,8 @@ h3 {
     display: flex;
     flex-direction: column;
     text-align: center;
-    height: 30px; 
-    width: 50%; 
+    height: 100%; 
+    width: 100%; 
     align-items: center;
     justify-content: center;
     object-fit: contain;
@@ -136,29 +160,18 @@ h3 {
     display: flex;
     border-radius: 10px;
     background-color: white;
-    border: 1px solid rgb(216, 213, 213);
-    min-height: 300px; 
-    min-width: 80%; 
-    max-height: 300px;
-    max-width: 80%;
+    min-height: 10vw; 
+    min-width: 40%; 
+    max-height: 100%;
+    max-width: 100%;
     margin-bottom: 1vw;
     text-align:justify;
     resize: none;
     font-size: 1vw;
     font-family: 'Calibri Light', Calibri, sans-serif;
-}
-
-#botonquiensoy {
-    display: flex;
-    border: 2px solid rgb(176, 174, 174);
-    background-color: rgb(68, 156, 223);
-    border-radius: 30px 30px 30px 30px;
-    display: inline-flex;
-    width: 8vw;
-    height: 1.8vw;
-    cursor: pointer; /*Convierte el cursor*/
-    font-family: 'Calibri Light', Calibri, sans-serif;
-    font-size: 1vw;
+    background-color: rgb(248, 245, 245);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    text-align: center;
 }
 
 
@@ -168,28 +181,6 @@ h3 {
     width: 100%;
 }
 
-/*#divbtnagregarimg {
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    margin-top: 2%;
-}
-
-.labelbtnagregarimg {
-    display: flex;
-    border: 2px solid rgb(176, 174, 174);
-    background-color: rgb(68, 156, 223);
-    border-radius: 30px 10px 30px 10px;
-    width: 8vw;
-    height: 1.5vw;
-    cursor: pointer;
-    font-family: 'Calibri Light', Calibri, sans-serif;
-    font-size: 1vw;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row; 
-    margin-left: 3%;
-}*/
 
 .valor {
     display: flex;
@@ -230,20 +221,29 @@ h3 {
 
 
 /* seccion info*/
-
 .info {
     display: flex;
+    width: 100%;
+    margin-bottom: 5%;
+    justify-content: center;
+    margin-left: 10%;
+}
+
+.columna {
+    display: flex;
+    width: 30%;
     font-family: 'Calibri Light', Calibri, sans-serif;
     flex-direction: column;
     color: rgb(68, 156, 223);
     margin-top: 1vw; 
     font-size: 1vw; 
+    justify-content: center;
 }
 
-.info>div>a {
-    display: inline-block;
-    margin: 1vw; 
+.columna>div {
+    margin-top: 5%; 
 }
+
 
 /*toggle botton */
 
@@ -252,9 +252,8 @@ h3 {
     margin: auto;
 }  
 .toggle {
-    margin-left: 1vw;
     position: relative;
-    width: 3%; /* Tamaño del toggle */
+    width: 10%; /* Tamaño del toggle */
     height: 1.5vw;
     display: block;
     background: #ccc;
@@ -272,6 +271,8 @@ h3 {
     background: #fff;
     border-radius: 50%;
     transition: all .25s ease;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+
 } 
 .checkbox {
     position: absolute;
@@ -281,31 +282,21 @@ h3 {
 } 
 .checkbox:checked + label {
     background: #007bff;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+
 }
 .checkbox:checked + label::before {
     left: 65%;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+
 }
 
 .nosi {
     font-family: 'Calibri Light', Calibri, sans-serif;
-    color: rgb(176, 174, 174);
+    color: rgb(47, 46, 47);
     font-size: 1vw;
 }
 
-#textareazona {
-    display: flex;
-    border-radius: 10px;
-    background-color: white;
-    border: 1px solid rgb(216, 213, 213);
-    width: 10%;
-    height: 1%;
-    text-align:start;
-    resize: none;
-    margin-left: 1vw;
-    padding-top: 10px;
-    font-family: 'Calibri Light', Calibri, sans-serif;
-    font-size: 1vw;
-}
 
 /* Boton guardar todo */
 
@@ -317,7 +308,7 @@ h3 {
 
 #botonguardar {
     display: flex;
-    border: 2px solid rgb(176, 174, 174);
+    border: none;
     background-color: rgb(68, 156, 223);
     border-radius: 30px 30px 30px 30px;
     width: 8vw;
@@ -325,7 +316,6 @@ h3 {
     cursor: pointer;
     font-family: 'Calibri Light', Calibri, sans-serif;
     font-size: 1vw;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    color: white;
 }
-
-/* Seccion footer */
-
