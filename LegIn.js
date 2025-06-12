@@ -62,6 +62,22 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     
+    // Funcion para validar tilde
+
+    let botonGuardar = document.getElementById('guardar-btn');
+
+    botonGuardar.addEventListener('click', function(event) {
+        event.preventDefault(); // Evita que el formulario se envíe por defecto
+
+        const tilde = document.getElementById('tilde-trabajador');
+
+        if (tilde.classList.contains('checked')) {
+            // Redirige al enlace deseado
+            window.location.href = './perfiltrab.html';
+        } else {
+            alert('Su perfil ah sido creado');
+        }
+    });
 
 
 });
