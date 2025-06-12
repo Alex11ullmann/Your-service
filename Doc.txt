@@ -46,6 +46,10 @@ Estructura del proyecto
 -Registro Trabajador (referencia)
 -Crud (Agregar, Modificar y Eliminar).
 
+El documento Requiere la instalacion de:
+    >>Visual Estudio Code
+    >>Live Service (Para correr json)
+
 Gracias por su tiempo…
 
 Desarrollado por:
