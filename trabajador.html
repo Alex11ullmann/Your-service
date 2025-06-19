@@ -1,0 +1,148 @@
+<!-- Esta pagina fue creada por la empresa Your Service -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajor</title>
+    <link rel="stylesheet" href="./CSS/trabajador.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="flotante">
+            <img src="./Img/Logo.jpg" alt="logo">
+            <a href="./Home.html" class="enlace">Home</a>
+            <a href="./Principal.html" class="enlace">Buscar</a>
+            <a href="./presentacion.html" class="enlace">¿Quiénes somos?</a>
+            <a href="./capacitacion.html" class="enlace">Capacitate</a>
+            <a href="./LogIn.html" class="enlace">Log In</a>
+        </div>
+        <div class="encabezado"> </div>
+        </div>
+
+
+    <div class="perfil-container">
+
+        <!-- Header del perfil -->
+        <div class="perfil-header">
+            <img src="Your-service/Img/Gasista.jfif" alt="Foto de perfil" class="foto-perfil">
+            <div class="info-usuario">
+                <h2>Juan Pérez</h2>
+                <p>Gasista Matriculado.</p>
+            </div>
+        </div>
+
+        <!-- Descripción general -->
+        <div class="descripcion">
+            <h3>Sobre mí</h3>
+            <p>Soy Gasista con mas de 10 años de experiencia.
+                <br>
+                Referencias:
+                <br>
+                CamuzziGasPampeano
+            </p>
+        </div>
+
+        <!-- Galería de imágenes -->
+        <div class="galeria">
+            <h3>Fotos</h3>
+            <img src="Your-service/Img/Gasista.jfif" alt="Foto 1">
+            <img src="Your-service/Img/Gasista.jfif" alt="Foto 2">
+            <img src="Your-service/Img/Gasista.jfif" alt="Foto 3">
+        </div>
+
+        <!-- Videos -->
+        <div class="videos">
+            <h3>Videos</h3>
+            <video controls>
+                <source src="video1.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de video.
+            </video>
+            <video controls>
+                <source src="video2.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de video.
+            </video>
+        </div>
+
+    </div>
+
+    <!-- Calendario de Citas -->
+    <div class="citas" style="margin-top: 40px;">
+        <h3>Reservar una Cita</h3>
+        <form id="form-cita">
+            <label for="fecha">Selecciona una fecha:</label><br>
+            <input type="date" id="fecha" name="fecha" required><br><br>
+
+            <label for="hora">Selecciona un horario:</label><br>
+            <select id="hora" name="hora" required>
+                <option value="">--Seleccionar--</option>
+                <option value="09:00">09:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="14:00">02:00 PM</option>
+                <option value="15:00">03:00 PM</option>
+            </select><br><br>
+
+            <button type="submit">Reservar</button>
+        </form>
+
+        <p id="mensaje-cita" style="color: green;"></p>
+    </div>
+
+    <!-- Formulario de Contacto -->
+    <div class="contacto" style="margin-top: 40px;">
+        <h3>Dejar un Comentario / Contactar</h3>
+        <form id="form-contacto">
+            <label for="nombre">Tu Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+
+            <label for="comentario">Comentario o mensaje:</label><br>
+            <textarea id="comentario" name="comentario" rows="4" required></textarea><br><br>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <p id="mensaje-contacto" style="color: blue;"></p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+    
+            <div class="footer-column">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="./Servicios.html">Servicios</a></li>
+                    <li><a href="./contacto.html">Contacto</a></li>
+                    <li><a href="./preguntas.html">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="./privacidad.html">Política de Privacidad</a></li>
+                    <li><a href="./terminos.html">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <p>📞 2284-0303456</p>
+                <p>📧 Your-service@gmail.com</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">🌐 Facebook</a>
+                    <a href="#" aria-label="Instagram">📸 Instagram</a>
+    
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>2025 Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
