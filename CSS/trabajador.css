@@ -11,20 +11,33 @@ body {
     max-width: 900px;
     margin: 30px auto;
     background-color: white;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 2.0vw;
+    border-radius: 1.0vw;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    font-size: 2.0vw;
+}
+
+#form-cita{
+    font-size: 1.5vw;
 }
 
 .perfil-header {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 2.0vw;
+    font-size: 2.0vw;
+}
+
+.descripcion {
+    font-size: 1.7vw;
 }
 
 .foto-perfil {
-    width: 120px;
-    height: 120px;
+    width: 12.0vw;
+    height: 12.0vw;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #ccc;
@@ -36,14 +49,14 @@ body {
 
 .galeria,
 .videos {
-    margin-top: 30px;
+    margin-top: 3.0vw;
 }
 
 .galeria img,
 .videos video {
     width: 100%;
-    max-width: 250px;
-    margin: 10px;
+    max-width: 25.0vw;
+    margin: 1.0vw;
     border-radius: 10px;
 }
 
@@ -51,7 +64,7 @@ body {
 .videos {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 1.0vw;
 }
 
 /* Contenedores principales */
