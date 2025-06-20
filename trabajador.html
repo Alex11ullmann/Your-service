@@ -21,90 +21,107 @@
             <a href="./LogIn.html" class="enlace">Log In</a>
         </div>
         <div class="encabezado"> </div>
-        </div>
+    </div>
 
+    <div class="body-contenido">
+        <div class="perfil-container">
 
-    <div class="perfil-container">
-
-        <!-- Header del perfil -->
-        <div class="perfil-header">
-            <img src="./Img/Gasista.jfif" alt="Foto de perfil" class="foto-perfil">
-            <div class="info-usuario">
-                <h2>Juan Pérez</h2>
-                <p>Gasista Matriculado.</p>
+            <!-- Header del perfil -->
+            <div class="perfil-header">
+                <img src="./Img/Gasista.jfif" alt="Foto de perfil" class="foto-perfil">
+                <div class="info-usuario">
+                    <h1>Juan Pérez</h1>
+                    <p>Gasista Matriculado.</p>
+                </div>
             </div>
+
+            <!-- Descripción general -->
+            <div class="descripcion">
+                <h3>Sobre mí</h3>
+                <p>Soy Gasista con mas de 10 años de experiencia.</p>
+                <p>Referencias:</p>
+                <p>CamuzziGasPampeano</p>
+            </div>
+
+            <!-- Galería de imágenes -->
+            <div class="galeria">
+                <div>
+                    <h3>Seccion Fotos</h3>
+                </div>
+                <div class="imagenes">
+                    <img src="./Img/Albanil.jfif" alt="Foto 1">
+                    <img src="./Img/Gasista.jfif" alt="Foto 2">
+                    <img src="./Img/Albanil.jfif" alt="Foto 3">
+                </div>
+            </div>
+
+            <!-- Videos -->
+            <div class="videos">
+                <div>
+                    <h3>Seccion Videos</h3>
+                </div>
+                <div class="reproductor">
+                    <video controls>
+                        <source src="video1.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                    <video controls>
+                        <source src="video2.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </div>
+            </div>
+
         </div>
 
-        <!-- Descripción general -->
-        <div class="descripcion">
-            <h3>Sobre mí</h3>
-            <p>Soy Gasista con mas de 10 años de experiencia.
-                <br>
-                Referencias:
-                <br>
-                CamuzziGasPampeano
-            </p>
+        <!-- Calendario de Citas -->
+        <div class="citas"">
+            <h3>Reservar una Cita</h3>
+            <form id="form-cita">
+                <div class="contenedor-form">
+                    <label for="fecha">Selecciona una fecha:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+                <div class="contenedor-form">
+                    <label for="hora">Selecciona un horario:</label>
+                    <select id="hora" name="hora" required>
+                        <option value="">--Seleccionar--</option>
+                        <option value="09:00">09:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="14:00">02:00 PM</option>
+                        <option value="15:00">03:00 PM</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="boton" type="submit">Reservar</button>
+                </div>
+            </form>
+
         </div>
 
-        <!-- Galería de imágenes -->
-        <div class="galeria">
-            <h3>Fotos</h3>
-            <img src="./Img/Albanil.jfif" alt="Foto 1">
-            <img src="./Img/Gasista.jfif" alt="Foto 2">
-            <img src="./Img/Albanil.jfif" alt="Foto 3">
+        <!-- Formulario de Contacto -->
+        <div class="contacto">
+            <h3>Dejar un Comentario / Contactar</h3>
+            <div class="content-contacto">
+                <form id="form-contacto">
+                    <label for="nombre">Nombre y Apellido:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="telefono">Telefono:</label>
+                    <input type="text" id="telefono" name="telefono" required>
+                    <label for="mail">Mail:</label>
+                    <input type="text" id="mail" name="mail" required>
+                    <label for="comentario">Comentario o mensaje:</label>
+                    <textarea id="comentario" name="comentario" required></textarea>
+                </form>
+            </div>
+            <div class="">
+                <button class="boton" type="submit">Enviar</button>
+            </div>
+            <p id="mensaje-contacto" style="color: blue;"></p>
         </div>
-
-        <!-- Videos -->
-        <div class="videos">
-            <h3>Videos</h3>
-            <video controls>
-                <source src="video1.mp4" type="video/mp4">
-                Tu navegador no soporta la reproducción de video.
-            </video>
-            <video controls>
-                <source src="video2.mp4" type="video/mp4">
-                Tu navegador no soporta la reproducción de video.
-            </video>
-        </div>
-
     </div>
 
-    <!-- Calendario de Citas -->
-    <div class="citas" style="margin-top: 40px;">
-        <h3>Reservar una Cita</h3>
-        <form id="form-cita">
-            <label for="fecha">Selecciona una fecha:</label><br>
-            <input type="date" id="fecha" name="fecha" required><br><br>
-
-            <label for="hora">Selecciona un horario:</label><br>
-            <select id="hora" name="hora" required>
-                <option value="">--Seleccionar--</option>
-                <option value="09:00">09:00 AM</option>
-                <option value="10:00">10:00 AM</option>
-                <option value="11:00">11:00 AM</option>
-                <option value="14:00">02:00 PM</option>
-                <option value="15:00">03:00 PM</option>
-            </select><br><br>
-
-            <button type="submit">Reservar</button>
-        </form>
-
-    </div>
-
-    <!-- Formulario de Contacto -->
-    <div class="contacto" style="margin-top: 40px;">
-        <h3>Dejar un Comentario / Contactar</h3>
-        <form id="form-contacto">
-            <label for="nombre">Tu Nombre:</label><br>
-            <input type="text" id="nombre" name="nombre" required><br><br>
-            <label for="comentario">Comentario o mensaje:</label><br>
-            <textarea id="comentario" name="comentario" rows="4" required></textarea><br><br>
-
-            <button type="submit">Enviar</button>
-        </form>
-
-        <p id="mensaje-contacto" style="color: blue;"></p>
-    </div>
 
     <footer class="footer">
         <div class="footer-container">
