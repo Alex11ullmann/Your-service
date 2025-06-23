@@ -1,5 +1,5 @@
 @import url("./flotanteyFooter.css");
-
+@import url("./styleperfiltrab.css");
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -62,4 +62,115 @@ nav ul li a:hover {
 
 .botones button:hover {
     background: #0056b3;
+}
+/******** Comunes Usuario y Trabajador*************/
+.perfil-container {
+    width: 90%;
+    align-items: center;
+    
+    margin: 30px auto;
+    background-color: white;
+    padding: 2.0vw;
+    border-radius: 1.0vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    gap: 2.0vw;
+    margin: auto;
+}
+
+.foto-perfil {
+    width: 25.0vw;
+    height: 25.0vw;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+.info-imgPerfil{
+    position: relative;
+    width: auto;
+    display: inline-block;
+    text-align: center;
+    padding: 2%;
+}
+
+.lapiz {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 2vw;
+  background-color: rgb(206, 236, 248); /* opcional, mejora la visibilidad */
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.info-perfil{
+    text-align: start;
+    width: 55%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 2%;
+}
+
+h3{
+    font-size: 1.7vw;
+}
+
+h4 {
+    font-size: 1.4vw;
+}
+.lapiz1{
+    font-size: 1.5vw;
+}
+.inputt input {
+  width: 18vw;       
+  padding: 5px;
+  font-size: 1.5vw;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modificar{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+/*********  Stylo de Usuario   ********/
+
+
+
+
+
+/*********  Stylo de Trabajador *******/
+
+.perfil-container1 {
+    display: flex;
+    width: 90%;
+    align-items: center; 
+    text-align: start;
+    margin: 30px auto;
+    background-color: white;
+    padding: 2.0vw;
+    border-radius: 1.0vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.subDiv{
+    display: flex;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+}
+
+.imagenes {
+      display: flex;
+      width: 30vw;
+      height: auto;
 }
