@@ -141,13 +141,7 @@ h4 {
     align-items: center;
 }
 
-/*********  Stylo de Usuario   ********/
-
-
-
-
-
-/*********  Stylo de Trabajador *******/
+/*********  Style de Trabajador *******/
 
 .perfil-container1 {
     display: flex;
@@ -173,4 +167,16 @@ h4 {
       display: flex;
       width: 30vw;
       height: auto;
+}
+
+.imagenes img {
+    margin: 5px;
+    width: 20vw;
+    height: 20vw;
+}
+
+.videito {
+    margin: 5px;
+    width: 20vw;
+    height: 20vw;
 }
