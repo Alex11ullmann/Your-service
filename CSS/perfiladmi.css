@@ -44,6 +44,8 @@ nav ul li a:hover {
     width: 50%;
     margin: 20px auto;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1.0vw;
+    border-left: 5px solid #007bff;
 }
 
 .contenido h2 {
@@ -65,7 +67,7 @@ nav ul li a:hover {
 }
 /******** Comunes Usuario y Trabajador*************/
 .perfil-container {
-    width: 90%;
+    width: 100%;
     align-items: center;
     
     margin: 30px auto;
@@ -117,13 +119,6 @@ nav ul li a:hover {
     padding: 2%;
 }
 
-h3{
-    font-size: 1.7vw;
-}
-
-h4 {
-    font-size: 1.4vw;
-}
 .lapiz1{
     font-size: 1.5vw;
 }
