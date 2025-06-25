@@ -1,0 +1,113 @@
+[
+  {
+    "id":"1",
+    "imagen": "../ImgTrabj/juan.jfif",
+    "nombre": "Juan",
+    "localidad": "Olavarria",
+    "direccion":"Leal 756",
+    "dni":"30180088",
+    "Oficio":"Constructor",
+    "calificacion": "⭐⭐⭐",
+    "telefono": "2284534456"
+  },
+  {
+    "id":"2",
+    "imagen": "../ImgTrabj/lucas.jfif",
+    "nombre": "Lucas",
+    "localidad": "Olavarria",
+    "direccion":"Del Valle 1756",
+    "dni":"28350088",
+    "Oficio":"Otro",
+    "calificacion": "⭐⭐⭐⭐",
+    "telefono": "2284544456"
+  },
+  {
+    "id":"3",
+    "imagen": "../ImgTrabj/juana.jfif",
+    "nombre": "Juana",
+    "localidad": "Olavarria",
+    "direccion":"Alverdi 356",
+    "dni":"25180088",
+    "Oficio":"Jardinera",
+    "calificacion": "⭐⭐",
+    "telefono": "2284534789"
+  },
+  {
+    "id":"4",
+    "imagen": "../ImgTrabj/pablo.jfif",
+    "nombre": "Pablo",
+    "localidad": "Olavarria",
+    "direccion":"Colon 956",
+    "dni":"33680081",
+    "Oficio":"Constructor",
+    "calificacion": "⭐⭐⭐",
+    "telefono": "2284534486"
+  },
+  {
+    "id":"5",
+    "imagen": "../ImgTrabj/pedro.jfif",
+    "nombre": "Pedro",
+    "localidad": "Azul",
+    "direccion":"Roca 5622",
+    "dni":"4080088",
+    "Oficio":"Carpintero",
+    "calificacion": "⭐⭐",
+    "telefono": "2284546389"
+  },
+  {
+    "id":"6",
+    "imagen": "../ImgTrabj/maria.jfif",
+    "nombre": "Maria",
+    "localidad": "Tandil",
+    "direccion":"Santa Marina 622",
+    "dni":"25480088",
+    "Oficio":"Otro",
+    "calificacion": "⭐⭐⭐⭐",
+    "telefono": "2284534561"
+  },
+  {
+    "id":"7",
+    "imagen": "../ImgTrabj/jose.jfif",
+    "nombre": "Jose",
+    "localidad": "Olavarria",
+    "direccion":"Moreno 4480",
+    "dni":"37806778",
+    "Oficio":"Carpintero",
+    "calificacion": "⭐⭐",
+    "telefono": "2284523459"
+  },
+  {
+    "id":"8",
+    "imagen": "../ImgTrabj/mauricio.jfif",
+    "nombre": "Mauricio",
+    "localidad": "Olavarria",
+    "direccion":"Tacuari 2622",
+    "dni":"28346897",
+    "Oficio":"Pintor",
+    "calificacion": "⭐⭐⭐",
+    "telefono": "2284546389"
+  },
+  {
+    "id":"9",
+    "imagen": "../ImgTrabj/agustina.jfif",
+    "nombre": "Agustina",
+    "localidad": "Olavarria",
+    "direccion":"sarmiento 622",
+    "dni":"36484567",
+    "Oficio":"Otro",
+    "calificacion": "⭐⭐⭐⭐",
+    "telefono": "22845331231"
+  },
+  {
+    "id":"10",
+    "imagen": "../ImgTrabj/alexis.jfif",
+    "nombre": "Alexis",
+    "localidad": "Olavarria",
+    "direccion":"Moreno 4480",
+    "dni":"37806778",
+    "Oficio":"Constructor",
+    "calificacion": "⭐⭐⭐⭐⭐",
+    "telefono": "2284523972"
+  }
+
+]
