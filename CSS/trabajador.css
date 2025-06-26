@@ -28,28 +28,27 @@ body {
 .perfil-header {
     display: flex;
     align-items: center;
+    text-align: center;
     gap: 2.0vw;
     font-size: 2.0vw;
+    font-weight: bold;
 }
 
-.info-usuario p, h1 {
-    margin: 0%;
+.info-usuario {
+    margin-left: 10%;
 }
 
-.descripcion {
+.info-usuario p {
     font-size: 1.5vw;
 }
 
-.descripcion p {
-    margin: 0%;
+
+.info-descripcion {
+    font-size: 1.5vw;
 }
 
-.foto-perfil {
-    width: 12.0vw;
-    height: 12.0vw;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #9b2ef4;
+.info-descripcion p {
+    margin: 0%;
 }
 
 .galeria, .videos {

@@ -27,27 +27,23 @@
         <div class="perfil-container">
 
             <!-- Header del perfil -->
-            <div class="perfil-header">
-                <img src="./Img/Gasista.jfif" alt="Foto de perfil" class="foto-perfil">
+            <div class="perfil-header"> 
+                <div  id="fotoPerfil" class="foto-perfil"></div>
                 <div class="info-usuario">
-                    <div>
-                        ★
-                        ★
-                        ★
-                        ★
-                        ★
-                    </div>                      
-                    <h1>Juan Pérez</h1>
-                    <p>Gasista Matriculado.</p>
+                    <h3 id="calificacion"></h3>
+                    <h3 id="nombre"></h3>
+                    <p id="localidad"></p>
+                    <p id="telefono"></p>
+                    <p id="oficio"></p>
                 </div>
             </div>
-
+                                
             <!-- Descripción general -->
-            <div class="descripcion">
+            <div class="info-descripcion">
                 <h3>Sobre mí</h3>
-                <p>Soy Gasista con mas de 10 años de experiencia.</p>
+                <p id="descripcion"></p>
                 <p>Referencias:</p>
-                <p>CamuzziGasPampeano</p>
+                <p id="referencias"></p>
             </div>
 
             <!-- Galería de imágenes -->
@@ -165,7 +161,7 @@
         </div>
     </footer>
 
-
+    <script type="text/javascript" src="./trabajador.js"></script>
 </body>
 
 </html>

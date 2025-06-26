@@ -27,7 +27,9 @@ function crearListaDesdeJSON(data) {
               persona.localidad,
               persona.direccion,
               persona.dni,
-              persona.Oficio
+              persona.Oficio,
+              persona.descripcion,
+              persona.referencia
             );
     });
 
@@ -38,14 +40,30 @@ function crearListaDesdeJSON(data) {
   });
 }
 
-function mostrarPerfilTrabajador(imagen, nombre, calificacion, telefono, localidad, direccion, dni, oficio) {
-  alert(`Nombre: ${nombre}
+function mostrarPerfilTrabajador(imagen, nombre, calificacion, telefono, localidad, direccion, dni, oficio, descripcion,referencia) {
+const perfil = {
+                  imagen,
+                  nombre,
+                  calificacion,
+                  telefono,
+                  localidad,
+                  direccion,
+                  dni,
+                  oficio,
+                  descripcion,
+                  referencia
+                };
+
+  localStorage.setItem("perfilTrabajador", JSON.stringify(perfil));
+  window.location.href = "trabajador.html";
+
+  /*alert(`Nombre: ${nombre}
         Oficio: ${oficio}
         Calificación: ${calificacion}
         Teléfono: ${telefono}
         Localidad: ${localidad}
         Dirección: ${direccion}
-        DNI: ${dni}`);
+        DNI: ${dni}`);*/
 }
 
 fetch("./Data/profecionales.json")

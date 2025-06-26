@@ -2,112 +2,132 @@
   {
     "id":"1",
     "imagen": "../ImgTrabj/juan.jfif",
-    "nombre": "Juan",
+    "nombre": "Juan Nuesa",
     "localidad": "Olavarria",
     "direccion":"Leal 756",
     "dni":"30180088",
     "Oficio":"Constructor",
     "calificacion": "⭐⭐⭐",
-    "telefono": "2284534456"
+    "telefono": "2284534456",
+    "descripcion":"Soy Gasista con mas de 10 años de experiencia. ",
+    "referencia" :"Referencias:CamuzziGasPampeano "
   },
   {
     "id":"2",
     "imagen": "../ImgTrabj/lucas.jfif",
-    "nombre": "Lucas",
+    "nombre": "Lucas Lapla",
     "localidad": "Olavarria",
     "direccion":"Del Valle 1756",
     "dni":"28350088",
     "Oficio":"Otro",
     "calificacion": "⭐⭐⭐⭐",
-    "telefono": "2284544456"
+    "telefono": "2284544456",
+    "descripcion":"Soy programados con mas de 1 años de experiencia. ",
+    "Referencia" :"Referencias:CamuzziGasPampeano "
   },
   {
     "id":"3",
     "imagen": "../ImgTrabj/juana.jfif",
-    "nombre": "Juana",
+    "nombre": "Juana Lopesa",
     "localidad": "Olavarria",
     "direccion":"Alverdi 356",
     "dni":"25180088",
     "Oficio":"Jardinera",
     "calificacion": "⭐⭐",
-    "telefono": "2284534789"
+    "telefono": "2284534789",
+    "descripcion":"Soy Jardinero con mas de 30 años de experiencia. ",
+    "referencia" :"Referencias: parquizados TiTO "
   },
   {
     "id":"4",
     "imagen": "../ImgTrabj/pablo.jfif",
-    "nombre": "Pablo",
+    "nombre": "Pablo Gomez",
     "localidad": "Olavarria",
     "direccion":"Colon 956",
     "dni":"33680081",
     "Oficio":"Constructor",
     "calificacion": "⭐⭐⭐",
-    "telefono": "2284534486"
+    "telefono": "2284534486",
+    "descripcion":"Soy unconstructor con mas de 10 años de experiencia. ",
+    "referencia" :"Referencias: Silva construccions "
   },
   {
     "id":"5",
     "imagen": "../ImgTrabj/pedro.jfif",
-    "nombre": "Pedro",
+    "nombre": "Pedro Palomares",
     "localidad": "Azul",
     "direccion":"Roca 5622",
     "dni":"4080088",
     "Oficio":"Carpintero",
     "calificacion": "⭐⭐",
-    "telefono": "2284546389"
+    "telefono": "2284546389",
+    "descripcion":"Soy Carpintero con mas de 5 años de experiencia. ",
+    "referencia" :"Referencias: Rufino Carpinteria "
   },
   {
     "id":"6",
     "imagen": "../ImgTrabj/maria.jfif",
-    "nombre": "Maria",
+    "nombre": "Maria de las Mercedez",
     "localidad": "Tandil",
     "direccion":"Santa Marina 622",
     "dni":"25480088",
     "Oficio":"Otro",
     "calificacion": "⭐⭐⭐⭐",
-    "telefono": "2284534561"
+    "telefono": "2284534561",
+    "descripcion":"Soy Diseñadora con mas de 10 años de experiencia. ",
+    "referencia" :"Referencias: Sotelo Diseños "
   },
   {
     "id":"7",
     "imagen": "../ImgTrabj/jose.jfif",
-    "nombre": "Jose",
+    "nombre": "Jose Carabajal",
     "localidad": "Olavarria",
     "direccion":"Moreno 4480",
     "dni":"37806778",
     "Oficio":"Carpintero",
     "calificacion": "⭐⭐",
-    "telefono": "2284523459"
+    "telefono": "2284523459",
+    "descripcion":"Soy Carpintero con mas de 20 años de experiencia. ",
+    "referencia" :"Referencias:Carpinteria de chicho "
   },
   {
     "id":"8",
     "imagen": "../ImgTrabj/mauricio.jfif",
-    "nombre": "Mauricio",
+    "nombre": "Mauricio Torres",
     "localidad": "Olavarria",
     "direccion":"Tacuari 2622",
     "dni":"28346897",
     "Oficio":"Pintor",
     "calificacion": "⭐⭐⭐",
-    "telefono": "2284546389"
+    "telefono": "2284546389",
+    "descripcion":"Soy un Pintor con mas de 10 años de experiencia. ",
+    "referencia" :"Referencias:construcciones fede "
   },
   {
     "id":"9",
     "imagen": "../ImgTrabj/agustina.jfif",
-    "nombre": "Agustina",
+    "nombre": "Agustina Loperamida",
     "localidad": "Olavarria",
     "direccion":"sarmiento 622",
     "dni":"36484567",
     "Oficio":"Otro",
     "calificacion": "⭐⭐⭐⭐",
-    "telefono": "22845331231"
+    "telefono": "22845331231",
+    "descripcion":"Soy Bioquimica con mas de 8 años de experiencia. ",
+    "referencia" :"Referencias:Dona Maria "
   },
   {
     "id":"10",
     "imagen": "../ImgTrabj/alexis.jfif",
-    "nombre": "Alexis",
+    "nombre": "Alexis Lisieki",
     "localidad": "Olavarria",
     "direccion":"Moreno 4480",
     "dni":"37806778",
     "Oficio":"Constructor",
     "calificacion": "⭐⭐⭐⭐⭐",
-    "telefono": "2284523972"
+    "telefono": "2284523972",
+    "descripcion":"Soy Constructor con mas de 2 años de experiencia. ",
+    "referencia" :"Referencias:alvares constructor "
   }
 
 ]
