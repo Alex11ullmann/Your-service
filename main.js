@@ -12,7 +12,7 @@ function crearListaDesdeJSON(data) {
     img.style.height = "17vw";
 
     let text = document.createElement("p");
-    text.textContent = `${persona.nombre} (${persona.Oficio}): ${persona.calificacion}`;
+    text.textContent = `${persona.nombre} (${persona.oficio}): ${persona.calificacion}`;
     text.style.fontSize = "1.5vw";
 
     let button = document.createElement("button");
@@ -27,7 +27,7 @@ function crearListaDesdeJSON(data) {
               persona.localidad,
               persona.direccion,
               persona.dni,
-              persona.Oficio,
+              persona.oficio,
               persona.descripcion,
               persona.referencia
             );
@@ -53,23 +53,16 @@ const perfil = {
                   descripcion,
                   referencia
                 };
-
+  /* localStore lo utilizamos para guardar datos y llevarlo a Trabajador*/
   localStorage.setItem("perfilTrabajador", JSON.stringify(perfil));
+  /*despues de guardar redirigimos a trabajador*/
   window.location.href = "trabajador.html";
-
-  /*alert(`Nombre: ${nombre}
-        Oficio: ${oficio}
-        Calificación: ${calificacion}
-        Teléfono: ${telefono}
-        Localidad: ${localidad}
-        Dirección: ${direccion}
-        DNI: ${dni}`);*/
 }
 
 fetch("./Data/profecionales.json")
-  .then(response => response.json())
+  .then(response => response.json()) /*traemos datos del json*/
   .then(data => {
-    crearListaDesdeJSON(data);
+    crearListaDesdeJSON(data); /*funcion para generar las cards*/
   })
   .catch(error => console.error("Error al cargar JSON:", error));
 

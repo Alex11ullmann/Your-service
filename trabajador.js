@@ -1,11 +1,13 @@
 
 const perfil = JSON.parse(localStorage.getItem("perfilTrabajador"));
 
+
+
 if (perfil) {
   const img = document.createElement("img");
   img.src = perfil.imagen;
-    img.style.width= "20vw";
-    img.style.height= "20vw";
+    img.style.width= "25vw";
+    img.style.height= "25vw";
     img.style.borderRadius= "50%";
     img.style.objectFit="cover";
   
@@ -16,9 +18,8 @@ if (perfil) {
   document.getElementById("telefono").textContent = `Teléfono: ${perfil.telefono}`;
   document.getElementById("localidad").textContent = `Localidad: ${perfil.localidad}`;
   document.getElementById("direccion").textContent = `Dirección: ${perfil.direccion}`;
-  document.getElementById("dni").textContent = `DNI: ${perfil.dni}`;
-  document.getElementById("descripcion").textContent = `DNI: ${perfil.descripcion}`;
-  document.getElementById("referencia").textContent = `DNI: ${perfil.referencia}`;
+  document.getElementById("descripcion").textContent = `Descripcion: ${perfil.descripcion}`;
+  document.getElementById("referencia").textContent = `Referencias: ${perfil.referencia}`;
 
 } else {
   document.body.textContent = "No se encontraron datos del trabajador.";

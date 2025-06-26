@@ -42,13 +42,21 @@ body {
     font-size: 1.5vw;
 }
 
+.line{
+    margin-top: 5%;
+    width: 99%;
+    height: 2px;
+    background: grey;
+}
 
 .info-descripcion {
-    font-size: 1.5vw;
+    font-weight: bold;
+    font-size: 1.6vw;
 }
 
 .info-descripcion p {
-    margin: 0%;
+    margin-left: 10%;
+    margin-bottom: 1%;
 }
 
 .galeria, .videos {
