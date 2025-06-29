@@ -1,0 +1,41 @@
+[
+  {
+    "id":"11",
+    "imagen": "../ImgTrabj/juan.jfif",
+    "usuario": "LuisP",
+    "password":"Luis11",
+    "localidad": "Olavarria",
+    "direccion":"Leal 756",
+    "dni":"30180088",
+    "telefono": "2284534456"
+  },
+  {
+    "id":"12",
+    "imagen": "../ImgTrabj/lucas.jfif",
+    "usuario": "Alexis",
+    "password":"Alexis12",
+    "localidad": "Olavarria",
+    "direccion":"Del Valle 1756",
+    "dni":"28350088",
+    "telefono": "2284544456"
+  },
+  {
+    "id":"13",
+    "imagen": "../ImgTrabj/juana.jfif",
+    "usuario": "RovertoCarlos",
+    "password":"13",
+    "localidad": "Olavarria",
+    "direccion":"Alverdi 356",
+    "dni":"25180088",
+    "telefono": "2284534789"
+  },
+  {
+    "id":"14",
+    "imagen": "../ImgTrabj/pablo.jfif",
+    "usuario": "PabloGomez",
+    "password":"14",
+    "localidad": "Olavarria",
+    "direccion":"Colon 956",
+    "dni":"33680081",
+    "telefono": "2284534486"
+  }]

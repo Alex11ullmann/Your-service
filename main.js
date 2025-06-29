@@ -12,7 +12,7 @@ function crearListaDesdeJSON(data) {
     img.style.height = "17vw";
 
     let text = document.createElement("p");
-    text.textContent = `${persona.nombre} (${persona.oficio}): ${persona.calificacion}`;
+    text.textContent = `${persona.usuario} (${persona.oficio}): ${persona.calificacion}`;
     text.style.fontSize = "1.5vw";
 
     let button = document.createElement("button");
@@ -21,7 +21,7 @@ function crearListaDesdeJSON(data) {
     button.addEventListener("click", () => {
         mostrarPerfilTrabajador(
               persona.imagen,
-              persona.nombre,
+              persona.usuario,
               persona.calificacion,
               persona.telefono,
               persona.localidad,
@@ -40,10 +40,10 @@ function crearListaDesdeJSON(data) {
   });
 }
 
-function mostrarPerfilTrabajador(imagen, nombre, calificacion, telefono, localidad, direccion, dni, oficio, descripcion,referencia) {
+function mostrarPerfilTrabajador(imagen, usuario, calificacion, telefono, localidad, direccion, dni, oficio, descripcion,referencia) {
 const perfil = {
                   imagen,
-                  nombre,
+                  usuario,
                   calificacion,
                   telefono,
                   localidad,
@@ -66,4 +66,3 @@ fetch("./Data/profecionales.json")
   })
   .catch(error => console.error("Error al cargar JSON:", error));
 
-  

@@ -5,14 +5,14 @@ const perfil = JSON.parse(localStorage.getItem("perfilTrabajador"));
 
 if (perfil) {
   const img = document.createElement("img");
-  img.src = perfil.imagen;
+    img.src = perfil.imagen;
     img.style.width= "25vw";
     img.style.height= "25vw";
     img.style.borderRadius= "50%";
     img.style.objectFit="cover";
   
   document.getElementById("fotoPerfil").appendChild(img);
-  document.getElementById("nombre").textContent = perfil.nombre;
+  document.getElementById("nombre").textContent = perfil.usuario;
   document.getElementById("oficio").textContent = `Oficio: ${perfil.oficio}`;
   document.getElementById("calificacion").textContent = `Calificación: ${perfil.calificacion}`;
   document.getElementById("telefono").textContent = `Teléfono: ${perfil.telefono}`;

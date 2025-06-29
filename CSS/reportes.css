@@ -3,7 +3,8 @@
 body {
     font-family: sans-serif;
     margin: 20px;
-    background: #f5f5f5;
+    background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
+
 }
 
 

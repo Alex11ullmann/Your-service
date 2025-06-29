@@ -26,53 +26,45 @@
         <!-- Header del perfil -->
         <div class="perfil-header">
             <div class="info-imgPerfil">
-                <img src="./Img/Gasista.jfif" alt="Foto de perfil" class="foto-perfil">
+                <div  id="fotoPerfil" class="foto-perfil"></div>
                 <span class="lapiz">✏️</span>
             </div>
             <div class="info-perfil">
-                <h3>Usuario: JuanJose </h3>
-                <h3>DNI: 38123678 </h3>
+                <h3></h3>
+                <h3></h3>
                 <div class="modificar">
-                     <h4>Contrasenia: ********* </h4>
+                     <h3>Contraseña:</h3>
                      <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>
                 </div>
                 <div class="modificar">
-                    <h4>Localidad: Olavarria </h4>
+                    <h3>Localidad:</h3>
                     <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>
                 </div>
                 <div class="modificar">
-                    <h4>Direccion: Colon 1234 </h4>
+                    <h3>Direccion:</h3>
                     <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>
                 </div>
                 <div class="modificar">
-                    <h4>email: JuncitoSanch@asdf.com </h4>
+                    <h3>email :</h3>
                     <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>     
                 </div> 
+                <!-- Guardar cambios y eliminar cuenta -->           
+                <button class="botonModyElim"  id="guardarCambios" >
+                     Guardar Cambios
+                </button>
                 <div class="modificar">
-                    <h4>Eliminar mi cuenta </h4>
-                    <div class="inputt" placeholder="Requiere contraseña"><span class="lapiz1">🗑️</span><input type="text"></div>     
-                </div>                      
+                    <h3>Eliminar mi cuenta</h3>
+                    <div class="inputtElim" placeholder="Requiere contraseña">
+                        <input type="password" id="inputEliminarPass" placeholder="Ingrese su contraseña">
+                        <button  class="botonModyElim" id="btnEliminarCuenta" >🗑️Eliminar </button>
+                    </div>  
             </div>
         </div>
     </div>
     <div class="perfil-container1">
         <div class="subDiv">   
             <div class="imagenes" id="contenedor">
-                <div>
-                    <img src="./Img/Gasista.jfif" alt="1">
-                    <span class="lapiz1">✏️</span>
-                    <span class="lapiz1">🗑️</span>
-                </div>
-                <div>
-                    <img src="./Img/Plomero.jfif" alt="2">
-                    <span class="lapiz1">✏️</span>
-                    <span class="lapiz1">🗑️</span>
-                </div>
-                <div>
-                    <img src="./Img/Albanil.jfif" alt="3">
-                    <span class="lapiz1">✏️</span>
-                    <span class="lapiz1">🗑️</span>
-                </div>
+                <!-- Cargamos imagenes de trabajos desde Json --> 
             </div>
         </div>
     </div>
@@ -80,18 +72,8 @@
         <div class="subDiv">  
             <div class="imagenes">
                 <div>
-                    <video controls class="videito">
-                        <source src="video1.mp4" type="video/mp4">       
-                    </video>
-                    <span class="lapiz1">✏️</span>
-                    <span class="lapiz1">🗑️</span>
-                </div>
-                <div>
-                    <video controls class="videito">
-                        <source src="video2.mp4" type="video/mp4">
-                    </video>
-                    <span class="lapiz1">✏️</span>
-                    <span class="lapiz1">🗑️</span>
+                    <div id="contenedorVideos"></div>
+                    <!-- Cargamos videos de trabajos desde Json --> 
                 </div>
             </div>
         </div>
@@ -203,6 +185,6 @@
                 <p>2025 Todos los derechos reservados.</p>
             </div>
     </footer>    
-    <script src="carrusel.js"></script>
+    <script src="./gestorTrabajador.js"></script>
 </body>
 </html>
