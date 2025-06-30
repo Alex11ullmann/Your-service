@@ -28,25 +28,26 @@ window.addEventListener("DOMContentLoaded", () => {
     campos[1].querySelector("input").value = perfil.localidad;
     campos[2].querySelector("input").value = perfil.direccion;
     campos[3].querySelector("input").value = perfil.email;
+    campos[4].querySelector("input").value = perfil.telefono;
+
 
     // Botón GUARDAR CAMBIOS ( id="guardarCambios")
     const btnGuardar = document.getElementById("guardarCambios");
     if (btnGuardar) {
         btnGuardar.addEventListener("click", () => {
-            perfil.password = campos[0].querySelector("input").value.trim();
+            perfil.password  = campos[0].querySelector("input").value.trim();
             perfil.localidad = campos[1].querySelector("input").value.trim();
             perfil.direccion = campos[2].querySelector("input").value.trim();
-            perfil.email = campos[3].querySelector("input").value.trim();
+            perfil.email     = campos[3].querySelector("input").value.trim();
+            perfil.telefono  = campos[4].querySelector("input").value.trim();
             localStorage.setItem("perfilTrabajador", JSON.stringify(perfil));
             mostrarMensaje("👍Cambios guardados(Simulacion)👍",perfil);
-        
         });
     }
 
     // Mostrar alerta flotante
    function mostrarMensaje(texto, perfil) {
     const div = document.createElement("div");
-
         // Estilos de la card
         div.style.position = "fixed";
         div.style.bottom = "5vw";
@@ -58,20 +59,21 @@ window.addEventListener("DOMContentLoaded", () => {
         div.style.boxShadow = "0 8px 16px rgba(0,0,0,0.25)";
         div.style.zIndex = "9999"; //muestra encima del html
         div.style.maxWidth = "300px";
-
         // Contenido estructurado
         div.innerHTML = `
             <div style="font-weight: bold; font-size: 16px; color: #28a745; margin-bottom: 8px;">
                 ${texto}
             </div>
-            <div><strong>Localidad:</strong> ${perfil.localidad}</div>
-            <div><strong>Dirección:</strong> ${perfil.direccion}</div>
-            <div><strong>Email:</strong> ${perfil.email}</div>
+            <div><strong>Contrase;a:</strong> ${perfil.password}</div>
+            <div><strong>Localidad:</strong>  ${perfil.localidad}</div>
+            <div><strong>Dirección:</strong>  ${perfil.direccion}</div>
+            <div><strong>Email:</strong>      ${perfil.email}</div>
+            <div><strong>Telefono:</strong>   ${perfil.telefono}</div>
         `;
 
     document.body.appendChild(div);
     setTimeout(() => div.remove(), 3500);
-}
+    }
 
     // Eliminar cuenta con verificación de contraseña
     const btnEliminar = document.getElementById("btnEliminarCuenta");
@@ -118,20 +120,73 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
     // Segmento para Mostrar Videos de sus trabajos
-    if (perfil.videoUrl) {
-        const contenedor = document.getElementById("contenedorVideos");
-        const div = document.createElement("div");
+    // Segmento para Mostrar Video de sus trabajos
+    const contenedorVideo = document.getElementById("contenedorVideo");
+      if (perfil.videoUrl) {
+        // Convertir el enlace de YouTube en un embed válido
+        const urlYouTube = perfil.videoUrl.replace("watch?v=", "embed/");
 
+        const iframe = document.createElement("iframe");
+        iframe.width = "100%";
+        iframe.height = "315";
+        iframe.src = urlYouTube;
+        iframe.title = "Video del trabajador";
+        iframe.frameBorder = "0";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+
+        contenedorVideo.appendChild(iframe);
+      }
+
+    //Ver-Modificar Texto de descripcion y referencia
+    const textareaDescripcion = document.getElementById("textareaDescripcion");
+    const inputReferencia = document.getElementById("inputReferencia");
+    const btnGuardarDescripcion = document.getElementById("btnGuardarDescripcion");
+
+    // Cargar datos si existen
+    if (perfil.descripcion) textareaDescripcion.value = perfil.descripcion;
+    if (perfil.referencia) inputReferencia.value = perfil.referencia;
+
+    // Evento para guardar descripción y referencia
+    btnGuardarDescripcion.addEventListener("click", () => {
+        const nuevaDesc = textareaDescripcion.value.trim();
+        const nuevaRef = inputReferencia.value.trim();
+
+        if (nuevaDesc.length < 20) {
+             alert("✍️ La descripción debe tener al menos 20 caracteres.");
+             return;
+        }
+
+        perfil.descripcion = nuevaDesc;
+        perfil.referencia = nuevaRef;
+
+        localStorage.setItem("perfilTrabajador", JSON.stringify(perfil));
+        mensajeDescripYReferencia ("👍Descripción y Referencia actualizada con éxito", perfil);
+    });
+     
+    function mensajeDescripYReferencia(texto, perfil) {
+    const div = document.createElement("div");
+        // Estilos de la card
+        div.style.position = "fixed";
+        div.style.bottom = "5vw";
+        div.style.right = "5vw";
+        div.style.background = "#ffffff";
+        div.style.color = "#333";
+        div.style.padding = "16px";
+        div.style.borderRadius = "12px";
+        div.style.boxShadow = "0 8px 16px rgba(0,0,0,0.25)";
+        div.style.zIndex = "9999"; //muestra encima del html
+        div.style.maxWidth = "300px";
+        // Contenido estructurado
         div.innerHTML = `
-            <video controls class="videito">
-                <source src="${perfil.videoUrl}" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-            </video>
-            <span class="lapiz1">✏️</span>
-            <span class="lapiz1">🗑️</span>
+            <div style="font-weight: bold; font-size: 16px; color: #28a745; margin-bottom: 8px;">
+                ${texto}
+            </div>
         `;
 
-    contenedor.appendChild(div);
+    document.body.appendChild(div);
+    setTimeout(() => div.remove(), 3500);
     }
+
 
 });

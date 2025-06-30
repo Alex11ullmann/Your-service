@@ -67,9 +67,8 @@ nav ul li a:hover {
 }
 /******** Comunes Usuario y Trabajador*************/
 .perfil-container {
-    width: 100%;
+    width: 90%;
     align-items: center;
-    
     margin: 30px auto;
     background-color: white;
     padding: 2.0vw;
@@ -92,6 +91,7 @@ nav ul li a:hover {
     object-fit: cover;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
+
 
 .info-imgPerfil{
     position: relative;
@@ -119,6 +119,11 @@ nav ul li a:hover {
     padding: 2%;
 }
 
+h4{
+    color: #268fff;
+    font-size: 1.5vw;
+}
+
 .lapiz1{
     font-size: 1.5vw;
 }
@@ -132,16 +137,21 @@ nav ul li a:hover {
 }
 
 .botonModyElim{
-   
     height: 2%;
     justify-content: center;
-    background: linear-gradient(90deg,rgb(19, 122, 218) 100%, rgb(72, 194, 216) 47%, rgb(41, 125, 204) 100%);
-    color : white;
-    font-size: 1vw;
+    background: rgb(252, 249, 249);
+    color : #0163cc;
+    font-size: 1.1vw;
     font-weight: bold;
     margin: 2%; 
     padding: 2%;
     border-radius: 10px;
+    border-color:rgb(200, 208, 255);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.botonModyElim button:hover{
+    background: #80b9f7;
 }
 
 .inputtElim{
@@ -197,8 +207,35 @@ nav ul li a:hover {
     height: 20vw;
 }
 
-.videito {
+.video {
+  margin-top: 20px;
+  max-width: 560px;
+}
+.video iframe {
+  width: 100%;
+  border-radius: 10px;
+}
+
+p{
+    color: #0056b3;
+}
+
+textarea{
     margin: 5px;
-    width: 20vw;
-    height: 20vw;
+    width: 70%;
+    height: 10vw;
+    font-size: 1.2vw;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#inputReferencia{
+    margin: 5px;
+    width: 70%;
+    height: 5vw;
+    font-size: 1.2vw;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

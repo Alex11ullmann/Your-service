@@ -103,11 +103,9 @@ window.addEventListener("DOMContentLoaded", () => {
                 const clientes = await clientesRes.json();
                 const cliente = clientes.find(
                     c => c.usuario === usuarioInput && c.password === passwordInput
-                    
                 );
 
                 if (cliente) {
-                    console.log("clieste encontrado "+c.usuario+c.password);
                     localStorage.setItem("perfilUsuario", JSON.stringify(cliente));
                     window.location.href = "./gestorUsuario.html";
                     return;

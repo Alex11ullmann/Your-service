@@ -59,29 +59,29 @@ body {
     margin-bottom: 1%;
 }
 
-.galeria, .videos {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 3.0vw;
-    gap: 1.0vw;
-    font-family: 'Calibri Light', Calibri, sans-serif;
-    align-items: center;
+.imagenes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.imagenes, .reproductor {
-    display: flex;
-    width: 100%;
-    justify-content: center;
+.imagenes img {
+  width: 15vw;
+  height: 15vw;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-.galeria img, .videos video {
-    border-radius: 10px;
-    width: 25%;
-    height: 14vw;
-    margin: 2%;
+.video {
+  margin-top: 20px;
+  max-width: 560px;
 }
+.video iframe {
+  width: 100%;
+  border-radius: 10px;
+}
+
 
 /* Contenedores principales */
 .citas,

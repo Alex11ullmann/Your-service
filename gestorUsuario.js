@@ -28,18 +28,19 @@ window.addEventListener("DOMContentLoaded", () => {
     campos[1].querySelector("input").value = perfil.localidad;
     campos[2].querySelector("input").value = perfil.direccion;
     campos[3].querySelector("input").value = perfil.email;
+    campos[4].querySelector("input").value = perfil.telefono;
 
     // Botón GUARDAR CAMBIOS ( id="guardarCambios")
     const btnGuardar = document.getElementById("guardarCambios");
     if (btnGuardar) {
         btnGuardar.addEventListener("click", () => {
-            perfil.password = campos[0].querySelector("input").value.trim();
+            perfil.password  = campos[0].querySelector("input").value.trim();
             perfil.localidad = campos[1].querySelector("input").value.trim();
             perfil.direccion = campos[2].querySelector("input").value.trim();
-            perfil.email = campos[3].querySelector("input").value.trim();
-            localStorage.setItem("perfilTrabajador", JSON.stringify(perfil));
+            perfil.email     = campos[3].querySelector("input").value.trim();
+            perfil.telefono  = campos[4].querySelector("input").value.trim();
+            localStorage.setItem("perfilUsuario", JSON.stringify(perfil));
             mostrarMensaje("👍Cambios guardados(Simulacion)👍",perfil);
-        
         });
     }
 
@@ -64,9 +65,11 @@ window.addEventListener("DOMContentLoaded", () => {
             <div style="font-weight: bold; font-size: 16px; color: #28a745; margin-bottom: 8px;">
                 ${texto}
             </div>
+            <div><strong>Contraseña:</strong> ${perfil.password}</div>
             <div><strong>Localidad:</strong> ${perfil.localidad}</div>
             <div><strong>Dirección:</strong> ${perfil.direccion}</div>
-            <div><strong>Email:</strong> ${perfil.email}</div>
+            <div><strong>Email    :</strong> ${perfil.email}</div>
+            <div><strong>Telefono :</strong> ${perfil.telefono}</div>
         `;
 
     document.body.appendChild(div);
@@ -100,3 +103,4 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+});

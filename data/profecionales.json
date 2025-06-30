@@ -12,7 +12,7 @@
     "telefono": "2284534456",
     "email":"lucas@yourservice",
     "fotos":[   
-                "../ImgTrabj/juan.jfif",
+                "./ImgTrabj/juan.jfif",
                 "../Img/Gasista.jfif",
                 "../Img/Plomero.jfif"
             ],

@@ -29,7 +29,9 @@ function crearListaDesdeJSON(data) {
               persona.dni,
               persona.oficio,
               persona.descripcion,
-              persona.referencia
+              persona.referencia,
+              persona.fotos,
+              persona.videoUrl
             );
     });
 
@@ -40,7 +42,7 @@ function crearListaDesdeJSON(data) {
   });
 }
 
-function mostrarPerfilTrabajador(imagen, usuario, calificacion, telefono, localidad, direccion, dni, oficio, descripcion,referencia) {
+function mostrarPerfilTrabajador(imagen, usuario, calificacion, telefono, localidad, direccion, dni, oficio, descripcion,referencia,fotos,videoUrl) {
 const perfil = {
                   imagen,
                   usuario,
@@ -51,7 +53,9 @@ const perfil = {
                   dni,
                   oficio,
                   descripcion,
-                  referencia
+                  referencia,
+                  fotos,
+                  videoUrl
                 };
   /* localStore lo utilizamos para guardar datos y llevarlo a Trabajador*/
   localStorage.setItem("perfilTrabajador", JSON.stringify(perfil));

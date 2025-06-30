@@ -36,6 +36,7 @@
                     <p id="direccion"></p>
                     <p id="telefono"></p>
                     <p id="oficio"></p>
+                    <p id="email"></p>
                 </div>
             </div>
             <div class="line"></div>       
@@ -48,30 +49,21 @@
 
             <!-- Galería de imágenes -->
             <div class="galeria">
-                <div>
-                    <h3>Seccion Fotos</h3>
-                </div>
-                <div class="imagenes">
-                    <img src="./Img/Albanil.jfif" alt="Foto 1">
-                    <img src="./Img/Gasista.jfif" alt="Foto 2">
-                    <img src="./Img/Albanil.jfif" alt="Foto 3">
-                </div>
+                <h3>Fotos de Mi Trabajo</h3>
+                <div class="imagenes" id="contenedorimg">
+                        <!-- Cargamos imagenes de trabajos desde Json --> 
+                </div>  
             </div>
-
+        
             <!-- Videos -->
             <div class="videos">
                 <div>
-                    <h3>Seccion Videos</h3>
+                    <h3>Video</h3>
                 </div>
                 <div class="reproductor">
-                    <video controls>
-                        <source src="video1.mp4" type="video/mp4">
-                        Tu navegador no soporta la reproducción de video.
-                    </video>
-                    <video controls>
-                        <source src="video2.mp4" type="video/mp4">
-                        Tu navegador no soporta la reproducción de video.
-                    </video>
+                    <div class="video" id="contenedorVideo">
+                        <!-- El video se insertará aquí desde JS -->
+                    </div>
                 </div>
             </div>
 
