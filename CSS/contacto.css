@@ -1,5 +1,9 @@
 @import url("./flotanteyFooter.css");
 
+body{
+    background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
+}
+
 .encabezado{
     width: 100%;
     height: 5vw;

@@ -2,112 +2,212 @@
   {
     "id":"1",
     "imagen": "../ImgTrabj/juan.jfif",
-    "nombre": "Juan",
+    "usuario": "Lucas",
+    "password":"Lucas1",
     "localidad": "Olavarria",
     "direccion":"Leal 756",
     "dni":"30180088",
-    "Oficio":"Constructor",
+    "oficio":"Constructor",
     "calificacion": "⭐⭐⭐",
-    "telefono": "2284534456"
+    "telefono": "2284534456",
+    "email":"lucas@yourservice",
+    "fotos":[   
+                "./ImgTrabj/juan.jfif",
+                "../Img/Gasista.jfif",
+                "../Img/Plomero.jfif"
+            ],
+    "videoUrl": "https://www.youtube.com/watch?v=-Z42PYsGOgA",
+    "descripcion":"Soy Gasista con mas de 10 años de experiencia. ",
+    "referencia" :"Referencias:CamuzziGasPampeano "
   },
   {
     "id":"2",
     "imagen": "../ImgTrabj/lucas.jfif",
-    "nombre": "Lucas",
+    "usuario": "Luigi",
+    "password":"Luigi1",
     "localidad": "Olavarria",
     "direccion":"Del Valle 1756",
     "dni":"28350088",
-    "Oficio":"Otro",
+    "oficio":"Otro",
     "calificacion": "⭐⭐⭐⭐",
-    "telefono": "2284544456"
+    "telefono": "2284544456",
+    "fotos":[   
+                "../ImgTrabj/lucas.jfif",
+                "../Img/Gasista.jfif",
+                "../Img/Plomero.jfif"
+            ],
+    "email":"Luigiito@yourservice",
+    "videoUrl": "https://www.youtube.com/watch?v=-Z42PYsGOgA",
+    "descripcion":"Soy programados con mas de 1 años de experiencia. ",
+    "Referencia" :"Referencias:CamuzziGasPampeano "
   },
   {
     "id":"3",
     "imagen": "../ImgTrabj/juana.jfif",
-    "nombre": "Juana",
+    "usuario": "Maria",
+    "password":"Maria1",
     "localidad": "Olavarria",
     "direccion":"Alverdi 356",
     "dni":"25180088",
-    "Oficio":"Jardinera",
+    "oficio":"Jardinera",
     "calificacion": "⭐⭐",
-    "telefono": "2284534789"
+    "telefono": "2284534789",
+    "email":"AlexisUll@yourservice",
+    "fotos":[   
+                "../ImgTrabj/juana.jfif",
+                "../Img/Gasista.jfif",
+                "../Img/Plomero.jfif"
+            ],
+    "videoUrl": "https://www.youtube.com/watch?v=-Z42PYsGOgA",
+    "descripcion":"Soy Jardinero con mas de 30 años de experiencia. ",
+    "referencia" :"Referencias: parquizados TiTO "
   },
   {
     "id":"4",
     "imagen": "../ImgTrabj/pablo.jfif",
-    "nombre": "Pablo",
+    "usuario": "Pablo",
+    "password":"Pablo1",
     "localidad": "Olavarria",
     "direccion":"Colon 956",
     "dni":"33680081",
-    "Oficio":"Constructor",
+    "oficio":"Constructor",
     "calificacion": "⭐⭐⭐",
-    "telefono": "2284534486"
+    "telefono": "2284534486",
+    "email":"PabloGomez@yourservice",
+    "fotos":[   
+                "../ImgTrabj/pablo.jfif",
+                "../Img/Gasista.jfif",
+                "../Img/Plomero.jfif"
+            ],
+    "videoUrl": "https://www.youtube.com/watch?v=-Z42PYsGOgA",
+    "descripcion":"Soy unconstructor con mas de 10 años de experiencia. ",
+    "referencia" :"Referencias: Silva construccions "
   },
   {
     "id":"5",
     "imagen": "../ImgTrabj/pedro.jfif",
-    "nombre": "Pedro",
+    "usuario": "PedroP",
+    "password":"PedroP1",
     "localidad": "Azul",
     "direccion":"Roca 5622",
     "dni":"4080088",
-    "Oficio":"Carpintero",
+    "oficio":"Carpintero",
     "calificacion": "⭐⭐",
-    "telefono": "2284546389"
+    "telefono": "2284546389",
+    "email":"Perdritot@yourservice",
+    "fotos":[   
+                "../ImgTrabj/pedro.jfif",
+                "../Img/Gasista.jfif",
+                "../Img/Plomero.jfif"
+            ],
+    "videoUrl": "https://www.youtube.com/watch?v=-Z42PYsGOgA",
+    "descripcion":"Soy Carpintero con mas de 5 años de experiencia. ",
+    "referencia" :"Referencias: Rufino Carpinteria "
   },
   {
     "id":"6",
     "imagen": "../ImgTrabj/maria.jfif",
-    "nombre": "Maria",
+    "usuario": "MariaMercedez",
+    "password":"MariaMercedez1",
     "localidad": "Tandil",
     "direccion":"Santa Marina 622",
     "dni":"25480088",
-    "Oficio":"Otro",
+    "oficio":"Otro",
     "calificacion": "⭐⭐⭐⭐",
-    "telefono": "2284534561"
+    "telefono": "2284534561",
+    "email":"MariaMercedez@yourservice",
+    "fotos":[   
+                "../ImgTrabj/maria.jfif",
+                "../Img/Gasista.jfif",
+                "../Img/Plomero.jfif"
+            ],
+    "videoUrl": "https://www.youtube.com/watch?v=-Z42PYsGOgA",
+    "descripcion":"Soy Diseñadora con mas de 10 años de experiencia. ",
+    "referencia" :"Referencias: Sotelo Diseños "
   },
   {
     "id":"7",
     "imagen": "../ImgTrabj/jose.jfif",
-    "nombre": "Jose",
+    "usuario": "JoseCarabajal",
+    "password":"7",
     "localidad": "Olavarria",
     "direccion":"Moreno 4480",
     "dni":"37806778",
-    "Oficio":"Carpintero",
+    "oficio":"Carpintero",
     "calificacion": "⭐⭐",
-    "telefono": "2284523459"
+    "telefono": "2284523459",
+    "email":"JoseCabral@yourservice",
+    "fotos":[   
+                "../ImgTrabj/jose.jfif",
+                "../Img/Gasista.jfif",
+                "../Img/Plomero.jfif"
+            ],
+    "videoUrl": "https://www.youtube.com/watch?v=-Z42PYsGOgA",
+    "descripcion":"Soy Carpintero con mas de 20 años de experiencia. ",
+    "referencia" :"Referencias:Carpinteria de chicho "
   },
   {
     "id":"8",
     "imagen": "../ImgTrabj/mauricio.jfif",
-    "nombre": "Mauricio",
+    "usuario": "MauricioTorres",
+    "password":"8",
     "localidad": "Olavarria",
     "direccion":"Tacuari 2622",
     "dni":"28346897",
-    "Oficio":"Pintor",
+    "oficio":"Pintor",
     "calificacion": "⭐⭐⭐",
-    "telefono": "2284546389"
+    "telefono": "2284546389",
+    "email":"Mauritorres@yourservice",
+    "fotos":[   
+                "../ImgTrabj/mauricio.jfif",
+                "../Img/Gasista.jfif",
+                "../Img/Plomero.jfif"
+            ],
+    "videoUrl": "https://www.youtube.com/watch?v=-Z42PYsGOgA",
+    "descripcion":"Soy un Pintor con mas de 10 años de experiencia. ",
+    "referencia" :"Referencias:construcciones fede "
   },
   {
     "id":"9",
     "imagen": "../ImgTrabj/agustina.jfif",
-    "nombre": "Agustina",
+    "usuario": "AgustinaLoperamida",
+    "password":"9",
     "localidad": "Olavarria",
     "direccion":"sarmiento 622",
     "dni":"36484567",
-    "Oficio":"Otro",
+    "oficio":"Otro",
     "calificacion": "⭐⭐⭐⭐",
-    "telefono": "22845331231"
+    "telefono": "22845331231",
+    "email":"AgustinLopez@yourservice",
+    "fotos":[   
+                "../ImgTrabj/agustina.jfif",
+                "../Img/Gasista.jfif",
+                "../Img/Plomero.jfif"
+            ],
+    "videoUrl": "https://www.youtube.com/watch?v=-Z42PYsGOgA",
+    "descripcion":"Soy Bioquimica con mas de 8 años de experiencia. ",
+    "referencia" :"Referencias:Dona Maria "
   },
   {
     "id":"10",
     "imagen": "../ImgTrabj/alexis.jfif",
-    "nombre": "Alexis",
+    "usuario": "AlexisLisieki",
+    "password":"10",
     "localidad": "Olavarria",
     "direccion":"Moreno 4480",
     "dni":"37806778",
-    "Oficio":"Constructor",
+    "oficio":"Constructor",
     "calificacion": "⭐⭐⭐⭐⭐",
-    "telefono": "2284523972"
+    "telefono": "2284523972",
+    "email":"AlexisLis@youservice",
+    "fotos":[   
+                "../ImgTrabj/alexis.jfif",
+                "../Img/Gasista.jfif",
+                "../Img/Plomero.jfif"
+            ],
+    "videoUrl": "https://www.youtube.com/watch?v=-Z42PYsGOgA",
+    "descripcion":"Soy Constructor con mas de 2 años de experiencia. ",
+    "referencia" :"Referencias:alvares constructor "
   }
 
 ]

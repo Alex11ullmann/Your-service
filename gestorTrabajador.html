@@ -26,125 +26,114 @@
         <!-- Header del perfil -->
         <div class="perfil-header">
             <div class="info-imgPerfil">
-                <img src="./Img/Gasista.jfif" alt="Foto de perfil" class="foto-perfil">
+                <div  id="fotoPerfil" class="foto-perfil"></div>
                 <span class="lapiz">✏️</span>
             </div>
             <div class="info-perfil">
-                <h3>Usuario: JuanJose </h3>
-                <h3>DNI: 38123678 </h3>
+                <h3></h3>
+                <h3></h3>
                 <div class="modificar">
-                     <h4>Contrasenia: ********* </h4>
+                     <h4>Contraseña:</h4>
                      <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>
                 </div>
                 <div class="modificar">
-                    <h4>Localidad: Olavarria </h4>
+                    <h4>Localidad:</h4>
                     <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>
                 </div>
                 <div class="modificar">
-                    <h4>Direccion: Colon 1234 </h4>
+                    <h4>Direccion:</h4>
                     <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>
                 </div>
                 <div class="modificar">
-                    <h4>email: JuncitoSanch@asdf.com </h4>
+                    <h4>email :</h4>
                     <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>     
                 </div> 
                 <div class="modificar">
-                    <h4>Eliminar mi cuenta </h4>
-                    <div class="inputt" placeholder="Requiere contraseña"><span class="lapiz1">🗑️</span><input type="text"></div>     
-                </div>                      
-            </div>
-        </div>
-    </div>
-    <div class="perfil-container1">
-        <div class="subDiv">   
-            <div class="imagenes" id="contenedor">
-                <div>
-                    <img src="./Img/Gasista.jfif" alt="1">
-                    <span class="lapiz1">✏️</span>
-                    <span class="lapiz1">🗑️</span>
+                    <h4>Telefono :</h4>
+                    <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>     
                 </div>
-                <div>
-                    <img src="./Img/Plomero.jfif" alt="2">
-                    <span class="lapiz1">✏️</span>
-                    <span class="lapiz1">🗑️</span>
-                </div>
-                <div>
-                    <img src="./Img/Albanil.jfif" alt="3">
-                    <span class="lapiz1">✏️</span>
-                    <span class="lapiz1">🗑️</span>
+                <!-- Guardar cambios y eliminar cuenta -->           
+                <button class="botonModyElim"  id="guardarCambios" >
+                     Guardar Cambios
+                </button>
+                <div class="modificar">
+                    <h4>Eliminar mi cuenta</h4>
+                    <div class="inputtElim" placeholder="Requiere contraseña">
+                        <input type="password" id="inputEliminarPass" placeholder="Ingrese su contraseña">
+                        <button  class="botonModyElim" id="btnEliminarCuenta" >🗑️Eliminar </button>
+                    </div>  
                 </div>
             </div>
         </div>
-    </div>
-    <div class="perfil-container1">
-        <div class="subDiv">  
-            <div class="imagenes">
-                <div>
-                    <video controls class="videito">
-                        <source src="video1.mp4" type="video/mp4">       
-                    </video>
-                    <span class="lapiz1">✏️</span>
-                    <span class="lapiz1">🗑️</span>
-                </div>
-                <div>
-                    <video controls class="videito">
-                        <source src="video2.mp4" type="video/mp4">
-                    </video>
-                    <span class="lapiz1">✏️</span>
-                    <span class="lapiz1">🗑️</span>
+        <div class="perfil-container1">
+            <div class="subDiv">   
+                <div class="imagenes" id="contenedor">
+                    <!-- Cargamos imagenes de trabajos desde Json --> 
                 </div>
             </div>
         </div>
-    </div>
-    <div class="descripcion">
-    
-        <h3>Perfil Profesional</h3>
-        <a>Escriba aqui lo que quiera hacer saber a los demas sobre usted mismo. Experiencias, antiguedad, etc.</a>
-        <textarea name="texto" id="textareaqs" placeholder="Min 20 caracts - Max 600 caracts" minlength="20"
-            maxlength="600"></textarea>
-    </div>
-    <div class="descripcion">
+        <div class="perfil-container1">
+            <div class="subDiv">  
+                <div class="reproductor">
+                    <div>
+                        <h3>Video</h3>
+                    </div>
+                    <div class="video" id="contenedorVideo">
+                            <!-- El video se insertará aquí desde JS -->
+                    </div>
+                    <input class="inputt" placeholder="Ingrese nueva URl">
+                    <button class="botonModyElim"  id="nuevaUrl" >
+                     Guardar URL
+                    </button>
+                </div> 
+            </div>
+        </div>
 
-        <h3>Perfil Actual</h3>
-    <a style="border-radius: 10px;  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4); padding: 30px;">
-        <p>Soy Gasista con mas de 10 años de experiencia.</p>
-        <p>Referencias:</p>
-        <p>CamuzziGasPampeano</p>
-    </a>
-        </div>
-    <div class="perfil-container1">
-        <div class="info">
-            <div class="columna">
-                <div>
-                    <a>Certificado de trabajo en altura: </a>
-                    <div class="wrapper">
-                        <input type="checkbox" class="checkbox" id="checkbox1">
-                        <label for="checkbox1" class="toggle">
-                        </label>
-                    </div>
-                    <a class="nosi">No  /  Si</a>
-                </div>
+        <div class="perfil-container1">
+            <div class="descripcion">
+                <h3>Perfil Profesional</h3>
+                <p>Escriba aquí lo que quiera hacer saber a los demás sobre usted mismo. Experiencias, antigüedad, etc.</p>
+                <textarea name="texto" id="textareaDescripcion" placeholder="Min 20 caracts - Max 600 caracts" minlength="20" maxlength="600"></textarea>
 
-                <div>
-                    <a>Trabaja solo: </a>
-                    <div class="wrapper">
-                        <input type="checkbox" class="checkbox" id="checkbox2">
-                        <label for="checkbox2" class="toggle">
-                        </label>
-                    </div>
-                    <a class="nosi">No  /  Si</a>
-                </div>
-                
-                <div>
-                    <a>Servicio 24hs: </a>
-                    <div class="wrapper">
-                        <input type="checkbox" class="checkbox" id="checkbox4">
-                        <label for="checkbox4" class="toggle">
-                        </label>
-                    </div>
-                    <a class="nosi">No  /  Si</a>
-                </div>
+                <h4>Referencias</h4>
+                <input type="text" id="inputReferencia" placeholder="Referencias de trabajos anteriores">
+
+                <button class="botonModyElim" id="btnGuardarDescripcion">Guardar Descripción</button>
             </div>
+        </div>
+        <div class="perfil-container1">
+            <div class="info">
+                <div class="columna">
+                    <div>
+                        <a>Certificado de trabajo en altura: </a>
+                        <div class="wrapper">
+                            <input type="checkbox" class="checkbox" id="checkbox1">
+                            <label for="checkbox1" class="toggle">
+                            </label>
+                        </div>
+                        <a class="nosi">No  /  Si</a>
+                    </div>
+
+                    <div>
+                        <a>Trabaja solo: </a>
+                        <div class="wrapper">
+                            <input type="checkbox" class="checkbox" id="checkbox2">
+                            <label for="checkbox2" class="toggle">
+                            </label>
+                        </div>
+                        <a class="nosi">No  /  Si</a>
+                    </div>
+                    
+                    <div>
+                        <a>Servicio 24hs: </a>
+                        <div class="wrapper">
+                            <input type="checkbox" class="checkbox" id="checkbox4">
+                            <label for="checkbox4" class="toggle">
+                            </label>
+                        </div>
+                        <a class="nosi">No  /  Si</a>
+                    </div>
+                </div>
 
             <div class="columna">
                 <div>
@@ -203,6 +192,6 @@
                 <p>2025 Todos los derechos reservados.</p>
             </div>
     </footer>    
-    <script src="carrusel.js"></script>
+    <script src="./gestorTrabajador.js"></script>
 </body>
 </html>

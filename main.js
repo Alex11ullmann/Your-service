@@ -12,7 +12,7 @@ function crearListaDesdeJSON(data) {
     img.style.height = "17vw";
 
     let text = document.createElement("p");
-    text.textContent = `${persona.nombre} (${persona.Oficio}): ${persona.calificacion}`;
+    text.textContent = `${persona.usuario} (${persona.oficio}): ${persona.calificacion}`;
     text.style.fontSize = "1.5vw";
 
     let button = document.createElement("button");
@@ -21,13 +21,17 @@ function crearListaDesdeJSON(data) {
     button.addEventListener("click", () => {
         mostrarPerfilTrabajador(
               persona.imagen,
-              persona.nombre,
+              persona.usuario,
               persona.calificacion,
               persona.telefono,
               persona.localidad,
               persona.direccion,
               persona.dni,
-              persona.Oficio
+              persona.oficio,
+              persona.descripcion,
+              persona.referencia,
+              persona.fotos,
+              persona.videoUrl
             );
     });
 
@@ -38,21 +42,31 @@ function crearListaDesdeJSON(data) {
   });
 }
 
-function mostrarPerfilTrabajador(imagen, nombre, calificacion, telefono, localidad, direccion, dni, oficio) {
-  alert(`Nombre: ${nombre}
-        Oficio: ${oficio}
-        Calificación: ${calificacion}
-        Teléfono: ${telefono}
-        Localidad: ${localidad}
-        Dirección: ${direccion}
-        DNI: ${dni}`);
+function mostrarPerfilTrabajador(imagen, usuario, calificacion, telefono, localidad, direccion, dni, oficio, descripcion,referencia,fotos,videoUrl) {
+const perfil = {
+                  imagen,
+                  usuario,
+                  calificacion,
+                  telefono,
+                  localidad,
+                  direccion,
+                  dni,
+                  oficio,
+                  descripcion,
+                  referencia,
+                  fotos,
+                  videoUrl
+                };
+  /* localStore lo utilizamos para guardar datos y llevarlo a Trabajador*/
+  localStorage.setItem("perfilTrabajador", JSON.stringify(perfil));
+  /*despues de guardar redirigimos a trabajador*/
+  window.location.href = "trabajador.html";
 }
 
 fetch("./Data/profecionales.json")
-  .then(response => response.json())
+  .then(response => response.json()) /*traemos datos del json*/
   .then(data => {
-    crearListaDesdeJSON(data);
+    crearListaDesdeJSON(data); /*funcion para generar las cards*/
   })
   .catch(error => console.error("Error al cargar JSON:", error));
 
-  

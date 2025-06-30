@@ -28,36 +28,47 @@
         <!-- Header del perfil -->
         <div class="perfil-header">
             <div class="info-imgPerfil">
-                <img src="./Img/perfil1.jfif" alt="Foto de perfil" class="foto-perfil">
+                 <div  id="fotoPerfil" class="foto-perfil"></div>
                 <span class="lapiz">✏️</span>
             </div>
             <div class="info-perfil">
-                <h3>Usuario: JuanJose </h3>
-                <h3>DNI: 38123678 </h3>
+                <h3> <!-- se asigna nombre desde JS--> </h3>
+                <h3> <!-- se asigna nombre desde JS--></h3>
                 <div class="modificar">
-                     <h4>Contrasenia: ********* </h4>
+                     <h3>Contraseña:</h3>
                      <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>
                 </div>
                 <div class="modificar">
-                    <h4>Localidad: Olavarria </h4>
+                    <h4>Localidad:</h4>
                     <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>
                 </div>
                 <div class="modificar">
-                    <h4>Direccion: Colon 1234 </h4>
+                    <h4>Direccion:</h4>
                     <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>
                 </div>
                 <div class="modificar">
-                    <h4>email: JuncitoSanch@asdf.com </h4>
+                    <h4>email :</h4>
                     <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>     
-                </div>  
+                </div> 
                 <div class="modificar">
-                    <h4>Eliminar mi cuenta </h4>
-                    <div class="inputt" placeholder="Requiere contraseña"><span class="lapiz1">🗑️</span><input type="text"></div>     
-                </div>                    
-            </div>
-        </div>
+                    <h4>Telefono :</h4>
+                    <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>     
+                </div>
 
-    </div>
+                <!-- Guardar cambios y eliminar cuenta -->           
+                <button class="botonModyElim"  id="guardarCambios" >
+                     Guardar Cambios
+                </button>
+                <div class="modificar">
+                    <h3>Eliminar mi cuenta</h3>
+                    <div class="inputtElim" placeholder="Requiere contraseña">
+                        <input type="password" id="inputEliminarPass" placeholder="Ingrese su contraseña">
+                        <button  class="botonModyElim" id="btnEliminarCuenta" >🗑️Eliminar </button>
+                    </div>                    
+                </div>
+            </div>
+
+        </div>
 
     <footer class="footer">
             <div class="footer-container">
@@ -92,5 +103,6 @@
                 <p>2025 Todos los derechos reservados.</p>
             </div>
         </footer>    
+    <script src="./gestorUsuario.js"></script>
 </body>
 </html>
