@@ -1,6 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
     // Obtener datos del trabajador desde localStorage
     const perfil = JSON.parse(localStorage.getItem("perfilTrabajador"));
+    console.log("Perfil cargado:", perfil);
 
     if (!perfil) {
         alert("Debe iniciar sesión");
@@ -119,10 +120,12 @@ window.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-    // Segmento para Mostrar Videos de sus trabajos
     // Segmento para Mostrar Video de sus trabajos
     const contenedorVideo = document.getElementById("contenedorVideo");
-      if (perfil.videoUrl) {
+    const inputNuevaUrl = document.querySelector(".inputt"); //input modificar url
+    const btnGuardarUrl = document.getElementById("nuevaUrl");// boton confirmar nueva url
+
+      if (perfil?.videoUrl) {
         // Convertir el enlace de YouTube en un embed válido
         const urlYouTube = perfil.videoUrl.replace("watch?v=", "embed/");
 
@@ -136,7 +139,40 @@ window.addEventListener("DOMContentLoaded", () => {
         iframe.allowFullscreen = true;
 
         contenedorVideo.appendChild(iframe);
-      }
+        inputNuevaUrl.value = perfil.videoUrl;
+        }
+
+        // Segmento para modificar la URL del video
+        btnGuardarUrl.addEventListener("click", () => {
+            const nuevaUrl = inputNuevaUrl.value.trim();
+
+        if (nuevaUrl !== "") {
+            perfil.videoUrl = nuevaUrl;
+            // Guardar nuevamente el perfil actualizado en localStorage
+            localStorage.setItem("perfilTrabajador", JSON.stringify(perfil));
+            
+            // Limpiar el contenedor anterior y volver a insertar el nuevo iframe
+            contenedorVideo.innerHTML = "";
+
+            const urlYouTube = nuevaUrl.replace("watch?v=", "embed/");
+            const iframe = document.createElement("iframe");
+            iframe.width = "100%";
+            iframe.height = "315";
+            iframe.src = urlYouTube;
+            iframe.title = "Video del trabajador";
+            iframe.frameBorder = "0";
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            iframe.allowFullscreen = true;
+
+            contenedorVideo.appendChild(iframe);
+
+            inputNuevaUrl.value = ""; // Limpiar el input 
+        } else {
+            alert("Ingrese una URL válida.");
+        } 
+    });
+
+
 
     //Ver-Modificar Texto de descripcion y referencia
     const textareaDescripcion = document.getElementById("textareaDescripcion");
@@ -183,10 +219,8 @@ window.addEventListener("DOMContentLoaded", () => {
                 ${texto}
             </div>
         `;
-
     document.body.appendChild(div);
     setTimeout(() => div.remove(), 3500);
     }
-
-
+    
 });
