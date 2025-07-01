@@ -31,10 +31,17 @@ Accede a los documentos relacionados al proyecto desde el siguiente enlace:
 
 ## 🔧 Requisitos técnicos
 
-No se necesita instalar ningún software adicional. Solo necesitas:
+Tecnología sugerida:
 
+importante !!
+    
+- Requiere instalacion de Live Server 
+- Requiere Visual Studio Code          
 - Navegador web moderno (Google Chrome, Firefox, Edge, etc.)
-- Conexión a internet
+- Conexión a internet (enlace videos)
+- HTML, CSS, JS 
+- JSON como base de datos simulada local (clientes.json, profecionales.json)
+- localStorage o fetch() con json-server para manejar persistencia.
 
 ## 📝 Licencia
 

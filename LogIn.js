@@ -3,85 +3,7 @@ window.addEventListener("DOMContentLoaded", () => {
         //Seccion LOGIN
         { inputId: "usuario", mensajeId: "mensajeUsuario" },
         { inputId: "password", mensajeId: "mensajePassword" },
-        //Seccion REGISTRO
-        { inputId: "repPassword" },
-        { inputId: "direccion" }
     ];
-
-    const caracteres = /^[A-Za-z0-9]*$/;
-
-    //Funcion para validad que no sean caracteres especiales
-    
-    campos.forEach(({ inputId, mensajeId }) => {
-        const input = document.getElementById(inputId);
-        const mensaje = document.getElementById(mensajeId);
-        if (input && mensaje) {
-            input.addEventListener("input", () => {
-                if (!caracteres.test(input.value)) {
-                    input.value = input.value.replace(/[^A-Za-z0-9]/g, "");
-                    mensaje.style.display = "block";
-                } else {
-                    mensaje.style.display = "none";
-                }
-            });
-        }
-    });
-
-    // Validacion Localidad Registro
-    const camposSinNumeros = [
-        { inputId: "localidad" }
-    ];
-
-    const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ]*$/;
-
-    camposSinNumeros.forEach(({ inputId }) => {
-        const input = document.getElementById(inputId);
-        if (input) { //veo si existe para no generar problemas en LogIn
-            input.addEventListener("input", () => {
-                if (!soloLetras.test(input.value)) {
-                    input.value = input.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ]/g, "");
-                }
-            });
-        }
-    });
-
-
-    const camposNumeros = [
-    { inputId: "telefono"},
-    { inputId: "dni"}
-    ];
-
-    const soloNumeros = /^[0-9]*$/;
-    //Validamos Telefonos En Registro
-    camposNumeros.forEach(({ inputId }) => {
-        const input = document.getElementById(inputId);
-         if (input) { 
-            input.addEventListener("input", () => {
-                if (!soloNumeros.test(input.value)) {
-                    input.value = input.value.replace(/[^0-9]/g, "");
-                }
-            });
-        }
-    });
-
-    
-    // Funcion para validar tilde (Registro)
-    let botonGuardar = document.getElementById('guardar-btn');
-    if (botonGuardar){
-        botonGuardar.addEventListener('click', function(event) {
-        event.preventDefault(); // Evita que el formulario se envíe por defecto
-
-        const tilde = document.getElementById('tilde-trabajador');
-
-        if (tilde.classList.contains('checked')) {
-            // Redirige al enlace deseado
-            window.location.href = './perfiltrab.html';
-        } else {
-            alert('Su perfil ah sido creado');
-        }
-        });
-    }
-
 
     // Funfion Buscar usuario/Trabajador LogIn
     const formInicio = document.getElementById("forminicio");
@@ -107,7 +29,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
                 if (cliente) {
                     localStorage.setItem("perfilUsuario", JSON.stringify(cliente));
-                    window.location.href = "./gestorUsuario.html";
+                    window.location.href = "./gestorUsuario.html";// redirige a gestorUsuario con campos en Memoria
                     return;
                 }
 
@@ -120,7 +42,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
                 if (prof) {
                     localStorage.setItem("perfilTrabajador", JSON.stringify(prof));
-                    window.location.href = "./gestorTrabajador.html";
+                    window.location.href = "./gestorTrabajador.html"; //redirige a gestorTrabajador con sus campos en memoria
                     return;
                 }
 
