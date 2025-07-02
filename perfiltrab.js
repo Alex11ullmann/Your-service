@@ -60,6 +60,22 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+
+    let btneliminarimg = document.getElementById("btneliminarimg");
+    
+    if (btneliminarimg) {
+        btneliminarimg.addEventListener("click", function () {
+        if (imagenSeleccionada) {
+            contenedorCarrusel.removeChild(imagenSeleccionada);
+            imagenSeleccionada = null; // Limpiar selección
+            imagenTrabajador.src = "./Imgdeperfiltrab/Photograph.jpg"; // Opcional: limpiar imagen de perfil si la eliminas
+        } else {
+            alert("Selecciona una imagen primero para eliminar.");
+        }
+    });
+    }
+
+
     // Se asigna funcion para guardar descripcion 
     document.getElementById("btnagregardescripcion").addEventListener("click", function () {
     const texto = document.getElementById("textareaqs").value.trim();

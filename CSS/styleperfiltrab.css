@@ -285,7 +285,7 @@ h3 {
 
 /* Boton guardar todo */
 
-#botonguardardatos {
+.botonguardardatos {
     display: flex;
     justify-content: center;
     margin: 2vw;
