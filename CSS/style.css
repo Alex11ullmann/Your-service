@@ -191,15 +191,16 @@ body{
 }
 
 .btn1:hover {
-    background-color: #007bffcb; ; /* Color más oscuro al pasar el mouse */
+    background-color: #d9e6f3cb; ; /* Color más oscuro al pasar el mouse */
 }
 
 .btn1:active {
-    background-color: #004085; /* Color más oscuro al hacer click */
+    background-color: #6a85a1; /* Color más oscuro al hacer click */
 }
 
 .btn1 a {
     text-decoration: none;
+    color: white;
 }
 
 .explicacion{
@@ -222,6 +223,7 @@ body{
     flex-wrap: nowrap;
     justify-content:center;
     max-width: 90vw; /* Para que no se expanda demasiado */
+    text-align: center;
 }
 
 .fase{
