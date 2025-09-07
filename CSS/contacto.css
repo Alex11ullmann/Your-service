@@ -1,0 +1,132 @@
+@import url("./flotanteyFooter.css");
+
+body{
+    background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
+}
+
+.encabezado{
+    width: 100%;
+    height: 5vw;
+}
+
+.contactanos {
+    padding: 40px 20px;
+    text-align: center;
+    justify-items: center;
+    font-size: 1.8vw;
+    background: linear-gradient(100deg, rgb(243, 197, 218) 0%, rgb(197, 223, 245) 47%, rgb(192, 233, 238) 100%);
+    font-family: 'Calibri Light', Calibri, sans-serif;
+}
+.contactanos h2 { 
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.contactanos p {
+    margin-bottom: 30px;
+    color: #555;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.contactanos1 { 
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    gap: 40px;
+    justify-content: center;
+    margin-top: 30px;
+    width: 60%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+}
+
+
+.contacto-formulario { 
+    flex: 1;
+    /* Permite que ocupen el espacio disponible */
+    min-width: 300px;
+    /* Ancho mínimo para evitar que se aplasten */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    justify-items: center;
+}
+
+
+.contacto-formulario h3 { 
+    color: #34495e;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilos del formulario */
+
+.contacto-formulario1 {
+    display: block;
+    text-align: center;
+    background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
+    width: 80%;
+    justify-items: center;
+    border-radius: 30px 30px 30px 30px;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.contacto-formulario1 label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.contacto-formulario1 input[type="text"],
+.contacto-formulario1 input[type="email"],
+.contacto-formulario1 input[type="tel"],
+.contacto-formulario1 textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 3px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+    height: 1px;
+}
+
+.contacto-formulario1 textarea {
+    resize: none;
+}
+                      
+#cuadrotext {
+    width: 30vw;
+    height: 15vw;
+}
+
+.contacto-formulario1 input:focus,
+.contacto-formulario1 textarea:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.contacto-formulario1 .boton {
+    display: flex;
+    padding: 2px;
+    border: none;
+    background-color: rgb(68, 156, 223);
+    border-radius: 30px 30px 30px 30px;
+    width: 60%;
+    height: 2.5vw;
+    cursor: pointer;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-size: 1.5vw;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+    color: white;
+    align-items: center;
+    justify-content: center;
+}
+

@@ -1,0 +1,131 @@
+@import url("./flotanteyFooter.css");
+
+body{
+      background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
+}
+
+.encabezado{
+    display: flex;    
+    align-items: center;
+    align-content:center ;
+    width: 100%;
+    height: 6vw;
+}
+
+.contenedor-desplegables {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    width: 100%;
+    height: 60%;
+}
+  
+  .desplegable {
+    position: relative;
+    display: inline-block;
+    width: 20%;
+    height: 99%;
+    opacity: 0.8; 
+    cursor: pointer; /* Indica que es interactivo */
+  }
+  
+  .boton-desplegable {
+    background-color: #a6d0fd;
+    color: rgb(20, 20, 24);
+    padding: 1.2vw 1.8vw;
+    font-size: 1.4vw;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 90%;
+    transition: background-color 0.3s;
+  }
+  
+  .boton-desplegable:hover {
+    background-color: #65adff;
+  }
+  
+  .contenido-desplegable {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 20.0vw;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    z-index: 1;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .contenido-desplegable a {
+    color: #333;
+    padding: 1.0vw 1.4vw;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .contenido-desplegable a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .desplegable:hover .contenido-desplegable {
+    display: block;
+  }
+
+.titular{
+    text-align: center;
+    color: rgb(86, 22, 146);
+}
+
+/* Elementos principales para HTML de Catalogo*/
+.cuerpoCatalogo{   /* es el div contenedor Principal para todas las HTML*/
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;  
+}
+
+button{
+    background-color: #a6d0fd;; 
+    color: rgb(0, 2, 146);; /* Texto blanco para contraste */
+    font-family: 'Georgia','Arial';
+    font-size: 1.1vw;
+    padding: 1.0vw;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.7);
+    width: 10.0vw;
+    height: 3vw;
+}
+
+.button:hover {  /*-- cambiando color al pasar el cursor--*/
+    background-color: #76b7fd; 
+    font-weight: bold;
+}
+
+.lista {  /* damos estilo a la lista creada en js*/
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;  
+}
+
+.lista li { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    border-radius: 5%;  
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.7);
+    background: #f1f1f1;
+    width: 17.0vw;
+    height: 26.0vw;
+    padding: 2.0vw;  /* espacie los productos para mejor visual*/
+    margin: 2.0vw;
+}
+
+
+
