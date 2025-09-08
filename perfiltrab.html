@@ -18,22 +18,31 @@
         </div>
     </div>
     <div class="tarjeta">
+        <!--Contenedor principal del formulario. Agrupa toda la estructura visual del "perfil del trabajador".-->
         <div class="linea">
             <h1>Bienvenido a la seccion donde podra crear su perfil de trabajador, por favor complete las siguientes secciones...</h1>
+            <!--Un mensaje introductorio que guía al usuario en la creación del perfil.-->
             <div id="imagen"></div>
             <div>
                <h4>Seleccione imagenes de sus trabajos y/o de si mismo</h4>
+               <!--Espacio para mostrar alguna imagen decorativa o de fondo.
+               Texto que indica que debe subir fotos del trabajo o personales.-->
             </div>
         </div>
         <div class="primeraparte">
             <div class="divcarrusel">
                 <div class="carrusel" id="contenedorCarrusel">
                     <img id="imgcarrusel" src="" alt="Vista previa">
+                    <!--contenedorCarrusel: espacio donde se muestran las imágenes subidas en un carrusel.
+                    imgcarrusel: imagen actual mostrada.-->
                 </div>
                 <div id="divbtnagregarimg">
                     <input type="file" id="btnagregarimg" accept="image/*" multiple hidden>
                     <label for="btnagregarimg" class="btnagregareliminarimg" required>Subir Imagen</label>
+                    <!--Botón para seleccionar múltiples imágenes (accept="image/*").
+                    Usás label para estilizar el input.-->
                     <button id="btneliminarimg" class="btnagregareliminarimg">Eliminar Imagen</button>
+                    <!--Botón para eliminar la imagen actual del carrusel.-->
                     
                 </div>
             </div>
@@ -45,16 +54,27 @@
             <h3>Perfil Profesional</h3>
             <a>Escriba aqui lo que quiera hacer saber a los demas sobre usted mismo. Experiencias, antiguedad, etc.</a>
             <textarea name="texto" id="textareaqs" placeholder="Min 20 caracts - Max 600 caracts" minlength="20" maxlength="600"></textarea>
+            <!--Título y ayuda para escribir una biografía laboral.
+            textarea: permite ingresar de 20 a 600 caracteres.-->
             <button id="btnagregardescripcion" class="btnagregareliminarimg" type="button">Guardar Descripción</button>
+            <!--Botón para guardar el contenido del textarea (probablemente con JS).-->
         </div>
         <div class="marca">
             <h3>Marque las opciones correctas:</h3>
+            <!--Introduce la sección de checkboxes visuales (estilizados como interruptores con CSS)-->
         </div>
         <div class="info">
             <div class="columna">
                 <div>
                     <a>Certificado de trabajo en altura: </a>
                     <div class="wrapper">
+                        <!--Checkbox acompañado de una etiqueta con estilo toggle.
+                        Repetís este patrón para distintas condiciones laborales como:
+                        Certificación en altura
+                        Si trabaja solo
+                        Servicio 24 hs
+                        Fines de semana
+                        Feriados-->
                         <input type="checkbox" class="checkbox" id="checkbox1">
                         <label for="checkbox1" class="toggle">
                         </label>
@@ -107,6 +127,8 @@
         </div>
         
         <div class="botonguardardatos">
+            <!--Botón para finalizar el proceso de creación del perfil.
+            type="button" evita que se recargue la página por defecto (probablemente se maneja con JS).-->
             <input type="button" value="Registrarse" id="botonguardar">
         </div>
 

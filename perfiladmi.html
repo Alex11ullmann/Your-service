@@ -11,10 +11,16 @@
 <body>
 
     <header>
+        <!--
+        <header>: define la cabecera de la página.
+        <h1>: el título principal que le indica al usuario que está en el panel administrativo.-->
         <h1>Panel de Administración</h1>
     </header>
 
     <nav>
+        <!--<nav>: contenedor semántico para la navegación.
+            <ul> y <li>: lista de enlaces.
+            <a href="...">: cada enlace lleva a una sección. Notá que: "./Home.html" lleva a la página de inicio.-->
         <ul>
             <li><a href="./Home.html">Inicio</a></li>
             <li><a href="">Configuración</a></li>
@@ -23,11 +29,21 @@
     </nav>
 
     <main>
-        <section class="contenido">          
+        <section class="contenido">   
+            <!--<main>: indica el bloque de contenido principal.
+                <section class="contenido">: es una sección dentro de ese main, estilizada con una clase llamada contenido.
+            -->       
             <h2>Bienvenido, Administrador</h2>
             <p>Aquí puedes gestionar la plataforma.</p>
+            <!--h2: subtítulo de bienvenida.
+            p: párrafo breve explicando la utilidad de este panel.
+            -->
 
             <div class="botones">      
+                <!--Cada <button> ejecuta una redirección usando onclick:
+                    📁 gestorUsuario.html: administración de usuarios registrados.
+                    👷 gestorTrabajador.html: gestión de perfiles de trabajadores.
+                    📊 reportes.html: visualización de reportes (probablemente datos estadísticos del sistema).-->
                 <button onclick="location.href= 'gestorUsuario.html'">Gestionar Perfil Usuarios</button>
                 <button onclick="location.href= 'gestorTrabajador.html'">Gestionar Perfil Trabajador</button>
                 <button onclick="location.href='reportes.html'">Ver Reportes</button>

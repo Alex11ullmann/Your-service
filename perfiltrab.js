@@ -1,11 +1,11 @@
-"use strict";
-window.addEventListener("DOMContentLoaded", () => {
+"use strict";//"use strict": activa el modo estricto para evitar errores silenciosos. 
+window.addEventListener("DOMContentLoaded", () => {//Se ejecuta cuando todo el DOM esté cargado.
     // Obtener datos del trabajador desde localStorage
     const perfil = JSON.parse(localStorage.getItem("perfilTrabajador"));
     console.log("Perfil cargado:", perfil);
-
+//Obtiene el perfil del trabajador desde localStorage. Si no tiene el campo fotos, lo inicializa como un array vacío.
     if (!perfil.fotos) {
-        perfil.fotos = []; // creamos un arreglo para pushear imagenes.
+        perfil.fotos = []; // creamos un arreglo para pushear imagenes. // crea un array vacío si no hay fotos
     }
 
     // Seccion agregar imagenes
@@ -14,6 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
     let contenedorCarrusel = document.getElementById("contenedorCarrusel");
     let imagenTrabajador = document.getElementById("imagenTrabajador");
     let imagenSeleccionada = null; 
+    //Captura los elementos clave del DOM y prepara una variable para rastrear qué imagen está seleccionada.
 
     // Recargar imágenes permanente, para que no desaparezcan
     perfil.fotos.forEach(fotos => {
@@ -30,13 +31,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
         contenedorCarrusel.appendChild(imgElement);
     });
+    //Recorre el array perfil.fotos y crea una imagen para cada una. Al hacer clic en una imagen: Se muestra como imagen principal (imagenTrabajador). Se guarda como imagenSeleccionada para posibles acciones posteriores.
 
-    btnagregarimg.addEventListener("change", function(event) {
+    btnagregarimg.addEventListener("change", function (event) {
     const files = event.target.files;
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             if (file) {
-                const reader = new FileReader();
+                const reader = new FileReader();//Al seleccionar imágenes desde el input, se recorren con FileReader.
                 reader.onload = function(e) {
                     const imgElement = document.createElement("img");
                     imgElement.src = e.target.result;
@@ -56,6 +58,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     
                 };
                 reader.readAsDataURL(file);
+                //Convierte la imagen seleccionada en base64. La muestra en el carrusel. La guarda en perfil.fotos. Actualiza el localStorage.
             }
         }
     });
@@ -72,7 +75,8 @@ window.addEventListener("DOMContentLoaded", () => {
         } else {
             alert("Selecciona una imagen primero para eliminar.");
         }
-    });
+        });
+        //Si hay una imagen seleccionada, se elimina del carrusel. Si no hay, se muestra una alerta. Nota: no se elimina del array perfil.fotos, solo del DOM.
     }
 
 
@@ -90,16 +94,19 @@ window.addEventListener("DOMContentLoaded", () => {
         perfil.descripcion = texto;
         localStorage.setItem("perfilTrabajador", JSON.stringify(perfil));
         alert("Se guardo correctamente");
+        //Se validan los límites de la descripción (mínimo 20, máximo 600 caracteres). Se guarda la descripción dentro del objeto perfil. Se actualiza el localStorage.
     });
 
     // si el usuario agrego descripcion la Mostramos
     if (perfil.descripcion) {
         document.getElementById("textareaqs").value = perfil.descripcion;
+        //Al cargar la página, si hay una descripción, se muestra automáticamente en el textarea.
     }
 
     //Se Redirigen cambios y registro en memoria a gestorTrabajador
     document.getElementById("botonguardar").addEventListener("click", () => {
-       window.location.href = "./gestorTrabajador.html";
+        window.location.href = "./gestorTrabajador.html";
+        //Redirige a la pantalla de gestor de trabajador (como paso siguiente del flujo de registro o edición).
     });
 
 });

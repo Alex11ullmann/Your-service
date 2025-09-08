@@ -21,27 +21,50 @@
     </div>
     <div class="encabezado"></div>
      <div class="cuerpoLogIn">
+        <!--
+        Contenedor principal de la sección login.
+        Posiblemente se usa para centrar y dar estilos a toda la vista de "Iniciar sesión".
+        -->
         <div class="login-container">
             <h2>Iniciar Sesión</h2>
+            <!--Contenedor interno que agrupa el formulario. Título de la sección.-->
 
             <form id="forminicio">
+                <!--Inicia el formulario de login.-->
 
                 <div class="input-grouplogin">
+                    <!--
+                    -label: texto asociado al campo de entrada.
+                    -input: campo para ingresar el nombre de usuario.
+                    -type="text" permite introducir texto común.
+                    -class="recuadro" se usa para darle estilo.
+                    -required obliga a completar el campo antes de enviar.
+                    -->
                     <label for="usuario">Usuario</label>
-                    <input type="text" class="recuadro" id="usuario" name="usuario" required>
-                    <div id="mensajeUsuario"  hidden>
+                    <input type="text" class="recuadro" id="usuario" name="usuario" required aria-describedby="mensajeUsuario
+                    ">
+                    <div id="mensajeUsuario" class="mensaje-error"  hidden>
+                        <!--Mensaje de error oculto por defecto (hidden).-->
                         <a>⚠️ Solo se permiten letras minusculas, mayusculas y números.</a>
                     </div>
                     <label for="password">Contraseña</label>
-                    <input type="password" class="recuadro" id="password" name="password" required>
-                    <div id="mensajePassword"  hidden>
+                    <!--Similar al campo anterior, pero con type="password" para que los caracteres ingresados se oculten.-->
+                    <input type="password" class="recuadro" id="password" name="password" required aria-describedby="mensajePassword">
+                    <div id="mensajePassword" class="mensaje-error" hidden>
+                        <!--Mensaje de error para el campo de contraseña, también oculto inicialmente.-->
                         <a>⚠️ Solo se permiten letras minusculas, mayusculas y números.</a>
                     </div>
                 </div>
+                <!--Botón que envía el formulario.
+                type="submit" ejecuta el envío del form.
+                id="login-btn" puede ayudarte a enganchar un listener en JS.-->
                 <button id="login-btn" type="submit" class="login-btn">Ingresar</button>
                 <a href="./Registrarse.html" class="register-btn"> Registrarse </a>
+                <!--Link al formulario de registro para nuevos usuarios.-->
 
                 <a href=" " class="reestablecer"> Olvide mi usuario/contraseña </a>
+                <!--Enlace para recuperar credenciales.
+                El href=" " está vacío, así que todavía no apunta a una página real.-->
             </form>
 
         </div>

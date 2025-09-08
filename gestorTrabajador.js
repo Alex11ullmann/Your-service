@@ -1,12 +1,13 @@
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", () => {//Espera que el DOM esté completamente cargado antes de ejecutar.
     // Obtener datos del trabajador desde localStorage
     const perfil = JSON.parse(localStorage.getItem("perfilTrabajador"));
     console.log("Perfil cargado:", perfil);
+    //Recupera el objeto perfilTrabajador del localStorage. Lo convierte desde JSON a un objeto JS.
 
     if (!perfil) {
         alert("Debe iniciar sesión");
         window.location.href = "./LogIn.html";
-        return;
+        return;//Si no encuentra el perfil, redirige al usuario a la página de login.
     }
 
     //Mostrar foto de perfil
@@ -16,11 +17,12 @@ window.addEventListener("DOMContentLoaded", () => {
     img.style.height= "25vw";
     img.style.borderRadius= "50%";
     img.style.objectFit="cover";
-    document.getElementById("fotoPerfil").appendChild(img);
+    document.getElementById("fotoPerfil").appendChild(img);//Crea una imagen circular con el link guardado y la muestra en el contenedor #fotoPerfil.
 
     // Mostrar los datos en los elementos <h3> y <h4>
     document.querySelector(".info-perfil h3:nth-child(1)").innerText = `Usuario: ${perfil.usuario}`;
     document.querySelector(".info-perfil h3:nth-child(2)").innerText = `DNI: ${perfil.dni}`;
+    //Inserta los valores del usuario y DNI en los primeros dos elementos <h3> de la sección info-perfil.
 
     const campos = document.querySelectorAll(".modificar");
 
@@ -30,7 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
     campos[2].querySelector("input").value = perfil.direccion;
     campos[3].querySelector("input").value = perfil.email;
     campos[4].querySelector("input").value = perfil.telefono;
-
+//Recupera los inputs que están en contenedores .modificar y les coloca los datos actuales del perfil.
 
     // Botón GUARDAR CAMBIOS ( id="guardarCambios")
     const btnGuardar = document.getElementById("guardarCambios");
@@ -44,6 +46,7 @@ window.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("perfilTrabajador", JSON.stringify(perfil));
             mostrarMensaje("👍Cambios guardados(Simulacion)👍",perfil);
         });
+        //Al hacer clic en "Guardar cambios", actualiza los campos en el objeto perfil y lo vuelve a guardar.
     }
 
     // Mostrar alerta flotante
@@ -73,7 +76,7 @@ window.addEventListener("DOMContentLoaded", () => {
         `;
 
     document.body.appendChild(div);
-    setTimeout(() => div.remove(), 3500);
+    setTimeout(() => div.remove(), 3500);//Crea una mini notificación visual que muestra los datos modificados, desaparece luego de 3.5 segundos.
     }
 
     // Eliminar cuenta con verificación de contraseña
@@ -100,7 +103,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 localStorage.removeItem("perfilTrabajador");
                 alert("🗑️ Tu cuenta fue eliminada (modo simulación)");
                 window.location.href = "./LogIn.html";
-            }
+            }//Compara la contraseña ingresada con la actual. Si coincide y el usuario confirma, elimina la cuenta simulando una baja.
         });
     }
 
@@ -116,7 +119,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     <span class="lapiz1">🗑️</span>
                 `;
 
-                contenedorImagenes.appendChild(div);
+                contenedorImagenes.appendChild(div);//Recorre las imágenes guardadas en perfil.fotos y las muestra en el contenedor #contenedor.
             });
         }
 
@@ -140,6 +143,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         contenedorVideo.appendChild(iframe);
         inputNuevaUrl.value = perfil.videoUrl;
+        //Convierte un link estándar de YouTube en un link incrustado (embed). Muestra el video en un <iframe>. También coloca el link original en un campo para poder editarlo.
         }
 
         // Segmento para modificar la URL del video
@@ -170,7 +174,7 @@ window.addEventListener("DOMContentLoaded", () => {
         } else {
             alert("Ingrese una URL válida.");
         } 
-    });
+    });//Reemplaza la URL del video, actualiza el iframe y guarda el perfil actualizado.
 
 
 
@@ -181,7 +185,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Cargar datos si existen
     if (perfil.descripcion) textareaDescripcion.value = perfil.descripcion;
-    if (perfil.referencia) inputReferencia.value = perfil.referencia;
+    if (perfil.referencia) inputReferencia.value = perfil.referencia;//Carga los textos si ya existen en localStorage.
 
     // Evento para guardar descripción y referencia
     btnGuardarDescripcion.addEventListener("click", () => {

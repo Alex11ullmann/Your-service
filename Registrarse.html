@@ -21,19 +21,36 @@
     </div>
     <div class="encabezado"></div> 
      <div class="cuerpoRegistro">
+        <!--Contenedor principal del registro, probablemente estilizado con márgenes, tamaño y layout central.-->
         <div class="logRegistro-container">
+            <!--Subcontenedor interno donde se aloja el formulario y título.-->
             <h2>Registrarse</h2>
+            <!--Título principal de la sección.-->
             <form>
+                <!--Inicio del formulario. Faltaría agregar id o action/method si luego se va a procesar desde backend o JS.-->
                 <div class="input-group">
+                    <!--🧩 .input-group. Esta clase agrupa un campo del formulario (como usuario, contraseña, etc.) junto con su etiqueta y mensaje de ayuda.
+                    📌 ¿Qué suele contener?
+                    <label>: descripción del campo.
+                    <input>: campo que completa el usuario.
+                    <p>: mensaje aclaratorio o de validación visual.
+                    🎨 ¿Para qué sirve input-group?
+                        Aplicar estilos consistentes a todos los campos del formulario.
+                        Controlar márgenes, padding, tamaños o disposiciones específicas (por ejemplo, si querés que el p esté justo debajo del input).-->
                     <label for="usuario">Usuario</label>
                     <input type="text" class="datos" id="usuario" name="usuario" placeholder="Usuario" required>
                     <p class="contenidoInputs">Solo se permiten letras minusculas, mayusculas y números.</p>
+                    <!--
+                    -label: etiqueta asociada al input.
+                    -input: campo de texto obligatorio para ingresar un nombre de usuario.
+                    -p: ayuda textual sobre el formato aceptado.-->
                 </div>
                 <div class="input-group">
                     <label for="password">Contraseña</label>
                     <input type="password" class="datos" id="password" name="password" placeholder="Password" required>
                     <p class="contenidoInputs">Solo se permiten letras minusculas, mayusculas y números.</p>
                 </div>
+                <!--Ambos campos son tipo password. El segundo campo sirve para confirmar que la contraseña fue escrita correctamente.-->
                 
                 <div class="input-group">
                     <label for="repPassword">Rep.Contraseña</label>
@@ -41,6 +58,7 @@
                     <p class="contenidoInputs">Repita la contraseña, debe ser igual a la anterior.</p>
                 </div>
                 <div class="input-group">
+                    <!--Se espera que el usuario ingrese el nombre de su ciudad o zona.-->
                     <label for="localidad"> Localidad </label>
                     <input type="text" class="datos" id="localidad" name="localidad" placeholder="Localidad" required>
                     <p class="contenidoInputs">Solo se permiten letras minusculas y mayusculas. Ej: Olavarria</p>
@@ -49,29 +67,41 @@
                     <label for="direccion"> Direccion </label>
                     <input type="text" class="datos"  id="direccion" name="direccion" placeholder="Direccion" required>
                     <p class="contenidoInputs">Solo se permiten letras minusculas, mayusculas y números. Ej: Lavalle123</p>
+                    <!--Campo para cargar calle y número. Acepta letras y números.-->
                 </div>
                 <div class="input-group">
                     <label for="telefono"> Telefono </label>
                     <input type="text" class="datos"  id="telefono" name="telefono" placeholder="Telefono" maxlength="10" minlength="8" required>
                     <p class="contenidoInputs">Solo se permiten numeros, sin puntos, ni comas. Ej: 2284121212</p>
+                    <!--Campo numérico sin símbolos. Ejemplos incluyen teléfonos móviles locales.-->
                 </div>
                 <div class="input-group">
                     <label for="dni">D.N.I</label>
+                    <!--Solo acepta números del documento nacional de identidad (sin puntos ni comas).-->
                     <input type="text" class="datos"  id="dni" name="dni" placeholder="DNI" maxlength="8" minlength="7" required>
                     <p class="contenidoInputs">Solo se permiten numeros, sin puntos, ni comas. Ej: 30123123</p>
                 </div>
                 <div class="input-group">
                     <label for="email">email</label>
-                    <input type="text" class="datos"  id="email" name="email" placeholder="email@Yourservice" required>
+                    <input type="email" class="datos"  id="email" name="email" placeholder="email@Yourservice" required>
+                    <!--Campo para ingresar una dirección de correo electrónico. Podría usarse type="email" para aprovechar validación automática del navegador.-->
                 </div>
                 <div class="divcheck">
+                    <!--☑️ .divcheck Es una clase usada para agrupar elementos de tipo confirmación, como un checkbox o botón opcional.
+                    📌 ¿Qué contiene?
+                    -Un mensaje explicativo y un botón que simula una selección (tipo toggle).
+                    🎨 ¿Para qué sirve divcheck?
+                    -Organizar visualmente los campos que no son inputs clásicos (como el "¿Sos trabajador?" con botón de tilde).
+                    Tal vez uses esta clase para alinear el texto con el botón, o dar un estilo especial a secciones condicionales.-->
                     <h4>Si desea crear un perfil de trabajador presione en el ✔</h4>
                 </div>
                 <div class="divcheck">
                     <button id="tilde-trabajador" class="tilde-btn" type="button" onclick="this.classList.toggle('checked')">✔</button>
                 </div>
+                <!--Botón visual con un ✔ que alterna clase checked al hacer clic. Probablemente usada para agregar algún estado especial en el formulario si quiere ser trabajador.-->
 
                 <button type="submit" id="guardar-btn" class="guardar-btn">Guardar</button>
+                <!--Envía el formulario. Si tenés un event.preventDefault() en JS, vas a manejarlo con validaciones o guardarlo en localStorage.-->
             </form>
         </div>
     </div>
