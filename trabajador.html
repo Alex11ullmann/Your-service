@@ -24,12 +24,17 @@
     </div>
 
     <div class="body-contenido">
+        <!--Agrupa todo el contenido de la página de perfil. Posiblemente aplica estilos como márgenes o flexbox general.-->
         <div class="perfil-container">
+            <!--Contenedor que incluye datos, descripción, galería y contacto del profesional.-->
 
             <!-- Header del perfil -->
             <div class="perfil-header"> 
+                <!--Parte superior del perfil.-->
                 <div  id="fotoPerfil" class="foto-perfil"></div>
+                <!--Div donde JS carga la imagen del perfil (podría venir de una URL o localStorage).-->
                 <div class="info-usuario">
+                    <!--info-usuario: muestra datos cargados dinámicamente por JS. Los id permiten insertar contenido como nombre, oficio, etc.-->
                     <h3 id="nombre"></h3>
                     <h3 id="calificacion"></h3>
                     <p id="localidad"></p>
@@ -39,18 +44,21 @@
                     <p id="email"></p>
                 </div>
             </div>
-            <div class="line"></div>       
+            <div class="line"></div>      
+            <!--Línea divisora visual.--> 
             <!-- Descripción general -->
             <div class="info-descripcion">
                 <h3>Sobre mí</h3>
                 <p id="descripcion"></p>
                 <p id="referencia"></p>
+                <!--Aquí se cargan datos como experiencia, historia laboral, referencias.-->
             </div>
 
             <!-- Galería de imágenes -->
             <div class="galeria">
                 <h3>Fotos de Mi Trabajo</h3>
                 <div class="imagenes" id="contenedorimg">
+                    <!--Zona destinada a mostrar imágenes del trabajo del profesional, cargadas con JS (desde JSON por ejemplo).-->
                         <!-- Cargamos imagenes de trabajos desde Json --> 
                 </div>  
             </div>
@@ -63,6 +71,7 @@
                 <div class="reproductor">
                     <div class="video" id="contenedorVideo">
                         <!-- El video se insertará aquí desde JS -->
+                         <!--Reproductor de video incrustado. El contenido se carga con JS desde una URL o archivo local.-->
                     </div>
                 </div>
             </div>
@@ -70,13 +79,15 @@
         </div>
 
         <!-- Calendario de Citas -->
-        <div class="citas"">
+        <div class="citas">
             <h3>Reservar una Cita</h3>
             <form id="form-cita">
+                <!--Esta sección permite a los usuarios reservar una fecha y horario con el profesional.-->
                 <div class="contenedor-form">
                     <label for="fecha">Selecciona una fecha:</label>
                     <input type="date" id="fecha" name="fecha" required>
                 </div>
+                <!--Formulario con selección de fecha y franja horaria. Se valida con required.-->
                 <div class="contenedor-form">
                     <label for="hora">Selecciona un horario:</label>
                     <select id="hora" name="hora" required>
@@ -90,6 +101,7 @@
                 </div>
                 <div>
                     <button class="boton" type="submit">Reservar</button>
+                    <!--Envía la solicitud de reserva (deberías manejarla con JS para guardar o enviar los datos).-->
                 </div>
             </form>
 
@@ -97,6 +109,7 @@
 
         <!-- Formulario de Contacto -->
         <div class="contacto">
+            <!--Formulario donde el cliente puede enviar mensajes o comentarios al trabajador.-->
             <h3>Dejar un Comentario / Contactar</h3>
             <div class="content-contacto">
                 <form id="form-contacto">
@@ -108,13 +121,16 @@
                     <input type="text" id="mail" name="mail" required>
                     <label for="comentario">Comentario o mensaje:</label>
                     <textarea id="comentario" name="comentario" required></textarea>
+                    <!--Campos requeridos para identificar al usuario y su mensaje.-->
                 </form>
             </div>
             <div class="">
+                <!--Botón para enviar comentario o también para reportar un profesional (probablemente con una función JS asociada).-->
                 <button class="boton" type="submit">Enviar</button>
                 <button class="boton" type="submit">Reportar</button>
             </div>
             <p id="mensaje-contacto" style="color: blue;"></p>
+            <!--Espacio para mostrar mensajes de confirmación o error dinámicamente.-->
         </div>
     </div>
 

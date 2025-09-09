@@ -1,6 +1,20 @@
 <!-- Esta pagina fue creada por la empresa Your Service -->
+ <!--
+<!DOCTYPE html>: le indica al navegador que use HTML5.
+
+<html lang="es">: define el idioma del contenido como español.
+ -->
 <!DOCTYPE html>
 <html lang="es">
+    <!--
+<meta charset="UTF-8">: codificación de caracteres (soporta acentos, eñes, etc.).
+
+<meta name="viewport"...>: asegura que la página se adapte bien a celulares/tablets.
+
+<title>: texto que aparece en la pestaña del navegador.
+
+<link rel="stylesheet"...>: importa tu archivo de estilos (CSS externo).
+    -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +22,13 @@
     <link rel="stylesheet" href="./CSS/style.css">
 </head>
 <body>
+    <!--
+    Sección superior que contiene el logo y los links de navegación (Home, Buscar, etc.)
+
+Clase flotante: posiblemente lo posicionás fijo con CSS.
+
+Cada <a> (HREF) lleva a otra sección del sitio (verificá si los archivos existen o si faltan .html o rutas correctas).
+    -->
     <div class="header">
         <div class="flotante">
             <img src="./Img/Logo.jpg" alt="logo">
@@ -37,6 +58,10 @@
     <div class="cuerpo">
             <div class="contador">
                 <div class="contador1">
+                    <!--
+                    Hay tres bloques: Expertos, Clientes, Solicitudes. 
+                    Hoy muestran 00, pero podrías hacerlos dinámicos con JavaScript y localStorage o una API.
+                    -->
                     <div class="contadorexpertos">
                         <span>00</span> 
                         <!-- aca va el resultado del contador -->
@@ -58,6 +83,10 @@
         <!-- presentacion Your Service -->
             <div class="container">
                 <div class="elporque">
+                    <!--
+                    Párrafos motivacionales que explican la misión del proyecto.
+                    Le siguen íconos con texto (Seguridad, Facilidad, etc.) que seguramente tienen íconos de fondo o en CSS.
+                    -->
                     <h1>¿Por qué Your Service?</h1>
                     <p>Hay que impulsar el trabajo local,</p>
                     <p>hay que dar oportunidades a nuevas caras,</p>
@@ -102,6 +131,11 @@
 
         <div class="cuerpo">
             <div class="contenedorIntro">
+                <!--
+                Esta sección presenta visualmente el mensaje clave del sitio.
+                El fondo (imgFondo) refuerza visualmente la propuesta.
+                El botón con clase btn1 dirige al usuario a la página de búsqueda de profesionales.
+                -->
                 <img class="imgFondo" src="./Img/fondo web.png" alt="imagen Fondo">
                 <div class="introduccion">
                     <h1  class="h1intro"> Tu experto a un click </h1>
@@ -109,6 +143,11 @@
                     <div class="btn1" > <a href="Principal.html">Busca tu Profesional </a> </div>
         
                     <div  class="explicacion">
+                        <!--
+                        Acá ilustrás los pasos de uso: filtrar → seleccionar → contactar.
+                        Usás clases como fase para separar cada etapa visualmente.
+                        Los div.siguiente podrían ser íconos o flechas entre pasos, probablemente decorados vía CSS.
+                        -->
                         <div class="pasos">
                             <div class="fase filtro" >
                                 <p class="textito" > Filtas por Necesidad </p>
@@ -130,7 +169,12 @@
                 </div> 
             </div>
             
-            <div class="containerOficios"> 
+            <div class="containerOficios">
+                <!--
+                Este bloque muestra una grilla de minicards con enlaces a distintos rubros profesionales.
+                Cada card tiene su clase particular para asignarle estilo (plomero, herrero, techista, etc.).
+                Te recomiendo revisar los href, ya que muchos no terminan en .html y algunos (como "Cerrrajero") están mal escritos.
+                --> 
                 <h2 class="encabezado"> Oficios Ofrecidos, contacta tu experto</H2>
                                 
                 <div class="cardOfi">
@@ -187,6 +231,14 @@
         </div>
         <!-- fin div del Body Lucas -->
         <footer class="footer">
+            <!--
+            Está dividido en tres columnas:
+            -Navegación interna (Servicios, Contacto, Preguntas).
+            -Aspectos legales (Privacidad, Términos).
+            -Datos de contacto y redes sociales.
+            -Incluye emojis para darle un toque visual amigable.
+            Al final, el <div class="footer-bottom"> cierra con derechos reservados y el año actual.
+                -->
             <div class="footer-container">
         
                 <div class="footer-column">
