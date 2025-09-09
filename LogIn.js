@@ -29,7 +29,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
                 if (cliente) {
                     localStorage.setItem("perfilUsuario", JSON.stringify(cliente));
-                    window.location.href = "./gestorUsuario.html";// redirige a gestorUsuario con campos en Memoria
+                    //window.location.href = "./gestorUsuario.html";// redirige a gestorUsuario con campos en Memoria
+                    window.location.href = "./Home.html";// redirige al home
                     return;
                 }
 
@@ -42,7 +43,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
                 if (prof) {
                     localStorage.setItem("perfilTrabajador", JSON.stringify(prof));
-                    window.location.href = "./gestorTrabajador.html"; //redirige a gestorTrabajador con sus campos en memoria
+                    //window.location.href = "./gestorTrabajador.html"; //redirige a gestorTrabajador con sus campos en memoria
+                    window.location.href = "./Home.html"; //redirige al home
                     return;
                 }
 

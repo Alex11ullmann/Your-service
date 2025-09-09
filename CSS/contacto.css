@@ -14,8 +14,10 @@ body{
     text-align: center;
     justify-items: center;
     font-size: 1.8vw;
-    background: linear-gradient(100deg, rgb(243, 197, 218) 0%, rgb(197, 223, 245) 47%, rgb(192, 233, 238) 100%);
     font-family: 'Calibri Light', Calibri, sans-serif;
+    background: linear-gradient(100deg, rgb(243, 197, 218) 0%, rgb(197, 223, 245) 47%, rgb(192, 233, 238) 100%);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
 }
 .contactanos h2 { 
     color: #2c3e50;
@@ -41,7 +43,7 @@ body{
     width: 60%;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -52,9 +54,9 @@ body{
     /* Ancho mínimo para evitar que se aplasten */
     padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
     justify-items: center;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -70,10 +72,11 @@ body{
     display: block;
     text-align: center;
     background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
-    width: 80%;
+    width: 25vw;
     justify-items: center;
     border-radius: 30px 30px 30px 30px;
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    padding: 1vw;
 }
 
 .contacto-formulario1 label {
@@ -83,29 +86,43 @@ body{
     color: #333;
 }
 
-.contacto-formulario1 input[type="text"],
-.contacto-formulario1 input[type="email"],
-.contacto-formulario1 input[type="tel"],
+.contacto-formulario1 input {
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+    width: 10vw;
+    height: 1.5vw;
+    text-align:justify;
+    font-size: 1vw;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    background-color: rgb(248, 245, 245);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    border: none;
+}
+
 .contacto-formulario1 textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 3px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1em;
-    box-sizing: border-box;
-    height: 1px;
+    display: flex;
+    border-radius: 10px;
+    background-color: white;
+    min-height: 10vw; 
+    min-width: 20vw; 
+    max-height: 100%;
+    max-width: 100%;
+    margin-bottom: 1vw;
+    text-align:justify;
+    resize: none;
+    font-size: 1vw;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    background-color: rgb(248, 245, 245);
+    border: none;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .contacto-formulario1 textarea {
     resize: none;
 }
                       
-#cuadrotext {
-    width: 30vw;
-    height: 15vw;
-}
-
 .contacto-formulario1 input:focus,
 .contacto-formulario1 textarea:focus {
     border-color: #3498db;
@@ -119,7 +136,7 @@ body{
     border: none;
     background-color: rgb(68, 156, 223);
     border-radius: 30px 30px 30px 30px;
-    width: 60%;
+    width: 40%;
     height: 2.5vw;
     cursor: pointer;
     font-family: 'Calibri Light', Calibri, sans-serif;
@@ -128,5 +145,7 @@ body{
     color: white;
     align-items: center;
     justify-content: center;
+    margin-bottom: 2vw;
+    margin-top: 3vw;
 }
 

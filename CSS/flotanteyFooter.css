@@ -5,9 +5,8 @@
 .flotante {
     position:fixed;
     display: flex;
-    margin: 1%;
     height: 3vw;
-    width: 98%;
+    width: 99%;
     font-size: 1.5vw;
     justify-content: space-evenly;
     border-radius: 5px;
@@ -41,6 +40,8 @@ footer {
     background: linear-gradient(90deg, rgba(222, 42, 121, 1) 0%, rgba(65, 112, 153, 1) 47%, rgba(0, 174, 195, 1) 100%);
     padding: 4.0vw 2.0vw;
     text-align: justify;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
 }
 
 .footer-container {
@@ -51,16 +52,9 @@ footer {
     justify-content: space-between;
 }
 
-.footer-container h3 {
-      font-size: 2vw;
-}
-
-.footer-container p {
-      font-size: 1.5vw;
-}
-
-.footer-container li {
-      font-size: 1.5vw;
+.footer-container {
+    font-size: 1.5vw;
+    font-family: 'Calibri Light', Calibri, sans-serif;
 }
 
 
