@@ -1,20 +1,7 @@
 <!-- Esta pagina fue creada por la empresa Your Service -->
- <!--
-<!DOCTYPE html>: le indica al navegador que use HTML5.
 
-<html lang="es">: define el idioma del contenido como español.
- -->
 <!DOCTYPE html>
 <html lang="es">
-    <!--
-<meta charset="UTF-8">: codificación de caracteres (soporta acentos, eñes, etc.).
-
-<meta name="viewport"...>: asegura que la página se adapte bien a celulares/tablets.
-
-<title>: texto que aparece en la pestaña del navegador.
-
-<link rel="stylesheet"...>: importa tu archivo de estilos (CSS externo).
-    -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,13 +9,7 @@
     <link rel="stylesheet" href="./CSS/style.css">
 </head>
 <body>
-    <!--
-    Sección superior que contiene el logo y los links de navegación (Home, Buscar, etc.)
 
-Clase flotante: posiblemente lo posicionás fijo con CSS.
-
-Cada <a> (HREF) lleva a otra sección del sitio (verificá si los archivos existen o si faltan .html o rutas correctas).
-    -->
     <div class="header">
         <div class="flotante">
             <img src="./Img/Logo.jpg" alt="logo">
@@ -40,7 +21,7 @@ Cada <a> (HREF) lleva a otra sección del sitio (verificá si los archivos exist
                 <img src="./Img/sinperfil.png" alt="perfil" class="avatar">
                 <div class="dropdown">
                     <a id="userName"></a>
-                    <a href="./gestorUsuario.html">Perfil</a>
+                    <a id="perfilLink">Perfil</a>
                     <a href="#" id="logoutBtn">Salir</a>
                 </div>
             </div>

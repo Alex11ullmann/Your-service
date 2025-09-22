@@ -1,110 +1,124 @@
-window.addEventListener("DOMContentLoaded", () => {//Espera que toda la estructura HTML esté cargada antes de ejecutar cualquier lógica.
-    const campos = [//🔐 Validación de caracteres especiales
-        //Seccion REGISTRO
-                { inputId: "usuario" },
-                { inputId: "password" },
-                { inputId: "repPassword" },
-                { inputId: "direccion" }
-    ];
-//Declara campos que deben tener solo letras y números. La expresión regular caracteres define qué caracteres son válidos.
-    const caracteres = /^[A-Za-z0-9]*$/;
+window.addEventListener("DOMContentLoaded", () => {
+    const reglas = {
+        alfanumerico: /^[a-zA-Z0-9]*$/,
+        letras: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/,
+        numeros: /^[0-9]*$/,
+        email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    };
 
-    //Funcion para validad que no sean caracteres especiales
-    campos.forEach(({ inputId, mensajeId }) => {
+    const campos = [
+        { inputId: "usuario", tipo: "alfanumerico" },
+        { inputId: "password", tipo: "alfanumerico" },
+        { inputId: "repPassword", tipo: "alfanumerico" },
+        { inputId: "direccion", tipo: "alfanumerico" },
+        { inputId: "localidad", tipo: "letras" },
+        { inputId: "telefono", tipo: "numeros" },
+        { inputId: "dni", tipo: "numeros" },
+        { inputId: "email", tipo: "email" }
+    ];
+
+    campos.forEach(({ inputId, tipo }) => {
         const input = document.getElementById(inputId);
-        const mensaje = document.getElementById(mensajeId);
-            input.addEventListener("input", () => {
-                if (!caracteres.test(input.value)) {
-                    input.value = input.value.replace(/[^A-Za-z0-9]/g, "");
-                    mensaje.style.display = "block";
+        const mensaje = document.createElement("div");
+        mensaje.className = "mensaje-error";
+        mensaje.hidden = true;
+        input.parentNode.appendChild(mensaje);
+
+        input.addEventListener("input", () => {
+            let valor = input.value;
+            const regex = reglas[tipo];
+
+            if (tipo === "email") {
+                const esValido = regex.test(valor);
+                mensaje.textContent = esValido ? "" : "⚠️ Ingresá un email válido. Ej: nombre@dominio.com";
+                mensaje.hidden = esValido;
+                input.classList.toggle("error", !esValido);
+            } else {
+                if (!regex.test(valor)) {
+                    const limpio = valor.replace(new RegExp(`[^${regex.source.replace(/^\^|\*$/g, '')}]`, 'g'), "");
+                    input.value = limpio;
+                    mensaje.textContent = `⚠️ Solo se permiten caracteres válidos para este campo (${tipo}).`;
+                    mensaje.hidden = false;
+                    input.classList.add("error");
                 } else {
-                    mensaje.style.display = "none";
+                    mensaje.hidden = true;
+                    mensaje.textContent = "";
+                    input.classList.remove("error");
                 }
-            });
-        //Itera cada campo y agrega un input listener. Si se detecta un caracter especial: lo elimina y muestra el mensaje de error (mensaje.style.display = "block").⚠️ Advertencia: mensajeId no está definido en los objetos, por lo tanto mensaje será undefined. Este bloque va a lanzar un error si no se corrige. Podés remover mensajeId o agregarlo en cada objeto del array.
+            }
+        });
     });
 
-    // Validacion Localidad Registro
-    //🏘️ Validación de campo sin números (localidad)
-    const camposSinNumeros = [
-        { inputId: "localidad" }
-    ];
+    // Validación de contraseñas iguales
+    const pass1 = document.getElementById("password");
+    const pass2 = document.getElementById("repPassword");
+    const mensajeIgualdad = document.createElement("div");
+    mensajeIgualdad.className = "mensaje-error";
+    mensajeIgualdad.hidden = true;
+    pass2.parentNode.appendChild(mensajeIgualdad);
 
-    const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ]*$/;//Restringe el campo “localidad” a letras (incluye tildes y ñ).
-
-    camposSinNumeros.forEach(({ inputId }) => {
-        const input = document.getElementById(inputId);
-            input.addEventListener("input", () => {
-                if (!soloLetras.test(input.value)) {
-                    input.value = input.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ]/g, "");//Remueve números u otros caracteres si se ingresan.
-                }
-            });
+    pass2.addEventListener("input", () => {
+        const iguales = pass1.value === pass2.value;
+        mensajeIgualdad.textContent = iguales ? "" : "⚠️ Las contraseñas no coinciden.";
+        mensajeIgualdad.hidden = iguales;
+        pass2.classList.toggle("error", !iguales);
     });
 
-//📞 Validación de campos numéricos
-    const camposNumeros = [
-    { inputId: "telefono"},
-    { inputId: "dni"}
-    ];
-
-    const soloNumeros = /^[0-9]*$/;//Define que solo se permiten números en esos campos.
-    
-    //Validamos Telefonos En Registro
-    camposNumeros.forEach(({ inputId }) => {//Itera sobre un array de objetos (ej. { inputId: "telefono" }, { inputId: "dni" }).Desestructura para acceder directamente a inputId.
-        const input = document.getElementById(inputId);//Toma el elemento de HTML (por ejemplo, el <input id="telefono">).
-            input.addEventListener("input", () => {//Cada vez que se escribe o pega algo en el campo (input event), se ejecuta la función.
-                if (!soloNumeros.test(input.value)) {//Usa la expresión regular soloNumeros, que seguramente es: const soloNumeros = /^[0-9]*$/;
-                    //Verifica si el valor contiene solo números del 0 al 9. Si no, entra al if.
-                    input.value = input.value.replace(/[^0-9]/g, "");//Elimina caracteres que no sean dígitos numéricos.
-                    //Reemplaza cualquier caracter que no sea un número ([^0-9]) por vacío (""). g es la bandera de “global”, que asegura que los cambios se apliquen a todos los caracteres del string.
-                }
-            });
-    });
-    
-    // Evento submit del formulario
-    const formulario = document.querySelector("form");//📨 Validación final y registro
+    // Validación final al enviar
+    const formulario = document.querySelector("form");
     formulario.addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita recarga
-        //Captura el evento de envío del formulario. event.preventDefault() evita que la página se recargue.
+        event.preventDefault();
 
-        const usuario = document.getElementById("usuario").value;
-        const password = document.getElementById("password").value;
-        const repPassword = document.getElementById("repPassword").value;
-        const direccion = document.getElementById("direccion").value;
-        const localidad = document.getElementById("localidad").value;
-        const telefono = document.getElementById("telefono").value;
-        const dni = document.getElementById("dni").value;
-        const email = document.getElementById("email")?.value || "sin@email.com";
-        //Se extraen todos los valores ingresados. El email tiene un valor por defecto si el campo no existe por alguna razón.
+        let todoValido = true;
 
-        // Validaciones básicas
-        if (!usuario || !password || !repPassword || !direccion || !localidad || !telefono || !dni) {
-            alert("Por favor, completá todos los campos.");
-            return;//Si algún campo obligatorio está vacío, se cancela la acción.
+        campos.forEach(({ inputId, tipo }) => {
+            const input = document.getElementById(inputId);
+            const valor = input.value.trim();
+            const regex = reglas[tipo];
+            const mensaje = input.parentNode.querySelector(".mensaje-error");
+
+            const esValido = tipo === "email"
+                ? regex.test(valor)
+                : valor.length >= 1 && regex.test(valor);
+
+            if (!esValido) {
+                mensaje.hidden = false;
+                input.classList.add("error");
+                todoValido = false;
+            } else {
+                mensaje.hidden = true;
+                input.classList.remove("error");
+            }
+        });
+
+        const iguales = pass1.value === pass2.value;
+        if (!iguales) {
+            mensajeIgualdad.hidden = false;
+            pass2.classList.add("error");
+            todoValido = false;
         }
 
-        if (password.length < 6) {
-            alert("La contraseña debe tener al menos 6 caracteres.");
+        if (!todoValido) {
+            alert("⚠️ Hay campos inválidos. Verificá los datos ingresados.");
             return;
         }
 
+        // Registro
+        const usuario = document.getElementById("usuario").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const direccion = document.getElementById("direccion").value.trim();
+        const localidad = document.getElementById("localidad").value.trim();
+        const telefono = document.getElementById("telefono").value.trim();
+        const dni = document.getElementById("dni").value.trim();
+        const email = document.getElementById("email").value.trim();
 
-        if (password !== repPassword) {
-            alert("Las contraseñas no coinciden.");
-            return;//Asegura que ambas contraseñas sean iguales.
-        }
-
-        // Verificar si el usuario ya existe
-        //Obtiene la lista de usuarios ya registrados desde localStorage. Verifica si ya existe un usuario con el mismo nombre.
         let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
         const existe = usuarios.some(u => u.usuario === usuario);
-
         if (existe) {
             alert("El usuario ya existe. Elegí otro nombre.");
-            return;//Si ya existe, alerta y detiene el registro.
+            return;
         }
 
-        // Crear objeto usuario
         const nuevoUsuario = {
             usuario,
             password,
@@ -114,32 +128,26 @@ window.addEventListener("DOMContentLoaded", () => {//Espera que toda la estructu
             dni,
             email,
             tipo: document.getElementById('tilde-trabajador').classList.contains('checked') ? "trabajador" : "cliente"
-            //Se construye un objeto con los datos ingresados. Define si es "trabajador" o "cliente" según si el botón está marcado.
         };
 
-        // Guardar en localStorage
-        //💾 Guardado y redirección
-        usuarios.push(nuevoUsuario);//Agrega el nuevo usuario al array.
-               
+        // Guardar perfil activo
+        localStorage.removeItem("perfilUsuario");
+        localStorage.removeItem("perfilTrabajador");
+        localStorage.setItem("perfilUsuario", JSON.stringify(nuevoUsuario));
+
+        // Guardar en lista de usuarios
+        usuarios.push(nuevoUsuario);
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+        // Redirigir según tipo
         if (nuevoUsuario.tipo === "trabajador") {
             alert("Usuario registrado como trabajador. Continue el registro >>> ");
-            localStorage.setItem("HomeTrabajador", JSON.stringify(nuevoUsuario)); // 👈 igual al que usás en gestorTrabajador
-            window.location.href = "./Home.html";
-
+            localStorage.setItem("HomeTrabajador", JSON.stringify(nuevoUsuario));
+            window.location.href = "./perfiltrab.html";
         } else {
             alert("Usuario registrado correctamente.");
             localStorage.setItem("HomeUsuario", JSON.stringify(nuevoUsuario));
-            window.location.href = "./Home.html";// redirige a gestorUsuario con campos en Memoria
+            window.location.href = "./Home.html";
         }
-        //Guarda el perfil según el tipo. Redirige a la página correspondiente.
     });
-
 });
-
-//✅ En resumen: 
-// Este script:
-//-Valida campos del formulario
-//-Limpia caracteres inválidos en vivo
-//-Evita que se registren datos incompletos o duplicados
-//-Guarda los datos en localStorage
-//-Redirige a cada perfil correspondiente

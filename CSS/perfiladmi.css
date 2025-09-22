@@ -83,6 +83,7 @@ nav ul li a:hover {
     align-items: center;
     gap: 2.0vw;
     margin: auto;
+    margin-bottom: 2vw;
 }
 
 .foto-perfil {
@@ -122,6 +123,11 @@ nav ul li a:hover {
     background-color: white;
     border-radius: 4vw;
     text-align: center;
+}
+
+.info-perfil div {
+    justify-content:space-between;
+    width: 70%;
 }
 
 h4{
@@ -177,6 +183,7 @@ h4{
     justify-content:space-evenly;
     align-items: center;
 }
+
 
 /*********  Style de Trabajador *******/
 
@@ -243,4 +250,17 @@ textarea{
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contenedorFotoPerfil{
+    display: block;
+    justify-items: center;
+}
+
+.btnAgregarFotoPerfil{
+    margin-top: 1vw;
+}
+
+.btnagregareliminarimg{
+    width: 10vw;
 }

@@ -1,9 +1,9 @@
 "use strict";//"use strict": activa el modo estricto para evitar errores silenciosos. 
 window.addEventListener("DOMContentLoaded", () => {//Se ejecuta cuando todo el DOM esté cargado.
     // Obtener datos del trabajador desde localStorage
-    const perfil = JSON.parse(localStorage.getItem("perfilTrabajador"));
+    const perfil = JSON.parse(localStorage.getItem("perfilTrabajador")) || {};
     console.log("Perfil cargado:", perfil);
-//Obtiene el perfil del trabajador desde localStorage. Si no tiene el campo fotos, lo inicializa como un array vacío.
+    //Obtiene el perfil del trabajador desde localStorage. Si no tiene el campo fotos, lo inicializa como un array vacío.
     if (!perfil.fotos) {
         perfil.fotos = []; // creamos un arreglo para pushear imagenes. // crea un array vacío si no hay fotos
     }
@@ -132,7 +132,7 @@ window.addEventListener("DOMContentLoaded", () => {//Se ejecuta cuando todo el D
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Se Redirigen cambios y registro en memoria a gestorTrabajador
     document.getElementById("botonguardar").addEventListener("click", () => {
-        window.location.href = "./gestorTrabajador.html";
+        window.location.href = "./Home.html";
         //Redirige a la pantalla de gestor de trabajador (como paso siguiente del flujo de registro o edición).
     });
 

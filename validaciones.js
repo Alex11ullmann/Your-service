@@ -5,7 +5,7 @@ export const regex = {
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 };
 
-export function validarCampo(input, mensaje, tipo = "alfanumerico", minLength = 6) {
+export function validarCampo(input, mensaje, tipo = "alfanumerico", minLength = 5) {
     const valor = input.value.trim();
     const esValido = valor.length >= minLength && regex[tipo].test(valor);
 
