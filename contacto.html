@@ -56,7 +56,8 @@
                                         <!--LABEL=
                                         El elemento <label> se usa para asociar un texto descriptivo con un elemento de formulario, como un <input>, <select>, o <textarea>.-->
                                         <label>Nombre Completo:</label>
-                                        <input type="text" id="" name="">
+                                        <input type="text" id="nombre" name="nombre">
+                                        <span id="error-nombre" class="error-texto" hidden></span>
                                         <!--
                                         Etiqueta + campo de entrada para que el usuario escriba su nombre.
                                         Te faltaría completar el id y name (por ejemplo: id="nombre" name="nombre"), útil para JS o enviar datos.
@@ -64,18 +65,21 @@
                                     </div>
                                     <div>
                                         <label>Email:</label>
-                                        <input type="email" id="" name="">
+                                        <input type="email" id="email" name="email">
+                                        <span id="error-email" class="error-texto" hidden></span>
                                         <!--type="email" valida automáticamente que el valor ingresado tenga formato de correo electrónico.-->
                                     </div>
                                     <div>
                                         <label>Teléfono (opcional):</label>
-                                        <input type="tel" id="" name="">
+                                        <input type="tel" id="telefono" name="telefono">
+                                        <span id="error-telefono" class="error-texto" hidden></span>
                                         <!--type="tel" permite ingresar teléfonos, aunque no lo valida fuertemente sin patrón extra.
                                         Es opcional, así que podés dejarlo sin required.-->
                                     </div>
                                     <div>
                                         <label>Tu Mensaje:</label>
-                                        <textarea id="" name="" rows="6"></textarea>
+                                        <textarea id="mensaje" name="mensaje" rows="6"></textarea>
+                                        <span id="error-mensaje" class="error-texto" hidden></span>
                                         <!--
                                         -textarea permite texto extenso, ideal para que el usuario escriba su consulta o mensaje completo.
                                         -rows="6" define la altura inicial (cantidad de líneas visibles).
@@ -127,5 +131,6 @@
                     </div>    
         </footer>
         <script type="text/javascript" src="./Home.js"></script>
+        <script type="module" src="./formulario.js"></script>
     </body>
 </html>

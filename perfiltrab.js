@@ -103,6 +103,33 @@ window.addEventListener("DOMContentLoaded", () => {//Se ejecuta cuando todo el D
         //Al cargar la página, si hay una descripción, se muestra automáticamente en el textarea.
     }
 
+    // Guardar opciones de trabajo (checkboxes)/////////////////////////////////////////////
+  const opciones = [
+    { id: "checkbox1", key: "certificadoAltura", label: "label1" },
+    { id: "checkbox2", key: "trabajaSolo", label: "label2" },
+    { id: "checkbox4", key: "servicio24hs", label: "label3" },
+    { id: "checkbox5", key: "finesDeSemana", label: "label5" },
+    { id: "checkbox6", key: "feriados", label: "label6" }
+  ];
+
+  opciones.forEach(({ id, key, label }) => {
+    perfil[key] = perfil[key] ?? false;
+
+    const checkbox = document.getElementById(id);
+    const textoLabel = document.getElementById(label);
+
+    if (checkbox) {
+      checkbox.checked = perfil[key];
+      if (textoLabel) textoLabel.textContent = checkbox.checked ? "Si" : "No";
+
+      checkbox.addEventListener("change", () => {
+        perfil[key] = checkbox.checked;
+        localStorage.setItem("perfilTrabajador", JSON.stringify(perfil));
+        if (textoLabel) textoLabel.textContent = checkbox.checked ? "Si" : "No";
+      });
+    }
+  });
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Se Redirigen cambios y registro en memoria a gestorTrabajador
     document.getElementById("botonguardar").addEventListener("click", () => {
         window.location.href = "./gestorTrabajador.html";
