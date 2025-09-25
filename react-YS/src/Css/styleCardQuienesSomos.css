@@ -1,0 +1,21 @@
+.subCont {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.5vw;
+    width: 95%;
+    height: 20%;
+    margin: 1%;
+}
+
+.contTexto{
+    display: flex;
+    width: 98%;
+    height: 100%;
+    border-radius: 10%;
+    margin: 1%;
+    padding: 1%;
+    flex-wrap: wrap;
+    align-items:flex-start;
+    text-align:justify;
+    padding: 2%;
+}
