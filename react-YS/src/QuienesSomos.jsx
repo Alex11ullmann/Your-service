@@ -5,7 +5,7 @@ export default function QuienesSomos () {
     return (
             <div>
                 <div className="encabezado">
-                    <div className="contenedor-desplefables">
+                    <div className="contenedor-desplegables">
                         <CardQuienesSomos />
                     </div>
                 </div>
