@@ -1,4 +1,4 @@
-import "../Css/styleCardQuienesSomos.css";
+import "../Css/styleQuienesSomos.css";
 import conexiones from "../Images/conexiones.jfif"
 import quienesSomos from "../Images/quienesSomos.jfif"
 import Objetivos from "../Images/Objetivo.png"
