@@ -1,4 +1,3 @@
-import Preguntas from './pages/preguntas.jsx';
 import '../Css/preguntas.css';
 
 const Preguntas = () => {

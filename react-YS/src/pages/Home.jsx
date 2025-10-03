@@ -1,10 +1,12 @@
-import './Css/styleHome.css';
-import Fondo from './Images/fondoalba.png'
+import '../Css/styleHome.css';
+import Fondo from '../Images/fondoalba.png'
 
 export default function Home () {
     return (
         <div>
-            <div className="fondo"> {Fondo} </div>
+            <div>
+                <img className="fondo" src={Fondo} alt="fondo trabajador" />
+            </div>
             <div className="cuerpo">
                 <div className="contador">
                     <div className="contador1">

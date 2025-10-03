@@ -1,4 +1,3 @@
-import Terminos from './pages/terminos';
 import '../Css/terminos.css';
 
 const Terminos = () => {

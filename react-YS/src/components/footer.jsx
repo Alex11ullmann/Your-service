@@ -1,5 +1,3 @@
-import Footer from './footer.jsx';
-
 const Footer = () => {
   return (
     <footer>

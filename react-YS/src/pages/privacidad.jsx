@@ -1,4 +1,3 @@
-import Privacidad from './pages/privacidad.jsx';
 import '../Css/privacidad.css';
 
 const Privacidad = () => {

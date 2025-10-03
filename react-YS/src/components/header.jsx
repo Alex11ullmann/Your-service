@@ -1,5 +1,3 @@
-import Header from './header.jsx';
-
 const Header = ({ user }) => {
   return (
     <header>

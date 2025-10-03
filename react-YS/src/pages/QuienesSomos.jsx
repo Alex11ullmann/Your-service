@@ -1,5 +1,5 @@
 
-import CardQuienesSomos from "./components/cardQuienesSomos.jsx"
+import CardQuienesSomos from "../components/cardQuienesSomos.jsx"
 
 export default function QuienesSomos () {
     return (

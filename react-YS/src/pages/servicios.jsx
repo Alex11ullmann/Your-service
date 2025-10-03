@@ -1,4 +1,3 @@
-import Servicios from './pages/servicios.jsx';
 import '../Css/servicios.css';
 
 const Servicios = () => {

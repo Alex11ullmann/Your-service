@@ -1,4 +1,3 @@
-import Contacto from './pages/contacto.jsx';
 import '../Css/contacto.css';
 
 const Contacto = () => {

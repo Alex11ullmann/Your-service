@@ -1,5 +1,5 @@
-import CardCapacitate from "./components/cardCapacitate.jsx"
-import CardTrabajadores from "./components/cardTrabajadores.jsx"
+import CardCapacitate from "../components/cardCapacitate.jsx"
+import CardTrabajadores from "../components/cardTrabajadores.jsx"
 
 export default function Capacitate () {
     return (
