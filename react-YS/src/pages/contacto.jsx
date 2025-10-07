@@ -1,8 +1,11 @@
-import '../Css/contacto.css';
+import '../components/Contacto/contacto.css';
+import Header from '../components/FooterYHeader/Header'
+import Footer from '../components/FooterYHeader/Footer.jsx'
 
 const Contacto = () => {
   return (
     <main>
+      <Header />
       <section className="contactanos">
         <h2>Contáctanos</h2>
         <p>¿Tienes alguna pregunta? ¡Estamos aquí para ayudarte!</p>
@@ -40,6 +43,7 @@ const Contacto = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 };

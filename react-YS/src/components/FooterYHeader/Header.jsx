@@ -1,8 +1,11 @@
+import './flotanteyFooter.css'
+import Logo from '../../Images/Logo.jpg'
+
 const Header = ({ user }) => {
   return (
     <header>
       <div className="flotante">
-        <img id="logo" src="/Img/Logo.jpg" alt="logo" />
+        <img id="logo" src={Logo} alt="Logo de la empresa" />
         <a href="/Home.html" className="enlace">Home</a>
         <a href="/Principal.html" className="enlace">Buscar</a>
         <a href="/presentacion.html" className="enlace">¿Quiénes somos?</a>
@@ -22,7 +25,6 @@ const Header = ({ user }) => {
         )}
       </div>
       <div className="encabezado"></div>
-      <div><div className="fondo"></div></div>
     </header>
   );
 };

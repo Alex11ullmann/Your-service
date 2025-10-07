@@ -1,11 +1,44 @@
-import '../Css/styleHome.css';
+import CardparaHome from '../components/CardHome/CardparaHome';
+import '../components/CardHome/styleHome.css'
 import Fondo from '../Images/fondoalba.png'
+import Seguridad from '../Images/seguridad.png'
+import Facilidad from '../Images/facilidad.png'
+import Comodidad from '../Images/comodidad.png'
+import Inmediatez from '../Images/inmediatez.png'
+import Experiencia from '../Images/experiencias.png'
+import Costos from '../Images/costos.png'
+import FondoWeb from '../Images/fondoweb.png'
+import Filtro from '../Images/filtro.jfif'
+import Siguiente from '../Images/siguiente.png'
+import Seleccion from '../Images/seleccion.jfif'
+import Contactar from '../Images/contactar.jpg'
+import CardTrabajadores from '../components/CardCapacitate/CardTrabajadores'
+import Plomero from '../Images/Plomero.jfif'
+import Gasista from '../Images/Gasista.jfif'
+import Herreria from '../Images/Herrero.jfif'
+import Fletero from '../Images/Fletero.jfif'
+import Domestico from '../Images/Domestico.jfif'
+import CuidadoAdultos from '../Images/CuidadoAdultos.jfif'
+import Pintor from '../Images/Pintor.jfif'
+import Alarmas from '../Images/Alarmas.jfif'
+import Cerrajero from '../Images/Cerrajero.jfif'
+import Carpintera from '../Images/Carpintera.jfif'
+import Jardineria from '../Images/Jardinero.jfif'
+import Albanil from '../Images/Albanil.jfif'
+import Aire from '../Images/Aire.jfif'
+import Alfombras from '../Images/Alfombras.jfif'
+import Techista from '../Images/Techista.jfif'
+import Transportista from '../Images/Transportista.jfif'
+import Header from '../components/FooterYHeader/Header'
+import Footer from '../components/FooterYHeader/Footer.jsx'
 
 export default function Home () {
     return (
         <div>
+            <Header />
+            <div className="encabezado"></div>
             <div>
-                <img className="fondo" src={Fondo} alt="fondo trabajador" />
+                <img className="fondo" src={Fondo} alt="fondo de un trabajador" />
             </div>
             <div className="cuerpo">
                 <div className="contador">
@@ -32,119 +65,144 @@ export default function Home () {
                         <p>hay que hacer las cosas diferentes,</p>
                         <p>hay que hacer ese proyecto pendiente.</p>
                     </div>
-                    <div className="iconos">
-                        <div className="seguridad"></div>
-                            <div className="text1">
-                                <h2>Seguridad</h2>
-                                <p>El mejor respaldo es la propia comunidad.</p>
+                    <div >
+                        <div className="iconos">
+                            <CardparaHome 
+                                textoNuevo= "El mejor respaldo es la propia comunidad."
+                                nombre= "Seguridad"
+                                imagen= {Seguridad}
+                            />
+                            <CardparaHome 
+                                textoNuevo= "El contacto sólo toma 1 Click."
+                                nombre= "Facilidad"
+                                imagen= {Facilidad}
+                            />
                             </div>
-                            <div className="facilidad"></div>
-                            <div className="text1">
-                                <h2>Facilidad</h2>
-                                <p>El contacto sólo toma 1 Click.</p>
+                        <div className="iconos">
+                            <CardparaHome 
+                                textoNuevo= "La web te localiza y facilita el contacto."
+                                nombre= "Comodidad"
+                                imagen= {Comodidad}
+                            />
+                            <CardparaHome 
+                                textoNuevo= "Pídelo y recíbelo ahora que lo necesitas."
+                                nombre= "Inmediatez"
+                                imagen= {Inmediatez}
+                            />
                             </div>
-                            <div className="comodidad"></div>
-                            <div className="text1">
-                                <h2>Comodidad</h2>
-                                <p>La web te localiza y facilita el contacto.</p>
-                            </div>
-                            <div className="inmediatez"></div>
-                            <div className="text1">
-                                <h2>Inmediatez</h2>
-                                <p>Pídelo y recíbelo ahora que lo necesitas.</p>
-                            </div>
-                            <div className="experiencias"></div>
-                            <div className="text1">
-                                <h2>Experiencias</h2>
-                                <p>Desde tu hogar, ahorra tiempo valioso.</p>
-                            </div>
-                            <div className="costos"></div>
-                            <div className="text1">
-                                <h2>Costos</h2>
-                                <p>Informes del costo al contactar, se cotiza sin visitar.</p>
+                        <div className="iconos">
+                            <CardparaHome 
+                                textoNuevo= "Desde tu hogar, ahorra tiempo valioso."
+                                nombre= "Experiencia"
+                                imagen= {Experiencia}
+                            />
+                            <CardparaHome 
+                                textoNuevo= "Informes del costo al contactar, se cotiza sin visitar."
+                                nombre= "Costos"
+                                imagen= {Costos}
+                            />
                             </div>
                     </div>
                 </div> 
                 <div className="contenedorIntro">
-                    <img className="imgFondo" src="./Imgages/fondo web.png" alt="Imagen Fondo"/>
+                    <img className="imgFondo" src={FondoWeb} alt="Imagen Fondo"/>
                     <div className="introduccion">
-                        <h1  className="h1intro"> Tu experto a un click </h1>
-                        <div className="btn1" > 
-                            <a href="Principal.html">Busca tu Profesional </a> 
+                        <h1 className="h1intro"> Tu experto a un click </h1>
+                        <div className="buscarProf" > 
+                            <a>Busca tu Profesional </a> 
                         </div>
-                        <div  className="explicacion">
+                        <div className="explicacion">
                             <div className="pasos">
-                                <div className="fase filtro" >
-                                    <p className="textito" > Filtas por Necesidad </p>
+                                <div className="filtro">
+                                    <img className="filtro" src={Filtro} alt="imagen de filtro" />
+                                    <p className="textito"> Filtras por Necesidad </p>
                                 </div>
-                                <div className="fase siguiente" >
+                                    <img className="siguiente" src={Siguiente} alt="imagen de flecha" />
+                                <div className="filtro">
+                                    <img className="filtro" src={Seleccion} alt="imagen de seleccion" />
+                                    <p className="textito"> Seleccionas el Especialista </p>
                                 </div>
-                                <div className="fase seleccion">
-                                    <p className="textito" > Seleccionas el Especialista </p>
-                                </div>
-                                <div className="fase siguiente" >
-                                </div>
-                                <div className="fase contactar">
-                                    <p className="textito" > Te Contactas al trabajador </p>
+                                <img className="siguiente" src={Siguiente} alt="imagen de flecha" />
+                                <div className="filtro">
+                                    <img className="filtro" src={Contactar} alt="imagen de contacto" />
+                                    <p className="textito"> Te Contactas al trabajador </p>
                                 </div>
                             </div>
                         </div>
                     </div> 
                 </div>
+
                 <div className="containerOficios">
                     <h2 className="encabezado"> Oficios Ofrecidos, contacta tu experto</h2>
-                    <div className="cardOfi">
-                        <div className="minicard plomero" >
-                            <a className="textito">Plomeria</a>
-                        </div>
-                        <div className="minicard gasista">
-                            <a className="textito">Gasista</a>
-                        </div>
-                        <div className="minicard herrero">
-                            <a className="textito">Herreria</a>
-                        </div>
-                        <div className="minicard fletero" >
-                            <a className="textito">Fletes</a>
-                        </div>
-                        <div className="minicard  domestic">
-                            <a className="textito"> Servicio Domestico </a>
-                        </div>
-                        <div className="minicard cuidadoadultos">
-                            <a className="textito"> Cuidado Adultos</a>
-                        </div>
-                        <div className="minicard pintor">
-                            <a className="textito">Pintura</a>
-                        </div>
-                        <div className="minicard alarmas">
-                            <a className="textito"> Alarmas </a>
-                        </div>
-                        <div className="minicard cerrajero">
-                            <a className="textito"> Cerrrajeria</a>
-                        </div>
-                        <div className="minicard carpintero">
-                            <a className="textito">Carpinteria</a>
-                        </div>
-                        <div className="minicard jardinero">
-                            <a className="textito">Jardineria</a>
-                        </div>
-                        <div className="minicard albanil">
-                            <a className="textito">Albañileria</a>
-                        </div>
-                        <div className="minicard aireacond">
-                            <a className="textito">Aire Acondicionado</a>
-                        </div> 
-                        <div className="minicard limpalfombras">
-                            <a className="textito">Limpieza Alfombras</a>
-                        </div>
-                        <div className="minicard techista">
-                            <a className="textito"> Techista </a>
-                        </div>
-                        <div className="minicard viajante">
-                            <a className="textito"> Transportista </a>
-                        </div>
+                    <div className="containerCardOfi">
+                        <CardTrabajadores 
+                            nombre= "Plomeria"
+                            imagen= {Plomero}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Gasista"
+                            imagen= {Gasista}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Herreria"
+                            imagen= {Herreria}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Fletes"
+                            imagen= {Fletero}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Servicio Domestico"
+                            imagen= {Domestico}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Cuidado Adultos"
+                            imagen= {CuidadoAdultos}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Pintura"
+                            imagen= {Pintor}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Alarmas"
+                            imagen= {Alarmas}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Cerrajeria"
+                            imagen= {Cerrajero}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Carpinteria"
+                            imagen= {Carpintera}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Jardinero"
+                            imagen= {Jardineria}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Albañileria"
+                            imagen= {Albanil}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Aire Acondicionado"
+                            imagen= {Aire}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Limpieza Alfombras"
+                            imagen= {Alfombras}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Techista"
+                            imagen= {Techista}
+                        />
+                        <CardTrabajadores 
+                            nombre= "Transportista"
+                            imagen= {Transportista}
+                        />
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }
