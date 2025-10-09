@@ -1,4 +1,4 @@
-import CardparaHome from '../components/CardHome/CardparaHome';
+import CardparaHome from '../components/CardHome/CardparaHome.jsx';
 import '../components/CardHome/styleHome.css'
 import Fondo from '../Images/fondoalba.png'
 import Seguridad from '../Images/seguridad.png'
@@ -12,7 +12,7 @@ import Filtro from '../Images/filtro.jfif'
 import Siguiente from '../Images/siguiente.png'
 import Seleccion from '../Images/seleccion.jfif'
 import Contactar from '../Images/contactar.jpg'
-import CardTrabajadores from '../components/CardCapacitate/CardTrabajadores'
+import CardTrabajadores from '../components/CardCapacitate/CardTrabajadores.jsx'
 import Plomero from '../Images/Plomero.jfif'
 import Gasista from '../Images/Gasista.jfif'
 import Herreria from '../Images/Herrero.jfif'
@@ -29,7 +29,7 @@ import Aire from '../Images/Aire.jfif'
 import Alfombras from '../Images/Alfombras.jfif'
 import Techista from '../Images/Techista.jfif'
 import Transportista from '../Images/Transportista.jfif'
-import Header from '../components/FooterYHeader/Header'
+import Header from '../components/FooterYHeader/Header.jsx'
 import Footer from '../components/FooterYHeader/Footer.jsx'
 
 export default function Home () {

@@ -1,8 +1,8 @@
-import '../components/Servicios/servicios.css';
-import Header from '../components/FooterYHeader/Header'
+import '../components/Terminos/terminos.css';
+import Header from '../components/FooterYHeader/Header.jsx'
 import Footer from '../components/FooterYHeader/Footer.jsx'
 
-const Servicios = () => {
+const Terminos = () => {
   return (
     <>
       <Header />
@@ -66,4 +66,4 @@ const Servicios = () => {
   );
 };
 
-export default Servicios;
+export default Terminos;

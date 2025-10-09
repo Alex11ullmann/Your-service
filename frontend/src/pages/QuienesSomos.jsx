@@ -1,10 +1,10 @@
 import "../components/QuienesSomos/styleQuienesSomos.css"
-import CardCapacitate from "../components/CardCapacitate/CardCapacitate"
+import CardCapacitate from "../components/CardCapacitate/CardCapacitate.jsx"
 import conexiones from "../Images/conexiones.jfif"
 import quienesSomos from "../Images/quienesSomos.jfif"
 import Objetivos from "../Images/Objetivo.png"
 import calificacion from "../Images/calificacion.jfif"
-import Header from '../components/FooterYHeader/Header'
+import Header from '../components/FooterYHeader/Header.jsx'
 import Footer from '../components/FooterYHeader/Footer.jsx'
 
 export default function QuienesSomos() {

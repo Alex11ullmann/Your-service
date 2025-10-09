@@ -1,4 +1,4 @@
-import '../CardHome/styleHome.css'
+import './styleHome.css'
 
 
 export default function CardparaHome ({ textoNuevo, nombre, imagen }) {

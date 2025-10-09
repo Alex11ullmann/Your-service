@@ -1,5 +1,5 @@
 import '../components/Privacidad/privacidad.css';
-import Header from '../components/FooterYHeader/Header'
+import Header from '../components/FooterYHeader/Header.jsx'
 import Footer from '../components/FooterYHeader/Footer.jsx'
 
 const Privacidad = () => {

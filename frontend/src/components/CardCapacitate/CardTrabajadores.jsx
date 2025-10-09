@@ -1,4 +1,4 @@
-import "../CardCapacitate/styleCapacitate.css"
+import "./styleCapacitate.css"
 
 export default function CardTrabajadores ( {nombre, imagen} ) {
     return (

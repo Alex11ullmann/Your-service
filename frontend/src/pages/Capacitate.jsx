@@ -1,5 +1,5 @@
-import CardCapacitate from "../components/CardCapacitate/CardCapacitate"
-import CardTrabajadores from "../components/CardCapacitate/CardTrabajadores"
+import CardCapacitate from "../components/CardCapacitate/CardCapacitate.jsx"
+import CardTrabajadores from "../components/CardCapacitate/CardTrabajadores.jsx"
 import Escuela from "../Images/Escuela.jfif"
 import Herrero from "../Images/Herrero.jfif"
 import Carpintera from "../Images/Carpintera.jfif"
@@ -11,7 +11,7 @@ import Cerrajero from "../Images/Cerrajero.jfif"
 import Aire from "../Images/Aire.jfif"
 import "../components/CardCapacitate/styleCapacitate.css"
 import "../components/CardQuienesSomos/styleQuienesSomos.css"
-import Header from '../components/FooterYHeader/Header'
+import Header from '../components/FooterYHeader/Header.jsx'
 import Footer from '../components/FooterYHeader/Footer.jsx'
 
 export default function Capacitate () {
