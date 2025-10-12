@@ -10,7 +10,7 @@ import Pintor from "../Images/Pintor.jfif"
 import Cerrajero from "../Images/Cerrajero.jfif"
 import Aire from "../Images/Aire.jfif"
 import "../components/CardCapacitate/styleCapacitate.css"
-import "../components/CardQuienesSomos/styleQuienesSomos.css"
+import "../components/QuienesSomos/styleQuienesSomos.css"
 import Header from '../components/FooterYHeader/Header.jsx'
 import Footer from '../components/FooterYHeader/Footer.jsx'
 

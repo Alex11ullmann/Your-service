@@ -6,14 +6,14 @@ import Preguntas from './pages/Preguntas.jsx'
 import Privacidad from './pages/Privacidad.jsx'
 import Servicios from './pages/Servicios.jsx'
 import Terminos from './pages/Terminos.jsx'
+import Buscar from './pages/Buscar.jsx'
 
 function App() {
 
   return (
     <>
-      <div>
         <Home />
-        {/* Buscar */}
+        <Buscar />
         <QuienesSomos />
         <Capacitate />
         {/* Login + Registros */}
@@ -23,7 +23,6 @@ function App() {
         <Preguntas />
         <Privacidad />
         <Terminos />
-      </div>
     </>
   )
 }

@@ -174,13 +174,7 @@
 .containerOficios{
     width: 100%;
 }
-.encabezado{
-    margin-top: 15px;
-    text-align: center;
-    color: #3F47CC;
-    font-family: 'Calibri Light', Calibri, sans-serif;
-    font-size: 3vw;
-}
+
 .containerCardOfi{
     display: flex;
     width: 95%;

@@ -1,4 +1,4 @@
-import "../CardQuienesSomos/styleQuienesSomos.css"
+import "../QuienesSomos/styleQuienesSomos.css"
 
 export default function CardCapacitate ({ titulo, texto, texto2, imagen, alt, invertido }) {
     return (
