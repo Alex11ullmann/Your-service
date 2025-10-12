@@ -1,0 +1,182 @@
+.tarjeta {
+    display: block;
+    border: 1px solid rgb(244, 241, 241);
+    height: 100%;
+    width: 100%;
+    background-color: rgb(248, 245, 245);
+    border-radius: 5px;
+    background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
+}
+.linea {
+    display: flex;
+    margin-top: 5%;
+    flex-direction: column;
+}
+.linea h1 {
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-weight: 600;
+    margin-left: 10%;
+    text-align: center;
+    color: rgb(68, 156, 223);
+    font-size: 2vw;
+}
+.linea h4 {
+    margin-top: 5%;
+    margin-left: 16%;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-weight: 100;
+    font-size: 0.8vw;
+}
+#imagen {
+    background-size:contain;
+    width: 100%; 
+    height: 10vw;
+}
+.primeraparte {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-grow: 3;
+    align-items: center; 
+    object-fit: contain;
+    justify-content: space-around;
+}
+.divcarrusel {
+    display: block; 
+    height: 30%;
+    width: 30%;
+    justify-items: center;
+    margin-bottom: 8%;
+}
+.carrusel {
+    display: flex;
+    margin-top: 1vw; 
+    height: 30vw;
+    min-width: 55%; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px; 
+    border-radius: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid rgb(216, 213, 213);
+    margin-bottom: 1vw;
+    background-color: rgb(248, 245, 245);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+}
+.carrusel>img {
+    display: none;
+    width: 40%;
+    height: 20%;
+    border-radius: 10px;
+    cursor: pointer; 
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 200px; 
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+.carrusel > img:hover {
+    transform: scale(1.1); 
+}
+#divbtnagregarimg {
+    display: flex;
+    height: 100%; 
+    width: 100%; 
+    justify-content: space-around;
+}
+.btnagregareliminarimg {
+    display: flex;
+    border: hidden;
+    background-color: rgb(68, 156, 223);
+    border-radius: 30px 30px 30px 30px;
+    width: 40%;
+    height: 2vw;
+    cursor: pointer;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-size: 1vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; 
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    color: white;
+}
+.trabajador{
+    display: flex;
+    min-width: 30%; 
+    max-width: 30%;
+    margin: 1px;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-size: 1vw;
+    justify-content: center;
+    background-color: rgb(248, 245, 245);
+    border-radius: 30px 30px 30px 30px;
+    text-align: center;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+}
+.imagentrab {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-height: 80%;
+    max-width: 80%;
+    border-radius: 10px;
+    margin: 8px;
+    object-fit: contain;  
+}
+h3 {
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-size: 3vw;
+    color: rgb(68, 156, 223);
+}
+.descripcion {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100%; 
+    width: 100%; 
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+}
+.descripcion a {
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-weight: 100;
+}
+#textareaqs {
+    display: flex;
+    border-radius: 10px;
+    background-color: white;
+    min-height: 10vw; 
+    min-width: 40%; 
+    max-height: 100%;
+    max-width: 100%;
+    margin-bottom: 1vw;
+    text-align:justify;
+    resize: none;
+    font-size: 1vw;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    background-color: rgb(248, 245, 245);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    margin-top: 2%;
+}
+.botonguardardatos {
+    display: flex;
+    justify-content: center;
+    margin: 2vw;
+}
+#botonguardar {
+    display: flex;
+    border: none;
+    background-color: rgb(68, 156, 223);
+    border-radius: 30px 30px 30px 30px;
+    width: 8vw;
+    height: 2.5vw;
+    cursor: pointer;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-size: 1vw;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    color: white;
+}

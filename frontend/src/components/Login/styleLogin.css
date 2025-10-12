@@ -1,0 +1,11 @@
+.cuerpoLogIn {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
+    margin-bottom: 10%;
+    margin-top: 10%;
+}

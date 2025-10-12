@@ -48,18 +48,17 @@
     color: black;
     font-size: 1.5vw;
 }
-.iconos {
+.allIconos {
     display: flex;
     padding: 3%;
     color: black;
-    flex-wrap:nowrap;
+    flex-wrap:wrap;
     justify-content: space-between;
-    margin-top: 10vw;
-    margin-bottom: 10vw;
 }
 .text1 {
-    display: block;
-    width: 30%;
+    background-size: contain;
+    background-repeat: repeat;
+    width: 20%;
     margin-bottom: 10px;
     text-align: center;
     font-size: 1.5vw;
@@ -68,6 +67,9 @@
     width: 20%;
     margin-bottom: 10px;
     padding: 2%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 10%;
 }
 .contenedorIntro {
     position: relative; /* Mantiene la referencia para los hijos */

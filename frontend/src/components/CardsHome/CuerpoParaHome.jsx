@@ -44,15 +44,13 @@ export const CuerpoParaHome = ()=> {
                     <p>hay que hacer las cosas diferentes,</p>
                     <p>hay que hacer ese proyecto pendiente.</p>
                 </div>
-                <div>
+                <div className="allIconos">
                     {cardsIconosHome.map((card) => (
-                        <div className="iconos">
                             <CardparaHome
                                 textoNuevo={card.textoNuevo}
                                 nombre={card.nombre}
                                 imagen={card.imagen}
                             />
-                        </div>
                     ))}
                 </div>
             </div>

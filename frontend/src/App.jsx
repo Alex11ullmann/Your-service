@@ -7,6 +7,9 @@ import Privacidad from './pages/Privacidad.jsx'
 import Servicios from './pages/Servicios.jsx'
 import Terminos from './pages/Terminos.jsx'
 import Buscar from './pages/Buscar.jsx'
+import Login from './pages/Login.jsx'
+import RegistroUsuario from './pages/RegistroUsuario.jsx'
+import RegistroTrabajador from './pages/RegistroTrabajador.jsx'
 
 function App() {
 
@@ -16,7 +19,9 @@ function App() {
         <Buscar />
         <QuienesSomos />
         <Capacitate />
-        {/* Login + Registros */}
+        <Login />
+        <RegistroUsuario />
+        <RegistroTrabajador />
         {/* Perfil */}
         <Servicios />
         <Contacto />
