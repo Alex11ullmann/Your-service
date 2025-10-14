@@ -1,11 +1,8 @@
 import '../components/Preguntas/preguntas.css';
-import Header from '../components/FooterYHeader/Header.jsx'
-import Footer from '../components/FooterYHeader/Footer.jsx'
 
 const Preguntas = () => {
   return (
-    <section>
-      <Header />
+    <>
       <div className="container">
         <h1>Preguntas Frecuentes</h1>
 
@@ -77,8 +74,7 @@ const Preguntas = () => {
           </div>
         </div>
       </div>
-      <Footer />
-    </section>
+    </>
   );
 };
 

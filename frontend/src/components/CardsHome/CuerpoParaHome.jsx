@@ -5,7 +5,6 @@ import CardTrabajadores from '../CardCapacitate/CardTrabajadores.jsx'
 
 import '../CardsHome/styleHome.css'
 
-import Fondo from '../../Images/fondoalba.png'
 import FondoWeb from "../../Images/fondoweb.png"
 import Filtro from '../../Images/filtro.jfif'
 import Siguiente from '../../Images/siguiente.png'
@@ -17,8 +16,7 @@ import Contactar from '../../Images/contactar.jpg'
 export const CuerpoParaHome = ()=> {
     return (
         <>
-            <div>
-                <img className="fondo" src={Fondo} alt="fondo de un trabajador" />
+            <div className="fondo">
             </div>
             <div className="contador">
                 <div className="contador1">
@@ -45,8 +43,9 @@ export const CuerpoParaHome = ()=> {
                     <p>hay que hacer ese proyecto pendiente.</p>
                 </div>
                 <div className="allIconos">
-                    {cardsIconosHome.map((card) => (
+                    {cardsIconosHome.map((card, index) => (
                             <CardparaHome
+                                key= {card.id ?? card.nombre ?? index}
                                 textoNuevo={card.textoNuevo}
                                 nombre={card.nombre}
                                 imagen={card.imagen}
@@ -84,8 +83,9 @@ export const CuerpoParaHome = ()=> {
             <div className="containerOficios">
                 <h2 className="encabezado"> Oficios Ofrecidos, contacta tu experto</h2>
                 <div className="containerCardOfi">
-                    {cardsTrabHome.map((card) => (
+                    {cardsTrabHome.map((card, index) => (
                         <CardTrabajadores
+                            key= {card.id ?? card.nombre ?? index}
                             nombre= {card.nombre}
                             imagen= {card.imagen}
                         />

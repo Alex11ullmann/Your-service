@@ -1,11 +1,8 @@
 import '../components/Terminos/terminos.css';
-import Header from '../components/FooterYHeader/Header.jsx'
-import Footer from '../components/FooterYHeader/Footer.jsx'
 
 const Terminos = () => {
   return (
     <>
-      <Header />
       <div className="cuerpoTerminyCond">
         <div className="containerTremyCond">
           <h2>Servicios disponibles - Your Service</h2>
@@ -61,7 +58,6 @@ const Terminos = () => {
           <p>Sumate para seguir creciendo como profesional.</p>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

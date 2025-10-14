@@ -2,9 +2,10 @@
     height: 5vw;
 }
 .fondo {
+    background-image: url("../../Images/fondoalba.png");
     border: 1px solid blueviolet;
     width: 95%; 
-    height: 50vw;
+    height: 40vw;
     background-size: cover;
     background-position: center;
     text-transform: capitalize;

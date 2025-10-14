@@ -20,9 +20,11 @@ export default function CuerpoLogin () {
                             </div>
                         </div>
                         <button id="login-btn" type="submit" className="login-btn">Ingresar</button>
+                        <hr style={{ marginTop: "1vw", borderRight: "120px inset black", margin: "2px 0" }} />
                         <a href="./RegistroUsuario.html" className="register-btn"> Registro usuario comun</a>
-                        <hr style={{ borderTop: "1px dashed #ccc", margin: "10px 0" }} />
+                        <hr style={{ borderRight: "120px inset black", margin: "2px 0" }} />
                         <a href="./RegistroTrabajador.html" className="register-btn"> Registro usuario trabajador</a>
+                        <hr style={{ marginBottom: "1vw", borderRight: "120px inset black", margin: "2px 0" }} />
                         <a href="./recuperar.html" className="reestablecer"> Olvide mi usuario/contraseña </a>
                     </form>
                 </div>

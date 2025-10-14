@@ -5,7 +5,7 @@ export default function CardTrabajadores ( {nombre, imagen} ) {
         <div className="cardOfi">
             <div className="minicard" >
                 <img className="contTexto" src={imagen} alt={nombre} />
-                <a className="textito">{nombre}</a>
+                <a className="text">{nombre}</a>
             </div>
         </div>
     )

@@ -10,6 +10,7 @@ import Buscar from './pages/Buscar.jsx'
 import Login from './pages/Login.jsx'
 import RegistroUsuario from './pages/RegistroUsuario.jsx'
 import RegistroTrabajador from './pages/RegistroTrabajador.jsx'
+import Perfiles from './pages/Perfiles.jsx'
 
 function App() {
 
@@ -22,12 +23,13 @@ function App() {
         <Login />
         <RegistroUsuario />
         <RegistroTrabajador />
-        {/* Perfil */}
         <Servicios />
         <Contacto />
         <Preguntas />
         <Privacidad />
         <Terminos />
+        <Perfiles />
+        {/* Administrador */}
     </>
   )
 }

@@ -16,11 +16,11 @@ export default function CuerpoRegistroTrabajador() {
                 <div className="primeraparte">
                     <div className="divcarrusel">
                         <div className="carrusel" id="contenedorCarrusel">
-                            <img id="imgcarrusel" src="" alt="Vista previa" />
+                            <img id="imgcarrusel" src={null} alt="Vista previa" />
                         </div>
                         <div id="divbtnagregarimg">
                             <input type="file" id="btnagregarimg" accept="image/*" multiple hidden />
-                            <label for="btnagregarimg" className="btnagregareliminarimg" required>Subir Imagen</label>
+                            <label htmlFor="btnagregarimg" className="btnagregareliminarimg" required>Subir Imagen</label>
                             <button id="btneliminarimg" className="btnagregareliminarimg">Eliminar Imagen</button>
                         </div>
                     </div>
@@ -31,7 +31,7 @@ export default function CuerpoRegistroTrabajador() {
                 <div className="descripcion">
                     <h3>Perfil Profesional</h3>
                     <a>Escriba aqui lo que quiera hacer saber a los demas sobre usted mismo. Experiencias, antiguedad, etc.</a>
-                    <textarea name="texto" id="textareaqs" placeholder="Min 20 caracts - Max 600 caracts" minlength="20" maxlength="600"></textarea>
+                    <textarea name="texto" id="textareaqs" placeholder="Min 20 caracts - Max 600 caracts" minLength="20" maxLength="600"></textarea>
                 </div>
                 <div className="botonguardardatos">
                     <input type="button" value="Guardar" id="botonguardar" />
