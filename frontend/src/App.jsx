@@ -23,12 +23,12 @@ function App() {
         <Login />
         <RegistroUsuario />
         <RegistroTrabajador />
-        <Servicios />
         <Contacto />
         <Preguntas />
-        <Privacidad />
         <Terminos />
         <Perfiles />
+        <Privacidad />
+        <Servicios />
         {/* Administrador */}
     </>
   )

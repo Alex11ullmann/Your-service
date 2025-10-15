@@ -1,14 +1,6 @@
-body {
-    background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
-}
-
-.encabezado {
-    width: 100%;
-    height: 5vw;
-}
-
 .contactanos {
-    padding: 40px 20px;
+    width: 95%;
+    margin-left: 2.5%;
     text-align: center;
     justify-items: center;
     font-size: 1.8vw;
@@ -17,12 +9,10 @@ body {
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
 }
-
 .contactanos h2 {
     color: #2c3e50;
     margin-bottom: 10px;
 }
-
 .contactanos p {
     margin-bottom: 30px;
     color: #555;
@@ -30,35 +20,25 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
-
-
 .contactanos1 {
     display: flex;
     flex-wrap: wrap;
-    /* Permite que los elementos se envuelvan en pantallas pequeñas */
     gap: 40px;
     justify-content: center;
     margin-top: 30px;
     width: 60%;
-    background: white;
     border-radius: 10px;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
 }
-
-
 .contacto-formulario {
     flex: 1;
-    /* Permite que ocupen el espacio disponible */
     min-width: 300px;
-    /* Ancho mínimo para evitar que se aplasten */
     padding: 10px;
     border-radius: 8px;
     text-align: left;
     justify-items: center;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    margin-bottom: 2vw;
 }
-
-
 .contacto-formulario h3 {
     color: #34495e;
     margin-bottom: 20px;

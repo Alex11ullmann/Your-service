@@ -1,0 +1,161 @@
+.cuerpo {
+    width: 95%;
+    margin-top: 2vw;
+    margin-left: 2.5%;
+    align-items: center;
+    background-color: white;
+    border-radius: 1.0vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(90deg, rgb(203, 239, 243) 10%, rgb(210, 225, 239) 47%, rgb(243, 221, 230) 100%);
+}
+.contenido {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.info-perfil {
+    width: 55%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 2%;
+    background-color: white;
+    border-radius: 4vw;
+    text-align: center;
+}
+.foto-perfil {
+    width: 25.0vw;
+    height: 25.0vw;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    background-image: url('../../Images/sinperfil.png');
+    background-size: cover;
+}
+.formularios {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 2%;
+    background-color: white;
+    border-radius: 4vw;
+    text-align: center;
+    justify-content: start;
+    gap: 1rem;
+    width: 45%;
+    margin-top: 2vw;
+}
+.modificar {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    justify-content: center;
+    width: 100%;
+}
+.modificar h4 {
+    width: 30%;
+    text-align: center;
+    color: #268fff;
+    font-size: 1.5vw;
+}
+.modificar input {
+    width: 18vw;
+    padding: 5px;
+    font-size: 1vw;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: grey;
+}
+.perfil-profesional{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    width: 100%;
+}
+.perfil-profesional h4{
+    width: 30%;
+    text-align: center;
+    font-size: 1.4vw;
+    align-content: center;
+    color: #268fff;
+}
+#textareaDescripcion{
+    width: 18vw;
+    height: 7vw;
+    padding: 5px;
+    font-size: 1vw;
+    color: grey;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    resize: none;
+    margin-bottom: 4vw;
+}
+#guardarCambios {
+    height: 2%;
+    width: 30%;
+    color : #f3f4f5;
+    font-size: 1.1vw;
+    border-radius: 10px;
+    border-color:rgb(200, 208, 255);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    justify-content: center;
+}
+.opciones{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.opciones h3{
+    margin-top: 4vw;
+    margin-bottom: 2vw;
+    color: rgba(240, 91, 91, 1);
+}
+#inputEliminarPass{
+    padding: 5px;
+    font-size: 1.1vw;
+    border-color:rgb(200, 208, 255);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 2vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+#btnEliminarCuenta{
+    height: 4vw;
+    width: 20%;
+    justify-content: center;
+    color : #f3f4f5;
+    font-size: 1.1vw;
+    border-radius: 10px;
+    border-color:rgb(200, 208, 255);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+.contenedorImagenes {
+    display: flex;
+    margin-top: 4vw;
+    width: 95%;
+    height: 20vw;
+    padding: 2vw;
+    flex-direction:row;
+    gap: 5px; 
+    border-radius: 10px;
+    border: 1px solid rgb(216, 213, 213);
+    background-color: rgb(248, 245, 245);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    margin-bottom: 2vw;
+}
+.btnFotoPerfil {
+    display: flex;
+    margin-top: 1vw;
+    background-color: rgb(68, 156, 223);
+    border-radius: 30px 30px 30px 30px;
+    width: 80%;
+    height: 4vw;
+    cursor: pointer;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-size: 1vw;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    color: white;
+}

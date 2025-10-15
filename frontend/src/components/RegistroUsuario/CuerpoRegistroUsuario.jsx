@@ -1,5 +1,5 @@
 import "./styleRegistroUsuario.css"
-import {infoParaRegistro} from "./InfoParaLogin.jsx"
+import { infoParaRegistro } from "./InfoParaLogin.jsx"
 
 export default function CuerpoRegistroUsuario() {
     return (

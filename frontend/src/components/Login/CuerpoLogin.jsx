@@ -6,7 +6,7 @@ export default function CuerpoLogin () {
             <div className="cuerpoLogIn">
                 <div className="login-container">
                     <h2>Iniciar Sesión</h2>
-                    <form id="forminicio">
+                    <form id="formInicio">
                         <div className="input-grouplogin">
                             <label htmlFor="usuario">Usuario</label>
                             <input type="text" className="recuadro" id="usuario" name="usuario" placeholder="Usuario" required aria-describedby="mensajeUsuario" />
@@ -20,7 +20,7 @@ export default function CuerpoLogin () {
                             </div>
                         </div>
                         <button id="login-btn" type="submit" className="login-btn">Ingresar</button>
-                        <hr style={{ marginTop: "1vw", borderRight: "120px inset black", margin: "2px 0" }} />
+                        <hr style={{ marginTop: "1.5vw", borderRight: "120px inset black", margin: "2px 0" }} />
                         <a href="./RegistroUsuario.html" className="register-btn"> Registro usuario comun</a>
                         <hr style={{ borderRight: "120px inset black", margin: "2px 0" }} />
                         <a href="./RegistroTrabajador.html" className="register-btn"> Registro usuario trabajador</a>

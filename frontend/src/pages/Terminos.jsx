@@ -1,10 +1,10 @@
 import '../components/Terminos/terminos.css';
 
-const Terminos = () => {
+export default function Terminos () {
   return (
     <>
-      <div className="cuerpoTerminyCond">
-        <div className="containerTremyCond">
+      <div className="cuerpoTerminos">
+        <div className="containerTerminos">
           <h2>Servicios disponibles - Your Service</h2>
 
           <h3>¿Qué es Your Service?</h3>
@@ -59,7 +59,5 @@ const Terminos = () => {
         </div>
       </div>
     </>
-  );
-};
-
-export default Terminos;
+  )
+}

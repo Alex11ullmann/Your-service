@@ -1,12 +1,12 @@
 import '../components/Privacidad/privacidad.css';
 
-const Privacidad = () => {
+export default function Privacidad () {
   return (
     <>
-      <div className="cuerpoTerminyCond">
-        <div className="containerTremyCond">
-          <h2>Política de Privacidad</h2>
-          <h2>1. Introducción</h2>
+      <div className="cuerpoPrivacidad">
+        <div className="containerPrivacidad">
+          <h1>Política de Privacidad</h1>
+          <h3>1. Introducción</h3>
           <p>
             En <strong>Your Service</strong>, valoramos tu privacidad y nos comprometemos a proteger tus datos personales. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos tu información al utilizar nuestro sitio web.
           </p>
@@ -60,7 +60,5 @@ const Privacidad = () => {
         </div>
       </div>
     </>
-  );
-};
-
-export default Privacidad;
+  )
+}
