@@ -3,8 +3,8 @@ import './styleterminos.css';
 export default function CuerpoTerminos () {
   return (
     <>
-      <div class="cuerpoTerminos">
-        <div class="containerTerminos">
+      <div className="cuerpoTerminos">
+        <div className="containerTerminos">
             <h1>Terminos y Condiciones</h1>
             <h2>1. Objeto del servicio</h2>
             <p>Your Service es una plataforma digital que tiene como finalidad vincular clientes con profesionales de distintos oficios 
@@ -20,13 +20,12 @@ export default function CuerpoTerminos () {
                 Toda contratación, acuerdo, pago o reclamo debe resolverse entre el cliente y el profesional, de forma directa.
             </p>
             <h2>4. Conducta de los usuarios</h2>
-            <p>Los usuarios se comprometen a:
+            <p>Los usuarios se comprometen a:</p>
                 <ul>
                 <li>Usar el sitio de forma legal, respetuosa y ética.</li>
                 <li>No utilizar la plataforma para realizar actividades fraudulentas o ilegales.</li>
                 <li>No publicar contenido ofensivo, falso, discriminatorio o que infrinja derechos de terceros.</li>
                 </ul>
-            </p>
             <h2>5. Evaluaciones y comentarios</h2>
             <p> Los usuarios pueden dejar evaluaciones sobre los profesionales o clientes con los que hayan interactuado. Estas opiniones deben ser honestas, respetuosas y basadas en experiencias reales.
                 Your Service se reserva el derecho de moderar o eliminar comentarios que infrinjan las normas.

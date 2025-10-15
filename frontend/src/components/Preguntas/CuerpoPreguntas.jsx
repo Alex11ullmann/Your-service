@@ -8,12 +8,15 @@ export default function CuerpoPreguntas () {
       <div className="containerPreguntas">
         <h1>Preguntas Frecuentes</h1>
         <div className="containerDivs">
-          {InfoPreguntas.map ((data)=>(
-            <div className="containerPreg">
-                <CardPreguntas
+          {InfoPreguntas.map((data, index) => (
+            <div
+              key={data.id ?? data.nombre ?? index}
+              className="containerPreg"
+            >
+              <CardPreguntas
                 textoH={data.textoH}
                 textoP={data.textoP}
-                />
+              />
             </div>
           ))}
         </div>
