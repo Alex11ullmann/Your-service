@@ -1,4 +1,4 @@
-import './flotanteyFooter.css'
+import './StyleFlotanteFooter.css'
 import Logo from '../../Images/Logo.jpg'
 
 const Header = ({ user }) => {

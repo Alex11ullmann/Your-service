@@ -1,4 +1,4 @@
-import {cardsIconosHome} from "../CardsHome/InfoParaCardHome.jsx"
+import { cardsIconosHome } from "../CardsHome/InfoParaCardHome.jsx"
 import CardparaHome from './CardParaHome.jsx';
 import { cardsTrabHome } from "../CardsHome/InfoParaCardTrabajadores.jsx"
 import CardTrabajadores from '../CardCapacitate/CardTrabajadores.jsx'
@@ -11,13 +11,10 @@ import Siguiente from '../../Images/siguiente.png'
 import Seleccion from '../../Images/seleccion.jfif'
 import Contactar from '../../Images/contactar.jpg'
 
-
-
-export const CuerpoParaHome = ()=> {
+export const CuerpoParaHome = () => {
     return (
         <>
-            <div className="fondo">
-            </div>
+            <div className="fondo"></div>
             <div className="contador">
                 <div className="contador1">
                     <div className="contadorexpertos">
@@ -44,12 +41,12 @@ export const CuerpoParaHome = ()=> {
                 </div>
                 <div className="allIconos">
                     {cardsIconosHome.map((card, index) => (
-                            <CardparaHome
-                                key= {card.id ?? card.nombre ?? index}
-                                textoNuevo={card.textoNuevo}
-                                nombre={card.nombre}
-                                imagen={card.imagen}
-                            />
+                        <CardparaHome
+                            key={card.id ?? card.nombre ?? index}
+                            textoNuevo={card.textoNuevo}
+                            nombre={card.nombre}
+                            imagen={card.imagen}
+                        />
                     ))}
                 </div>
             </div>
@@ -85,9 +82,9 @@ export const CuerpoParaHome = ()=> {
                 <div className="containerCardOfi">
                     {cardsTrabHome.map((card, index) => (
                         <CardTrabajadores
-                            key= {card.id ?? card.nombre ?? index}
-                            nombre= {card.nombre}
-                            imagen= {card.imagen}
+                            key={card.id ?? card.nombre ?? index}
+                            nombre={card.nombre}
+                            imagen={card.imagen}
                         />
                     ))}
                 </div>

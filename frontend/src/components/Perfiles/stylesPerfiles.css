@@ -7,11 +7,15 @@
     border-radius: 1.0vw;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background: linear-gradient(90deg, rgb(203, 239, 243) 10%, rgb(210, 225, 239) 47%, rgb(243, 221, 230) 100%);
+    padding: 4px;
 }
 .contenido {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+.info-imgPerfil {
+    justify-items: center;
 }
 .info-perfil {
     width: 55%;
@@ -27,7 +31,6 @@
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-    background-image: url('../../Images/sinperfil.png');
     background-size: cover;
 }
 .formularios {
@@ -143,13 +146,15 @@
     background-color: rgb(248, 245, 245);
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
     margin-bottom: 2vw;
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 .btnFotoPerfil {
     display: flex;
     margin-top: 1vw;
     background-color: rgb(68, 156, 223);
     border-radius: 30px 30px 30px 30px;
-    width: 80%;
+    width: 22vw;
     height: 4vw;
     cursor: pointer;
     font-family: 'Calibri Light', Calibri, sans-serif;
@@ -158,4 +163,47 @@
     align-items: center;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
     color: white;
+}
+#divBtnAgregarImg {
+    display: flex;
+    height: 100%; 
+    width: 100%; 
+    justify-content: space-around;
+    margin-bottom: 4vw;
+}
+.btnagregareliminarimg {
+    display: flex;
+    border: hidden;
+    background-color: rgb(68, 156, 223);
+    border-radius: 30px 30px 30px 30px;
+    width: 40%;
+    height: 3vw;
+    cursor: pointer;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-size: 1vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; 
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    color: white;
+}
+.imagen-carrusel.seleccionada {
+  transform: scale(1.05);
+  border: 3px solid rgb(68, 156, 223);
+  box-shadow: 0 0 10px rgba(68, 156, 223, 0.7);
+}
+.contenedorImagenes>img {
+    display: block;
+    width: 40%;
+    height: 80%;
+    border-radius: 10px;
+    cursor: pointer; 
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 200px; 
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+.contenedorImagenes > img:hover {
+    transform: scale(1.1); 
 }

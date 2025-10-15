@@ -22,11 +22,15 @@
     color: rgb(68, 156, 223);
     font-size: 2vw;
 }
+.tituloCarrusel{
+    justify-items: left;
+    margin-right: 20vw;
+}
 .linea h4 {
     margin-top: 5%;
-    margin-left: 16%;
     font-family: 'Calibri Light', Calibri, sans-serif;
-    font-size: 0.8vw;
+    font-size: 1.2vw;
+    margin-left: 12%;
 }
 #imagen {
     background-image: url('../../Images/perfilt.jfif');
@@ -68,7 +72,7 @@
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
 }
 .carrusel>img {
-    display: none;
+    display: block;
     width: 40%;
     height: 20%;
     border-radius: 10px;
@@ -81,6 +85,22 @@
 }
 .carrusel > img:hover {
     transform: scale(1.1); 
+}
+.imagen-carrusel {
+  display: block;
+  width: 80%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.2s;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  margin: 1vw 0;
+}
+.imagen-carrusel.seleccionada {
+  transform: scale(1.05);
+  border: 3px solid rgb(68, 156, 223);
+  box-shadow: 0 0 10px rgba(68, 156, 223, 0.7);
 }
 #divbtnagregarimg {
     display: flex;
@@ -144,7 +164,7 @@ h3 {
 }
 .descripcion a {
     font-family: 'Calibri Light', Calibri, sans-serif;
-    font-weight: 100;
+    font-size: 2vw;
 }
 #textareaqs {
     display: flex;
@@ -181,4 +201,8 @@ h3 {
     font-size: 1vw;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
     color: white;
+}
+.placeholder {
+    font-size: 1.5vw;
+    text-align: center;
 }

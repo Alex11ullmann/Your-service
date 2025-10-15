@@ -7,7 +7,6 @@ export default function CuerpoBuscar() {
     return (
         <div>
             <div className="contenedor-desplegables">
-
                 <CardsBuscar 
                     titulo="Localidad" 
                     data={ciudades} 

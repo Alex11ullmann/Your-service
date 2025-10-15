@@ -1,3 +1,5 @@
+import "./StyleFlotanteFooter.css"
+
 const Footer = () => {
   return (
     <footer>

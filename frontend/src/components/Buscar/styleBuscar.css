@@ -2,9 +2,11 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 95%;
+    margin-left: 2.5%;
     height: 60%;
     text-align: center;
+    margin-bottom: 20vw;
 }
 
 .desplegable {

@@ -1,0 +1,71 @@
+.cuerpoAdm {
+    width: 95%;
+    margin-left: 2.5%;
+    box-shadow: 4px 16px 4px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 1.5vw;
+    background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
+}
+header {
+    background: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 1.5vw;
+    font-size: 2vw;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 2vw;
+}
+nav ul li {
+    margin: 0 15px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    display: inline-block;
+}
+nav ul li a:hover {
+    color: #8c9af8;
+}
+.contenidoAdm {
+    background: white;
+    padding: 30px;
+    width: 70%;
+    margin: 20px auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1.0vw;
+    border-left: 5px solid #333;
+    justify-items: center;
+    font-size: 2vw;
+}
+
+.contenidoAdm h2 {
+    color: #333;
+}
+.botonesAdm{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.botonesAdm button {
+    background: linear-gradient(90deg, rgb(237, 206, 219) 0%, rgb(176, 200, 223) 47%, rgb(165, 213, 218) 100%);
+    color: white;
+    padding: 10px 15px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 40%;
+    font-size: 2vw;
+}
+
+.botonesAdm button:hover {
+    background: #8c9af8;
+}
