@@ -7,10 +7,10 @@ const Header = ({ user }) => {
     <header>
       <div className="flotante">
         <img id="logo" src={Logo} alt="Logo de la empresa" />
-        <Link to="/Home" className="enlace">Home</Link>
-        <Link to="/Principal" className="enlace">Buscar</Link>
-        <Link to="/presentacion" className="enlace">¿Quiénes somos?</Link>
-        <Link to="/capacitacion" className="enlace">Capacitate</Link>
+        <Link to="/" className="enlace">Home</Link>
+        <Link to="/buscar" className="enlace">Buscar</Link>
+        <Link to="/quienes-somos" className="enlace">¿Quiénes somos?</Link>
+        <Link to="/capacitate" className="enlace">Capacitate</Link>
 
         {user?.isLoggedIn ? (
           <div className="user-menu" id="userMenu">
