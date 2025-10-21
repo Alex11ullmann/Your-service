@@ -12,24 +12,31 @@ import RegistroUsuario from './pages/RegistroUsuario.jsx'
 import RegistroTrabajador from './pages/RegistroTrabajador.jsx'
 import Perfiles from './pages/Perfiles.jsx'
 import Administrador from './pages/Administrador.jsx'
+import Header from './components/FooterYHeader/Header.jsx'
+import Footer from './components/FooterYHeader/Footer.jsx'
+import { Routes, BrowserRouter, Route } from 'react-router-dom';
 
 function App() {
   return (
     <>
-      <Perfiles />
-      <RegistroTrabajador />
-      <Home />
-      <Buscar />
-      <Preguntas />
-      <QuienesSomos />
-      <Capacitate />
-      <Login />
-      <RegistroUsuario />
-      <Contactanos />
-      <Terminos />
-      <Privacidad />
-      <Servicios />
-      <Administrador />
+      <BrowserRouter> 
+      <Routes> 
+      <Route path="/" element={<Home />} />
+      <Route path="/perfil" element={<Perfiles />} />
+      <Route path="/registro-trabajador" element={<RegistroTrabajador />} />
+      <Route path="/buscar" element={<Buscar />} />
+      <Route path="/preguntas" element={<Preguntas />} />
+      <Route path="/quienes-somos" element={<QuienesSomos />} />
+      <Route path="/capacitate" element={<Capacitate />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/registro-usuario" element={<RegistroUsuario />} />
+      <Route path="/contacto" element={<Contactanos />} />
+      <Route path="/terminos" element={<Terminos />} />
+      <Route path="/privacidad" element={<Privacidad />} />
+      <Route path="/servicios" element={<Servicios />} />
+      <Route path="/administrador" element={<Administrador />} />
+      </Routes>
+      </BrowserRouter>
     </>
   )
 }
