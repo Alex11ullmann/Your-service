@@ -1,9 +1,9 @@
-import { cardsIconosHome } from "../CardsHome/InfoParaCardHome.jsx"
+import { cardsIconosHome } from "../Home/InfoParaCardHome.jsx"
 import CardparaHome from './CardParaHome.jsx';
-import { cardsTrabHome } from "../CardsHome/InfoParaCardTrabajadores.jsx"
-import CardTrabajadores from '../CardCapacitate/CardTrabajadores.jsx'
+import { cardsTrabHome } from "../Home/InfoParaCardTrabajadores.jsx"
+import CardTrabajadores from '../Capacitate/CardTrabajadores.jsx'
 
-import '../CardsHome/styleHome.css'
+import '../Home/styleHome.css'
 
 import FondoWeb from "../../Images/fondoweb.png"
 import Filtro from '../../Images/filtro.jfif'

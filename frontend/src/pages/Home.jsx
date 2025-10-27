@@ -1,5 +1,5 @@
-import '../components/CardsHome/styleHome.css'
-import { CuerpoParaHome } from '../components/CardsHome/CuerpoParaHome.jsx'
+import '../components/Home/styleHome.css'
+import { CuerpoParaHome } from '../components/Home/CuerpoParaHome.jsx'
 
 export default function Home () {
     return (

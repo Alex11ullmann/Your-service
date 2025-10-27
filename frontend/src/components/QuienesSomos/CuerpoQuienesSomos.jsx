@@ -1,5 +1,5 @@
 import "./styleQuienesSomos.css"
-import CardCapacitate from "../CardCapacitate/CardCapacitate.jsx"
+import CardCapacitate from "../Capacitate/CardCapacitate.jsx"
 import { InfoParaQuienesSomos } from "../QuienesSomos/InfoParaQuienesSomos.jsx"
 
 export default function CuerpoQuienesSomos() {

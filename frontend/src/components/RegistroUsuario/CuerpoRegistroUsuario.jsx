@@ -1,44 +1,66 @@
-import "./styleRegistroUsuario.css"
-import { infoParaRegistro } from "./InfoParaLogin.jsx"
+import "./styleRegistroUsuario.css";
+import { infoParaRegistro } from "./InfoParaRegistro.jsx";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function CuerpoRegistroUsuario() {
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({});
+
+    // Cargar datos previos del localStorage al montar el componente
+    useEffect(() => {
+        const datosGuardados = localStorage.getItem("datosRegistro");
+        if (datosGuardados) {
+            setFormData(JSON.parse(datosGuardados));
+        }
+    }, []);
+
+    // Manejar cambios en los inputs
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    // Guardar los datos en localStorage y redirigir al perfil
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        localStorage.setItem("datosRegistro", JSON.stringify(formData));
+        navigate("/perfil", { state: { esTrabajador: false } });
+    };
+
     return (
-        <>
-            <div className="cuerpoRegistro">
-                <div className="logRegistro-container">
-                    <h2>Registrarse</h2>
-                    <form>
-                        {infoParaRegistro.map((data) => (
-                            <div className="input-group" key={data.id}>
-                                <label htmlFor={data.id}>{data.label}</label>
-                                <input
-                                    type={data.type}
-                                    className="datos"
-                                    id={data.id}
-                                    name={data.name}
-                                    placeholder={data.placeholder}
-                                    maxLength={data.maxLength}
-                                    minLength={data.minLength}
-                                    required={data.required}
-                                />
-                                {data.helperText && <p className="contenidoInputs">{data.helperText}</p>}
-                            </div>
-                        ))}
-                        <div className="divcheck">
-                            <h4>Si desea crear un perfil de trabajador presione en el ✔ y luego en el boton Guardar</h4>
+        <div className="cuerpoRegistro">
+            <div className="logRegistro-container">
+                <h2>Registrarse</h2>
+                <form onSubmit={handleSubmit}>
+                    {infoParaRegistro.map((data) => (
+                        <div className="input-group" key={data.id}>
+                            <label htmlFor={data.id}>{data.label}</label>
+                            <input
+                                type={data.type}
+                                className="datos"
+                                id={data.id}
+                                name={data.name}
+                                placeholder={data.placeholder}
+                                maxLength={data.maxLength}
+                                minLength={data.minLength}
+                                required={data.required}
+                                value={formData[data.name] || ""}
+                                onChange={handleChange}
+                            />
+                            {data.helperText && (
+                                <p className="contenidoInputs">{data.helperText}</p>
+                            )}
                         </div>
-                        <div className="divcheck">
-                            <button
-                                id="tilde-trabajador"
-                                className="tilde-btn"
-                                type="button"
-                                onClick={(e) => e.currentTarget.classList.toggle('checked')}
-                            >✔</button>
-                        </div>
-                        <button type="submit" id="guardar-btn" className="guardar-btn">Guardar</button>
-                    </form>
-                </div>
+                    ))}
+                    <button type="submit" id="guardar-btn" className="guardar-btn">
+                        Guardar
+                    </button>
+                </form>
             </div>
-        </>
-    )
+        </div>
+    );
 }

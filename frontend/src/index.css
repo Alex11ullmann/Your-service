@@ -24,11 +24,13 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  background: linear-gradient(135deg, #f3dde6 0%, #d2e1ef 47%, #cbf0f3 100%);
 }
+
 
 h1 {
   font-size: 3.2em;

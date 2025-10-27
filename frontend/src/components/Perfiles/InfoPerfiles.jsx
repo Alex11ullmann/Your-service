@@ -1,14 +1,18 @@
 export const InfoPerfiles = [
     {
         datos: "Localidad",
+        name: "Localidad",
     },
     {
         datos: "Direccion",
-    },
-    {
-        datos: "Email",
+        name: "Direccion",
     },
     {
         datos: "Telefono",
+        name: "Telefono",
     },
-]
+    {
+        datos: "Email",
+        name: "Email",
+    },
+];

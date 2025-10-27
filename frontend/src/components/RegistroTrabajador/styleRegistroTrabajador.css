@@ -1,42 +1,36 @@
 .tarjeta {
     display: block;
     border: 1px solid rgb(244, 241, 241);
-    height: 100%;
     width: 95%;
+    height: 100%;
     background-color: rgb(248, 245, 245);
     border-radius: 5px;
     background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
     margin-left: 2.5%;
-    margin-bottom: 2vw;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
-    margin-top: 2vw;
 }
 .linea {
     display: flex;
-    margin-top: 5%;
+    margin-top: 2vw;
     flex-direction: column;
+    align-items: center;
 }
 .linea h1 {
     font-family: 'Calibri Light', Calibri, sans-serif;
     text-align: center;
     color: rgb(68, 156, 223);
-    font-size: 2vw;
+    font-size: 3vw;
 }
 .tituloCarrusel{
     justify-items: left;
     margin-right: 20vw;
-}
-.linea h4 {
-    margin-top: 5%;
-    font-family: 'Calibri Light', Calibri, sans-serif;
-    font-size: 1.2vw;
-    margin-left: 12%;
 }
 #imagen {
     background-image: url('../../Images/perfilt.jfif');
     background-size:contain;
     width: 100%; 
     height: 10vw;
+    margin-top: 3vw;
 }
 .primeraparte {
     display: flex;
@@ -53,6 +47,17 @@
     width: 30%;
     justify-items: center;
     margin-bottom: 8%;
+    text-align: center;
+}
+.tituloSeccionImg {
+    height: 4vw;
+    text-align: center;
+    margin-bottom: 2vw;
+}
+.tituloSeccionImg h4 {
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-size: 2vw;
+    color: rgb(68, 156, 223);
 }
 .carrusel {
     display: flex;
@@ -126,8 +131,8 @@
 }
 .trabajador{
     display: flex;
-    min-width: 30%; 
-    max-width: 30%;
+    min-width: 40%; 
+    max-width: 40%;
     margin: 1px;
     font-family: 'Calibri Light', Calibri, sans-serif;
     font-size: 1vw;
@@ -136,6 +141,7 @@
     border-radius: 30px 30px 30px 30px;
     text-align: center;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    margin-top: -10vw;
 }
 .imagentrab {
     display: flex;
@@ -164,7 +170,8 @@ h3 {
 }
 .descripcion a {
     font-family: 'Calibri Light', Calibri, sans-serif;
-    font-size: 2vw;
+    font-size: 1.8vw;
+    color: gray;
 }
 #textareaqs {
     display: flex;
@@ -202,7 +209,14 @@ h3 {
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
     color: white;
 }
-.placeholder {
+.placeHolderCarrucel {
     font-size: 1.5vw;
     text-align: center;
+    padding: 2vw;
+    color: gray;
+}
+
+.input-group p {
+    font-size: 1vw;
+    color: rgb(68, 156, 223);;
 }

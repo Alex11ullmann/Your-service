@@ -7,7 +7,6 @@
     align-items: center;
     background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
-    margin-top: 2vw;
 }
 .logRegistro-container {
     display: block;
@@ -61,30 +60,6 @@
 .contenidoInputs {
     font-size: 0.8vw;
     color: #007BFF;
-}
-.divcheck {
-    display: flex;
-    justify-content: center;
-    margin-top: 2vw;
-    margin-bottom: 2vw;
-}
-.divcheck h4 {
-    font-size: 1vw;
-    font-family: 'Calibri Light', Calibri, sans-serif;
-    font-weight: 200;
-}
-.tilde-btn {
-    padding: 0.5vw 3vw;
-    border: none;
-    cursor: pointer;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    font-size: 2vw;
-}
-.tilde-btn.checked {
-    background-color: #4CAF50;
-    color: white;
 }
 #guardar-btn {
     width: 60%;

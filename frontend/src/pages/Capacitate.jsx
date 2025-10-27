@@ -1,4 +1,4 @@
-import CuerpoCapacitate from "../components/CardCapacitate/CuerpoCapacitate.jsx"
+import CuerpoCapacitate from "../components/Capacitate/CuerpoCapacitate.jsx"
 
 export default function Capacitate() {
     return (

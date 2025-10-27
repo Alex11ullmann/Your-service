@@ -1,9 +1,9 @@
 
 export const infoParaRegistro = [
     {
-      id: "usuario",
+      id: "Usuario",
       type: "text",
-      name: "usuario",
+      name: "Usuario",
       placeholder: "Usuario",
       maxLength: 12,
       minLength: 6,
@@ -12,9 +12,9 @@ export const infoParaRegistro = [
       helperText: "Solo se permiten letras minusculas, mayusculas y números."
     },
     {
-      id: "password",
+      id: "Password",
       type: "password",
-      name: "password",
+      name: "Password",
       placeholder: "Password",
       maxLength: 20,
       minLength: 6,
@@ -23,9 +23,9 @@ export const infoParaRegistro = [
       helperText: "Solo se permiten letras minusculas, mayusculas y números."
     },
     {
-      id: "repPassword",
+      id: "PepPassword",
       type: "password",
-      name: "repPassword",
+      name: "PepPassword",
       placeholder: "Repetir Password",
       maxLength: 20,
       minLength: 6,
@@ -34,9 +34,9 @@ export const infoParaRegistro = [
       helperText: "Repita la contraseña, debe ser igual a la anterior."
     },
     {
-      id: "localidad",
+      id: "Localidad",
       type: "text",
-      name: "localidad",
+      name: "Localidad",
       placeholder: "Localidad",
       maxLength: 20,
       minLength: 4,
@@ -45,9 +45,9 @@ export const infoParaRegistro = [
       helperText: "Solo se permiten letras minusculas y mayusculas. Ej: Olavarria"
     },
     {
-      id: "direccion",
+      id: "Direccion",
       type: "text",
-      name: "direccion",
+      name: "Direccion",
       placeholder: "Direccion",
       maxLength: 20,
       minLength: 4,
@@ -56,9 +56,9 @@ export const infoParaRegistro = [
       helperText: "Solo se permiten letras minusculas, mayusculas y números. Ej: Lavalle123"
     },
     {
-      id: "telefono",
+      id: "Telefono",
       type: "text",
-      name: "telefono",
+      name: "Telefono",
       placeholder: "Telefono",
       maxLength: 10,
       minLength: 8,
@@ -67,9 +67,9 @@ export const infoParaRegistro = [
       helperText: "Solo se permiten numeros, sin puntos, ni comas. Ej: 2284121212"
     },
     {
-      id: "dni",
+      id: "Dni",
       type: "text",
-      name: "dni",
+      name: "Dni",
       placeholder: "DNI",
       maxLength: 8,
       minLength: 7,
@@ -78,13 +78,15 @@ export const infoParaRegistro = [
       helperText: "Solo se permiten numeros, sin puntos, ni comas. Ej: 30123123"
     },
     {
-      id: "email",
+      id: "Email",
       type: "email",
-      name: "email",
-      placeholder: "email@Yourservice",
+      name: "Email",
+      placeholder: "Email",
+      maxLength: 30,
+      minLength: 7,
       required: true,
       label: "Email",
-      helperText: null
+      helperText: "Ingrese su Email. Ej: Yourservice@gmail.com"
     }
   ];
   
