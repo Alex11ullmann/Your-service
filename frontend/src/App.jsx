@@ -15,6 +15,8 @@ import Administrador from './pages/Administrador.jsx'
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
 import ScrollToTop from './components/Herramientas/ScrollToTop.jsx';
 import LayoutHeaderFooter from "./components/FooterYHeader/LayoutHeaderFooter.jsx"
+import RutaPrivada from "./pages/RutaPrivada.jsx"
+import RutaPrivadaAdm from "./pages/RutaPrivadaAdm.jsx";
 
 function App() {
   return (
@@ -35,11 +37,24 @@ function App() {
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/perfil" element={<Perfiles />} />
+            <Route
+              path="/perfil"
+              element={
+                <RutaPrivada>
+                  <Perfiles />
+                </RutaPrivada>
+              } />
           </Route>
-          <Route path="/administrador" element={<Administrador />} />
+          <Route
+            path="/administrador"
+            element={
+              <RutaPrivadaAdm>
+                <Administrador />
+              </RutaPrivadaAdm>
+            }
+          />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter >
     </>
   )
 }

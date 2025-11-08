@@ -27,7 +27,13 @@ export default function CuerpoRegistroUsuario() {
     // Guardar los datos en localStorage y redirigir al perfil
     const handleSubmit = (e) => {
         e.preventDefault();
-        localStorage.setItem("datosRegistro", JSON.stringify(formData));
+        localStorage.setItem(
+            "datosRegistro",
+            JSON.stringify({ formData: formData })
+        );
+        localStorage.setItem("tipoUsuario", "usuario");
+        localStorage.setItem("usuarioOn", "true"); // Guardar sesión activa
+        window.dispatchEvent(new Event("storage")); // Fuerza actualización del Header
         navigate("/perfil", { state: { esTrabajador: false } });
     };
 
@@ -36,28 +42,30 @@ export default function CuerpoRegistroUsuario() {
             <div className="logRegistro-container">
                 <h2>Registrarse</h2>
                 <form onSubmit={handleSubmit}>
-                    {infoParaRegistro.map((data) => (
-                        <div className="input-group" key={data.id}>
-                            <label htmlFor={data.id}>{data.label}</label>
-                            <input
-                                type={data.type}
-                                className="datos"
-                                id={data.id}
-                                name={data.name}
-                                placeholder={data.placeholder}
-                                maxLength={data.maxLength}
-                                minLength={data.minLength}
-                                required={data.required}
-                                value={formData[data.name] || ""}
-                                onChange={handleChange}
-                            />
-                            {data.helperText && (
-                                <p className="contenidoInputs">{data.helperText}</p>
-                            )}
-                        </div>
-                    ))}
+                    {infoParaRegistro
+                        .filter((data) => data.name !== "Oficios")
+                        .map((data) => (
+                            <div className="input-group" key={data.id}>
+                                <label htmlFor={data.id}>{data.label}</label>
+                                <input
+                                    type={data.type}
+                                    className="datos"
+                                    id={data.id}
+                                    name={data.name}
+                                    placeholder={data.placeholder}
+                                    maxLength={data.maxLength}
+                                    minLength={data.minLength}
+                                    required={data.required}
+                                    value={formData[data.name] || ""}
+                                    onChange={handleChange}
+                                />
+                                {data.helperText && (
+                                    <p className="contenidoInputs">{data.helperText}</p>
+                                )}
+                            </div>
+                        ))}
                     <button type="submit" id="guardar-btn" className="guardar-btn">
-                        Guardar
+                        Registrarme
                     </button>
                 </form>
             </div>

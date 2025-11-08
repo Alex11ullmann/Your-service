@@ -1,5 +1,9 @@
 export const InfoPerfiles = [
     {
+        datos: "Nombres y Apellidos",
+        name: "Nombres y Apellidos",
+    },
+    {
         datos: "Localidad",
         name: "Localidad",
     },
@@ -14,5 +18,9 @@ export const InfoPerfiles = [
     {
         datos: "Email",
         name: "Email",
+    },
+    {
+        datos: "Oficios",
+        name: "Oficios",
     },
 ];

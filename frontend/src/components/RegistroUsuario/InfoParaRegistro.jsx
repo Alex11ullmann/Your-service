@@ -9,7 +9,18 @@ export const infoParaRegistro = [
       minLength: 6,
       required: true,
       label: "Usuario",
-      helperText: "Solo se permiten letras minusculas, mayusculas y números."
+      helperText: "Debe contener 1 letra mayuscula, letras minusculas y números. Min 6 - Max 12. Ej: Jose123"
+    },
+    {
+      id: "Nombres y Apellidos",
+      type: "text",
+      name: "Nombres y Apellidos",
+      placeholder: "Nombres y Apellidos",
+      maxLength: 25,
+      minLength: 6,
+      required: true,
+      label: "Nombres y Apellidos",
+      helperText: "Debe contener 1 letra mayuscula, solo 1 espacio entre palabras y letras minusculas. Min 6 - Max 25. Ej: Jose Perez"
     },
     {
       id: "Password",
@@ -20,7 +31,7 @@ export const infoParaRegistro = [
       minLength: 6,
       required: true,
       label: "Contraseña",
-      helperText: "Solo se permiten letras minusculas, mayusculas y números."
+      helperText: "Debe contener 1 letra mayuscula, letras minusculas y numeros. Min 6 - Max 25. Ej: Usuario123"
     },
     {
       id: "PepPassword",
@@ -42,7 +53,7 @@ export const infoParaRegistro = [
       minLength: 4,
       required: true,
       label: "Localidad",
-      helperText: "Solo se permiten letras minusculas y mayusculas. Ej: Olavarria"
+      helperText: "Debe contener 1 letra mayuscula y letras minusculas. Min 4 - Max 20. Ej: Olavarria"
     },
     {
       id: "Direccion",
@@ -53,7 +64,7 @@ export const infoParaRegistro = [
       minLength: 4,
       required: true,
       label: "Direccion",
-      helperText: "Solo se permiten letras minusculas, mayusculas y números. Ej: Lavalle123"
+      helperText: "Debe contener 1 letra mayuscula, letras minusculas y números. Min 4 - Max 20. Ej: Lavalle123"
     },
     {
       id: "Telefono",
@@ -64,7 +75,7 @@ export const infoParaRegistro = [
       minLength: 8,
       required: true,
       label: "Telefono",
-      helperText: "Solo se permiten numeros, sin puntos, ni comas. Ej: 2284121212"
+      helperText: "Solo se permiten numeros. Min 8 - Max 10. Ej: 2284121212"
     },
     {
       id: "Dni",
@@ -75,7 +86,7 @@ export const infoParaRegistro = [
       minLength: 7,
       required: true,
       label: "D.N.I",
-      helperText: "Solo se permiten numeros, sin puntos, ni comas. Ej: 30123123"
+      helperText: "Solo se permiten numeros. Min 7 - Max 8. Ej: 30111222"
     },
     {
       id: "Email",
@@ -86,7 +97,18 @@ export const infoParaRegistro = [
       minLength: 7,
       required: true,
       label: "Email",
-      helperText: "Ingrese su Email. Ej: Yourservice@gmail.com"
+      helperText: "Ingrese su Email. Min 7 - Max 30. Ej: Yourservice@gmail.com"
+    },
+    {
+      id: "Oficios",
+      type: "text",
+      name: "Oficios",
+      placeholder: "Oficios",
+      maxLength: 15,
+      minLength: 4,
+      required: true,
+      label: "Oficios",
+      helperText: "Debe contener 1 letra mayuscula y letras minusculas. Min 4 - Max 15. Ej: Electricista"
     }
   ];
   

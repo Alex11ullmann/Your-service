@@ -62,6 +62,7 @@
   gap: 14px;
   justify-content: flex-start;
   align-items: flex-start;
+  justify-content: center;
 }
 .card-item {
   width: 20vw;

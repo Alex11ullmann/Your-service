@@ -6,7 +6,7 @@ import { infoParaRegistro } from "../RegistroUsuario/InfoParaRegistro";
 
 export default function CuerpoRegistroTrabajador() {
   const [imagenes, setImagenes] = useState([]);
-  const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
+  // const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
   const [imagenPerfil, setImagenPerfil] = useState(SinFoto);
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ export default function CuerpoRegistroTrabajador() {
       [name]: value,
     }));
   };
-
+  {/*
   // Maneja la carga de imágenes del carrusel
   const handleImagenChange = (e) => {
     const archivos = Array.from(e.target.files);
@@ -67,10 +67,14 @@ export default function CuerpoRegistroTrabajador() {
     }
     setImagenSeleccionada(null);
   };
+  */}
   // Guardamos los datos que vamos a utilizar luego
   const handleGuardar = async () => {
     try {
+      // Limpia sesión anterior
+      localStorage.removeItem("imagenPerfilActual");
       let imagenConvertida = SinFoto;
+
       // Si hay un archivo seleccionado (imagen real)
       if (formData.imagenFile instanceof File) {
         imagenConvertida = await new Promise((resolve, reject) => {
@@ -80,36 +84,63 @@ export default function CuerpoRegistroTrabajador() {
           reader.readAsDataURL(formData.imagenFile);
         });
       }
-      // Si el perfil ya tiene una imagen base64
+      // Si ya es base64 (imagen seleccionada previamente)
       else if (imagenPerfil && imagenPerfil.startsWith("data:image")) {
         imagenConvertida = imagenPerfil;
       }
-      // Si no hay imagen elegida o es la por defecto
-      else {
-        imagenConvertida = SinFoto;
-      }
-      // Guardar datos del trabajador (individual)
+
+      // ✅ Convertir TODAS las imágenes del carrusel a Base64
+      const imagenesConvertidas = await Promise.all(
+        imagenes.map((img) => {
+          return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve({ id: img.id, base64: reader.result });
+            reader.readAsDataURL(img.file);
+          });
+        })
+      );
+
+      // ✅ Guardar datos del trabajador
       const datosAGuardar = {
         formData,
-        imagenes,
         imagenPerfil: imagenConvertida,
+        imagenes: imagenesConvertidas,
       };
-      localStorage.setItem("datosRegistroTrabajador", JSON.stringify(datosAGuardar));
-      // Guardar o actualizar en la lista general
-      const perfilesExistentes = JSON.parse(localStorage.getItem("perfilesTrabajadores")) || [];
+
+      localStorage.setItem(
+        "datosRegistroTrabajador",
+        JSON.stringify(datosAGuardar)
+      );
+
+      // ✅ Guardar o actualizar en la lista pública
+      const perfilesExistentes =
+        JSON.parse(localStorage.getItem("perfilesTrabajadores")) || [];
+
       const nuevoPerfil = {
         Usuario: formData.Usuario || "Sin nombre",
-        oficio: formData.oficio || "No especificado",
+        Oficios: formData.Oficios || "No especificado",
         Localidad: formData.Localidad || "No indicada",
         Telefono: formData.Telefono || "No informado",
-        imagenPerfil: imagenConvertida, // 🔹 Base64 real
+        imagenPerfil: imagenConvertida,
       };
-      // Evitar duplicados por nombre de usuario
+
       const actualizado = perfilesExistentes.filter(
         (p) => p.Usuario !== nuevoPerfil.Usuario
       );
       actualizado.push(nuevoPerfil);
-      localStorage.setItem("perfilesTrabajadores", JSON.stringify(actualizado));
+
+      localStorage.setItem(
+        "perfilesTrabajadores",
+        JSON.stringify(actualizado)
+      );
+
+      // ✅ Guardar sesión del trabajador
+      localStorage.setItem("usuarioOn", "true");
+      localStorage.setItem("tipoUsuario", "trabajador");
+      localStorage.setItem("imagenPerfilActual", imagenConvertida);
+      window.dispatchEvent(new Event("storage"));
+
       navigate("/perfil", { state: { esTrabajador: true } });
     } catch (error) {
       console.error("Error al guardar el perfil:", error);
@@ -144,33 +175,18 @@ export default function CuerpoRegistroTrabajador() {
                 )}
               </div>
             ))}
-            <div className="input-group">
-              <label htmlFor="oficio">Oficio</label>
-              <input
-                type="text"
-                className="datos"
-                id="oficio"
-                name="oficio"
-                placeholder="Oficio"
-                maxLength="50"
-                required
-                value={formData.oficio || ""}
-                onChange={handleChange}
-              />
-              <p>Solo se permiten letras minusculas y mayusculas.</p>
-            </div>
           </form>
         </div>
-        <hr
+        {/*<hr
           style={{
             borderTop: "0.2vw solid black",
             marginBottom: "2vw",
             borderRight: "60vw inset black",
             margin: "4px 0",
           }}
-        />
+        />*/}
       </div>
-      <div className="tituloSeccionImg">
+      {/*<div className="tituloSeccionImg">
         <h4>Seleccione imágenes de sus trabajos y/o de sí mismo</h4>
       </div>
       <div className="primeraparte">
@@ -221,7 +237,7 @@ export default function CuerpoRegistroTrabajador() {
             alt="fondo sin imagen"
           />
         </div>
-      </div>
+      </div> */}
       <div className="descripcion">
         <hr
           style={{
@@ -247,7 +263,7 @@ export default function CuerpoRegistroTrabajador() {
       <div className="botonguardardatos">
         <input
           type="button"
-          value="Guardar"
+          value="Registrarme"
           id="botonguardar"
           onClick={handleGuardar}
         />

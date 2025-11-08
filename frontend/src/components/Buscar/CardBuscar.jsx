@@ -11,14 +11,14 @@ import "./styleBuscar.css";
   * - dataAttr: string (atributo data-* para links en dropdown)
   * - mode: "dropdown" | "cards"  (por defecto "dropdown")
 */
-export default function CardsBuscar({ titulo, data = [], dataKey, dataAttr, mode = "dropdown" }) {
+export default function CardsBuscar({ titulo, data = [], dataKey, mode = "dropdown" }) {
   if (mode === "cards") {
     return (
       <div className="cards-buscar-wrapper">
         <h3 className="cards-buscar-titulo">{titulo}</h3>
         <div className="cards-grid">
           {data.length === 0 ? (
-            <p className="sin-perfiles">No hay perfiles</p>
+            <p className="sin-perfiles">Aun no hay trabajadores postulados.</p>
           ) : (
             data.map((item, index) => {
               const nombre =
@@ -26,14 +26,20 @@ export default function CardsBuscar({ titulo, data = [], dataKey, dataAttr, mode
                 item.Usuario ??
                 item.nombre ??
                 `Perfil ${index + 1}`;
-              const oficio =
-                item.oficio ?? item.Oficio ?? item.oficioTrab ?? "";
+              const nombreCompleto =
+                item.nombreCompleto ||
+                item["Nombres y Apellidos"] ||
+                item.Usuario ||
+                item.nombre ||
+                "Sin nombre";
+              const oficios =
+                item.oficios ?? item.Oficios ?? item.oficiosTrab ?? "";
               const localidad =
                 item.Localidad ?? item.localidad ?? item.Localidad ?? "";
               const telefono = item.Telefono ?? item.telefono ?? "";
               // Lógica mejorada para manejar imágenes (base64, url o placeholder)
               let imagen = SinFoto;
-              try {
+{/*              try {
                 if (item.imagenPerfil) {
                   const img = item.imagenPerfil;
                   if (typeof img === "string") {
@@ -58,6 +64,7 @@ export default function CardsBuscar({ titulo, data = [], dataKey, dataAttr, mode
               } catch {
                 imagen = SinFoto;
               }
+        */}
               return (
                 <article
                   className="card-item"
@@ -70,9 +77,9 @@ export default function CardsBuscar({ titulo, data = [], dataKey, dataAttr, mode
                     loading="lazy"
                   />
                   <div className="card-item-body">
-                    <h4 className="card-item-nombre">{nombre}</h4>
-                    {oficio && (
-                      <p className="card-item-oficio">🛠️ {oficio}</p>
+                    <h4 className="card-item-nombre">{nombreCompleto}</h4>
+                    {oficios && (
+                      <p className="card-item-oficio">🛠️ {oficios}</p>
                     )}
                     {localidad && (
                       <p className="card-item-localidad">🌇 {localidad}</p>
@@ -90,7 +97,7 @@ export default function CardsBuscar({ titulo, data = [], dataKey, dataAttr, mode
     );
   }
 
-  // Modo desplegable (por si lo usás en otras vistas)
+{/* Modo desplegable 
   return (
     <div className="desplegable">
       <button className="boton-desplegable">{titulo}</button>
@@ -106,4 +113,5 @@ export default function CardsBuscar({ titulo, data = [], dataKey, dataAttr, mode
       </div>
     </div>
   );
+*/}
 }
