@@ -150,6 +150,7 @@ export default function CuerpoRegistroTrabajador() {
       console.error("Error al guardar el perfil:", error);
     }
   };
+  
   const camposConValidacion = ["Usuario", "Password", "PepPassword", "Direccion"];
   const camposValidadosConEspacios = ["Nombres y Apellidos"];
   const camposSoloLetras = ["Localidad", "Oficios"];
