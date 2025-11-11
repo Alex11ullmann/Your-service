@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function InputValidado({
+export default function InputSoloLetras({
   myStyle,
   label,
   name,
@@ -16,9 +16,9 @@ export default function InputValidado({
     const input = e.target.value;
 
     // Solo letras y números
-    const soloPermitidos = /^[a-zA-Z0-9]*$/.test(input);
+    const soloPermitidos = /^[a-zA-Z]*$/.test(input);
     if (!soloPermitidos) {
-      setError("❌ Solo letras y números (sin espacios ni caracteres especiales)");
+      setError("❌ Solo letras (sin numeros, ni espacios ni caracteres especiales)");
       return;
     }
 

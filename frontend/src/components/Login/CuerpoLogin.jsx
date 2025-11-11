@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "./styleLogin.css";
 import { Link, useNavigate } from "react-router-dom";
+import InputValidado from "../Validaciones/ValidarCaracteres";
 
 export default function CuerpoLogin() {
   const navigate = useNavigate();
@@ -216,9 +217,10 @@ export default function CuerpoLogin() {
         <form id="formInicio" onSubmit={handleSubmit}>
           <div className="input-grouplogin">
             <label htmlFor="usuario">Usuario</label>
-            <input
+
+            <InputValidado
               type="text"
-              className="recuadro"
+              myStyle="recuadro"
               id="usuario"
               name="usuario"
               placeholder="Usuario"
@@ -228,9 +230,9 @@ export default function CuerpoLogin() {
             />
 
             <label htmlFor="password">Contraseña</label>
-            <input
+            <InputValidado
               type="password"
-              className="recuadro"
+              myStyle="recuadro"
               id="password"
               name="password"
               placeholder="Contraseña"
@@ -238,7 +240,6 @@ export default function CuerpoLogin() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-
             {error && <p className="mensaje-error-login">{error}</p>}
           </div>
 
