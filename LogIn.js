@@ -1,58 +1,62 @@
+import { validarCampo } from './validaciones.js';
+
 window.addEventListener("DOMContentLoaded", () => {
     const campos = [
-        //Seccion LOGIN
-        { inputId: "usuario", mensajeId: "mensajeUsuario" },
-        { inputId: "password", mensajeId: "mensajePassword" },
+        { inputId: "usuario", mensajeId: "mensajeUsuario", tipo: "alfanumerico" },
+        { inputId: "password", mensajeId: "mensajePassword", tipo: "alfanumerico" },
     ];
 
-    // Funfion Buscar usuario/Trabajador LogIn
     const formInicio = document.getElementById("forminicio");
-    if (formInicio) {
-        formInicio.addEventListener("submit", async (e) => {
-            e.preventDefault();
 
-            const usuarioInput = document.getElementById("usuario")?.value.trim();
-            const passwordInput = document.getElementById("password")?.value.trim();
+    // Validación en tiempo real
+    campos.forEach(({ inputId, mensajeId, tipo }) => {
+        const input = document.getElementById(inputId);
+        const mensaje = document.getElementById(mensajeId);
+        input.addEventListener("input", () => validarCampo(input, mensaje, tipo, 6));
+    });
 
-            if (!usuarioInput || !passwordInput) {
-                alert("Por favor completá ambos campos.");
-                return;
-            }
+    if (!formInicio) return;
 
-            try {
-                // Buscar primero en clientes.json
-                const clientesRes = await fetch("./data/clientes.json");
-                const clientes = await clientesRes.json();
-                const cliente = clientes.find(
-                    c => c.usuario === usuarioInput && c.password === passwordInput
-                );
+    formInicio.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-                if (cliente) {
-                    localStorage.setItem("perfilUsuario", JSON.stringify(cliente));
-                    window.location.href = "./gestorUsuario.html";// redirige a gestorUsuario con campos en Memoria
-                    return;
-                }
-
-                // Buscar en profecionales.json si no está en clientes
-                const profRes = await fetch("./data/profecionales.json");
-                const profs = await profRes.json();
-                const prof = profs.find(
-                    p => p.usuario === usuarioInput && p.password === passwordInput
-                );
-
-                if (prof) {
-                    localStorage.setItem("perfilTrabajador", JSON.stringify(prof));
-                    window.location.href = "./gestorTrabajador.html"; //redirige a gestorTrabajador con sus campos en memoria
-                    return;
-                }
-
-                // Si no se encontró en ninguno
-                alert("⚠️ Usuario o contraseña incorrectos.");
-
-            } catch (error) {
-                console.error("Error en login:", error);
-                alert("Error al intentar iniciar sesión.");
-            }
+        // Validar antes de buscar
+        let todoValido = true;
+        campos.forEach(({ inputId, mensajeId, tipo }) => {
+            const input = document.getElementById(inputId);
+            const mensaje = document.getElementById(mensajeId);
+            const esValido = validarCampo(input, mensaje, tipo, 6);
+            if (!esValido) todoValido = false;
         });
-    }
+        if (!todoValido) return;
+
+        const usuarioInput = document.getElementById("usuario")?.value.trim();
+        const passwordInput = document.getElementById("password")?.value.trim();
+
+        // Leer usuarios guardados
+        let usuarios;
+        try {
+            usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            if (!Array.isArray(usuarios)) usuarios = [];
+        } catch {
+            usuarios = [];
+        }
+
+        // Buscar coincidencia exacta
+        const usuarioEncontrado = usuarios.find(
+            u => u.usuario === usuarioInput && u.password === passwordInput
+        );
+
+        if (!usuarioEncontrado) {
+            alert("⚠️ Usuario o contraseña incorrectos.");
+            return;
+        }
+
+        // Guardar sesión según tipo
+        const clavePerfil = usuarioEncontrado.tipo === "trabajador" ? "perfilTrabajador" : "perfilUsuario";
+        localStorage.setItem(clavePerfil, JSON.stringify(usuarioEncontrado));
+
+        // Redirigir
+        window.location.href = "./Home.html";
+    });
 });

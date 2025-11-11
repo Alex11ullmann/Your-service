@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contactanos</title>
     <link rel="stylesheet" href="./CSS/contacto.css">
-    
+    <link rel="stylesheet" href="./CSS/style.css">
 </head>
 <body>
     <div class="header"> <!--Encabezado con titulo y links principales -->
@@ -16,7 +16,15 @@
             <a href="./Principal.html" class="enlace">Buscar</a>
             <a href="./presentacion.html" class="enlace">¿Quiénes somos?</a>
             <a href="./capacitacion.html" class="enlace">Capacitate</a>
-            <a href="./LogIn.html" class="enlace">Log In</a>
+            <div class="user-menu" id="userMenu">
+                <img src="./Img/sinperfil.png" alt="perfil" class="avatar">
+                <div class="dropdown">
+                    <a id="userName"></a>
+                    <a href="./gestorUsuario.html">Perfil</a>
+                    <a href="#" id="logoutBtn">Salir</a>
+                </div>
+            </div>
+            <a href="./LogIn.html" class="enlace" id="loginLink">Log In</a>
         </div>
         <div class="encabezado"></div>
     
@@ -24,36 +32,64 @@
         <div class="encabezado"></div>
     
                 <main>
-                    <section class="contactanos">          
+                    <section class="contactanos">    
+                        <!--<main>: etiqueta semántica que indica el contenido principal del sitio.
+                            <section>: agrupa todo lo relacionado con el formulario de contacto.
+                            class="contactanos" permite aplicarle estilo específico desde CSS.
+                            -->      
                         <h2>Contáctanos</h2>
                         <p>¿Tienes alguna pregunta? ¡Estamos aquí para ayudarte!</p>
+                        <!--h2: título principal de la sección.
+                            p: párrafo introductorio para invitar al usuario a usar el formulario.
+                            -->
                 
                         <div class="contactanos1">      
                 
-                            <div class="contacto-formulario">      
+                            <div class="contacto-formulario">  
+                                <!--
+                                Dos capas de divs (contactanos1 y contacto-formulario) que agrupan visualmente el formulario y su subtítulo.
+                                -->    
                                 <h3>Envíanos un Mensaje</h3>
-                                <form class="contacto-formulario1">       
+                                <form class="contacto-formulario1">      
+                                    <!--Sección del formulario en sí, identificada con una clase para estilo (contacto-formulario1).--> 
                                     <div>
+                                        <!--LABEL=
+                                        El elemento <label> se usa para asociar un texto descriptivo con un elemento de formulario, como un <input>, <select>, o <textarea>.-->
                                         <label>Nombre Completo:</label>
-                                        <input type="text" id="" name="">
+                                        <input type="text" id="nombre" name="nombre">
+                                        <span id="error-nombre" class="error-texto" hidden></span>
+                                        <!--
+                                        Etiqueta + campo de entrada para que el usuario escriba su nombre.
+                                        Te faltaría completar el id y name (por ejemplo: id="nombre" name="nombre"), útil para JS o enviar datos.
+                                        -->
                                     </div>
                                     <div>
                                         <label>Email:</label>
-                                        <input type="email" id="" name="">
+                                        <input type="email" id="email" name="email">
+                                        <span id="error-email" class="error-texto" hidden></span>
+                                        <!--type="email" valida automáticamente que el valor ingresado tenga formato de correo electrónico.-->
                                     </div>
                                     <div>
                                         <label>Teléfono (opcional):</label>
-                                        <input type="tel" id="" name="">
-                                    </div>
-                                    <div>
-                                        <label>Asunto:</label>
-                                        <input type="text">
+                                        <input type="tel" id="telefono" name="telefono">
+                                        <span id="error-telefono" class="error-texto" hidden></span>
+                                        <!--type="tel" permite ingresar teléfonos, aunque no lo valida fuertemente sin patrón extra.
+                                        Es opcional, así que podés dejarlo sin required.-->
                                     </div>
                                     <div>
                                         <label>Tu Mensaje:</label>
-                                        <textarea id="" name="" rows="6"></textarea>
+                                        <textarea id="mensaje" name="mensaje" rows="6"></textarea>
+                                        <span id="error-mensaje" class="error-texto" hidden></span>
+                                        <!--
+                                        -textarea permite texto extenso, ideal para que el usuario escriba su consulta o mensaje completo.
+                                        -rows="6" define la altura inicial (cantidad de líneas visibles).
+                                        Faltan id y name si querés capturar su valor luego.
+                                        -->
                                     </div>
                                     <button type="submit" class="boton">Enviar Mensaje</button>
+                                    <!-- BOTON DE ENVIO
+                                    type="submit" envía el formulario.
+                                    Clase boton para aplicar estilos visuales.-->
                                 </form>
                               
                             </div>
@@ -93,6 +129,8 @@
                     <div class="footer-bottom">
                         <p>2025 Todos los derechos reservados.</p>
                     </div>    
-                 </footer>
-</body>
+        </footer>
+        <script type="text/javascript" src="./Home.js"></script>
+        <script type="module" src="./formulario.js"></script>
+    </body>
 </html>

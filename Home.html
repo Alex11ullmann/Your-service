@@ -1,4 +1,5 @@
 <!-- Esta pagina fue creada por la empresa Your Service -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="./CSS/style.css">
 </head>
 <body>
+
     <div class="header">
         <div class="flotante">
             <img src="./Img/Logo.jpg" alt="logo">
@@ -15,7 +17,15 @@
             <a href="./Principal.html" class="enlace">Buscar</a>
             <a href="./presentacion.html" class="enlace">¿Quiénes somos?</a>
             <a href="./capacitacion.html" class="enlace">Capacitate</a>
-            <a href="./LogIn.html" class="enlace">Log In</a>
+            <div class="user-menu" id="userMenu">
+                <img src="./Img/sinperfil.png" alt="perfil" class="avatar">
+                <div class="dropdown">
+                    <a id="userName"></a>
+                    <a id="perfilLink">Perfil</a>
+                    <a href="#" id="logoutBtn">Salir</a>
+                </div>
+            </div>
+            <a href="./LogIn.html" class="enlace" id="loginLink">Log In</a>
         </div>
         <div class="encabezado">  </div>
         
@@ -29,6 +39,10 @@
     <div class="cuerpo">
             <div class="contador">
                 <div class="contador1">
+                    <!--
+                    Hay tres bloques: Expertos, Clientes, Solicitudes. 
+                    Hoy muestran 00, pero podrías hacerlos dinámicos con JavaScript y localStorage o una API.
+                    -->
                     <div class="contadorexpertos">
                         <span>00</span> 
                         <!-- aca va el resultado del contador -->
@@ -50,6 +64,10 @@
         <!-- presentacion Your Service -->
             <div class="container">
                 <div class="elporque">
+                    <!--
+                    Párrafos motivacionales que explican la misión del proyecto.
+                    Le siguen íconos con texto (Seguridad, Facilidad, etc.) que seguramente tienen íconos de fondo o en CSS.
+                    -->
                     <h1>¿Por qué Your Service?</h1>
                     <p>Hay que impulsar el trabajo local,</p>
                     <p>hay que dar oportunidades a nuevas caras,</p>
@@ -94,6 +112,11 @@
 
         <div class="cuerpo">
             <div class="contenedorIntro">
+                <!--
+                Esta sección presenta visualmente el mensaje clave del sitio.
+                El fondo (imgFondo) refuerza visualmente la propuesta.
+                El botón con clase btn1 dirige al usuario a la página de búsqueda de profesionales.
+                -->
                 <img class="imgFondo" src="./Img/fondo web.png" alt="imagen Fondo">
                 <div class="introduccion">
                     <h1  class="h1intro"> Tu experto a un click </h1>
@@ -101,6 +124,11 @@
                     <div class="btn1" > <a href="Principal.html">Busca tu Profesional </a> </div>
         
                     <div  class="explicacion">
+                        <!--
+                        Acá ilustrás los pasos de uso: filtrar → seleccionar → contactar.
+                        Usás clases como fase para separar cada etapa visualmente.
+                        Los div.siguiente podrían ser íconos o flechas entre pasos, probablemente decorados vía CSS.
+                        -->
                         <div class="pasos">
                             <div class="fase filtro" >
                                 <p class="textito" > Filtas por Necesidad </p>
@@ -122,63 +150,76 @@
                 </div> 
             </div>
             
-            <div class="containerOficios"> 
+            <div class="containerOficios">
+                <!--
+                Este bloque muestra una grilla de minicards con enlaces a distintos rubros profesionales.
+                Cada card tiene su clase particular para asignarle estilo (plomero, herrero, techista, etc.).
+                Te recomiendo revisar los href, ya que muchos no terminan en .html y algunos (como "Cerrrajero") están mal escritos.
+                --> 
                 <h2 class="encabezado"> Oficios Ofrecidos, contacta tu experto</H2>
                                 
                 <div class="cardOfi">
                     <div class="minicard plomero" >
-                        <a class="textito"  href="Plomero" >Plomeria</a>
+                        <a class="textito">Plomeria</a>
                     </div>
                     <div class="minicard gasista">
-                        <a class="textito" href="Gasista" >Gasista</a>
+                        <a class="textito">Gasista</a>
                     </div>
                     <div class="minicard herrero">
-                        <a class="textito" href="Herrero" >Herreria</a>
+                        <a class="textito">Herreria</a>
                     </div>
                     <div class="minicard fletero" >
-                        <a class="textito" href="Fletero" >Fletes</a>
+                        <a class="textito">Fletes</a>
                     </div>
                     <div class="minicard  domestic">
-                        <a class="textito" href="empleadoDomestic@" > Servicio Domestico </a>
+                        <a class="textito"> Servicio Domestico </a>
                     </div>
                     <div class="minicard cuidadoadultos">
-                        <a class="textito" href="cuidadoAdultos" > Cuidado Adultos</a>
+                        <a class="textito"> Cuidado Adultos</a>
                     </div>
                     <div class="minicard pintor">
-                        <a class="textito" href="Pintor" >Pintura</a>
+                        <a class="textito">Pintura</a>
                     </div>
                     <div class="minicard alarmas">
-                        <a class="textito" href="Alarmas" > Alarmas </a>
+                        <a class="textito"> Alarmas </a>
                     </div>
                     <div class="minicard cerrajero">
-                        <a class="textito" href="Cerrrajero" > Cerrrajeria</a>
+                        <a class="textito"> Cerrrajeria</a>
                     </div>
                     <div class="minicard carpintero">
-                        <a class="textito" href="Carpintero" >Carpinteria</a>
+                        <a class="textito">Carpinteria</a>
                     </div>
                     <div class="minicard jardinero">
-                        <a class="textito" href="Jardinero" >Jardineria</a>
+                        <a class="textito">Jardineria</a>
                     </div>
                     <div class="minicard albanil">
-                        <a class="textito" href="Albanil" >Albañileria</a>
+                        <a class="textito">Albañileria</a>
                     </div>
                     <div class="minicard aireacond">
-                        <a class="textito" href="AireAcondicionado" >Aire Acondicionado</a>
+                        <a class="textito">Aire Acondicionado</a>
                     </div> 
                     <div class="minicard limpalfombras">
-                        <a class="textito" href="LimpiezaAlfombra" >Limpieza Alfombras</a>
+                        <a class="textito">Limpieza Alfombras</a>
                     </div>
                     <div class="minicard techista">
-                        <a class="textito" href="Techista" > Techista </a>
+                        <a class="textito"> Techista </a>
                     </div>
                     <div class="minicard viajante">
-                        <a class="textito" href="Viajante" > Transportista </a>
+                        <a class="textito"> Transportista </a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- fin div del Body Lucas -->
         <footer class="footer">
+            <!--
+            Está dividido en tres columnas:
+            -Navegación interna (Servicios, Contacto, Preguntas).
+            -Aspectos legales (Privacidad, Términos).
+            -Datos de contacto y redes sociales.
+            -Incluye emojis para darle un toque visual amigable.
+            Al final, el <div class="footer-bottom"> cierra con derechos reservados y el año actual.
+                -->
             <div class="footer-container">
         
                 <div class="footer-column">
@@ -210,6 +251,7 @@
             <div class="footer-bottom">
                 <p>2025 Todos los derechos reservados.</p>
             </div>
-            </footer>    
+        </footer>    
+    <script type="text/javascript" src="./Home.js"></script>
 </body>
 </html>

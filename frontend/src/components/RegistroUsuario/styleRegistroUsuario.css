@@ -1,0 +1,75 @@
+.cuerpoRegistro {
+    display: flex;
+    width: 95%;
+    border-radius: 1.5vw;
+    margin-left: 2.5%;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, rgb(243, 221, 230) 0%, rgb(210, 225, 239) 47%, rgb(203, 239, 243) 100%);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+}
+.logRegistro-container {
+    display: block;
+    background: white;
+    padding: 3%;
+    margin-top: 3%;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 1.5vw;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    margin-bottom: 10%;
+}
+.logRegistro-container h2 {
+    margin-top: -5%;
+    font-size: 4dvw;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    font-weight: 100;
+}
+.input-group {
+    display: block;
+    flex-direction: column;
+    font-size: 1.5dvw;
+    width: 100%;
+    justify-content: center;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+}
+.input-group label {
+    display: flex;
+    font-size: 1.5dvw;
+    width: 100%;
+    justify-content: center;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    margin-bottom: 10px;
+}
+::placeholder {
+    color: rgb(221, 218, 218);
+}
+.input-group input {
+    border: solid 1px #d8d5d5;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.4);
+    background: rgb(243, 244, 247);
+    width: 80%;
+}
+.datos {
+    border-radius: 0.5vw;
+    height: 2vw;
+    font-size: 1.2vw;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+}
+.contenidoInputs {
+    font-size: 0.8vw;
+    color: #007BFF;
+}
+#guardar-btn {
+    width: 60%;
+    padding: 3%;
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    font-size: 1.0vw;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+    margin-top: 40px;
+}

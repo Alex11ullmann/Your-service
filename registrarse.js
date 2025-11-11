@@ -1,95 +1,124 @@
 window.addEventListener("DOMContentLoaded", () => {
+    const reglas = {
+        alfanumerico: /^[a-zA-Z0-9]*$/,
+        letras: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/,
+        numeros: /^[0-9]*$/,
+        email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    };
+
     const campos = [
-                //Seccion REGISTRO
-                { inputId: "repPassword" },
-                { inputId: "direccion" }
+        { inputId: "usuario", tipo: "alfanumerico" },
+        { inputId: "password", tipo: "alfanumerico" },
+        { inputId: "repPassword", tipo: "alfanumerico" },
+        { inputId: "direccion", tipo: "alfanumerico" },
+        { inputId: "localidad", tipo: "letras" },
+        { inputId: "telefono", tipo: "numeros" },
+        { inputId: "dni", tipo: "numeros" },
+        { inputId: "email", tipo: "email" }
     ];
 
-    const caracteres = /^[A-Za-z0-9]*$/;
-
-    //Funcion para validad que no sean caracteres especiales
-    campos.forEach(({ inputId, mensajeId }) => {
+    campos.forEach(({ inputId, tipo }) => {
         const input = document.getElementById(inputId);
-        const mensaje = document.getElementById(mensajeId);
-            input.addEventListener("input", () => {
-                if (!caracteres.test(input.value)) {
-                    input.value = input.value.replace(/[^A-Za-z0-9]/g, "");
-                    mensaje.style.display = "block";
+        const mensaje = document.createElement("div");
+        mensaje.className = "mensaje-error";
+        mensaje.hidden = true;
+        input.parentNode.appendChild(mensaje);
+
+        input.addEventListener("input", () => {
+            let valor = input.value;
+            const regex = reglas[tipo];
+
+            if (tipo === "email") {
+                const esValido = regex.test(valor);
+                mensaje.textContent = esValido ? "" : "⚠️ Ingresá un email válido. Ej: nombre@dominio.com";
+                mensaje.hidden = esValido;
+                input.classList.toggle("error", !esValido);
+            } else {
+                if (!regex.test(valor)) {
+                    const limpio = valor.replace(new RegExp(`[^${regex.source.replace(/^\^|\*$/g, '')}]`, 'g'), "");
+                    input.value = limpio;
+                    mensaje.textContent = `⚠️ Solo se permiten caracteres válidos para este campo (${tipo}).`;
+                    mensaje.hidden = false;
+                    input.classList.add("error");
                 } else {
-                    mensaje.style.display = "none";
+                    mensaje.hidden = true;
+                    mensaje.textContent = "";
+                    input.classList.remove("error");
                 }
-            });
+            }
+        });
     });
 
-    // Validacion Localidad Registro
-    const camposSinNumeros = [
-        { inputId: "localidad" }
-    ];
+    // Validación de contraseñas iguales
+    const pass1 = document.getElementById("password");
+    const pass2 = document.getElementById("repPassword");
+    const mensajeIgualdad = document.createElement("div");
+    mensajeIgualdad.className = "mensaje-error";
+    mensajeIgualdad.hidden = true;
+    pass2.parentNode.appendChild(mensajeIgualdad);
 
-    const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ]*$/;
-
-    camposSinNumeros.forEach(({ inputId }) => {
-        const input = document.getElementById(inputId);
-            input.addEventListener("input", () => {
-                if (!soloLetras.test(input.value)) {
-                    input.value = input.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ]/g, "");
-                }
-            });
+    pass2.addEventListener("input", () => {
+        const iguales = pass1.value === pass2.value;
+        mensajeIgualdad.textContent = iguales ? "" : "⚠️ Las contraseñas no coinciden.";
+        mensajeIgualdad.hidden = iguales;
+        pass2.classList.toggle("error", !iguales);
     });
 
-
-    const camposNumeros = [
-    { inputId: "telefono"},
-    { inputId: "dni"}
-    ];
-
-    const soloNumeros = /^[0-9]*$/;
-    
-    //Validamos Telefonos En Registro
-    camposNumeros.forEach(({ inputId }) => {
-        const input = document.getElementById(inputId);
-            input.addEventListener("input", () => {
-                if (!soloNumeros.test(input.value)) {
-                    input.value = input.value.replace(/[^0-9]/g, "");
-                }
-            });
-    });
-    
-    // Evento submit del formulario
+    // Validación final al enviar
     const formulario = document.querySelector("form");
     formulario.addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita recarga
+        event.preventDefault();
 
-        const usuario = document.getElementById("usuario").value;
-        const password = document.getElementById("password").value;
-        const repPassword = document.getElementById("repPassword").value;
-        const direccion = document.getElementById("direccion").value;
-        const localidad = document.getElementById("localidad").value;
-        const telefono = document.getElementById("telefono").value;
-        const dni = document.getElementById("dni").value;
-        const email = document.getElementById("email")?.value || "sin@email.com";
+        let todoValido = true;
 
-        // Validaciones básicas
-        if (!usuario || !password || !repPassword || !direccion || !localidad || !telefono || !dni) {
-            alert("Por favor, completá todos los campos.");
+        campos.forEach(({ inputId, tipo }) => {
+            const input = document.getElementById(inputId);
+            const valor = input.value.trim();
+            const regex = reglas[tipo];
+            const mensaje = input.parentNode.querySelector(".mensaje-error");
+
+            const esValido = tipo === "email"
+                ? regex.test(valor)
+                : valor.length >= 1 && regex.test(valor);
+
+            if (!esValido) {
+                mensaje.hidden = false;
+                input.classList.add("error");
+                todoValido = false;
+            } else {
+                mensaje.hidden = true;
+                input.classList.remove("error");
+            }
+        });
+
+        const iguales = pass1.value === pass2.value;
+        if (!iguales) {
+            mensajeIgualdad.hidden = false;
+            pass2.classList.add("error");
+            todoValido = false;
+        }
+
+        if (!todoValido) {
+            alert("⚠️ Hay campos inválidos. Verificá los datos ingresados.");
             return;
         }
 
-        if (password !== repPassword) {
-            alert("Las contraseñas no coinciden.");
-            return;
-        }
+        // Registro
+        const usuario = document.getElementById("usuario").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const direccion = document.getElementById("direccion").value.trim();
+        const localidad = document.getElementById("localidad").value.trim();
+        const telefono = document.getElementById("telefono").value.trim();
+        const dni = document.getElementById("dni").value.trim();
+        const email = document.getElementById("email").value.trim();
 
-        // Verificar si el usuario ya existe
         let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
         const existe = usuarios.some(u => u.usuario === usuario);
-
         if (existe) {
             alert("El usuario ya existe. Elegí otro nombre.");
             return;
         }
 
-        // Crear objeto usuario
         const nuevoUsuario = {
             usuario,
             password,
@@ -101,20 +130,24 @@ window.addEventListener("DOMContentLoaded", () => {
             tipo: document.getElementById('tilde-trabajador').classList.contains('checked') ? "trabajador" : "cliente"
         };
 
-        // Guardar en localStorage
+        // Guardar perfil activo
+        localStorage.removeItem("perfilUsuario");
+        localStorage.removeItem("perfilTrabajador");
+        localStorage.setItem("perfilUsuario", JSON.stringify(nuevoUsuario));
+
+        // Guardar en lista de usuarios
         usuarios.push(nuevoUsuario);
-               
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+        // Redirigir según tipo
         if (nuevoUsuario.tipo === "trabajador") {
             alert("Usuario registrado como trabajador. Continue el registro >>> ");
-            localStorage.setItem("perfilTrabajador", JSON.stringify(nuevoUsuario)); // 👈 igual al que usás en gestorTrabajador
+            localStorage.setItem("HomeTrabajador", JSON.stringify(nuevoUsuario));
             window.location.href = "./perfiltrab.html";
-
         } else {
             alert("Usuario registrado correctamente.");
-            localStorage.setItem("perfilUsuario", JSON.stringify(nuevoUsuario));
-            window.location.href = "./gestorUsuario.html";// redirige a gestorUsuario con campos en Memoria
+            localStorage.setItem("HomeUsuario", JSON.stringify(nuevoUsuario));
+            window.location.href = "./Home.html";
         }
     });
-
-
 });

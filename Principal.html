@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/stylePrincipal.css" >
+    <link rel="stylesheet" href="./CSS/style.css">
     <title>Buscar Profecional</title>
 </head>
 <body>
@@ -15,18 +16,31 @@
                 <a href="./Principal.html" class="enlace">Buscar</a>
                 <a href="./presentacion.html" class="enlace">¿Quiénes somos?</a>
                 <a href="./capacitacion.html" class="enlace">Capacitate</a>
-                <a href="./LogIn.html" class="enlace">Log In</a>
+                <div class="user-menu" id="userMenu">
+                <img src="./Img/sinperfil.png" alt="perfil" class="avatar">
+                <div class="dropdown">
+                    <a id="userName"></a>
+                    <a href="./gestorUsuario.html">Perfil</a>
+                    <a href="#" id="logoutBtn">Salir</a>
+                </div>
+              </div>
+              <a href="./LogIn.html" class="enlace" id="loginLink">Log In</a>
             </div>
             <div class="encabezado"></div>
             
       </div>
     
     <div>
+      <!--Encierra todo el contenido de filtros y catálogo.-->
          <div class="encabezado"> <!--Encabezado con titulo y links principales -->
+          <!--Sección superior que incluye los menús desplegables para filtrar los resultados.-->
                 <div class="contenedor-desplegables">
+                  <!--Agrupa todos los filtros visualmente (localidad, oficio, calificación, días y horarios-->
                     <!-- filtro localidades -->
                     <div class="desplegable">
                       <button class="boton-desplegable">Localidad</button>
+                      <!--El <button> activa el menú desplegable.
+                        El <div> interno contiene <a> que representan opciones; cada una tiene un data-localidad que podés usar con JS para aplicar el filtro.-->
                       <div id="filtroLocalidad" class="contenido-desplegable">
                         <a href="#" data-localidad="Todos">Todos</a>
                         <a href="#" data-localidad="Olavarria">Olavarria</a>
@@ -37,6 +51,7 @@
                   
                                    
                     <!-- filtro de Oficios -->
+                     <!--Igual lógica: muestra una lista de oficios, cada uno con un data-oficio.-->
                     <div class="desplegable">
                       <button class="boton-desplegable">Lista de Oficios</button>
                       <div id="filtroOficio" class="contenido-desplegable">
@@ -56,6 +71,7 @@
                     </div>
                     
                     <!-- filtro calidad minima -->
+                     <!--Filtra por rating mínimo. Las estrellas pueden representar un número del 1 al 5 que vos podés convertir en lógica de JS.-->
                     <div class="desplegable">
                       <button class="boton-desplegable">Calificación minima</button>
                       <div id="filtroCalificacion" class="contenido-desplegable">
@@ -68,6 +84,7 @@
                     </div>
                       
                     <!-- Días Disponibles -->
+                     <!--Usa data-diasDisp para guardar qué día fue seleccionado por el usuario. Podrías luego hacer una comparación con la agenda del profesional.-->
                     <div class="desplegable">
                       <button class="boton-desplegable">Días Disponibles</button>
                       <div id="filtroDias"  class="contenido-desplegable">
@@ -82,6 +99,7 @@
                     </div>
                 
                     <!-- Horarios Disponibles -->
+                     <!--Igual lógica que los anteriores. Cada opción representa un rango horario almacenado con data-Horario.-->
                     <div class="desplegable">
                       <button class="boton-desplegable">Horarios Disponibles</button>
                       <div class="contenido-desplegable">
@@ -99,6 +117,8 @@
             <ul  id="lista" class="lista" >
             
             </ul>         
+            <!--cuerpoCatalogo: contiene la lista de resultados filtrados (por ejemplo, trabajadores disponibles).
+            <ul id="lista">: lista vacía que se rellena dinámicamente con JS según los filtros aplicados.-->
                     
         </Div>  
         
@@ -138,5 +158,6 @@
       </div>
     </footer>
     <script type="text/javascript" src="./main.js"></script>
+    <script type="text/javascript" src="./Home.js"></script>
 </body>
 </html>

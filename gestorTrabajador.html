@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración</title>
+    <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/perfiladmi.css">
 </head>
 
@@ -17,7 +18,15 @@
             <a href="./Principal.html" class="enlace">Buscar</a>
             <a href="./presentacion.html" class="enlace">¿Quiénes somos?</a>
             <a href="./capacitacion.html" class="enlace">Capacitate</a>
-            <a href="./LogIn.html" class="enlace">Log In</a>
+            <div class="user-menu" id="userMenu">
+                <img src="./Img/sinperfil.png" alt="perfil" class="avatar">
+                <div class="dropdown">
+                    <a id="userName"></a>
+                    <a href="./gestorUsuario.html">Perfil</a>
+                    <a href="#" id="logoutBtn">Salir</a>
+                </div>
+            </div>
+            <a href="./LogIn.html" class="enlace" id="loginLink">Log In</a>
         </div>
         <div class="encabezado">  </div>
     </div>
@@ -27,30 +36,30 @@
         <div class="perfil-header">
             <div class="info-imgPerfil">
                 <div  id="fotoPerfil" class="foto-perfil"></div>
-                <span class="lapiz">✏️</span>
+                <span class="lapiz"></span>
             </div>
             <div class="info-perfil">
                 <h3></h3>
                 <h3></h3>
                 <div class="modificar">
                      <h4>Contraseña:</h4>
-                     <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>
+                     <div class="inputt"><span class="lapiz1"></span><input type="text"></div>
                 </div>
                 <div class="modificar">
                     <h4>Localidad:</h4>
-                    <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>
+                    <div class="inputt"><span class="lapiz1"></span><input type="text"></div>
                 </div>
                 <div class="modificar">
                     <h4>Direccion:</h4>
-                    <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>
+                    <div class="inputt"><span class="lapiz1"></span><input type="text"></div>
                 </div>
                 <div class="modificar">
                     <h4>email :</h4>
-                    <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>     
+                    <div class="inputt"><span class="lapiz1"></span><input type="text"></div>     
                 </div> 
                 <div class="modificar">
                     <h4>Telefono :</h4>
-                    <div class="inputt"><span class="lapiz1">✏️</span><input type="text"></div>     
+                    <div class="inputt"><span class="lapiz1"></span><input type="text"></div>     
                 </div>
                 <!-- Guardar cambios y eliminar cuenta -->           
                 <button class="botonModyElim"  id="guardarCambios" >
@@ -192,6 +201,7 @@
                 <p>2025 Todos los derechos reservados.</p>
             </div>
     </footer>    
+    <script src="./Home.js"></script>
     <script src="./gestorTrabajador.js"></script>
 </body>
 </html>
