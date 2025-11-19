@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException, ConflictException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Usuario } from './entities/usuario.entity';
@@ -13,6 +13,13 @@ export class UsuarioService {
   ) {}
 
   async create(createUsuarioDto: CreateUsuarioDto): Promise<Usuario> {
+    const { nombre, email } = createUsuarioDto;
+    const usuarioExistente = await this.usuarioRepo.findOne({
+      where: [{ nombre }, { email }],
+    });
+    if (usuarioExistente) {
+      throw new ConflictException('El nombre o correo ya existen');
+    }
     try {
       const usuario = this.usuarioRepo.create(createUsuarioDto);
       return await this.usuarioRepo.save(usuario);
