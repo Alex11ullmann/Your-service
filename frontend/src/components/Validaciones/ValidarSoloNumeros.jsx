@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function InputSoloNumeros({
     myStyle,
@@ -6,23 +6,48 @@ export default function InputSoloNumeros({
     name,
     placeholder,
     maxLength,
-    minLength
+    minLength,
+    onChange,
+    value
 }) {
 
-    const [valor, setValor] = useState("");
+    const [valor, setValor] = useState(value || "");
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        setValor(value || "");
+    }, [value]);
 
     const handleChange = (e) => {
         const input = e.target.value;
 
-        if (!/^[0-9]*$/.test(input)) {
-            setError("❌ Solo se permiten números");
-            return;
-        }
+        if (!/^[0-9]*$/.test(input)) return;
 
         setValor(input);
         setError("");
 
+        if (onChange) {
+            onChange({
+                target: {
+                    name,
+                    value: input
+                }
+            });
+        }
+    };
+
+    const handleBlur = (e) => {
+        if ((valor || "").length < (minLength || 0)) {
+            setError(`❌ Debe contener al menos ${minLength} numeros`);
+        } else {
+            setError("");
+        }
+
+        let input = e.target.value;
+
+        if (input.length === 0) {
+            setError("");
+        }
     };
 
     return (
@@ -38,6 +63,7 @@ export default function InputSoloNumeros({
                 minLength={minLength}
                 value={valor}
                 onChange={handleChange}
+                onBlur={handleBlur}
             />
 
             {error && (

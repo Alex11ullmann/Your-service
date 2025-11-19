@@ -1,66 +1,89 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function InputSoloLetrasYEspacio({
-    myStyle,
-    label,
-    name,
-    placeholder,
-    maxLength,
-    minLength
+  myStyle,
+  label,
+  name,
+  placeholder,
+  maxLength,
+  minLength,
+  onChange,
+  value
 }) {
 
-    const [valor, setValor] = useState("");
-    const [error, setError] = useState("");
+  const [valor, setValor] = useState(value || "");
+  const [error, setError] = useState("");
 
-    const handleChange = (e) => {
-        const input = e.target.value;
+  useEffect(() => {
+    setValor(value || "");
+  }, [value]);
 
-        const soloPermitidos = /^[a-zA-Z\s]*$/.test(input);
-        if (!soloPermitidos) {
-            setError("❌ Solo letras y hasta 3 espacios (sin números ni caracteres especiales)");
-            return;
+  const handleChange = (e) => {
+    let input = e.target.value;
+
+    const soloPermitidos = /^[a-zA-Z\s]*$/.test(input);
+    if (!soloPermitidos) return;
+
+    if (input.includes("  ")) return;
+
+    const cantidadEspacios = (input.match(/ /g) || []).length;
+    if (cantidadEspacios > 3) return;
+
+    if (input.length > maxLength) return;
+
+    if (input.length > 0) {
+      input = input
+        .split(" ")
+        .map(p => p.charAt(0).toUpperCase() + p.slice(1).toLowerCase())
+        .join(" ");
+    }
+
+    setValor(input);
+    setError("");
+
+    if (onChange) {
+      onChange({
+        target: {
+          name,
+          value: input
         }
+      });
+    }
+  };
 
-        if (input.includes("  ")) {
-            setError("❌ No se permiten dos espacios seguidos");
-            return;
-        }
+  const handleBlur = (e) => {
+    if ((valor || "").length < (minLength || 0)) {
+      setError(`❌ Debe contener al menos ${minLength} caracteres`);
+    } else {
+      setError("");
+    }
 
-        const cantidadEspacios = (input.match(/ /g) || []).length;
-        if (cantidadEspacios > 3) {
-            setError("❌ Máximo 3 espacios permitidos");
-            return;
-        }
+    let input = e.target.value;
+    if (input.length === 0) {
+      setError("");
+    }
+  };
 
-        const cantMayus = (input.match(/[A-Z]/g) || []).length;
-        if (cantMayus > 1) {
-            setError("❌ Solo se permite 1 mayúscula");
-            return;
-        }
+  return (
+    <div style={{ marginBottom: "1rem" }}>
+      {label && <label htmlFor={name}>{label}</label>}
 
-        setValor(input);
-        setError("");
-    };
+      <input
+        type="text"
+        className={myStyle}
+        id={name}
+        name={name}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        minLength={minLength}
+        value={valor}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
 
-    return (
-        <div style={{ marginBottom: "1rem" }}>
-            {label && <label htmlFor={name}>{label}</label>}
-
-            <input
-                type="text"
-                className={myStyle}
-                id={name}
-                name={name}
-                placeholder={placeholder}
-                maxLength={maxLength}
-                minLength={minLength}
-                value={valor}
-                onChange={handleChange}
-            />
-
-            {error && (
-                <p style={{ color: "red", fontSize: "0.9em" }}>{error}</p>
-            )}
-        </div>
-    );
+      {error && (
+        <p style={{ color: "red", fontSize: "0.9em" }}>{error}</p>
+      )}
+    </div>
+  );
 }

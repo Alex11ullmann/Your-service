@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "usuario": "Ana123",
+    "contraseña": "asdasd"
+  },
+  {
+    "id": 2,
+    "usuario": "Juan123",
+    "contraseña": "asdasd"
+  },
+  {
+    "id": 3,
+    "usuario": "German123",
+    "contraseña": "asdasd"
+  },
+  {
+    "id": 4,
+    "usuario": "Cintia123",
+    "contraseña": "asdasd"
+  }
+]

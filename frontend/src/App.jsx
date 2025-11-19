@@ -27,7 +27,6 @@ function App() {
           <Route element={<LayoutHeaderFooter />}>
             <Route path="/" element={<Home />} />
             <Route path="/registro-trabajador" element={<RegistroTrabajador />} />
-            <Route path="/buscar" element={<Buscar />} />
             <Route path="/preguntas" element={<Preguntas />} />
             <Route path="/quienes-somos" element={<QuienesSomos />} />
             <Route path="/capacitate" element={<Capacitate />} />
@@ -42,6 +41,13 @@ function App() {
               element={
                 <RutaPrivada>
                   <Perfiles />
+                </RutaPrivada>
+              } />
+              <Route
+              path="/buscar"
+              element={
+                <RutaPrivada>
+                  <Buscar />
                 </RutaPrivada>
               } />
           </Route>
