@@ -1,11 +1,13 @@
 import "./StyleFlotanteFooter.css";
 import Logo from "../../Images/Logo.jpg";
 import SinPerfil from "../../Images/sinperfil.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [usuarioOn, setUsuarioOn] = useState(false);
   const [usuario, setUsuario] = useState({});
   const [imagenPerfil, setImagenPerfil] = useState(SinPerfil);
@@ -13,65 +15,58 @@ const Header = () => {
   const cargarDatosUsuario = () => {
     const sesion = localStorage.getItem("usuarioOn") === "true";
     const tipo = localStorage.getItem("tipoUsuario");
+
     setUsuarioOn(sesion);
 
-    if (sesion) {
-      let datos = {};
-      if (tipo === "trabajador") {
-        datos =
-          JSON.parse(localStorage.getItem("datosRegistroTrabajador")) || {};
-      } else {
-        datos = JSON.parse(localStorage.getItem("datosRegistro")) || {};
-      }
-
-      const info = datos.formData || datos;
-
-      // SIEMPRE usar la imagen global actual
-      const img = localStorage.getItem("imagenPerfilActual") || datos.imagenPerfil || SinPerfil;
-
-      setUsuario(info);
-      setImagenPerfil(img);
-
-
-      // Guardar imagen actual para persistencia de sesión
-      localStorage.setItem("imagenPerfilActual", img);
-    } else {
+    if (!sesion) {
       setUsuario({});
       setImagenPerfil(SinPerfil);
+      return;
     }
+
+    let datos = {};
+
+    if (tipo === "trabajador") {
+      datos = JSON.parse(localStorage.getItem("datosRegistroTrabajador")) || {};
+    } else {
+      datos = JSON.parse(localStorage.getItem("datosRegistro")) || {};
+    }
+
+    const info = datos.formData || datos;
+
+    const img =
+      localStorage.getItem("imagenPerfilActual") ||
+      datos.imagenPerfil ||
+      SinPerfil;
+
+    setUsuario(info);
+    setImagenPerfil(img);
   };
 
   useEffect(() => {
-    // Ejecuta la carga al montar
     cargarDatosUsuario();
 
-    // Escucha cambios en localStorage desde cualquier componente
-    window.addEventListener("storage", () => {
-      cargarDatosUsuario();
-    });
+    const handler = () => cargarDatosUsuario();
+    window.addEventListener("app-session-changed", handler);
 
-    return () => window.removeEventListener("storage", cargarDatosUsuario);
+    return () => window.removeEventListener("app-session-changed", handler);
   }, []);
 
+  // 🔥 ACTUALIZAR HEADER SIEMPRE QUE CAMBIA LA RUTA
+  useEffect(() => {
+    cargarDatosUsuario();
+  }, [location.pathname]);
+
   const handleLogout = () => {
-    // Cerrar sesión
-    localStorage.setItem("usuarioOn", "false");
+    localStorage.clear();
 
-    // Eliminar datos temporales y de la sesión actual
-    localStorage.removeItem("tipoUsuario");
-    localStorage.removeItem("imagenPerfilActual"); // elimina la imagen activa
-    localStorage.removeItem("perfilActivo"); // opcional si después querés usar esto
+    setUsuarioOn(false);
+    setUsuario({});
+    setImagenPerfil(SinPerfil);
 
-    localStorage.removeItem("usuarioAdmin");
-    localStorage.removeItem("passAdmin");
-
-    // Forzar actualización inmediata del header
-    window.dispatchEvent(new Event("storage"));
-
-    // Redirigir
+    window.dispatchEvent(new CustomEvent("app-session-changed"));
     navigate("/");
   };
-
 
   return (
     <header>
@@ -83,7 +78,7 @@ const Header = () => {
         <Link to="/capacitate" className="enlace">Capacitate</Link>
 
         {usuarioOn ? (
-          <div className="user-menu" id="userMenu">
+          <div className="user-menu">
             <img src={imagenPerfil} alt="perfil" className="avatar" />
             <div className="dropdown">
               <h3>{usuario.Usuario || usuario.nombreUsuario || "Usuario"}</h3>
@@ -96,6 +91,7 @@ const Header = () => {
             Log In
           </Link>
         )}
+
       </div>
       <div className="encabezado"></div>
     </header>

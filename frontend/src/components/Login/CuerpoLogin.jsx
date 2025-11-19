@@ -16,15 +16,12 @@ export default function CuerpoLogin() {
     if (!record) return false;
     const candidates = [];
 
-    if (record.Password) candidates.push(record.Password);
     if (record.password) candidates.push(record.password);
 
     if (record.formData) {
-      if (record.formData.Password) candidates.push(record.formData.Password);
       if (record.formData.password) candidates.push(record.formData.password);
     }
 
-    if (record.Pass) candidates.push(record.Pass);
     if (record.pass) candidates.push(record.pass);
 
     return candidates.some(
@@ -67,7 +64,7 @@ export default function CuerpoLogin() {
     let matchDatosTrab = null;
 
     if (!encontradoTrabajador && datosTrabajadorRaw) {
-      const form = datosTrabajadorRaw.formData || datosTrabajadorRaw;
+      const form = datosTrabajadorRaw;
       const nombre = normalize(
         form?.Usuario || form?.usuario || form?.nombre || ""
       );
@@ -96,7 +93,7 @@ export default function CuerpoLogin() {
     let matchDatosUsuario = null;
 
     if (!encontradoTrabajador && !matchDatosTrab && datosUsuarioRaw) {
-      const form = datosUsuarioRaw.formData || datosUsuarioRaw;
+      const form = datosUsuarioRaw;
       const nombre = normalize(
         form?.Usuario || form?.usuario || form?.nombre || ""
       );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function InputValidado({
   myStyle,
@@ -6,32 +6,51 @@ export default function InputValidado({
   name,
   placeholder,
   maxLength,
-  minLength
+  minLength,
+  value,
+  onChange,
+  passwordValue
 }) {
-
-  const [valor, setValor] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = React.useState("");
 
   const handleChange = (e) => {
-    const input = e.target.value;
+    let input = e.target.value;
 
-    // Solo letras y números
-    const soloPermitidos = /^[a-zA-Z0-9]*$/.test(input);
-    if (!soloPermitidos) {
-      setError("❌ Solo letras y números (sin espacios ni caracteres especiales)");
-      return;
-    }
+    if (!/^[a-zA-Z0-9]*$/.test(input)) return;
 
-    // Contar mayúsculas
     const cantMayus = (input.match(/[A-Z]/g) || []).length;
+    if (cantMayus > 1) return;
 
-    if (cantMayus > 1) {
-      setError("❌ Solo se permite 1 sola mayúscula");
-      return;
+    if (input.length > maxLength) return;
+
+    if (input.length > 0) {
+      input = input[0].toUpperCase() + input.slice(1).toLowerCase();
     }
 
-    setValor(input);
-    setError("");
+    if (name === "repPassword" && passwordValue !== input) {
+      setError("❌ Las contraseñas no coinciden");
+    } else {
+      setError("");
+    }
+
+    onChange({
+      target: {
+        name,
+        value: input
+      }
+    });
+  };
+
+  const handleBlur = (e) => {
+    if (value.length < minLength) {
+      setError(`❌ Debe contener al menos ${minLength} caracteres`);
+    }
+
+    let input = e.target.value;
+
+    if (input.length == 0) {
+      setError("");
+    }
   };
 
   return (
@@ -45,8 +64,9 @@ export default function InputValidado({
         placeholder={placeholder}
         maxLength={maxLength}
         minLength={minLength}
-        value={valor}
+        value={value}
         onChange={handleChange}
+        onBlur={handleBlur}
       />
       {error && (
         <p style={{ color: "red", fontSize: "0.9em", marginTop: "4px" }}>
@@ -56,4 +76,3 @@ export default function InputValidado({
     </div>
   );
 }
-

@@ -9,17 +9,26 @@ import InputSoloLetrasYEspacio from "../Validaciones/ValidarSoloLetrasYEspacios"
 
 export default function CuerpoRegistroUsuario() {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({});
 
-    // Cargar datos previos del localStorage al montar el componente
+    const camposIniciales = infoParaRegistro.reduce((acc, item) => {
+        if (item.name !== "oficios") acc[item.name] = "";
+        return acc;
+    }, {});
+
+    const [formData, setFormData] = useState(camposIniciales);
+
+    const camposEsperados = infoParaRegistro
+        .filter(item => item.name !== "oficios")
+        .map(item => item.name);
+
     useEffect(() => {
         const datosGuardados = localStorage.getItem("datosRegistro");
         if (datosGuardados) {
-            setFormData(JSON.parse(datosGuardados));
+            const parsed = JSON.parse(datosGuardados);
+            setFormData({ ...camposIniciales, ...parsed });
         }
     }, []);
 
-    // Manejar cambios en los inputs
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -28,23 +37,32 @@ export default function CuerpoRegistroUsuario() {
         }));
     };
 
-    // Guardar los datos en localStorage y redirigir al perfil
     const handleSubmit = (e) => {
         e.preventDefault();
-        localStorage.setItem(
-            "datosRegistro",
-            JSON.stringify({ formData: formData })
-        );
+
+        for (let key of camposEsperados) {
+            if (!formData[key] || String(formData[key]).trim() === "") {
+                alert("⚠️ Por favor completa todos los campos correctamente.");
+                return;
+            }
+        }
+
+        if (formData.password !== formData.repPassword) {
+            alert("⚠️ Las contraseñas no coinciden.");
+            return;
+        }
+
+        localStorage.setItem("datosRegistro", JSON.stringify(formData));
         localStorage.setItem("tipoUsuario", "usuario");
-        localStorage.setItem("usuarioOn", "true"); // Guardar sesión activa
-        window.dispatchEvent(new Event("storage")); // Fuerza actualización del Header
+        localStorage.setItem("usuarioOn", "true");
+        window.dispatchEvent(new Event("storage"));
         navigate("/perfil", { state: { esTrabajador: false } });
     };
 
-    const camposConValidacion = ["Usuario", "Password", "PepPassword", "Direccion"];
-    const camposValidadosConEspacios = ["Nombres y Apellidos"];
-    const camposSoloLetras = ["Localidad"];
-    const camposSoloNumeros = ["Telefono", "Dni"];
+    const camposConValidacion = ["usuario", "password", "repPassword", "direccion"];
+    const camposValidadosConEspacios = ["nombresYApellidos"];
+    const camposSoloLetras = ["localidad"];
+    const camposSoloNumeros = ["telefono", "dni"];
 
     return (
         <div className="cuerpoRegistro">
@@ -52,7 +70,7 @@ export default function CuerpoRegistroUsuario() {
                 <h2>Registrarse</h2>
                 <form onSubmit={handleSubmit}>
                     {infoParaRegistro
-                        .filter((data) => data.name !== "Oficios")
+                        .filter((data) => data.name !== "oficios")
                         .map((data) => (
                             <div className="input-group" key={data.id}>
                                 <label htmlFor={data.id}>{data.label}</label>
@@ -66,8 +84,9 @@ export default function CuerpoRegistroUsuario() {
                                         maxLength={data.maxLength}
                                         minLength={data.minLength}
                                         required={data.required}
-                                        value={formData[data.name] || ""}
+                                        value={formData[data.name]}
                                         onChange={handleChange}
+                                        passwordValue={data.name === "repPassword" ? formData["password"] : null}
                                     />
                                 ) : camposSoloNumeros.includes(data.name) ? (
                                     <InputSoloNumeros
@@ -79,7 +98,7 @@ export default function CuerpoRegistroUsuario() {
                                         maxLength={data.maxLength}
                                         minLength={data.minLength}
                                         required={data.required}
-                                        value={formData[data.name] || ""}
+                                        value={formData[data.name]}
                                         onChange={handleChange}
                                     />
                                 ) : camposSoloLetras.includes(data.name) ? (
@@ -92,7 +111,7 @@ export default function CuerpoRegistroUsuario() {
                                         maxLength={data.maxLength}
                                         minLength={data.minLength}
                                         required={data.required}
-                                        value={formData[data.name] || ""}
+                                        value={formData[data.name]}
                                         onChange={handleChange}
                                     />
                                 ) : camposValidadosConEspacios.includes(data.name) ? (
@@ -105,7 +124,7 @@ export default function CuerpoRegistroUsuario() {
                                         maxLength={data.maxLength}
                                         minLength={data.minLength}
                                         required={data.required}
-                                        value={formData[data.name] || ""}
+                                        value={formData[data.name]}
                                         onChange={handleChange}
                                     />
                                 ) : (
@@ -118,7 +137,7 @@ export default function CuerpoRegistroUsuario() {
                                         maxLength={data.maxLength}
                                         minLength={data.minLength}
                                         required={data.required}
-                                        value={formData[data.name] || ""}
+                                        value={formData[data.name]}
                                         onChange={handleChange}
                                     />
                                 )}
