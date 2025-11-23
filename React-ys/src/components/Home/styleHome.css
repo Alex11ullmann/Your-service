@@ -1,0 +1,189 @@
+.fondo {
+    background-image: url("../../Images/fondoalba.png");
+    border: 1px solid blueviolet;
+    width: 95%; 
+    height: 40vw;
+    background-size: cover;
+    background-position: center;
+    text-transform: capitalize;
+    align-items: center;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    margin-left: 2.5%;
+}
+.contador {
+    padding: 5%;
+}
+.contador1 {
+    display: flex;
+    color: #3F47CC;
+    font-size:4dvw;
+}
+.contador1 h2 {
+    font-size: 1.2dvw;
+    color: black;
+    font-weight: bold;
+}
+.contadorexpertos {
+    width: 50%;
+    box-sizing: border-box;
+    border-right: 3px solid rgb(195, 193, 193);
+    border-width: 5px;
+    text-align: center;
+}
+.contadorusuarios {
+    width: 50%;
+    box-sizing: border-box;
+    text-align: center;
+}
+.container {
+    padding: 4%;
+}
+.elporque {
+    text-align: center;
+    font-family: 'Calibri Light', 'Calibri', sans-serif;
+    color: black;
+    font-size: 1.5vw;
+}
+.allIconos {
+    display: flex;
+    padding: 3%;
+    color: black;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+.text1 {
+    background-size: contain;
+    background-repeat: repeat;
+    width: 20%;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.5vw;
+}
+.iconosImg {
+    width: 20%;
+    padding: 2%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 10%;
+}
+.contenedorIntro {
+    position: relative; 
+    width: 95%;
+    margin-left: 2.5%;
+    height: 60vw;
+    display: flex;
+    justify-content:center;
+    align-items: center;      
+    background-color: #3F47CC;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+.imgFondo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    opacity: 0.4;
+    position: absolute; 
+    border-radius: 10px;
+}
+.introduccion{
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align:center;
+    color: white;
+}
+.h1intro{
+    font-size:3.5 dvw;
+    padding-top: 1%;
+    padding-bottom: 2%;
+    font-size: 3vw;
+    font-family: 'Calibri Light', Calibri, sans-serif;
+}
+.buscarProf {
+    display: inline-flex;
+    width: 50%;
+    height: 15%;
+    margin: 30px;
+    background-color: #3F47CC;; 
+    color: white;
+    font-size: 3dvw;
+    font-weight: bold;
+    justify-content: center; 
+    border-radius: 10px;
+    opacity: 0.6; 
+    align-items: center;
+    user-select: none;
+}
+.buscarProf a {
+    color: white;
+}
+.explicacion{
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    padding-top: 5%;
+    padding-bottom: 10px;
+}
+.pasos{
+    display: flex;
+    width: 80%;
+    opacity: 0.7; 
+}
+.textito{
+    display: flex;
+    margin: 10px;
+    position: relative;
+    font-size: 0.7vw;
+    margin-left: -100%;
+}
+.filtro{
+    background-size:cover;
+    width: 100%;
+    height: 10vw;
+    border-radius: 10px;
+    display: flex;
+    align-items:flex-end;
+    justify-content:flex-end;
+    text-align:center;
+    margin: 3%;
+}
+.siguiente{
+    background-size:cover;
+    width: 50%;
+    height: 5vw;
+    border-radius: 10px;
+    display: flex;
+    align-items:flex-end;
+    justify-content:flex-end;
+    text-align:center;
+    margin: 3%;
+    margin-left: 8%;
+    margin-top: 4.5vw;
+}
+.containerOficios{
+    width: 100%;
+    justify-items: center;
+    margin-top: 20vw;
+    margin-bottom: 3vw;
+}
+.containerCardOfi{
+    display: flex;
+    width: 95%;
+    height: 20vw;
+}
+.registroPagoAviso {
+    padding: 15px;
+    margin-top: 20px;
+    text-align: center;
+    height: 25vw;
+    border-top: 10px solid #3F47CC;
+    border-bottom: 10px solid #3F47CC; 
+}
