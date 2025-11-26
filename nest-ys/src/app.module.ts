@@ -4,23 +4,34 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { UsuarioModule } from './usuario/usuario.module';
+import { UsuarioModule } from "./usuario/usuario.module";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { PerfilModule } from "./perfil/perfil.module";
+import { OficioModule } from "./oficio/oficio.module";
 
 @Module({
-  imports: [ServeStaticModule.
-    forRoot
-    ({
-      rootPath:
-        join(
-          __dirname,
-          '..'
-          ,
-          'client'
-        )
+  imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client'),
     }),
-    UsuarioModule
+    TypeOrmModule.forRoot({
+      "type": "mysql",
+      "host": "localhost",
+      "port": 3306,
+      "username": "root",
+      "password": "123456789",
+      "database": "your_service",
+      "entities": [
+        "dist/**/*.entity{.ts,.js}"
+      ],
+      "synchronize": false,
+    }),
+
+    UsuarioModule,
+    PerfilModule,
+    OficioModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

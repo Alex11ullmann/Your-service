@@ -1,16 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Perfil } from "../../perfil/entities/perfil.entity";
 
-@Entity('usuarios')
+@Entity( "usuarios")
 export class Usuario {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn({ name: "id_usuarios" })
+  id_usuarios: number;
 
-  @Column({ length: 20 })
-  nombre: string;
+  @Column({ name: "usuario", type: "varchar", length: 50, unique: true })
+  usuario: string;
 
-  @Column({ unique: true })
-  email: string;
+  @Column({ name: "contraseña", type: "varchar", length: 100 })
+  contraseña: string;
 
-  @Column()
-  password: string;
+  @OneToMany(() => Perfil, (perfil) => perfil.usuario)
+  perfiles: Perfil[];
 }
