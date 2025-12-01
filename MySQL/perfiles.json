@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "nombreyapellido": "Ana Lopez",
+    "localidad": "Olavarria",
+    "direccion": "Necochea 123",
+    "telefono": 15546532,
+    "dni": 35666123,
+    "email": "analopez123@gmail.com",
+    "estrabajador": true
+  },
+  {
+    "id": 2,
+    "nombreyapellido": "Juan Perez",
+    "localidad": "Azul",
+    "direccion": "Dorrego 123",
+    "telefono": 15546531,
+    "dni": 35666111,
+    "email": "JuanPerez123@gmail.com",
+    "estrabajador": false
+  },
+  {
+    "id": 3,
+    "nombreyapellido": "German Gonzalez",
+    "localidad": "Olavarria",
+    "direccion": "Pringles 123",
+    "telefono": 15344534,
+    "dni": 35666222,
+    "email": "GermanGonzalez123@gmail.com",
+    "estrabajador": false
+  },
+  {
+    "id": 4,
+    "nombreyapellido": "Cintia Keseler",
+    "localidad": "Tandil",
+    "direccion": "Urquiza 123",
+    "telefono": 15546231,
+    "dni": 35661111,
+    "email": "CK123@gmail.com",
+    "estrabajador": true
+  }
+]

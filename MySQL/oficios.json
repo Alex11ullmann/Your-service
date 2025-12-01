@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "nombre_oficio": "Electricista",
+    "sobre_mi": "Soy Electricista hace 2 años"
+  },
+  {
+    "id": 4,
+    "nombre_oficio": "Pintora",
+    "sobre_mi": "Soy Pintora"
+  }
+]
