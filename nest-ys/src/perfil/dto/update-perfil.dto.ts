@@ -1,4 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { CreatePerfilDto } from "./create-perfil.dto";
+import { CreatePerfilDto } from './create-perfil.dto';
 
-export class UpdatePerfilDto extends PartialType( CreatePerfilDto ) {}
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+export class UpdatePerfilDto extends PartialType(CreatePerfilDto) {}

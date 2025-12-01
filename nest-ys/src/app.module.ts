@@ -14,12 +14,13 @@ import { OficioModule } from "./oficio/oficio.module";
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
     }),
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     TypeOrmModule.forRoot({
       "type": "mysql",
       "host": "localhost",
       "port": 3306,
       "username": "root",
-      "password": "123456789",
+      "password": "660431",
       "database": "your_service",
       "entities": [
         "dist/**/*.entity{.ts,.js}"
