@@ -8,6 +8,7 @@ import InputSoloLetras from "../Validaciones/ValidarSoloLetras";
 import InputSoloLetrasYEspacio from "../Validaciones/ValidarSoloLetrasYEspacios";
 import BotonPago from "../BotonPago/BotonPago.jsx";
 import ListaDeOficios from "../RegistroTrabajador/ListaDeOficios.jsx";
+import axios from "axios";
 
 export default function CuerpoRegistroTrabajador() {
   const navigate = useNavigate();
@@ -79,10 +80,8 @@ export default function CuerpoRegistroTrabajador() {
     }
 
     try {
-      localStorage.setItem(
-        "datosRegistroTrabajador",
-        JSON.stringify(formData)
-      );
+      // 🟦 Guardamos datos en localStorage
+      localStorage.setItem("datosRegistroTrabajador", JSON.stringify(formData));
 
       let perfilesExistentes =
         JSON.parse(localStorage.getItem("perfilesTrabajadores")) || [];
@@ -91,7 +90,7 @@ export default function CuerpoRegistroTrabajador() {
 
       const nuevoPerfil = {
         Usuario: formData.usuario,
-        nombreCompleto: formData.nombresYApellidos,
+        nombresYApellidos: formData.nombresYApellidos,
         oficios: formData.oficios,
         localidad: formData.localidad,
         telefono: formData.telefono,
@@ -117,11 +116,47 @@ export default function CuerpoRegistroTrabajador() {
       localStorage.setItem("tipoUsuario", "trabajador");
       window.dispatchEvent(new Event("storage"));
 
-      navigate("/perfil", { state: { esTrabajador: true } });
+      // Conexión al backend
+      try {
+        const datosUsuario = {
+          usuario: formData.usuario,
+          password: formData.password,
+        };
+
+        const resUsuario = await axios.post(
+          "http://localhost:3000/usuarios",
+          datosUsuario
+        );
+
+        const idUsuario = resUsuario.data.id;
+        console.log("Usuario creado, ID:", idUsuario);
+
+        const datosPerfil = {
+          nombreCompleto: formData.nombresYApellidos,
+          localidad: formData.localidad,
+          direccion: formData.direccion,
+          telefono: formData.telefono,
+          dni: formData.dni,
+          email: formData.email,
+          descripcion: formData.perfilProfesional,
+          oficios: formData.oficios,
+          id_usuario: idUsuario,
+        };
+
+        await axios.post("http://localhost:3000/perfiles", datosPerfil);
+
+        navigate("/perfil", { state: { esTrabajador: true } });
+
+      } catch (error) {
+        console.error("❌ Error al enviar al backend:", error);
+        alert("Ocurrió un error al registrar el usuario.");
+      }
     } catch (error) {
-      console.error("Error al guardar el perfil:", error);
+      console.error("❌ Error general en el registro:", error);
+      alert("Ocurrió un error al guardar el perfil.");
     }
   };
+
 
   const camposConValidacion = ["usuario", "password", "repPassword", "direccion"];
   const camposValidadosConEspacios = ["nombresYApellidos"];

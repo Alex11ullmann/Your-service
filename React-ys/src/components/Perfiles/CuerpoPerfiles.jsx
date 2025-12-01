@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./stylesPerfiles.css";
 import { InfoPerfiles } from "./InfoPerfiles";
 import { useNavigate } from "react-router-dom";
-
 import InputValidado from "../Validaciones/ValidarCaracteres";
 import InputSoloNumeros from "../Validaciones/ValidarSoloNumeros";
 import InputSoloLetras from "../Validaciones/ValidarSoloLetras";
 import InputSoloLetrasYEspacio from "../Validaciones/ValidarSoloLetrasYEspacios";
-
 import ListaDeOficios from "../RegistroTrabajador/ListaDeOficios.jsx";
+import axios from "axios";
 
 export default function CuerpoPerfiles() {
     const [formData, setFormData] = useState({});
@@ -22,42 +21,65 @@ export default function CuerpoPerfiles() {
     const camposSoloNumeros = ["telefono", "dni"];
     const camposValidadosConEspacios = ["nombresYApellidos"];
 
+    const [idPerfil, setIdPerfil] = useState(null);
+
+    // =========================================================
+    //      1. TRAER DATOS DEL BACK Y CARGAR EL FORMULARIO
+    // =========================================================
     useEffect(() => {
         const usuarioActivo = localStorage.getItem("usuarioOn") === "true";
-
         if (!usuarioActivo) {
             setFormData({});
             return;
         }
 
-        const clave = esTrabajadorReal
-            ? "datosRegistroTrabajador"
-            : "datosRegistro";
-
-        const datosGuardados = localStorage.getItem(clave);
-
-        if (!datosGuardados) {
-            setFormData({});
+        const idUsuario = localStorage.getItem("id_usuario");
+        if (!idUsuario) {
+            console.warn("No hay ID de usuario en storage.");
             return;
         }
 
-        const data = JSON.parse(datosGuardados);
+        const fetchData = async () => {
+            try {
+                const userRes = await axios.get(`http://localhost:3000/usuarios/${idUsuario}`);
+                const usuario = userRes.data;
 
-        if (!Array.isArray(data.oficios)) {
-            data.oficios = [];
-        }
+                const perfilRes = await axios.get(`http://localhost:3000/perfiles/usuario/${idUsuario}`);
+                const perfil = perfilRes.data;
 
-        setFormData(data);
+                setIdPerfil(perfil.id_perfil);
+
+                const datosPerfil = {
+                    usuario: usuario.usuario,
+                    password: usuario.password,
+                    nombresYApellidos: perfil.nombresYApellidos,
+                    localidad: perfil.localidad,
+                    direccion: perfil.direccion,
+                    telefono: perfil.telefono,
+                    dni: perfil.dni,
+                    email: perfil.email,
+                    oficios: perfil.oficios || [],
+                    perfilProfesional: perfil.descripcion || "",
+                };
+
+                setFormData(datosPerfil);
+
+            } catch (error) {
+                console.error("❌ Error al cargar datos del perfil:", error);
+            }
+        };
+
+        fetchData();
     }, []);
 
+
+    // =========================================================
+    //      ESTADOS Y MANEJO DE INPUTS
+    // =========================================================
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
-
-    // -------------------------
-    // OFICIOS – AGREGAR / QUITAR
-    // -------------------------
 
     const agregarOficio = (e) => {
         const nuevo = e.target.value;
@@ -78,125 +100,84 @@ export default function CuerpoPerfiles() {
         }));
     };
 
-    const handleGuardarCambios = () => {
 
-        for (const campo of InfoPerfiles) {
-            const valor = formData[campo.name] || "";
-            const min = campo.minLength;
-            const max = campo.maxLength;
+    // =========================================================
+    //      2. PATCH → GUARDAR CAMBIOS EN BACKEND
+    // =========================================================
+    const handleGuardarCambios = async () => {
+        try {
+            const idUsuario = localStorage.getItem("id_usuario");
 
-            if (campo.name === "usuario") continue;
-            if (campo.name === "oficios") {
-                if (esTrabajadorReal && formData.oficios.length === 0) {
-                    alert("⚠️ Debes tener al menos un oficio.");
-                    return;
-                }
-                continue;
-            }
+            // ----------------- PATCH usuario -----------------
+            await axios.patch(`http://localhost:3000/usuarios/${idUsuario}`, {
+                usuario: formData.usuario,
+                password: formData.password
+            });
 
-            if (valor.length < min) {
-                alert(`⚠️ El campo "${campo.datos}" debe tener al menos ${min} caracteres.`);
-                return;
-            }
-
-            if (valor.length > max) {
-                alert(`⚠️ El campo "${campo.datos}" no puede superar ${max} caracteres.`);
-                return;
-            }
-
-            if (["telefono", "dni"].includes(campo.name)) {
-                if (!/^\d+$/.test(valor)) {
-                    alert(`🚫 El campo "${campo.datos}" solo puede contener números.`);
-                    return;
-                }
-            }
-
-            if (["localidad"].includes(campo.name)) {
-                if (!/^[A-Za-zÁÉÍÓÚáéíóúñÑ]+$/.test(valor)) {
-                    alert(`🚫 El campo "${campo.datos}" solo puede contener letras.`);
-                    return;
-                }
-            }
-
-            if (campo.name === "nombresYApellidos") {
-                if (!/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/.test(valor)) {
-                    alert(`🚫 "${campo.datos}" solo puede contener letras y espacios.`);
-                    return;
-                }
-            }
-        }
-
-        const clave = esTrabajadorReal
-            ? "datosRegistroTrabajador"
-            : "datosRegistro";
-
-        localStorage.setItem(clave, JSON.stringify(formData));
-
-        if (esTrabajadorReal) {
-            const perfiles = JSON.parse(localStorage.getItem("perfilesTrabajadores")) || [];
-
-            const nuevoPerfil = {
-                Usuario: formData.usuario,
-                nombreCompleto: formData.nombresYApellidos,
+            // ----------------- PATCH perfil -----------------
+            await axios.patch(`http://localhost:3000/perfiles/${idPerfil}`, {
+                nombresYApellidos: formData.nombresYApellidos,
                 localidad: formData.localidad,
+                direccion: formData.direccion,
                 telefono: formData.telefono,
-                oficios: formData.oficios,
-                descripcion: formData.perfilProfesional || "",
-            };
+                dni: formData.dni,
+                email: formData.email,
+                descripcion: formData.perfilProfesional,
+                oficios: formData.oficios
+            });
 
-            const indice = perfiles.findIndex(
-                (p) => p.Usuario?.toLowerCase() === nuevoPerfil.Usuario.toLowerCase()
-            );
+            alert("✅ Cambios guardados correctamente");
+            window.location.reload();
 
-            if (indice !== -1) {
-                perfiles[indice] = { ...perfiles[indice], ...nuevoPerfil };
-            } else {
-                perfiles.push(nuevoPerfil);
-            }
-
-            localStorage.setItem("perfilesTrabajadores", JSON.stringify(perfiles));
+        } catch (error) {
+            console.error("❌ Error en PATCH:", error);
+            alert("No se pudieron guardar los cambios");
         }
-
-        alert("✅ Cambios guardados correctamente");
-        window.location.reload();
     };
 
-    const handleEliminarCuenta = () => {
-        const clave = esTrabajadorReal ? "datosRegistroTrabajador" : "datosRegistro";
+
+    // =========================================================
+    //      3. DELETE → ELIMINAR CUENTA EN BACKEND
+    // =========================================================
+    const handleEliminarCuenta = async () => {
         const inputPass = document.getElementById("inputEliminarPass").value.trim();
 
-        const datosGuardados = localStorage.getItem(clave);
-
-        if (!datosGuardados) {
-            alert("❌ No se encontró ninguna cuenta registrada.");
-            return;
-        }
-
-        const data = JSON.parse(datosGuardados);
-        const contraseniaGuardada = data.password || "";
-
         if (!inputPass) {
-            alert("⚠️ Por favor, ingrese su contraseña para continuar.");
+            alert("⚠️ Ingrese su contraseña para continuar");
             return;
         }
 
-        if (inputPass !== contraseniaGuardada) {
-            alert("❌ La contraseña no coincide.");
+        if (inputPass !== formData.password) {
+            alert("❌ Contraseña incorrecta");
             return;
         }
 
         const confirmar = window.confirm(
-            "⚠️ ¿Seguro que querés eliminar tu cuenta? Esta acción no se puede deshacer."
+            "⚠️ ¿Seguro que querés eliminar tu cuenta? Esta acción es permanente."
         );
 
-        if (confirmar) {
+        if (!confirmar) return;
+
+        try {
+            const idUsuario = localStorage.getItem("id_usuario");
+
+            await axios.delete(`http://localhost:3000/perfiles/${idPerfil}`);
+            await axios.delete(`http://localhost:3000/usuarios/${idUsuario}`);
+
             localStorage.clear();
-            window.dispatchEvent(new CustomEvent("app-session-changed", { detail: "logout" }));
-            alert("✅ Cuenta eliminada.");
+            alert("Cuenta eliminada correctamente");
             navigate("/");
+
+        } catch (error) {
+            console.error("❌ Error al eliminar cuenta:", error);
+            alert("No se pudo eliminar la cuenta");
         }
     };
 
+
+    // =========================================================
+    //      RENDER DEL FORMULARIO COMPLETO
+    // =========================================================
     return (
         <div className="cuerpo">
             <div className="contenido">
@@ -208,6 +189,7 @@ export default function CuerpoPerfiles() {
                     {InfoPerfiles.map((data) => {
                         if (data.name === "usuario") return null;
                         if (data.name === "oficios" && !esTrabajadorReal) return null;
+
                         if (data.name === "oficios" && esTrabajadorReal) {
                             return (
                                 <div className="modificar" key={data.name}>
@@ -285,7 +267,7 @@ export default function CuerpoPerfiles() {
                             <h4>Perfil Profesional:</h4>
                             <textarea
                                 id="textareaDescripcion"
-                                placeholder="📝 Min 20 caracts - Max 600 caracts"
+                                placeholder="📝 Min 20 - Max 600"
                                 minLength="20"
                                 maxLength="600"
                                 name="perfilProfesional"
@@ -305,14 +287,14 @@ export default function CuerpoPerfiles() {
                         </button>
 
                         <h3>Eliminar mi cuenta</h3>
-                        <input id="inputEliminarPass" type="password" placeholder="🔒 Ingrese su contraseña" />
+                        <input id="inputEliminarPass" type="password" placeholder="🔒 Contraseña" />
 
                         <button
                             id="btnEliminarCuenta"
                             style={{ background: "rgba(240, 91, 91, 1)" }}
                             onClick={handleEliminarCuenta}
                         >
-                            Eliminar cuenta ✅
+                            Eliminar cuenta ❌
                         </button>
                     </div>
 
