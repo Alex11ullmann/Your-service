@@ -9,9 +9,13 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { PerfilModule } from "./perfil/perfil.module";
 import { OficioModule } from "./oficio/oficio.module";
 import { TrabajadorOficioModule } from './trabajador-oficio/trabajador-oficio.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
     }),
@@ -23,7 +27,7 @@ import { TrabajadorOficioModule } from './trabajador-oficio/trabajador-oficio.mo
       "username": process.env.MYSQL_USER,
       "password": process.env.MYSQL_PASSWORD,
       "database": process.env.MYSQL_DB,
-      "entities": [ __dirname + 
+      "entities": [__dirname +
         "/**/**.entity.{js,ts}"
       ],
       "synchronize": true, //pasarlo a false luego de la primera vez que corremos todo
@@ -37,4 +41,4 @@ import { TrabajadorOficioModule } from './trabajador-oficio/trabajador-oficio.mo
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
