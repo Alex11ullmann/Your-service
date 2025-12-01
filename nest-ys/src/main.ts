@@ -15,10 +15,15 @@ async function bootstrap() {
             METHODS: 'GET,HEAD,PUT,PATCH,POST,DELETE',
             credentials: false,
   });
+  console.log("MYSQL_HOST:", process.env.MYSQL_HOST);
+console.log("MYSQL_USER:", process.env.MYSQL_USER);
+console.log("MYSQL_PASSWORD:", process.env.MYSQL_PASSWORD);
+console.log("MYSQL_DB:", process.env.MYSQL_DB);
+
 
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3000, '0.0.0.0');
 }
 bootstrap();
