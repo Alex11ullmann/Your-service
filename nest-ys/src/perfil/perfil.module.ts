@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Perfil } from './entities/perfil.entity';
 import { PerfilService } from './perfil.service';
 import { PerfilController } from './perfil.controller';
-import { Usuario } from 'src/usuario/entities/usuario.entity';
+import { Usuario } from '../usuario/entities/usuario.entity';
 import { Oficio } from '../oficio/entities/oficio.entity';
 
 @Module({
