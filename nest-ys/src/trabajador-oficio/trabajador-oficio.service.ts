@@ -4,8 +4,8 @@ import { Injectable, ConflictException, NotFoundException, InternalServerErrorEx
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { TrabajadorOficio } from './entities/trabajador-oficio.entity';
-import { Perfil } from 'src/perfil/entities/perfil.entity';
-import { Oficio } from 'src/oficio/entities/oficio.entity';
+import { Perfil } from '../perfil/entities/perfil.entity';
+import { Oficio } from '../oficio/entities/oficio.entity';
 
 @Injectable()
 export class TrabajadorOficioService {

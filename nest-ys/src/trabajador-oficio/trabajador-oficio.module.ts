@@ -4,8 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TrabajadorOficio } from './entities/trabajador-oficio.entity';
 import { TrabajadorOficioService } from './trabajador-oficio.service';
 import { TrabajadorOficioController } from './trabajador-oficio.controller';
-import { Perfil } from 'src/perfil/entities/perfil.entity';
-import { Oficio } from 'src/oficio/entities/oficio.entity';
+import { Perfil } from '../perfil/entities/perfil.entity';
+import { Oficio } from '../oficio/entities/oficio.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TrabajadorOficio, Perfil, Oficio])],
