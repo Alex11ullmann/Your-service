@@ -123,8 +123,10 @@ export default function CuerpoRegistroTrabajador() {
           password: formData.password,
         };
 
+        const API_URL = "https://your-service-3v1h.onrender.com";
+
         const resUsuario = await axios.post(
-          "http://https://your-service-3v1h.onrender.com/usuarios",
+          `${API_URL}/usuarios`,
           datosUsuario
         );
 
@@ -143,7 +145,7 @@ export default function CuerpoRegistroTrabajador() {
           id_usuario: idUsuario,
         };
 
-        await axios.post("https://your-service-3v1h.onrender.com/perfiles", datosPerfil);
+        await axios.post(`${API_URL}/perfiles`, datosPerfil);
 
         navigate("/perfil", { state: { esTrabajador: true } });
 
