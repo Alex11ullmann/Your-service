@@ -1,34 +1,47 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { OficioService } from "./oficio.service";
-import { CreateOficioDto } from "./dto/create-oficio.dto";
-import { UpdateOficioDto } from "./dto/update-oficio.dto";
+/* eslint-disable prettier/prettier */
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+} from '@nestjs/common';
+import { OficioService } from './oficio.service';
+import { CreateOficioDto } from './dto/create-oficio.dto';
+import { UpdateOficioDto } from './dto/update-oficio.dto';
+import { Oficio } from './entities/oficio.entity';
 
-@Controller("oficios")
+@Controller('oficios')
 export class OficioController {
-  constructor(private readonly oficioService: OficioService) {}
+  constructor(private readonly oficioService: OficioService) { }
 
   @Post()
-  create(@Body() dto: CreateOficioDto) {
+  private create(@Body() dto: CreateOficioDto): Promise<Oficio> {
     return this.oficioService.create(dto);
   }
 
   @Get()
-  findAll() {
+  findAll(): Promise<Oficio[]> {
     return this.oficioService.findAll();
   }
 
-  @Get(":id")
-  findOne(@Param("id") id: string) {
-    return this.oficioService.findOne(+id);
+  @Get(':id')
+  private findOne(@Param('id', ParseIntPipe) id: number): Promise<Oficio> {
+    return this.oficioService.findOne(id);
   }
 
-  @Patch(":id")
-  update(@Param("id") id: string, @Body() dto: UpdateOficioDto) {
-    return this.oficioService.update(+id, dto);
+  @Patch(':id')
+  private update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateOficioDto): Promise<Oficio> {
+    return this.oficioService.update(id, dto);
   }
 
-  @Delete(":id")
-  remove(@Param("id") id: string) {
-    return this.oficioService.remove(+id);
+
+  @Delete(':id')
+  private remove(@Param('id', ParseIntPipe) id: number): Promise<boolean> {
+    return this.oficioService.remove(id);
   }
+
 }

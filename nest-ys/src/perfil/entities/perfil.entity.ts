@@ -1,12 +1,13 @@
+/* eslint-disable prettier/prettier */
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
+  OneToMany,
   ManyToOne,
-  JoinColumn,
 } from 'typeorm';
-import { Usuario } from '../../usuario/entities/usuario.entity';
-import { Oficio } from '../../oficio/entities/oficio.entity';
+import { TrabajadorOficio } from 'src/trabajador-oficio/entities/trabajador-oficio.entity';
+import { Usuario } from 'src/usuario/entities/usuario.entity';
 
 @Entity('perfiles')
 export class Perfil {
@@ -22,23 +23,23 @@ export class Perfil {
   @Column({ name: 'direccion', type: 'varchar', length: 20 })
   direccion: string;
 
-  @Column({ name: 'telefono', type: 'int' })
-  telefono: number;
+  @Column({ name: 'telefono', type: 'varchar' })
+  telefono: string;
 
-  @Column({ name: 'dni', type: 'int', unique: true })
-  dni: number;
+  @Column({ name: 'dni', type: 'varchar', unique: true })
+  dni: string;
 
   @Column({ name: 'email', type: 'varchar', length: 30, unique: true })
   email: string;
 
   @Column({ name: 'estrabajador', type: 'boolean' })
   estrabajador: boolean;
-
-  @ManyToOne(() => Usuario, (usuario) => usuario.perfiles, { nullable: false })
-  @JoinColumn({ name: 'id_usuarios' })
+  
+  @ManyToOne(() => Usuario, (usuario) => usuario.perfiles, {
+    onDelete: 'CASCADE',
+  })
   usuario: Usuario;
 
-  @ManyToOne(() => Oficio, (oficio) => oficio.perfiles, { nullable: false })
-  @JoinColumn({ name: 'id_oficios' })
-  oficio: Oficio;
+  @OneToMany(() => TrabajadorOficio, (trabajo) => trabajo.perfil)
+  trabajos: TrabajadorOficio[];
 }

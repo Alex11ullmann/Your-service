@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Get,
@@ -6,6 +7,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { PerfilService } from './perfil.service';
 import { CreatePerfilDto } from './dto/create-perfil.dto';
@@ -17,27 +19,27 @@ export class PerfilController {
   constructor(private readonly perfilService: PerfilService) {}
 
   @Post()
-  async create(@Body() dto: CreatePerfilDto): Promise<Perfil> {
+  private create(@Body() dto: CreatePerfilDto): Promise<Perfil> {
     return this.perfilService.create(dto);
   }
 
   @Get()
-  findAll() {
+  findAll(): Promise<Perfil[]> {
     return this.perfilService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.perfilService.findOne(+id);
+  private findOne(@Param('id', ParseIntPipe) id: number): Promise<Perfil> {
+    return this.perfilService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() dto: UpdatePerfilDto) {
-    return this.perfilService.update(+id, dto);
+  private update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdatePerfilDto): Promise<Perfil> {
+    return this.perfilService.update(id, dto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.perfilService.remove(+id);
+  private remove(@Param('id', ParseIntPipe) id: number): Promise<boolean> {
+    return this.perfilService.remove(id);
   }
 }

@@ -7,6 +7,7 @@ import InputSoloNumeros from "../Validaciones/ValidarSoloNumeros";
 import InputSoloLetras from "../Validaciones/ValidarSoloLetras";
 import InputSoloLetrasYEspacio from "../Validaciones/ValidarSoloLetrasYEspacios";
 import BotonPago from "../BotonPago/BotonPago.jsx";
+import axios from "axios";
 
 export default function CuerpoRegistroUsuario() {
 
@@ -47,7 +48,7 @@ export default function CuerpoRegistroUsuario() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // VALIDAR PAGO DESDE EL COMPONENTE
@@ -65,17 +66,48 @@ export default function CuerpoRegistroUsuario() {
         }
 
         if (formData.password !== formData.repPassword) {
-            alert("⚠️ Las contraseñas no coinciden.");
+            alert("❌ Las contraseñas no coinciden.");
             return;
         }
+        try {
+            localStorage.setItem("datosRegistro", JSON.stringify(formData));
+            localStorage.setItem("tipoUsuario", "usuario");
+            localStorage.setItem("usuarioOn", "true");
+            window.dispatchEvent(new Event("storage"));
+            try {
+                const datosUsuario = {
+                    usuario: formData.usuario,
+                    password: formData.password,
+                };
 
-        // GUARDAR DATOS
-        localStorage.setItem("datosRegistro", JSON.stringify(formData));
-        localStorage.setItem("tipoUsuario", "usuario");
-        localStorage.setItem("usuarioOn", "true");
-        window.dispatchEvent(new Event("storage"));
-        navigate("/perfil", { state: { esTrabajador: false } });
+                const resUsuario = await axios.post("http://localhost:3000/usuarios", datosUsuario);
+
+                const idUsuario = resUsuario.data.id;
+                console.log("Usuario creado (ID):", idUsuario);
+
+                const datosPerfil = {
+                    nombresYApellidos: formData.nombresYApellidos,
+                    localidad: formData.localidad,
+                    direccion: formData.direccion,
+                    telefono: formData.telefono,
+                    dni: formData.dni,
+                    email: formData.email,
+                    id_usuario: idUsuario,
+                };
+                await axios.post("http://localhost:3000/perfiles", datosPerfil);
+
+                navigate("/perfil", { state: { esTrabajador: false } });
+
+            } catch (error) {
+                console.error("❌ Error al enviar datos al backend:", error);
+                alert("Ocurrió un error al registrar el usuario.");
+            }
+        } catch (error) {
+            console.error("❌ Error general en el registro:", error);
+            alert("Ocurrió un error al guardar los datos.");
+        }
     };
+
 
     const camposConValidacion = ["usuario", "password", "repPassword", "direccion"];
     const camposValidadosConEspacios = ["nombresYApellidos"];
@@ -167,7 +199,7 @@ export default function CuerpoRegistroUsuario() {
                             </div>
                         ))}
                     <div className="contenedor-pago">
-                        <BotonPago 
+                        <BotonPago
                             origen="usuario"
                             onPagoRealizado={(estado) => setPagoRealizado(estado)}
                         />

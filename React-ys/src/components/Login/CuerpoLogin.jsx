@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./styleLogin.css";
 import { Link, useNavigate } from "react-router-dom";
 import InputValidado from "../Validaciones/ValidarCaracteres";
+import axios from "axios";
 
 export default function CuerpoLogin() {
   const navigate = useNavigate();
@@ -10,200 +11,43 @@ export default function CuerpoLogin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const normalize = (s) => (typeof s === "string" ? s.trim().toLowerCase() : "");
-
-  const tryPasswordMatches = (record, passwordToCheck) => {
-    if (!record) return false;
-    const candidates = [];
-
-    if (record.password) candidates.push(record.password);
-
-    if (record.formData) {
-      if (record.formData.password) candidates.push(record.formData.password);
-    }
-
-    if (record.pass) candidates.push(record.pass);
-
-    return candidates.some(
-      (c) => typeof c !== "undefined" && String(c) === String(passwordToCheck)
-    );
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
-    const userLower = normalize(usuario);
-
-    const perfilesArray =
-      JSON.parse(localStorage.getItem("perfilesTrabajadores")) || [];
-
-    const datosTrabajadorRaw =
-      JSON.parse(localStorage.getItem("datosRegistroTrabajador")) || null;
-
-    const datosUsuarioRaw =
-      JSON.parse(localStorage.getItem("datosRegistro")) || null;
-
-    //------------------------------------------------------------
-    // 1) Buscar trabajador dentro del array perfilesTrabajadores
-    //------------------------------------------------------------
-    let encontradoTrabajador = null;
-
-    if (Array.isArray(perfilesArray) && perfilesArray.length > 0) {
-      encontradoTrabajador = perfilesArray.find((t) => {
-        const nombre = normalize(t.Usuario ?? "");
-        const matchUser = nombre === userLower;
-        const passOk = tryPasswordMatches(t, password);
-        return matchUser && passOk;
+    try {
+      const res = await axios.post("http://localhost:3000/auth/login", {
+        usuario,
+        password,
       });
-    }
 
-    //------------------------------------------------------------
-    // 2) Buscar datosRegistroTrabajador (un solo registro)
-    //------------------------------------------------------------
-    let matchDatosTrab = null;
+      const data = res.data;
 
-    if (!encontradoTrabajador && datosTrabajadorRaw) {
-      const form = datosTrabajadorRaw;
-      const nombre = normalize(
-        form?.Usuario || form?.usuario || form?.nombre || ""
-      );
-
-      const userMatch = nombre === userLower;
-      const passMatch =
-        tryPasswordMatches(datosTrabajadorRaw, password) ||
-        tryPasswordMatches(form, password);
-
-      if (userMatch && passMatch) {
-        matchDatosTrab = {
-          ...form,
-          imagenPerfil:
-            form.imagenPerfil ||
-            datosTrabajadorRaw?.formData?.imagenPerfil ||
-            datosTrabajadorRaw?.imagenPerfil ||
-            "",
-          imagenes: datosTrabajadorRaw.imagenes ?? form.imagenes ?? [],
-        };
-      }
-    }
-
-    //------------------------------------------------------------
-    // 3) Buscar datosRegistro (usuario común)
-    //------------------------------------------------------------
-    let matchDatosUsuario = null;
-
-    if (!encontradoTrabajador && !matchDatosTrab && datosUsuarioRaw) {
-      const form = datosUsuarioRaw;
-      const nombre = normalize(
-        form?.Usuario || form?.usuario || form?.nombre || ""
-      );
-
-      const userMatch = nombre === userLower;
-      const passMatch =
-        tryPasswordMatches(datosUsuarioRaw, password) ||
-        tryPasswordMatches(form, password);
-
-      if (userMatch && passMatch) {
-        matchDatosUsuario = {
-          ...form,
-          imagenPerfil:
-            form.imagenPerfil ||
-            datosUsuarioRaw?.formData?.imagenPerfil ||
-            datosUsuarioRaw?.imagenPerfil ||
-            "",
-          imagenes: datosUsuarioRaw.imagenes ?? form.imagenes ?? [],
-        };
-      }
-    }
-
-    //------------------------------------------------------------
-    // 4) ADMIN
-    //------------------------------------------------------------
-    if (usuario === "Admin" && password === "asdasd") {
-      localStorage.setItem("usuarioAdmin", "Admin");
-      localStorage.setItem("passAdmin", "asdasd");
-      alert("✅ Bienvenido Administrador");
-      navigate("/administrador");
-      return;
-    }
-
-    //------------------------------------------------------------
-    // 5) LOGIN TRABAJADOR (array)
-    //------------------------------------------------------------
-    if (encontradoTrabajador) {
+      // --------------------------
+      // GUARDAR SESIÓN
+      // --------------------------
       localStorage.setItem("usuarioOn", "true");
-      localStorage.setItem("tipoUsuario", "trabajador");
+      localStorage.setItem("id_usuario", data.id_usuario);
+      localStorage.setItem("tipoUsuario", data.tipoUsuario); 
+      localStorage.setItem("imagenPerfilActual", data.imagenPerfil || "");
 
-      const img =
-        encontradoTrabajador?.imagenPerfil ||
-        encontradoTrabajador?.formData?.imagenPerfil ||
-        "";
-
-      localStorage.setItem("imagenPerfilActual", img);
+      // Notificar a la app principal
       window.dispatchEvent(new Event("storage"));
 
+      // --------------------------
+      // REDIRECCIONAR
+      // --------------------------
       navigate("/perfil", {
         state: {
-          esTrabajador: true,
-          perfil: {
-            ...encontradoTrabajador,
-            imagenPerfil: img,
-            imagenes:
-              encontradoTrabajador.imagenes ??
-              encontradoTrabajador?.formData?.imagenes ??
-              [],
-          },
+          esTrabajador: data.tipoUsuario === "trabajador",
+          perfil: data,
         },
       });
-      return;
+
+    } catch (err) {
+      console.error("❌ Error de login:", err);
+      setError("❌ Usuario o contraseña incorrectos.");
     }
-
-    //------------------------------------------------------------
-    // 6) LOGIN datosRegistroTrabajador
-    //------------------------------------------------------------
-    if (matchDatosTrab) {
-      localStorage.setItem("usuarioOn", "true");
-      localStorage.setItem("tipoUsuario", "trabajador");
-
-      localStorage.setItem("imagenPerfilActual", matchDatosTrab.imagenPerfil);
-      window.dispatchEvent(new Event("storage"));
-
-      navigate("/perfil", {
-        state: {
-          esTrabajador: true,
-          perfil: matchDatosTrab,
-        },
-      });
-      return;
-    }
-
-    //------------------------------------------------------------
-    // 7) LOGIN datosRegistro usuario común
-    //------------------------------------------------------------
-    if (matchDatosUsuario) {
-      localStorage.setItem("usuarioOn", "true");
-      localStorage.setItem("tipoUsuario", "usuario");
-
-      localStorage.setItem(
-        "imagenPerfilActual",
-        matchDatosUsuario.imagenPerfil
-      );
-
-      window.dispatchEvent(new Event("storage"));
-
-      navigate("/perfil", {
-        state: {
-          esTrabajador: false,
-          perfil: matchDatosUsuario,
-        },
-      });
-      return;
-    }
-
-    //------------------------------------------------------------
-    // 8) ERROR
-    //------------------------------------------------------------
-    setError("❌ Usuario o contraseña incorrectos.");
   };
 
   return (
@@ -237,6 +81,7 @@ export default function CuerpoLogin() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+
             {error && <p className="mensaje-error-login">{error}</p>}
           </div>
 
@@ -244,21 +89,13 @@ export default function CuerpoLogin() {
             Ingresar
           </button>
 
-          <hr
-            style={{
-              marginTop: "1.5vw",
-              borderRight: "12vw inset black",
-              margin: "2px 0",
-            }}
-          />
+          <hr style={{ marginTop: "1.5vw", borderRight: "12vw inset black", margin: "2px 0" }} />
 
           <Link to="/registro-usuario" className="register-btn">
             Registro usuario común
           </Link>
 
-          <hr
-            style={{ borderRight: "12vw inset black", margin: "2px 0" }}
-          />
+          <hr style={{ borderRight: "12vw inset black", margin: "2px 0" }} />
 
           <Link to="/registro-trabajador" className="register-btn">
             Registro usuario trabajador

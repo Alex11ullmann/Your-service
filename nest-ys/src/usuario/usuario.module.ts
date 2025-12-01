@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsuarioService } from "./usuario.service";
-import { UsuarioController } from "./usuario.controller";
-import { Usuario } from "./entities/usuario.entity";
+import { UsuarioController } from './usuario.controller';
+import { UsuarioService } from './usuario.service';
+import { Usuario } from './entities/usuario.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature( [Usuario] )],
+  imports: [TypeOrmModule.forFeature([Usuario])],
   controllers: [UsuarioController],
   providers: [UsuarioService],
 })
