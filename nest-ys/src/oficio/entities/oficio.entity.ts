@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Perfil } from '../../perfil/entities/perfil.entity';
+import { TrabajadorOficio } from 'src/trabajador-oficio/entities/trabajador-oficio.entity';
 
 @Entity('oficios')
 export class Oficio {
@@ -12,6 +12,6 @@ export class Oficio {
   @Column({ name: 'sobre_mi', type: 'varchar', length: 600, nullable: true })
   sobre_mi: string | null;
 
-  @OneToMany(() => Perfil, (perfil) => perfil.oficio)
-  perfiles: Perfil[];
+  @OneToMany(() => TrabajadorOficio, (trabajo) => trabajo.oficio)
+  trabajadores: TrabajadorOficio[];
 }

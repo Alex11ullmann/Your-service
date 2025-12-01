@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable prettier/prettier */
 import { Type } from 'class-transformer';
-import { IsBoolean, IsEmail, IsInt, IsNotEmpty, IsString, Length, Max, Min } from 'class-validator';
+import { IsBoolean, IsEmail, IsInt, IsNotEmpty, IsString, Length } from 'class-validator';
 
 export class CreatePerfilDto {
   @IsString()
@@ -19,19 +19,15 @@ export class CreatePerfilDto {
   @Length(4, 20, { message: "El campo Direccion debe tener entre 4 y 20 caracteres" })
   direccion: string;
 
-  @IsInt()
+  @IsString()
   @IsNotEmpty()
-  @Type(() => Number)
-  @Min(8, { message: "El campo Telefono debe tener al menos 8 dígitos." })
-  @Max(10, { message: "El campo Telefono no puede tener más de 10 dígitos." })
-  telefono: number;
+  @Length(8, 10, { message: "El campo Telefono debe tener entre 8 y 10 dígitos." })
+  telefono: string;
 
-  @IsInt()
+  @IsString()
   @IsNotEmpty()
-  @Type(() => Number)
-  @Min(7, { message: "El campo DNI debe tener al menos 7 dígitos." })
-  @Max(8, { message: "El campo DNI no puede tener más de 8 dígitos." })
-  dni: number;
+  @Length(7, 8, { message: "El campo DNI debe tener entre 7 y 8 dígitos." })
+  dni: string;
 
   @IsEmail()
   @IsNotEmpty()
@@ -44,8 +40,4 @@ export class CreatePerfilDto {
   @IsInt()
   @Type(() => Number)
   id_usuarios: number;
-
-  @IsInt()
-  @Type(() => Number)
-  id_oficios: number;
 }

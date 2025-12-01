@@ -8,6 +8,7 @@ import { UsuarioModule } from "./usuario/usuario.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { PerfilModule } from "./perfil/perfil.module";
 import { OficioModule } from "./oficio/oficio.module";
+import { TrabajadorOficioModule } from './trabajador-oficio/trabajador-oficio.module';
 
 @Module({
   imports: [
@@ -25,12 +26,13 @@ import { OficioModule } from "./oficio/oficio.module";
       "entities": [
         "dist/**/*.entity{.ts,.js}"
       ],
-      "synchronize": false,
+      "synchronize": true,
     }),
 
     UsuarioModule,
     PerfilModule,
     OficioModule,
+    TrabajadorOficioModule,
   ],
   controllers: [AppController],
   providers: [AppService],

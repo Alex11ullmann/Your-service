@@ -31,7 +31,7 @@ export class OficioService {
   public async findAll(): Promise<Oficio[]> {
     try {
       const criterio: FindManyOptions<Oficio> = {
-        relations: ['perfiles'],
+        relations: ['trabajadores'],
       };
       return await this.oficioRepo.find(criterio);
     } catch (error: any) {
@@ -45,7 +45,7 @@ export class OficioService {
     try {
       const criterio: FindOneOptions<Oficio> = {
         where: { id_oficios },
-        relations: ['perfiles'],
+        relations: ['trabajadores'],
       };
       const oficio = await this.oficioRepo.findOne(criterio);
       if (!oficio) {
