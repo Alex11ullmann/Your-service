@@ -16,7 +16,7 @@ export default function CuerpoLogin() {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:3000/auth/login", {
+      const res = await axios.post("https://your-service-3v1h.onrender.com/auth/login", {
         usuario,
         password,
       });

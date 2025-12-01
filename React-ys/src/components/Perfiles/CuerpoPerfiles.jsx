@@ -41,10 +41,10 @@ export default function CuerpoPerfiles() {
 
         const fetchData = async () => {
             try {
-                const userRes = await axios.get(`http://localhost:3000/usuarios/${idUsuario}`);
+                const userRes = await axios.get(`hhttps://your-service-3v1h.onrender.com/usuarios/${idUsuario}`);
                 const usuario = userRes.data;
 
-                const perfilRes = await axios.get(`http://localhost:3000/perfiles/usuario/${idUsuario}`);
+                const perfilRes = await axios.get(`https://your-service-3v1h.onrender.com/perfiles/usuario/${idUsuario}`);
                 const perfil = perfilRes.data;
 
                 setIdPerfil(perfil.id_perfil);
@@ -109,13 +109,13 @@ export default function CuerpoPerfiles() {
             const idUsuario = localStorage.getItem("id_usuario");
 
             // ----------------- PATCH usuario -----------------
-            await axios.patch(`http://localhost:3000/usuarios/${idUsuario}`, {
+            await axios.patch(`https://your-service-3v1h.onrender.com/usuarios/${idUsuario}`, {
                 usuario: formData.usuario,
                 password: formData.password
             });
 
             // ----------------- PATCH perfil -----------------
-            await axios.patch(`http://localhost:3000/perfiles/${idPerfil}`, {
+            await axios.patch(`https://your-service-3v1h.onrender.com/perfiles/${idPerfil}`, {
                 nombresYApellidos: formData.nombresYApellidos,
                 localidad: formData.localidad,
                 direccion: formData.direccion,
@@ -161,8 +161,8 @@ export default function CuerpoPerfiles() {
         try {
             const idUsuario = localStorage.getItem("id_usuario");
 
-            await axios.delete(`http://localhost:3000/perfiles/${idPerfil}`);
-            await axios.delete(`http://localhost:3000/usuarios/${idUsuario}`);
+            await axios.delete(`https://your-service-3v1h.onrender.com/perfiles/${idPerfil}`);
+            await axios.delete(`https://your-service-3v1h.onrender.com/usuarios/${idUsuario}`);
 
             localStorage.clear();
             alert("Cuenta eliminada correctamente");

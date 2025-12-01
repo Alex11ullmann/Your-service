@@ -124,7 +124,7 @@ export default function CuerpoRegistroTrabajador() {
         };
 
         const resUsuario = await axios.post(
-          "http://localhost:3000/usuarios",
+          "http://https://your-service-3v1h.onrender.com/usuarios",
           datosUsuario
         );
 
@@ -143,7 +143,7 @@ export default function CuerpoRegistroTrabajador() {
           id_usuario: idUsuario,
         };
 
-        await axios.post("http://localhost:3000/perfiles", datosPerfil);
+        await axios.post("https://your-service-3v1h.onrender.com/perfiles", datosPerfil);
 
         navigate("/perfil", { state: { esTrabajador: true } });
 

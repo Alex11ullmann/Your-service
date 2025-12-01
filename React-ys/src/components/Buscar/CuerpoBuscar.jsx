@@ -8,7 +8,7 @@ export default function CuerpoBuscar() {
     useEffect(() => {
         async function fetchPerfiles() {
             try {
-                const res = await fetch("http://localhost:3000/perfiles");
+                const res = await fetch("https://your-service-3v1h.onrender.com/perfiles");
                 const data = await res.json();
 
                 // Filtrar solo trabajadores con oficios
