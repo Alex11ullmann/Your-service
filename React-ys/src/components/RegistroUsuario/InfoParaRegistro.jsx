@@ -98,17 +98,6 @@ export const infoParaRegistro = [
       required: true,
       label: "Email",
       helperText: "Ingrese su Email. Min 7 - Max 30. Ej: Yourservice@gmail.com"
-    },
-    {
-      id: "oficios",
-      type: "text",
-      name: "oficios",
-      placeholder: "Oficios",
-      maxLength: 15,
-      minLength: 4,
-      required: true,
-      label: "Oficios",
-      helperText: "Debe contener 1 letra mayuscula y letras minusculas. Min 4 - Max 15. Ej: Electricista"
     }
   ];
   

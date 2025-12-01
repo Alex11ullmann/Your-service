@@ -79,7 +79,7 @@ export default function CardsBuscar({ titulo, data = [], dataKey, mode = "dropdo
                   <div className="card-item-body">
                     <h4 className="card-item-nombre">{nombreCompleto}</h4>
                     {oficios && (
-                      <p className="card-item-oficio">🛠️ {oficios}</p>
+                      <p className="card-item-oficio">🛠️ {Array.isArray(oficios) ? oficios.join(", ") : oficios}</p>
                     )}
                     {localidad && (
                       <p className="card-item-localidad">🌇 {localidad}</p>

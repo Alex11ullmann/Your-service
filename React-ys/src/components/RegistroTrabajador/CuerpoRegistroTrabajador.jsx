@@ -7,23 +7,26 @@ import InputSoloNumeros from "../Validaciones/ValidarSoloNumeros";
 import InputSoloLetras from "../Validaciones/ValidarSoloLetras";
 import InputSoloLetrasYEspacio from "../Validaciones/ValidarSoloLetrasYEspacios";
 import BotonPago from "../BotonPago/BotonPago.jsx";
+import ListaDeOficios from "../RegistroTrabajador/ListaDeOficios.jsx";
 
 export default function CuerpoRegistroTrabajador() {
-
   const navigate = useNavigate();
   const [pagoRealizado, setPagoRealizado] = useState(false);
 
-  // Crear estructura base con campos vacíos
-  const camposIniciales = infoParaRegistro.reduce((acc, item) => {
-    acc[item.name] = "";
-    return acc;
-  }, {});
+  // Crear estructura base
+  const camposIniciales = {
+    ...infoParaRegistro.reduce((acc, item) => {
+      acc[item.name] = "";
+      return acc;
+    }, {}),
+    oficios: [],
+  };
 
   const [formData, setFormData] = useState(camposIniciales);
 
-  const camposEsperados = infoParaRegistro.map(item => item.name);
+  const camposEsperados = infoParaRegistro.map((item) => item.name);
 
-  // Resetear storage y limpiar formulario al entrar
+  // Resetear datos al cargar
   useEffect(() => {
     localStorage.setItem("pagoRegistro", "");
     localStorage.setItem("pagoOrigen", "");
@@ -38,15 +41,31 @@ export default function CuerpoRegistroTrabajador() {
     }));
   };
 
-  const handleGuardar = async () => {
+  // Manejo de oficios
+  const agregarOficio = (e) => {
+    const oficio = e.target.value;
+    if (oficio && !formData.oficios.includes(oficio)) {
+      setFormData((prev) => ({
+        ...prev,
+        oficios: [...prev.oficios, oficio],
+      }));
+    }
+  };
 
-    // VALIDACIÓN DE PAGO
+  const eliminarOficio = (oficio) => {
+    setFormData((prev) => ({
+      ...prev,
+      oficios: prev.oficios.filter((o) => o !== oficio),
+    }));
+  };
+
+  // GUARDAR DATOS
+  const handleGuardar = async () => {
     if (!pagoRealizado) {
       alert("⚠️ Debes realizar el pago antes de registrarte.");
       return;
     }
 
-    // VALIDACIÓN DE CAMPOS VACÍOS
     for (let key of camposEsperados) {
       if (!formData[key] || String(formData[key]).trim() === "") {
         alert("⚠️ Por favor completa todos los campos correctamente.");
@@ -54,39 +73,44 @@ export default function CuerpoRegistroTrabajador() {
       }
     }
 
-    // VALIDACIÓN DE CONTRASEÑAS
     if (formData.password !== formData.repPassword) {
       alert("❌ Las contraseñas no coinciden.");
       return;
     }
 
     try {
-      const datosAGuardar = { ...formData };
-
       localStorage.setItem(
         "datosRegistroTrabajador",
-        JSON.stringify(datosAGuardar)
+        JSON.stringify(formData)
       );
 
-      const perfilesExistentes =
+      let perfilesExistentes =
         JSON.parse(localStorage.getItem("perfilesTrabajadores")) || [];
 
+      perfilesExistentes = perfilesExistentes.filter((p) => p.Usuario);
+
       const nuevoPerfil = {
-        nombreCompleto: formData.nombresYApellidos || "Sin nombre",
-        oficios: formData.oficios || "No especificado",
-        localidad: formData.localidad || "No indicada",
-        telefono: formData.telefono || "No informado",
+        Usuario: formData.usuario,
+        nombreCompleto: formData.nombresYApellidos,
+        oficios: formData.oficios,
+        localidad: formData.localidad,
+        telefono: formData.telefono,
+        descripcion: formData.perfilProfesional || "",
       };
 
-
-      const actualizado = perfilesExistentes.filter(
-        (p) => p.nombreCompleto !== nuevoPerfil.nombreCompleto
+      const indice = perfilesExistentes.findIndex(
+        (p) => p.Usuario === nuevoPerfil.Usuario
       );
-      actualizado.push(nuevoPerfil);
+
+      if (indice !== -1) {
+        perfilesExistentes[indice] = nuevoPerfil;
+      } else {
+        perfilesExistentes.push(nuevoPerfil);
+      }
 
       localStorage.setItem(
         "perfilesTrabajadores",
-        JSON.stringify(actualizado)
+        JSON.stringify(perfilesExistentes)
       );
 
       localStorage.setItem("usuarioOn", "true");
@@ -94,21 +118,14 @@ export default function CuerpoRegistroTrabajador() {
       window.dispatchEvent(new Event("storage"));
 
       navigate("/perfil", { state: { esTrabajador: true } });
-
     } catch (error) {
       console.error("Error al guardar el perfil:", error);
     }
   };
 
-  const camposConValidacion = [
-    "usuario",
-    "password",
-    "repPassword",
-    "direccion"
-  ];
-
+  const camposConValidacion = ["usuario", "password", "repPassword", "direccion"];
   const camposValidadosConEspacios = ["nombresYApellidos"];
-  const camposSoloLetras = ["localidad", "oficios"];
+  const camposSoloLetras = ["localidad"];
   const camposSoloNumeros = ["telefono", "dni"];
 
   return (
@@ -119,6 +136,7 @@ export default function CuerpoRegistroTrabajador() {
 
         <div className="logRegistro-container">
           <h2>Registrarse</h2>
+
           <form>
             {infoParaRegistro.map((data) => (
               <div className="input-group" key={data.id}>
@@ -137,7 +155,9 @@ export default function CuerpoRegistroTrabajador() {
                     value={formData[data.name]}
                     onChange={handleChange}
                     passwordValue={
-                      data.name === "repPassword" ? formData["password"] : null
+                      data.name === "repPassword"
+                        ? formData["password"]
+                        : null
                     }
                   />
                 ) : camposSoloNumeros.includes(data.name) ? (
@@ -199,6 +219,36 @@ export default function CuerpoRegistroTrabajador() {
                 )}
               </div>
             ))}
+
+            {/* ------------------------------
+                BLOQUE DE OFICIOS (AHORA BIEN UBICADO)
+            ------------------------------ */}
+            <div className="input-group">
+              <label>Oficios</label>
+
+              <select className="datos" onChange={agregarOficio}>
+                <option value="">Seleccionar oficio...</option>
+                {ListaDeOficios.map((oficio) => (
+                  <option key={oficio} value={oficio}>
+                    {oficio}
+                  </option>
+                ))}
+              </select>
+
+              <div className="contenedor-etiquetas">
+                {formData.oficios.map((o) => (
+                  <span
+                    key={o}
+                    className="tag-oficio"
+                    onClick={() => eliminarOficio(o)}
+                  >
+                    {o} ✕
+                  </span>
+                ))}
+              </div>
+
+              <p className="contenidoInputs">Puede seleccionar varios oficios.</p>
+            </div>
           </form>
         </div>
       </div>

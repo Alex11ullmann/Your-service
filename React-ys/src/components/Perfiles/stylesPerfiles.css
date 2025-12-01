@@ -61,6 +61,13 @@ h2{
     gap: 4rem;
     justify-content: center;
     width: 100%;
+    flex-wrap: wrap;
+}
+.modificar .contenedor-etiquetas {
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 2vw;
+    margin-top: -5vw;
 }
 .modificar h4 {
     width: 30%;

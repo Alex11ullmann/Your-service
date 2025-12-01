@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./stylesPerfiles.css";
 import { InfoPerfiles } from "./InfoPerfiles";
 import { useNavigate } from "react-router-dom";
+
 import InputValidado from "../Validaciones/ValidarCaracteres";
 import InputSoloNumeros from "../Validaciones/ValidarSoloNumeros";
 import InputSoloLetras from "../Validaciones/ValidarSoloLetras";
 import InputSoloLetrasYEspacio from "../Validaciones/ValidarSoloLetrasYEspacios";
+
+import ListaDeOficios from "../RegistroTrabajador/ListaDeOficios.jsx";
 
 export default function CuerpoPerfiles() {
     const [formData, setFormData] = useState({});
@@ -15,7 +18,7 @@ export default function CuerpoPerfiles() {
     const esTrabajadorReal = tipoUsuario === "trabajador";
 
     const camposConValidacion = ["direccion"];
-    const camposSoloLetras = ["localidad", "oficios"];
+    const camposSoloLetras = ["localidad"];
     const camposSoloNumeros = ["telefono", "dni"];
     const camposValidadosConEspacios = ["nombresYApellidos"];
 
@@ -39,12 +42,40 @@ export default function CuerpoPerfiles() {
         }
 
         const data = JSON.parse(datosGuardados);
+
+        if (!Array.isArray(data.oficios)) {
+            data.oficios = [];
+        }
+
         setFormData(data);
     }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    // -------------------------
+    // OFICIOS – AGREGAR / QUITAR
+    // -------------------------
+
+    const agregarOficio = (e) => {
+        const nuevo = e.target.value;
+
+        if (!nuevo) return;
+        if (formData.oficios.includes(nuevo)) return;
+
+        setFormData((prev) => ({
+            ...prev,
+            oficios: [...prev.oficios, nuevo],
+        }));
+    };
+
+    const eliminarOficio = (item) => {
+        setFormData((prev) => ({
+            ...prev,
+            oficios: prev.oficios.filter((o) => o !== item),
+        }));
     };
 
     const handleGuardarCambios = () => {
@@ -55,7 +86,13 @@ export default function CuerpoPerfiles() {
             const max = campo.maxLength;
 
             if (campo.name === "usuario") continue;
-            if (campo.name === "oficios" && !esTrabajadorReal) continue;
+            if (campo.name === "oficios") {
+                if (esTrabajadorReal && formData.oficios.length === 0) {
+                    alert("⚠️ Debes tener al menos un oficio.");
+                    return;
+                }
+                continue;
+            }
 
             if (valor.length < min) {
                 alert(`⚠️ El campo "${campo.datos}" debe tener al menos ${min} caracteres.`);
@@ -74,7 +111,7 @@ export default function CuerpoPerfiles() {
                 }
             }
 
-            if (["localidad", "oficios"].includes(campo.name)) {
+            if (["localidad"].includes(campo.name)) {
                 if (!/^[A-Za-zÁÉÍÓÚáéíóúñÑ]+$/.test(valor)) {
                     alert(`🚫 El campo "${campo.datos}" solo puede contener letras.`);
                     return;
@@ -104,18 +141,20 @@ export default function CuerpoPerfiles() {
                 localidad: formData.localidad,
                 telefono: formData.telefono,
                 oficios: formData.oficios,
+                descripcion: formData.perfilProfesional || "",
             };
 
-            const actualizados = perfiles.filter(
-                (p) => p.Usuario?.toLowerCase() !== nuevoPerfil.Usuario.toLowerCase()
+            const indice = perfiles.findIndex(
+                (p) => p.Usuario?.toLowerCase() === nuevoPerfil.Usuario.toLowerCase()
             );
 
-            actualizados.push(nuevoPerfil);
+            if (indice !== -1) {
+                perfiles[indice] = { ...perfiles[indice], ...nuevoPerfil };
+            } else {
+                perfiles.push(nuevoPerfil);
+            }
 
-            localStorage.setItem(
-                "perfilesTrabajadores",
-                JSON.stringify(actualizados)
-            );
+            localStorage.setItem("perfilesTrabajadores", JSON.stringify(perfiles));
         }
 
         alert("✅ Cambios guardados correctamente");
@@ -151,19 +190,11 @@ export default function CuerpoPerfiles() {
         );
 
         if (confirmar) {
-
-            // BORRAR TODOS LOS DATOS COMO EN LOGOUT
             localStorage.clear();
-
-            // AVISAR A TODA LA APP QUE LA SESIÓN SE CERRÓ
             window.dispatchEvent(new CustomEvent("app-session-changed", { detail: "logout" }));
-
             alert("✅ Cuenta eliminada.");
-
-            // REDIRIGIR
             navigate("/");
         }
-
     };
 
     return (
@@ -177,6 +208,38 @@ export default function CuerpoPerfiles() {
                     {InfoPerfiles.map((data) => {
                         if (data.name === "usuario") return null;
                         if (data.name === "oficios" && !esTrabajadorReal) return null;
+                        if (data.name === "oficios" && esTrabajadorReal) {
+                            return (
+                                <div className="modificar" key={data.name}>
+                                    <h4>{data.datos}:</h4>
+
+                                    <select
+                                        className="datos"
+                                        onChange={agregarOficio}
+                                        defaultValue=""
+                                    >
+                                        <option value="">Seleccionar oficio...</option>
+                                        {ListaDeOficios.map((of) => (
+                                            <option key={of} value={of}>
+                                                {of}
+                                            </option>
+                                        ))}
+                                    </select>
+
+                                    <div className="contenedor-etiquetas">
+                                        {formData.oficios?.map((o) => (
+                                            <span
+                                                key={o}
+                                                className="tag-oficio"
+                                                onClick={() => eliminarOficio(o)}
+                                            >
+                                                {o} ✕
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            );
+                        }
 
                         let InputComponent = null;
 

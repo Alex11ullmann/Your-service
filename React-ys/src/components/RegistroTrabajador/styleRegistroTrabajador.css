@@ -239,3 +239,27 @@ h3 {
     display: flex;
     justify-content: center;
 }
+.contenedor-etiquetas {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.datos {
+    border: 1px solid rgb(216, 213, 213);
+    color: rgb(223, 220, 220);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.4);
+}
+.tag-oficio {
+  background: #abacac;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.tag-oficio:hover {
+  background: #0f4fa8;
+}
