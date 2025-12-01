@@ -77,6 +77,10 @@ Actualmente:
 
 - Este alcance sirve como guía para que cualquier desarrollador pueda retomar el proyecto en el futuro.
 
+- Darle funcionalidad a olvide mi contraseña.
+
+- Darle funcionalidad a contador de cuentas creadas y de trabajadores creados
+
 ## 📝 Licencia
 
 Este proyecto está licenciado bajo la licencia **GPL**.  
