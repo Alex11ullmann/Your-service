@@ -111,7 +111,7 @@ export default function CuerpoRegistroTrabajador() {
         "perfilesTrabajadores",
         JSON.stringify(perfilesExistentes)
       );
-
+      console.log ('los datos guardados son ', nuevoPerfil)
       localStorage.setItem("usuarioOn", "true");
       localStorage.setItem("tipoUsuario", "trabajador");
       window.dispatchEvent(new Event("storage"));
