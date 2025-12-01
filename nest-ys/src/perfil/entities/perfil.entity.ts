@@ -6,8 +6,8 @@ import {
   OneToMany,
   ManyToOne,
 } from 'typeorm';
-import { TrabajadorOficio } from 'src/trabajador-oficio/entities/trabajador-oficio.entity';
-import { Usuario } from 'src/usuario/entities/usuario.entity';
+import { TrabajadorOficio } from '../../trabajador-oficio/entities/trabajador-oficio.entity';
+import { Usuario } from '../../usuario/entities/usuario.entity';
 
 @Entity('perfiles')
 export class Perfil {

@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Perfil } from 'src/perfil/entities/perfil.entity';
-import { Oficio } from 'src/oficio/entities/oficio.entity';
+import { Perfil } from '../../perfil/entities/perfil.entity';
+import { Oficio } from '../../oficio/entities/oficio.entity';
 
 @Entity('trabajador_oficio')
 export class TrabajadorOficio {
