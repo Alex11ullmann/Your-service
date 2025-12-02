@@ -219,9 +219,7 @@ export default function CuerpoRegistroTrabajador() {
               </div>
             ))}
 
-            {/* ------------------------------
-                BLOQUE DE OFICIOS (AHORA BIEN UBICADO)
-            ------------------------------ */}
+            {/* SECCION DE OFICIOS */}
             <div className="input-group">
               <label>Oficios</label>
 
