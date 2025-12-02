@@ -116,7 +116,7 @@ export default function CuerpoRegistroTrabajador() {
       });
 
     } catch (error) {
-      console.error("❌ Error en el registro:", error);
+      console.error("❌ Error en el registro:", error.response?.data);
       alert("Ocurrió un error al registrar el usuario y su perfil.", error);
     }
   };
