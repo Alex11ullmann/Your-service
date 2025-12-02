@@ -39,7 +39,7 @@ export class PerfilService {
       if (mail) throw new ConflictException('Email ya existe');
 
       const usuario = await this.usuarioRepo.findOne({
-        where: { id_usuarios: dto.id_usuarios },
+        where: { id_usuario: dto.id_usuario },
       });
       if (!usuario) throw new BadRequestException('Usuario no existe');
 
@@ -92,9 +92,9 @@ export class PerfilService {
     try {
       const perfil = await this.findOne(id_perfiles);
 
-      if (dto.id_usuarios) {
+      if (dto.id_usuario) {
         const usuario = await this.usuarioRepo.findOne({
-          where: { id_usuarios: dto.id_usuarios },
+          where: { id_usuario: dto.id_usuario },
         });
         if (!usuario) throw new BadRequestException('Usuario no existe');
 

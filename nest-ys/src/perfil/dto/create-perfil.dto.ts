@@ -39,5 +39,5 @@ export class CreatePerfilDto {
 
   @IsInt()
   @Type(() => Number)
-  id_usuarios: number;
+  id_usuario: number;
 }

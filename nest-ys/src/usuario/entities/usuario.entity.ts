@@ -3,8 +3,8 @@ import { Perfil } from '../../perfil/entities/perfil.entity';
 
 @Entity('usuarios')
 export class Usuario {
-  @PrimaryGeneratedColumn({ name: 'id_usuarios' })
-  id_usuarios: number;
+  @PrimaryGeneratedColumn({ name: 'id_usuario' })
+  id_usuario: number;
 
   @Column({ name: 'usuario', type: 'varchar', length: 12, unique: true })
   usuario: string;

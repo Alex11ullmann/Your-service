@@ -57,16 +57,16 @@ export class UsuarioService {
     }
   }
 
-  public async findOne(id_usuarios: number): Promise<Usuario> {
+  public async findOne(id_usuario: number): Promise<Usuario> {
     try {
       const criterio: FindOneOptions<Usuario> = {
-        where: { id_usuarios },
+        where: { id_usuario },
         relations: ['perfiles'],
       };
       const usuario = await this.usuarioRepo.findOne(criterio);
       if (!usuario) {
         throw new NotFoundException(
-          `Usuario con id ${id_usuarios} no encontrado`,
+          `Usuario con id ${id_usuario} no encontrado`,
         );
       }
       return usuario;
@@ -78,9 +78,9 @@ export class UsuarioService {
     }
   }
 
-  public async update(id_usuarios: number, dto: UpdateUsuarioDto): Promise<Usuario> {
+  public async update(id_usuario: number, dto: UpdateUsuarioDto): Promise<Usuario> {
     try {
-      const usuario = await this.findOne(id_usuarios);
+      const usuario = await this.findOne(id_usuario);
       Object.assign(usuario, dto);
       return await this.usuarioRepo.save(usuario);
     } catch (error: any) {
@@ -94,9 +94,9 @@ export class UsuarioService {
     }
   }
 
-  public async remove(id_usuarios: number): Promise<boolean> {
+  public async remove(id_usuario: number): Promise<boolean> {
     try {
-      const usuario = await this.findOne(id_usuarios);
+      const usuario = await this.findOne(id_usuario);
       await this.usuarioRepo.remove(usuario);
       return true;
     } catch (error: any) {
