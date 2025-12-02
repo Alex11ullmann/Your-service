@@ -30,7 +30,7 @@ import { ConfigModule } from '@nestjs/config';
       "entities": [__dirname +
         "/**/**.entity.{js,ts}"
       ],
-      "synchronize": false, //pasarlo a false luego de la primera vez que corremos todo
+      "synchronize": true, //pasarlo a false luego de la primera vez que corremos todo
     }),
 
     UsuarioModule,
