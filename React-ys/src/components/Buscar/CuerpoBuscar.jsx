@@ -20,7 +20,7 @@ export default function CuerpoBuscar() {
 
                 setPerfiles(filtrados);
             } catch (err) {
-                console.error("Error cargando perfiles:", err);
+                console.error("❌ Error cargando perfiles:", err);
             }
         }
 

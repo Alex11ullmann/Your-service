@@ -14,29 +14,22 @@ export default function CuerpoLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-
     try {
       const res = await axios.post("https://your-service-3v1h.onrender.com/auth/login", {
         usuario,
         password,
       });
-
       const data = res.data;
 
-      // --------------------------
       // GUARDAR SESIÓN
-      // --------------------------
       localStorage.setItem("usuarioOn", "true");
       localStorage.setItem("id_usuario", data.id_usuario);
       localStorage.setItem("tipoUsuario", data.tipoUsuario); 
-      localStorage.setItem("imagenPerfilActual", data.imagenPerfil || "");
 
       // Notificar a la app principal
       window.dispatchEvent(new Event("storage"));
 
-      // --------------------------
       // REDIRECCIONAR
-      // --------------------------
       navigate("/perfil", {
         state: {
           esTrabajador: data.tipoUsuario === "trabajador",

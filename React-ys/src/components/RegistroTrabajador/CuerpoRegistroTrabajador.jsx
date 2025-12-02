@@ -65,7 +65,6 @@ export default function CuerpoRegistroTrabajador() {
       alert("⚠️ Debes realizar el pago antes de registrarte.");
       return;
     }
-
     // Validar campos vacíos
     for (let key of camposEsperados) {
       if (!formData[key] || String(formData[key]).trim() === "") {
@@ -73,7 +72,6 @@ export default function CuerpoRegistroTrabajador() {
         return;
       }
     }
-
     // Validar contraseña
     if (formData.password !== formData.repPassword) {
       alert("❌ Las contraseñas no coinciden.");
@@ -109,7 +107,7 @@ export default function CuerpoRegistroTrabajador() {
 
       await axios.post(`${API_URL}/perfiles`, datosPerfil);
 
-      // 3️⃣ Guardar solo el estado de sesión (NO perfiles)
+      // 3️⃣ Guardar solo el estado de sesión
       localStorage.setItem("tipoUsuario", "trabajador");
       localStorage.setItem("usuarioOn", "true");
 
@@ -120,11 +118,9 @@ export default function CuerpoRegistroTrabajador() {
 
     } catch (error) {
       console.error("❌ Error en el registro:", error);
-      alert("Ocurrió un error al registrar el usuario y su perfil.");
+      alert("Ocurrió un error al registrar el usuario y su perfil.", error);
     }
   };
-
-
 
   const camposConValidacion = ["usuario", "password", "repPassword", "direccion"];
   const camposValidadosConEspacios = ["nombresYApellidos"];

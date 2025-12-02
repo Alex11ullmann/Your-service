@@ -23,9 +23,7 @@ export default function CuerpoPerfiles() {
 
     const [idPerfil, setIdPerfil] = useState(null);
 
-    // =========================================================
     //      1. TRAER DATOS DEL BACK Y CARGAR EL FORMULARIO
-    // =========================================================
     useEffect(() => {
         const usuarioActivo = localStorage.getItem("usuarioOn") === "true";
         if (!usuarioActivo) {
@@ -72,10 +70,7 @@ export default function CuerpoPerfiles() {
         fetchData();
     }, []);
 
-
-    // =========================================================
     //      ESTADOS Y MANEJO DE INPUTS
-    // =========================================================
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
@@ -100,21 +95,16 @@ export default function CuerpoPerfiles() {
         }));
     };
 
-
-    // =========================================================
     //      2. PATCH → GUARDAR CAMBIOS EN BACKEND
-    // =========================================================
     const handleGuardarCambios = async () => {
         try {
             const idUsuario = localStorage.getItem("id_usuario");
 
-            // ----------------- PATCH usuario -----------------
             await axios.patch(`https://your-service-3v1h.onrender.com/usuarios/${idUsuario}`, {
                 usuario: formData.usuario,
                 password: formData.password
             });
 
-            // ----------------- PATCH perfil -----------------
             await axios.patch(`https://your-service-3v1h.onrender.com/perfiles/${idPerfil}`, {
                 nombresYApellidos: formData.nombresYApellidos,
                 localidad: formData.localidad,
@@ -135,10 +125,7 @@ export default function CuerpoPerfiles() {
         }
     };
 
-
-    // =========================================================
     //      3. DELETE → ELIMINAR CUENTA EN BACKEND
-    // =========================================================
     const handleEliminarCuenta = async () => {
         const inputPass = document.getElementById("inputEliminarPass").value.trim();
 
@@ -174,10 +161,6 @@ export default function CuerpoPerfiles() {
         }
     };
 
-
-    // =========================================================
-    //      RENDER DEL FORMULARIO COMPLETO
-    // =========================================================
     return (
         <div className="cuerpo">
             <div className="contenido">
