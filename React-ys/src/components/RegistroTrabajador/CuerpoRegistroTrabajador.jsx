@@ -31,7 +31,6 @@ export default function CuerpoRegistroTrabajador() {
   useEffect(() => {
     localStorage.setItem("pagoRegistro", "");
     localStorage.setItem("pagoOrigen", "");
-    localStorage.removeItem("datosRegistroTrabajador");
   }, []);
 
   const handleChange = (e) => {
@@ -80,7 +79,7 @@ export default function CuerpoRegistroTrabajador() {
     }
 
     try {
-      // 🟦 Guardamos datos en localStorage
+      // Guardamos datos en localStorage
       localStorage.setItem("datosRegistroTrabajador", JSON.stringify(formData));
 
       let perfilesExistentes =
@@ -111,7 +110,6 @@ export default function CuerpoRegistroTrabajador() {
         "perfilesTrabajadores",
         JSON.stringify(perfilesExistentes)
       );
-      console.log ('los datos guardados son ', nuevoPerfil)
       localStorage.setItem("usuarioOn", "true");
       localStorage.setItem("tipoUsuario", "trabajador");
       window.dispatchEvent(new Event("storage"));

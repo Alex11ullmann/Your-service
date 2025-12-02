@@ -29,7 +29,6 @@ export default function CuerpoRegistroUsuario() {
     useEffect(() => {
         localStorage.setItem("pagoRegistro", "");
         localStorage.setItem("pagoOrigen", "");
-        localStorage.removeItem("datosRegistro");
     }, []);
 
     useEffect(() => {
