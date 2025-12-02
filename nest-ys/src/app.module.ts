@@ -17,7 +17,7 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'client'),
+      rootPath: join(__dirname, '..', 'client', 'dist'),
     }),
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     TypeOrmModule.forRoot({
