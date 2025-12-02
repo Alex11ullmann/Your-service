@@ -9,7 +9,7 @@ export class Usuario {
   @Column({ name: 'usuario', type: 'varchar', length: 12, unique: true })
   usuario: string;
 
-  @Column({ name: 'contraseña', type: 'varchar', length: 20 })
+  @Column({ name: 'password', type: 'varchar', length: 20 })
   password: string;
 
   @OneToMany(() => Perfil, (perfil) => perfil.usuario)
