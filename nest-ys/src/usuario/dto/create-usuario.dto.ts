@@ -11,5 +11,5 @@ export class CreateUsuarioDto {
   @IsString()
   @IsNotEmpty({ message: 'La contraseña es obligatoria' })
   @Length(6, 20, { message: 'La contraseña debe tener entre 6 y 20 caracteres' })
-  contraseña: string;
+  password: string;
 }
