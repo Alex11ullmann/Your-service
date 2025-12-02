@@ -66,6 +66,7 @@ export default function CuerpoRegistroTrabajador() {
       return;
     }
 
+    // Validar campos vacíos
     for (let key of camposEsperados) {
       if (!formData[key] || String(formData[key]).trim() === "") {
         alert("⚠️ Por favor completa todos los campos correctamente.");
@@ -73,89 +74,56 @@ export default function CuerpoRegistroTrabajador() {
       }
     }
 
+    // Validar contraseña
     if (formData.password !== formData.repPassword) {
       alert("❌ Las contraseñas no coinciden.");
       return;
     }
 
+    const API_URL = "https://your-service-3v1h.onrender.com";
+
     try {
-      // Guardamos datos en localStorage
-      localStorage.setItem("datosRegistroTrabajador", JSON.stringify(formData));
-
-      let perfilesExistentes =
-        JSON.parse(localStorage.getItem("perfilesTrabajadores")) || [];
-
-      perfilesExistentes = perfilesExistentes.filter((p) => p.Usuario);
-
-      const nuevoPerfil = {
-        Usuario: formData.usuario,
-        nombresYApellidos: formData.nombresYApellidos,
-        oficios: formData.oficios,
-        localidad: formData.localidad,
-        telefono: formData.telefono,
-        descripcion: formData.perfilProfesional || "",
+      // 1️⃣ Crear usuario en backend
+      const datosUsuario = {
+        usuario: formData.usuario,
+        password: formData.password,
       };
 
-      const indice = perfilesExistentes.findIndex(
-        (p) => p.Usuario === nuevoPerfil.Usuario
-      );
+      const resUsuario = await axios.post(`${API_URL}/usuarios`, datosUsuario);
 
-      if (indice !== -1) {
-        perfilesExistentes[indice] = nuevoPerfil;
-      } else {
-        perfilesExistentes.push(nuevoPerfil);
-      }
+      const idUsuario = resUsuario.data.id;
+      console.log("Usuario creado, ID:", idUsuario);
 
-      localStorage.setItem(
-        "perfilesTrabajadores",
-        JSON.stringify(perfilesExistentes)
-      );
-      localStorage.setItem("usuarioOn", "true");
+      // 2️⃣ Crear perfil asociado al usuario
+      const datosPerfil = {
+        nombreCompleto: formData.nombresYApellidos,
+        localidad: formData.localidad,
+        direccion: formData.direccion,
+        telefono: formData.telefono,
+        dni: formData.dni,
+        email: formData.email,
+        descripcion: formData.perfilProfesional,
+        oficios: formData.oficios,
+        id_usuario: idUsuario,
+      };
+
+      await axios.post(`${API_URL}/perfiles`, datosPerfil);
+
+      // 3️⃣ Guardar solo el estado de sesión (NO perfiles)
       localStorage.setItem("tipoUsuario", "trabajador");
-      window.dispatchEvent(new Event("storage"));
+      localStorage.setItem("usuarioOn", "true");
 
-      // Conexión al backend
-      try {
-        const datosUsuario = {
-          usuario: formData.usuario,
-          password: formData.password,
-        };
+      // 4️⃣ Redirigir a perfil
+      navigate("/perfil", {
+        state: { esTrabajador: true },
+      });
 
-        const API_URL = "https://your-service-3v1h.onrender.com";
-
-        const resUsuario = await axios.post(
-          `${API_URL}/usuarios`,
-          datosUsuario
-        );
-
-        const idUsuario = resUsuario.data.id;
-        console.log("Usuario creado, ID:", idUsuario);
-
-        const datosPerfil = {
-          nombreCompleto: formData.nombresYApellidos,
-          localidad: formData.localidad,
-          direccion: formData.direccion,
-          telefono: formData.telefono,
-          dni: formData.dni,
-          email: formData.email,
-          descripcion: formData.perfilProfesional,
-          oficios: formData.oficios,
-          id_usuario: idUsuario,
-        };
-
-        await axios.post(`${API_URL}/perfiles`, datosPerfil);
-
-        navigate("/perfil", { state: { esTrabajador: true } });
-
-      } catch (error) {
-        console.error("❌ Error al enviar al backend:", error);
-        alert("Ocurrió un error al registrar el usuario.");
-      }
     } catch (error) {
-      console.error("❌ Error general en el registro:", error);
-      alert("Ocurrió un error al guardar el perfil.");
+      console.error("❌ Error en el registro:", error);
+      alert("Ocurrió un error al registrar el usuario y su perfil.");
     }
   };
+
 
 
   const camposConValidacion = ["usuario", "password", "repPassword", "direccion"];
