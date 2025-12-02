@@ -89,8 +89,7 @@ export default function CuerpoRegistroTrabajador() {
 
       const resUsuario = await axios.post(`${API_URL}/usuarios`, datosUsuario);
 
-      const idUsuario = resUsuario.data.id;
-      console.log("Usuario creado, ID:", idUsuario);
+      const idUsuario = resUsuario.data.id_usuario;
 
       // 2️⃣ Crear perfil asociado al usuario
       const datosPerfil = {
