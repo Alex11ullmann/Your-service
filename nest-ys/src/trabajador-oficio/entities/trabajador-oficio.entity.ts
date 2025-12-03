@@ -8,12 +8,12 @@ export class TrabajadorOficio {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Perfil, (perfil) => perfil.trabajos, {
+  @ManyToOne(() => Perfil, (perfil) => perfil.oficios, {
     onDelete: 'CASCADE',
   })
   perfil: Perfil;
 
-  @ManyToOne(() => Oficio, (oficio) => oficio.trabajadores, {
+  @ManyToOne(() => Oficio, (oficio) => oficio.oficios, {
     onDelete: 'CASCADE',
   })
   oficio: Oficio;

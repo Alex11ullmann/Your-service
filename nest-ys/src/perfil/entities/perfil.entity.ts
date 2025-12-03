@@ -14,8 +14,8 @@ export class Perfil {
   @PrimaryGeneratedColumn({ name: 'id_perfiles' })
   id_perfiles: number;
 
-  @Column({ name: 'nombreyapellido', type: 'varchar', length: 25 })
-  nombreyapellido: string;
+  @Column({ name: 'nombresYApellidos', type: 'varchar', length: 25 })
+  nombresYApellidos: string;
 
   @Column({ name: 'localidad', type: 'varchar', length: 20 })
   localidad: string;
@@ -23,23 +23,26 @@ export class Perfil {
   @Column({ name: 'direccion', type: 'varchar', length: 20 })
   direccion: string;
 
-  @Column({ name: 'telefono', type: 'varchar' })
+  @Column({ name: 'telefono', type: 'varchar', length: 10 })
   telefono: string;
 
-  @Column({ name: 'dni', type: 'varchar', unique: true })
+  @Column({ name: 'dni', type: 'varchar', length: 8, unique: true })
   dni: string;
 
   @Column({ name: 'email', type: 'varchar', length: 30, unique: true })
   email: string;
 
+  @Column({ name: 'descripcion', type: 'varchar', length: 600, })
+  descripcion?: string;
+
   @Column({ name: 'estrabajador', type: 'boolean' })
   estrabajador: boolean;
-  
-  @ManyToOne(() => Usuario, (usuario) => usuario.perfiles, {
+
+  @ManyToOne(() => Usuario, (usuario) => usuario.perfil, {
     onDelete: 'CASCADE',
   })
   usuario: Usuario;
 
-  @OneToMany(() => TrabajadorOficio, (trabajo) => trabajo.perfil)
-  trabajos: TrabajadorOficio[];
+  @OneToMany(() => TrabajadorOficio, (rel) => rel.perfil)
+  oficios: TrabajadorOficio[];
 }

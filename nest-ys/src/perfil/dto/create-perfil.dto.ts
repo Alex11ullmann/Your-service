@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable prettier/prettier */
 import { Type } from 'class-transformer';
-import { IsBoolean, IsEmail, IsInt, IsNotEmpty, IsString, Length } from 'class-validator';
+import { IsBoolean, IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
 
 export class CreatePerfilDto {
   @IsString()
   @IsNotEmpty()
   @Length(6, 25, { message: "El campo Nombre y Apellido debe tener entre 6 y 25 caracteres" })
-  nombreyapellido: string;
+  nombresYApellidos: string;
 
   @IsString()
   @IsNotEmpty()
@@ -33,6 +33,11 @@ export class CreatePerfilDto {
   @IsNotEmpty()
   @Length(7, 30, { message: "El campo Email debe tener entre 7 y 30 caracteres" })
   email: string;
+
+  @IsString()
+  @IsOptional()
+  @Length(20, 600, { message: "El campo Sobre Mi debe tener entre 20 y 600 caracteres" })
+  descripcion?: string;
 
   @IsBoolean()
   estrabajador: boolean;

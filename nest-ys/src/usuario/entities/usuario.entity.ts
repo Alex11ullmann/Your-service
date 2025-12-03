@@ -12,6 +12,6 @@ export class Usuario {
   @Column({ name: 'password', type: 'varchar', length: 20 })
   password: string;
 
-  @OneToMany(() => Perfil, (perfil) => perfil.usuario)
-  perfiles: Perfil[];
+  @OneToMany(() => Perfil, (rel) => rel.usuario)
+  perfil: Perfil;
 }

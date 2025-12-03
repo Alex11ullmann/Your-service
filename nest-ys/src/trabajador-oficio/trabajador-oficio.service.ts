@@ -44,10 +44,10 @@ export class TrabajadorOficioService {
   async getOficios(id_perfiles: number) {
     const perfil = await this.perfilRepo.findOne({
       where: { id_perfiles },
-      relations: ['trabajos', 'trabajos.oficio'],
+      relations: ['oficios', 'oficios.oficio'],
     });
     if (!perfil) throw new NotFoundException('Perfil no encontrado');
-    return perfil.trabajos.map((t) => t.oficio);
+    return perfil.oficios.map((t) => t.oficio);
   }
 
   async getAll() {

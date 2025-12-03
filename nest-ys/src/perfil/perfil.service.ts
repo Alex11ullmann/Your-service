@@ -28,10 +28,10 @@ export class PerfilService {
 
   public async create(dto: CreatePerfilDto): Promise<Perfil> {
     try {
-      const tel = await this.perfilRepo.findOne({
-        where: { telefono: dto.telefono },
+      const dni = await this.perfilRepo.findOne({
+        where: { dni: dto.dni },
       });
-      if (tel) throw new ConflictException('Teléfono ya existe');
+      if (dni) throw new ConflictException('Dni ya existe');
 
       const mail = await this.perfilRepo.findOne({
         where: { email: dto.email },
@@ -41,10 +41,12 @@ export class PerfilService {
       const usuario = await this.usuarioRepo.findOne({
         where: { id_usuario: dto.id_usuario },
       });
-      if (!usuario) throw new BadRequestException('Usuario no existe');
+      if (!usuario) throw new BadRequestException('Usuario ya existe');
 
       const perfil = this.perfilRepo.create({ ...dto, usuario });
+
       return await this.perfilRepo.save(perfil);
+
     } catch (error: any) {
       throw new InternalServerErrorException(
         'Error al crear el perfil: ' + (error.message ?? ''),
@@ -55,12 +57,13 @@ export class PerfilService {
   public async findAll(): Promise<Perfil[]> {
     try {
       const criterio: FindManyOptions<Perfil> = {
-        relations: ['usuario', 'trabajos', 'trabajos.oficio'],
+        relations: ['usuario', 'oficios', 'oficios.oficio'],
       };
       return await this.perfilRepo.find(criterio);
+
     } catch (error: any) {
       throw new InternalServerErrorException(
-        'Error al obtener los perfiles: ' + (error.message ?? ''),
+        'Error al obtener los perfiles de las cards: ' + (error.message ?? ''),
       );
     }
   }
@@ -69,7 +72,7 @@ export class PerfilService {
     try {
       const criterio: FindOneOptions<Perfil> = {
         where: { id_perfiles },
-        relations: ['usuario', 'trabajos', 'trabajos.oficio'],
+        relations: ['usuario', 'oficios', 'oficios.oficio'],
       };
 
       const perfil = await this.perfilRepo.findOne(criterio);
