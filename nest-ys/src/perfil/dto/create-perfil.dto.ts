@@ -36,7 +36,7 @@ export class CreatePerfilDto {
 
   @IsString()
   @IsOptional()
-  @Length(0, 600, { message: "El campo Sobre Mi debe tener como maximo 600 caracteres" })
+  @Length(20, 600, { message: "El campo Sobre Mi debe tener entre 20 y 600 caracteres" })
   descripcion?: string;
 
   @IsBoolean()
