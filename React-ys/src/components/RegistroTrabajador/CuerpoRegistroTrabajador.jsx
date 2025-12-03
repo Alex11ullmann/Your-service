@@ -75,6 +75,10 @@ export default function CuerpoRegistroTrabajador() {
       alert("❌ Las contraseñas no coinciden.");
       return;
     }
+    if (formData.perfilProfesional.value.trim().length < 20) {
+      alert("⚠️ El campo Perfil Profesional debe tener al menos 20 caracteres.");
+      return;
+    }
 
     const API_URL = "https://your-service-3v1h.onrender.com";
     try {
