@@ -65,59 +65,61 @@ export default function CuerpoRegistroTrabajador() {
       alert("⚠️ Debes realizar el pago antes de registrarte.");
       return;
     }
-    // Validar campos vacíos
     for (let key of camposEsperados) {
       if (!formData[key] || String(formData[key]).trim() === "") {
         alert("⚠️ Por favor completa todos los campos correctamente.");
         return;
       }
     }
-    // Validar contraseña
     if (formData.password !== formData.repPassword) {
       alert("❌ Las contraseñas no coinciden.");
       return;
     }
 
     const API_URL = "https://your-service-3v1h.onrender.com";
-
     try {
-      // 1️⃣ Crear usuario en backend
+      // 1️⃣ Crear usuario
       const datosUsuario = {
         usuario: formData.usuario,
         password: formData.password,
       };
 
       const resUsuario = await axios.post(`${API_URL}/usuarios`, datosUsuario);
-
       const idUsuario = resUsuario.data.id_usuario;
 
-      // 2️⃣ Crear perfil asociado al usuario
+      // 2️⃣ Crear perfil para el usuario
       const datosPerfil = {
-        nombreCompleto: formData.nombresYApellidos,
+        nombresYApellidos: formData.nombresYApellidos,
         localidad: formData.localidad,
         direccion: formData.direccion,
         telefono: formData.telefono,
         dni: formData.dni,
         email: formData.email,
         descripcion: formData.perfilProfesional,
-        oficios: formData.oficios,
+        estrabajador: true,
         id_usuario: idUsuario,
       };
 
-      await axios.post(`${API_URL}/perfiles`, datosPerfil);
+      const resPerfil = await axios.post(`${API_URL}/perfiles`, datosPerfil);
+      const idPerfil = resPerfil.data.id_perfil;
 
-      // 3️⃣ Guardar solo el estado de sesión
+      // 3️⃣ Registrar oficios del trabajador
+      for (let oficio of formData.oficios) {
+        await axios.post(`${API_URL}/trabajador-oficio`, {
+          id_perfil: idPerfil,
+          oficio: oficio,
+        });
+      }
+
+      // 4️⃣ Guardar estado de sesión
       localStorage.setItem("tipoUsuario", "trabajador");
       localStorage.setItem("usuarioOn", "true");
 
-      // 4️⃣ Redirigir a perfil
-      navigate("/perfil", {
-        state: { esTrabajador: true },
-      });
+      navigate("/perfil", { state: { esTrabajador: true } });
 
     } catch (error) {
-      console.error("❌ Error en el registro:", error.response?.data);
-      alert("Ocurrió un error al registrar el usuario y su perfil.", error);
+      alert("Ocurrió un error al registrar el usuario, perfil u oficios.");
+      console.error(error);
     }
   };
 

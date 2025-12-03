@@ -18,8 +18,8 @@ export default function CardsBuscar({ titulo, data = [], dataKey, mode = "dropdo
                 item.Usuario ??
                 item.nombre ??
                 `Perfil ${index + 1}`;
-              const nombreCompleto =
-                item.nombreCompleto ||
+              const nombresYApellidos =
+                item.nombresYApellidos ||
                 item["Nombres y Apellidos"] ||
                 item.Usuario ||
                 item.nombre ||
@@ -43,7 +43,7 @@ export default function CardsBuscar({ titulo, data = [], dataKey, mode = "dropdo
                     loading="lazy"
                   />
                   <div className="card-item-body">
-                    <h4 className="card-item-nombre">{nombreCompleto}</h4>
+                    <h4 className="card-item-nombre">{nombresYApellidos}</h4>
                     {oficios && (
                       <p className="card-item-oficio">🛠️ {Array.isArray(oficios) ? oficios.join(", ") : oficios}</p>
                     )}
