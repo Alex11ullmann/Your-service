@@ -21,7 +21,9 @@ export default function CuerpoRegistroTrabajador() {
       return acc;
     }, {}),
     oficios: [],
+    perfilProfesional: "",
   };
+
 
   const [formData, setFormData] = useState(camposIniciales);
 
