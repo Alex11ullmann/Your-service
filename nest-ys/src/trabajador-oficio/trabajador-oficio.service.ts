@@ -36,12 +36,26 @@ export class TrabajadorOficioService {
     return await this.trabajoRepo.save(nuevo);
   }
 
-  async remove(id: number) {
-    const relacion = await this.trabajoRepo.findOne({ where: { id } });
-    if (!relacion) throw new NotFoundException('Relación no encontrada');
-    await this.trabajoRepo.remove(relacion);
-    return { message: 'Relación eliminada correctamente' };
+  async delete(id_perfiles: number, id_oficios: number) {
+  const relacion = await this.trabajoRepo.findOne({
+    where: {
+      perfil: { id_perfiles },
+      oficio: { id_oficios },
+    },
+  });
+
+  if (!relacion) {
+    throw new NotFoundException('Relación no encontrada');
   }
+
+  await this.trabajoRepo.delete({
+    perfil: { id_perfiles },
+    oficio: { id_oficios },
+  });
+
+  return { message: 'Relación eliminada correctamente' };
+}
+
 
   async getOficios(id_perfiles: number) {
     const perfil = await this.perfilRepo.findOne({
