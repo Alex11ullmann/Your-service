@@ -18,7 +18,7 @@ import { Usuario } from './entities/usuario.entity';
 
 @Controller('usuarios')
 export class UsuarioController {
-  constructor(private readonly usuarioService: UsuarioService) {}
+  constructor(private readonly usuarioService: UsuarioService) { }
 
   @Post()
   private create(@Body() dto: CreateUsuarioDto): Promise<Usuario> {
@@ -26,7 +26,7 @@ export class UsuarioController {
     return this.usuarioService.create(dto);
   }
 
-   @Post('login')
+  @Post('login')
   async login(@Body() body: { usuario: string; password: string }) {
     return this.usuarioService.login(body.usuario, body.password);
   }
