@@ -20,9 +20,9 @@ export default function CuerpoPerfiles() {
     const camposSoloNumeros = ["telefono", "dni"];
     const camposValidadosConEspacios = ["nombresYApellidos"];
 
-    const [idPerfil, setIdPerfil] = useState(null);
-
     const API_URL = "https://your-service-3v1h.onrender.com";
+
+    const [idPerfil, setIdPerfil] = useState(null);
 
     const [catalogoOficios, setCatalogoOficios] = useState([]);
 
@@ -42,13 +42,15 @@ export default function CuerpoPerfiles() {
 
         const fetchData = async () => {
             try {
-                const userRes = await axios.get(`hhttps://your-service-3v1h.onrender.com/usuarios/${idUsuario}`);
+                // ✔ CORREGIDO: URL bien escrita
+                const userRes = await axios.get(`${API_URL}/usuarios/${idUsuario}`);
                 const usuario = userRes.data;
 
-                const perfilRes = await axios.get(`https://your-service-3v1h.onrender.com/perfiles/usuario/${idUsuario}`);
+                // ✔ Verificá que tu backend tenga esta ruta
+                const perfilRes = await axios.get(`${API_URL}/perfiles/usuario/${idUsuario}`);
                 const perfil = perfilRes.data;
 
-                setIdPerfil(perfil.id_perfil);
+                setIdPerfil(perfil.id_perfiles);
 
                 const datosPerfil = {
                     usuario: usuario.usuario,
@@ -59,7 +61,7 @@ export default function CuerpoPerfiles() {
                     telefono: perfil.telefono,
                     dni: perfil.dni,
                     email: perfil.email,
-                    oficios: perfil.oficios || [],
+                    oficios: perfil.oficios?.map(o => o.id_oficios) || [], // ✔ sacar solo IDs
                     perfilProfesional: perfil.descripcion || "",
                 };
 
@@ -74,8 +76,8 @@ export default function CuerpoPerfiles() {
             const res = await axios.get(`${API_URL}/oficios`);
             setCatalogoOficios(res.data);
         };
-        cargarOficios();
 
+        cargarOficios();
         fetchData();
     }, []);
 
@@ -109,12 +111,12 @@ export default function CuerpoPerfiles() {
         try {
             const idUsuario = localStorage.getItem("id_usuario");
 
-            await axios.patch(`https://your-service-3v1h.onrender.com/usuarios/${idUsuario}`, {
+            await axios.patch(`${API_URL}/usuarios/${idUsuario}`, {
                 usuario: formData.usuario,
                 password: formData.password
             });
 
-            await axios.patch(`https://your-service-3v1h.onrender.com/perfiles/${idPerfil}`, {
+            await axios.patch(`${API_URL}/perfiles/${idPerfil}`, {
                 nombresYApellidos: formData.nombresYApellidos,
                 localidad: formData.localidad,
                 direccion: formData.direccion,
@@ -157,8 +159,8 @@ export default function CuerpoPerfiles() {
         try {
             const idUsuario = localStorage.getItem("id_usuario");
 
-            await axios.delete(`https://your-service-3v1h.onrender.com/perfiles/${idPerfil}`);
-            await axios.delete(`https://your-service-3v1h.onrender.com/usuarios/${idUsuario}`);
+            await axios.delete(`${API_URL}/perfiles/${idPerfil}`);
+            await axios.delete(`${API_URL}/usuarios/${idUsuario}`);
 
             localStorage.clear();
             alert("Cuenta eliminada correctamente");
@@ -201,15 +203,18 @@ export default function CuerpoPerfiles() {
                                     </select>
 
                                     <div className="contenedor-etiquetas">
-                                        {formData.oficios?.map((o) => (
-                                            <span
-                                                key={o}
-                                                className="tag-oficio"
-                                                onClick={() => eliminarOficio(o)}
-                                            >
-                                                {o} ✕
-                                            </span>
-                                        ))}
+                                        {formData.oficios?.map((id) => {
+                                            const oficio = catalogoOficios.find(x => x.id_oficios === Number(id));
+                                            return (
+                                                <span
+                                                    key={id}
+                                                    className="tag-oficio"
+                                                    onClick={() => eliminarOficio(id)}
+                                                >
+                                                    {oficio?.nombre_oficio} ✕
+                                                </span>
+                                            );
+                                        })}
                                     </div>
                                 </div>
                             );
