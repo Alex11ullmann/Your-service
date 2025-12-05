@@ -22,6 +22,8 @@ export default function CuerpoLogin() {
         password,
       });
       const data = res.data;
+      console.log("🔍 DATA LOGIN:", data);
+      console.log("🔍 PERFIL EN LOGIN:", data.perfiles);
 
       // DETERMINAR TIPO DE USUARIO SEGÚN LA BD REAL
       let tipo = "comun";
