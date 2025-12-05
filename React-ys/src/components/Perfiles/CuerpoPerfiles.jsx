@@ -125,7 +125,7 @@ export default function CuerpoPerfiles() {
         }
     };
 
-    // 2. GUARDAR CAMBIOS (PATCH)
+    // 2. MODIFICAR CAMBIOS (PATCH)
     const handleGuardarCambios = async () => {
         if (!idPerfil) {
             console.error("❌ idPerfil es NULL o undefined. No se puede guardar.");
@@ -178,10 +178,13 @@ export default function CuerpoPerfiles() {
 
         try {
             const idUsuario = localStorage.getItem("id_usuario");
-
+            const idPerfilLocal = localStorage.getItem("id_perfiles");
+            
             await axios.delete(`${API_URL}/usuarios/${idUsuario}`);
-            await axios.delete(`${API_URL}/perfiles/${idPerfil}`);
-            await axios.delete(`${API_URL}/trbajador-oficio/${idUsuario}`);
+            await axios.delete(`${API_URL}/perfiles/${idPerfilLocal}`);
+            for (let oficio of formData.oficios) {
+                await axios.delete(`${API_URL}/trabajador-oficio/${idPerfilLocal}/${oficio}`);
+            };
 
             localStorage.clear();
             alert("Cuenta eliminada");
