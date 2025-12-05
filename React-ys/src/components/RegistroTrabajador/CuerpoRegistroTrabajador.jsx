@@ -54,7 +54,7 @@ export default function CuerpoRegistroTrabajador() {
 
   // Manejo de oficios
   const agregarOficio = (e) => {
-    const oficio = e.target.value;
+    const oficio = Number(e.target.value);
     if (oficio && !formData.oficios.includes(oficio)) {
       setFormData((prev) => ({
         ...prev,
