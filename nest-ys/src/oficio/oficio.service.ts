@@ -90,10 +90,10 @@ export class OficioService {
     }
   }
 
-  public async remove(id_oficios: number): Promise<boolean> {
+  public async delete(id_oficios: number): Promise<boolean> {
     try {
       const oficio = await this.findOne(id_oficios);
-      await this.oficioRepo.remove(oficio);
+      await this.oficioRepo.delete(oficio);
       return true;
     } catch (error: any) {
       if (error instanceof NotFoundException) {

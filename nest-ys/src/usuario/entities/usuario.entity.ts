@@ -12,6 +12,8 @@ export class Usuario {
   @Column({ name: 'password', type: 'varchar', length: 20 })
   password: string;
 
-  @OneToMany(() => Perfil, (rel) => rel.usuario)
+  @OneToMany(() => Perfil, (rel) => rel.usuario, {
+    onDelete: 'CASCADE',
+  })
   perfiles: Perfil[];
 }

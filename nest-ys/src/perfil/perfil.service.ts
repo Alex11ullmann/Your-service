@@ -116,16 +116,14 @@ export class PerfilService {
     }
   }
 
-  public async remove(id_perfiles: number): Promise<{ message: string }> {
+  public async delete(id_perfiles: number): Promise<boolean> {
     try {
       const result = await this.perfilRepo.delete(id_perfiles);
       if (result.affected === 0) {
         throw new NotFoundException('Perfil no encontrado');
       }
-      return { message: 'Perfil eliminado correctamente' };
-    
+      return true;
     } catch (error: any) {
-      if (error instanceof NotFoundException) throw error;
       throw new InternalServerErrorException(
         'Error al eliminar el perfil: ' + (error.message ?? ''),
       );

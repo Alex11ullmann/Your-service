@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable prettier/prettier */
 import {
   Controller,
@@ -40,7 +42,7 @@ export class UsuarioController {
   }
 
   @Delete(':id')
-  private remove(@Param('id', ParseIntPipe) id: number): Promise<boolean> {
-    return this.usuarioService.remove(+id);
+  private delete(@Param('id', ParseIntPipe) id: number): Promise<boolean> {
+    return this.usuarioService.delete(+id);
   }
 }

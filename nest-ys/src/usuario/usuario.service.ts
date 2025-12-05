@@ -94,10 +94,10 @@ export class UsuarioService {
     }
   }
 
-  public async remove(id_usuario: number): Promise<boolean> {
+  public async delete(id_usuario: number): Promise<boolean> {
     try {
       const usuario = await this.findOne(id_usuario);
-      await this.usuarioRepo.remove(usuario);
+      await this.usuarioRepo.delete(usuario);
       return true;
     } catch (error: any) {
       if (error instanceof NotFoundException) {

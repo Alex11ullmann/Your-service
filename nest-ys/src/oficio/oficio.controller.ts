@@ -40,8 +40,8 @@ export class OficioController {
 
 
   @Delete(':id')
-  private remove(@Param('id', ParseIntPipe) id: number): Promise<boolean> {
-    return this.oficioService.remove(id);
+  private delete(@Param('id', ParseIntPipe) id: number): Promise<boolean> {
+    return this.oficioService.delete(id);
   }
 
 }
