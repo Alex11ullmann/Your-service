@@ -13,7 +13,8 @@ export class TrabajadorOficio {
   })
   perfil: Perfil;
 
-  @ManyToOne(() => Oficio, (oficio) => oficio.oficios, {
+  // <-- propiedad en singular, que representa el oficio asociado
+  @ManyToOne(() => Oficio, (oficio) => oficio.trabajadores, {
     onDelete: 'CASCADE',
   })
   oficio: Oficio;

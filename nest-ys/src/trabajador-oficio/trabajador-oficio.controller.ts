@@ -1,25 +1,24 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Post, Delete, Get, Param, ParseIntPipe } from '@nestjs/common';
+import { Controller, Post, Delete, Get, Param, ParseIntPipe, Body } from '@nestjs/common';
 import { TrabajadorOficioService } from './trabajador-oficio.service';
 
 @Controller('trabajador-oficio')
 export class TrabajadorOficioController {
-  constructor(private readonly trabajoService: TrabajadorOficioService) { }
+  constructor(private readonly trabajoService: TrabajadorOficioService) {}
 
+  // Asignar oficio a perfil
   @Post(':idPerfil/:idOficio')
-  private assign(
+  assign(
     @Param('idPerfil', ParseIntPipe) idPerfil: number,
     @Param('idOficio', ParseIntPipe) idOficio: number,
   ) {
     return this.trabajoService.assign(idPerfil, idOficio);
   }
 
-  @Delete(':idPerfil/:idOficio')
-  private remove(
-    @Param('idPerfil', ParseIntPipe) idPerfil: number,
-    @Param('idOficio', ParseIntPipe) idOficio: number,
-  ) {
-    return this.trabajoService.remove(idPerfil, idOficio);
+  // Eliminar una relación por ID único
+  @Delete(':id')
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.trabajoService.remove(id);
   }
 
   @Get()
@@ -32,3 +31,4 @@ export class TrabajadorOficioController {
     return this.trabajoService.getOficios(idPerfil);
   }
 }
+

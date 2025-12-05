@@ -9,6 +9,7 @@ export class Oficio {
   @Column({ name: 'nombre_oficio', type: 'varchar', length: 40 })
   nombre_oficio: string;
 
+  // la propiedad que guarda las relaciones en la entidad Oficio se llama "trabajadores"
   @OneToMany(() => TrabajadorOficio, (rel) => rel.oficio)
-  oficios: TrabajadorOficio[];
+  trabajadores: TrabajadorOficio[];
 }

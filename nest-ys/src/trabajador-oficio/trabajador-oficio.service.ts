@@ -16,29 +16,30 @@ export class TrabajadorOficioService {
     private readonly perfilRepo: Repository<Perfil>,
     @InjectRepository(Oficio)
     private readonly oficioRepo: Repository<Oficio>,
-  ) {}
+  ) { }
 
   async assign(id_perfiles: number, id_oficios: number) {
     const perfil = await this.perfilRepo.findOne({ where: { id_perfiles } });
     if (!perfil) throw new NotFoundException('Perfil no encontrado');
+
     const oficio = await this.oficioRepo.findOne({ where: { id_oficios } });
     if (!oficio) throw new NotFoundException('Oficio no encontrado');
+
     const existente = await this.trabajoRepo.findOne({
       where: { perfil: { id_perfiles }, oficio: { id_oficios } },
     });
+
     if (existente) throw new ConflictException('El oficio ya está asignado');
+
     const nuevo = this.trabajoRepo.create({ perfil, oficio });
     return await this.trabajoRepo.save(nuevo);
   }
 
-  async remove(id_perfiles: number, id_oficios: number) {
-    const relacion = await this.trabajoRepo.findOne({
-      where: { perfil: { id_perfiles }, oficio: { id_oficios } },
-    });
-    if (!relacion)
-      throw new NotFoundException('El oficio no estaba asignado a este perfil');
+  async remove(id: number) {
+    const relacion = await this.trabajoRepo.findOne({ where: { id } });
+    if (!relacion) throw new NotFoundException('Relación no encontrada');
     await this.trabajoRepo.remove(relacion);
-    return true;
+    return { message: 'Relación eliminada correctamente' };
   }
 
   async getOficios(id_perfiles: number) {
@@ -46,7 +47,9 @@ export class TrabajadorOficioService {
       where: { id_perfiles },
       relations: ['oficios', 'oficios.oficio'],
     });
+
     if (!perfil) throw new NotFoundException('Perfil no encontrado');
+
     return perfil.oficios.map((t) => t.oficio);
   }
 

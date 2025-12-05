@@ -7,6 +7,7 @@ import { Repository, FindManyOptions, FindOneOptions } from 'typeorm';
 import { Oficio } from './entities/oficio.entity';
 import { CreateOficioDto } from './dto/create-oficio.dto';
 import { UpdateOficioDto } from './dto/update-oficio.dto';
+import { oficiosSeed } from '../seeds/oficios.seed';
 
 @Injectable()
 export class OficioService {
@@ -15,6 +16,17 @@ export class OficioService {
     @InjectRepository(Oficio)
     private readonly oficioRepo: Repository<Oficio>,
   ) { }
+
+  async onModuleInit() {
+    const count = await this.oficioRepo.count();
+    if (count === 0) {
+      const oficios = oficiosSeed.map((nombre) =>
+        this.oficioRepo.create({ nombre_oficio: nombre })
+      );
+      await this.oficioRepo.save(oficios);
+    }
+  }
+
 
   public async create(dto: CreateOficioDto): Promise<Oficio> {
     try {
