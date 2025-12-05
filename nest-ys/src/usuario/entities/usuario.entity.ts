@@ -13,5 +13,5 @@ export class Usuario {
   password: string;
 
   @OneToMany(() => Perfil, (rel) => rel.usuario)
-  perfil: Perfil;
+  perfiles: Perfil[];
 }

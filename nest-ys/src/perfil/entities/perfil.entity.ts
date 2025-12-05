@@ -38,7 +38,7 @@ export class Perfil {
   @Column({ name: 'estrabajador', type: 'boolean' })
   estrabajador: boolean;
 
-  @ManyToOne(() => Usuario, (usuario) => usuario.perfil, {
+  @ManyToOne(() => Usuario, (usuario) => usuario.perfiles, {
     onDelete: 'CASCADE',
   })
   usuario: Usuario;
