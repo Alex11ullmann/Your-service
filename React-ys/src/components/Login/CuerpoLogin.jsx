@@ -17,7 +17,7 @@ export default function CuerpoLogin() {
     e.preventDefault();
     setError("");
     try {
-      const res = await axios.post(`${API_URL}/usuario/login`, {
+      const res = await axios.post(`${API_URL}/usuarios/login`, {
         usuario,
         password,
       });
