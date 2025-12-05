@@ -180,11 +180,11 @@ export default function CuerpoPerfiles() {
             const idUsuario = localStorage.getItem("id_usuario");
             const idPerfilLocal = localStorage.getItem("id_perfiles");
             
-            await axios.delete(`${API_URL}/usuarios/${idUsuario}`);
-            await axios.delete(`${API_URL}/perfiles/${idPerfilLocal}`);
             for (let oficio of formData.oficios) {
                 await axios.delete(`${API_URL}/trabajador-oficio/${idPerfilLocal}/${oficio}`);
             };
+            await axios.delete(`${API_URL}/perfiles/${idPerfilLocal}`);
+            await axios.delete(`${API_URL}/usuarios/${idUsuario}`);
 
             localStorage.clear();
             alert("Cuenta eliminada");
