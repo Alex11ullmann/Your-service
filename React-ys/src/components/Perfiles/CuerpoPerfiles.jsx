@@ -36,7 +36,7 @@ export default function CuerpoPerfiles() {
 
             const idUsuario = localStorage.getItem("id_usuario");
             if (!idUsuario) {
-                console.warn("⚠ No hay id_usuario en localStorage.");
+                console.warn("⚠️ No hay id_usuario en localStorage.");
                 return;
             }
 
@@ -44,10 +44,17 @@ export default function CuerpoPerfiles() {
                 const userRes = await axios.get(`${API_URL}/usuarios/${idUsuario}`);
                 const usuario = userRes.data;
 
-                const perfilRes = await axios.get(`${API_URL}/perfiles/${idPerfil}`);
+                const idPerfilLocal = localStorage.getItem("id_perfiles");
+
+                if (!idPerfilLocal) {
+                    console.warn("⚠️ No hay id_perfiles en localStorage.");
+                    return;
+                }
+
+                const perfilRes = await axios.get(`${API_URL}/perfiles/${idPerfilLocal}`);
                 const perfil = perfilRes.data;
 
-                setIdPerfil(perfil.id_perfil);
+                setIdPerfil(perfil.id_perfiles);
 
                 const datosPerfil = {
                     usuario: usuario.usuario,
@@ -88,21 +95,21 @@ export default function CuerpoPerfiles() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    // Manejo de oficios
     const agregarOficio = (e) => {
-        const nuevoId = Number(e.target.value);
-        if (!nuevoId) return;
-        if (formData.oficios.includes(nuevoId)) return;
-
-        setFormData((prev) => ({
-            ...prev,
-            oficios: [...prev.oficios, nuevoId],
-        }));
+        const oficio = Number(e.target.value);
+        if (oficio && !formData.oficios.includes(oficio)) {
+            setFormData((prev) => ({
+                ...prev,
+                oficios: [...prev.oficios, oficio],
+            }));
+        }
     };
 
-    const eliminarOficio = (id) => {
+    const eliminarOficio = (oficio) => {
         setFormData((prev) => ({
             ...prev,
-            oficios: prev.oficios.filter((o) => o !== id),
+            oficios: prev.oficios.filter((o) => o !== oficio),
         }));
     };
 

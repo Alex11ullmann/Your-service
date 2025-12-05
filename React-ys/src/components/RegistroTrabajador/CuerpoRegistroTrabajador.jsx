@@ -127,7 +127,7 @@ export default function CuerpoRegistroTrabajador() {
 
       // 4️⃣ Guardar estado de sesión
       localStorage.setItem("id_usuario", idUsuario);
-      localStorage.setItem("id_perfil", idPerfil);
+      localStorage.setItem("id_perfiles", idPerfil);
       localStorage.setItem("tipoUsuario", "trabajador");
       localStorage.setItem("usuarioOn", "true");
 
