@@ -116,6 +116,7 @@ export default function CuerpoPerfiles() {
     // 2. GUARDAR CAMBIOS (PATCH)
     const handleGuardarCambios = async () => {
         try {
+            // Registrar datos del trabajador
             await axios.patch(`${API_URL}/perfiles/${idPerfil}`, {
                 nombresYApellidos: formData.nombresYApellidos,
                 localidad: formData.localidad,
@@ -125,6 +126,14 @@ export default function CuerpoPerfiles() {
                 email: formData.email,
                 descripcion: formData.perfilProfesional,
             });
+
+            // Registrar oficios del trabajador
+            for (let oficio of formData.oficios) {
+                await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`, {
+                    id_perfiles: idPerfil,
+                    id_oficios: oficio
+                });
+            }
 
             alert("✅ Cambios guardados correctamente");
             window.location.reload();
@@ -154,8 +163,8 @@ export default function CuerpoPerfiles() {
         try {
             const idUsuario = localStorage.getItem("id_usuario");
 
-            await axios.delete(`${API_URL}/perfiles/${idPerfil}`);
             await axios.delete(`${API_URL}/usuarios/${idUsuario}`);
+            await axios.delete(`${API_URL}/perfiles/${idPerfil}`);
 
             localStorage.clear();
             alert("Cuenta eliminada");

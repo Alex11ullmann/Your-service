@@ -92,7 +92,7 @@ export default function CuerpoRegistroTrabajador() {
     }
 
     try {
-      // 1️⃣ Crear usuario
+      // Crear usuario
       const datosUsuario = {
         usuario: formData.usuario,
         password: formData.password,
@@ -101,7 +101,7 @@ export default function CuerpoRegistroTrabajador() {
       const resUsuario = await axios.post(`${API_URL}/usuarios`, datosUsuario);
       const idUsuario = resUsuario.data.id_usuario;
 
-      // 2️⃣ Crear perfil para el usuario
+      // Crear perfil para el usuario
       const datosPerfil = {
         nombresYApellidos: formData.nombresYApellidos,
         localidad: formData.localidad,
@@ -117,7 +117,7 @@ export default function CuerpoRegistroTrabajador() {
       const resPerfil = await axios.post(`${API_URL}/perfiles`, datosPerfil);
       const idPerfil = resPerfil.data.id_perfiles;
 
-      // 3️⃣ Registrar oficios del trabajador
+      // Registrar oficios del trabajador
       for (let oficio of formData.oficios) {
         await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`, {
           id_perfiles: idPerfil,
@@ -125,7 +125,7 @@ export default function CuerpoRegistroTrabajador() {
         });
       }
 
-      // 4️⃣ Guardar estado de sesión
+      // Guardar estado de sesión
       localStorage.setItem("id_usuario", idUsuario);
       localStorage.setItem("id_perfiles", idPerfil);
       localStorage.setItem("tipoUsuario", "trabajador");
