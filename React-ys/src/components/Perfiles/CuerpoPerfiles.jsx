@@ -65,7 +65,7 @@ export default function CuerpoPerfiles() {
                     telefono: perfil.telefono,
                     dni: perfil.dni,
                     email: perfil.email,
-                    oficios: perfil.oficios?.map((o) => o.id_oficios) || [],
+                    oficios: perfil.oficios?.map((o) => o.oficio.id_oficios) || [],
                     perfilProfesional: perfil.descripcion || "",
                 };
 
