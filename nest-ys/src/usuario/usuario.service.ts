@@ -22,6 +22,17 @@ export class UsuarioService {
     private usuarioRepo: Repository<Usuario>,
   ) { }
 
+  public async login(usuario: string, password: string): Promise<Usuario> {
+    const user = await this.usuarioRepo.findOne({
+      where: { usuario, password },
+      relations: ['perfiles'],
+    });
+    if (!user) {
+      throw new NotFoundException('Usuario o contraseña incorrectos');
+    }
+    return user;
+  }
+
   public async create(dto: CreateUsuarioDto): Promise<Usuario> {
     try {
       const existente = await this.usuarioRepo.findOne({
@@ -101,7 +112,7 @@ export class UsuarioService {
         throw new NotFoundException('Usuario no encontrado');
       }
       return true;
-      
+
     } catch (error: any) {
       if (error instanceof NotFoundException) throw error;
       throw new InternalServerErrorException(
