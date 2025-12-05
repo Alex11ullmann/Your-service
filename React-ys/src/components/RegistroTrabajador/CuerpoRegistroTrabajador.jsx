@@ -100,9 +100,7 @@ export default function CuerpoRegistroTrabajador() {
 
       const resUsuario = await axios.post(`${API_URL}/usuarios`, datosUsuario);
       const idUsuario = resUsuario.data.id_usuario;
-      console.log ("este es el id usuario ", resUsuario.data.id_usuario);
-      console.log ("este es el id usuario ", idUsuario);
-      console.log("Respuesta backend PERFIL:", resUsuario.data);
+
       // 2️⃣ Crear perfil para el usuario
       const datosPerfil = {
         nombresYApellidos: formData.nombresYApellidos,
@@ -117,10 +115,10 @@ export default function CuerpoRegistroTrabajador() {
       };
 
       const resPerfil = await axios.post(`${API_URL}/perfiles`, datosPerfil);
-      const idPerfil = resPerfil.data.id_perfil;
+      const idPerfil = resPerfil.data.id_perfiles;
       console.log ("este es el id perfil ", resPerfil.data.id_usuario);
-      console.log ("este es el id usuario ", idPerfil);
-      console.log("Respuesta backend PERFIL:", resPerfil.data);
+      console.log ("este es el id perfil ", idPerfil);
+      console.log("Respuesta backend PERFIL:", resPerfil.data.id_perfiles);
 
       // 3️⃣ Registrar oficios del trabajador
       for (let oficio of formData.oficios) {
