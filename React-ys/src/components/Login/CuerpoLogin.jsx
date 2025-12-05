@@ -10,12 +10,14 @@ export default function CuerpoLogin() {
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const API_URL = "https://your-service-3v1h.onrender.com";
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      const res = await axios.post("https://your-service-3v1h.onrender.com/auth/login", {
+      const res = await axios.get(`${API_URL}/usuario/${id_usuario}`, {
         usuario,
         password,
       });
@@ -24,7 +26,7 @@ export default function CuerpoLogin() {
       // GUARDAR SESIÓN
       localStorage.setItem("usuarioOn", "true");
       localStorage.setItem("id_usuario", data.id_usuario);
-      localStorage.setItem("tipoUsuario", data.tipoUsuario); 
+      localStorage.setItem("tipoUsuario", data.tipoUsuario);
 
       // Notificar a la app principal
       window.dispatchEvent(new Event("storage"));
