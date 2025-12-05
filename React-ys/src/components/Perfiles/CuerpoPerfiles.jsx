@@ -116,15 +116,6 @@ export default function CuerpoPerfiles() {
     // 2. GUARDAR CAMBIOS (PATCH)
     const handleGuardarCambios = async () => {
         try {
-            const idUsuario = localStorage.getItem("id_usuario");
-
-            // PATCH usuario
-            await axios.patch(`${API_URL}/usuarios/${idUsuario}`, {
-                usuario: formData.usuario,
-                password: formData.password,
-            });
-
-            // PATCH perfil
             await axios.patch(`${API_URL}/perfiles/${idPerfil}`, {
                 nombresYApellidos: formData.nombresYApellidos,
                 localidad: formData.localidad,
@@ -133,7 +124,6 @@ export default function CuerpoPerfiles() {
                 dni: formData.dni,
                 email: formData.email,
                 descripcion: formData.perfilProfesional,
-                oficios: formData.oficios, // ✔ array de IDs correcto
             });
 
             alert("✅ Cambios guardados correctamente");
@@ -206,14 +196,12 @@ export default function CuerpoPerfiles() {
 
                                     <div className="contenedor-etiquetas">
                                         {formData.oficios?.map((id) => {
-                                            const oficio = catalogoOficios.find((o) => o.id_oficios === id);
+                                            const oficio = catalogoOficios.find(
+                                                (o) => o.id_oficios === id || o.id_oficio === id
+                                            );
                                             return (
-                                                <span
-                                                    key={id}
-                                                    className="tag-oficio"
-                                                    onClick={() => eliminarOficio(id)}
-                                                >
-                                                    {oficio?.nombre_oficio} ✕
+                                                <span key={id} className="tag-oficio" onClick={() => eliminarOficio(id)}>
+                                                    {oficio ? oficio.nombre_oficio : "Oficio no encontrado"} ✕
                                                 </span>
                                             );
                                         })}
