@@ -35,6 +35,13 @@ export default function CuerpoLogin() {
       localStorage.setItem("usuarioOn", "true");
       localStorage.setItem("id_usuario", data.id_usuario);
       localStorage.setItem("tipoUsuario", tipo);
+
+      if (data.perfiles && data.perfiles.length > 0) {
+        localStorage.setItem("id_perfiles", data.perfiles[0].id_perfiles);
+      } else {
+        localStorage.removeItem("id_perfiles");
+      }
+
       navigate("/perfil", {
         state: {
           esTrabajador: tipo === "trabajador",
@@ -47,6 +54,7 @@ export default function CuerpoLogin() {
       setError("❌ Usuario o contraseña incorrectos.");
     }
   };
+
 
   return (
     <div className="cuerpoLogIn">
