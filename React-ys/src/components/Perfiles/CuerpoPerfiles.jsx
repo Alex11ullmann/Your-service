@@ -6,7 +6,6 @@ import InputValidado from "../Validaciones/ValidarCaracteres";
 import InputSoloNumeros from "../Validaciones/ValidarSoloNumeros";
 import InputSoloLetras from "../Validaciones/ValidarSoloLetras";
 import InputSoloLetrasYEspacio from "../Validaciones/ValidarSoloLetrasYEspacios";
-import ListaDeOficios from "../RegistroTrabajador/ListaDeOficios.jsx";
 import axios from "axios";
 
 export default function CuerpoPerfiles() {
@@ -22,6 +21,10 @@ export default function CuerpoPerfiles() {
     const camposValidadosConEspacios = ["nombresYApellidos"];
 
     const [idPerfil, setIdPerfil] = useState(null);
+
+    const API_URL = "https://your-service-3v1h.onrender.com";
+
+    const [catalogoOficios, setCatalogoOficios] = useState([]);
 
     //      1. TRAER DATOS DEL BACK Y CARGAR EL FORMULARIO
     useEffect(() => {
@@ -66,6 +69,12 @@ export default function CuerpoPerfiles() {
                 console.error("❌ Error al cargar datos del perfil:", error);
             }
         };
+
+        const cargarOficios = async () => {
+            const res = await axios.get(`${API_URL}/oficios`);
+            setCatalogoOficios(res.data);
+        };
+        cargarOficios();
 
         fetchData();
     }, []);
@@ -184,7 +193,7 @@ export default function CuerpoPerfiles() {
                                         defaultValue=""
                                     >
                                         <option value="">Seleccionar oficio...</option>
-                                        {ListaDeOficios.map((of) => (
+                                        {catalogoOficios.map((of) => (
                                             <option key={of} value={of}>
                                                 {of}
                                             </option>

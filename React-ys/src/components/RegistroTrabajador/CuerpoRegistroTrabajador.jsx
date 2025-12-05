@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styleRegistroTrabajador.css";
@@ -7,7 +8,6 @@ import InputSoloNumeros from "../Validaciones/ValidarSoloNumeros";
 import InputSoloLetras from "../Validaciones/ValidarSoloLetras";
 import InputSoloLetrasYEspacio from "../Validaciones/ValidarSoloLetrasYEspacios";
 import BotonPago from "../BotonPago/BotonPago.jsx";
-import ListaDeOficios from "../RegistroTrabajador/ListaDeOficios.jsx";
 import axios from "axios";
 
 export default function CuerpoRegistroTrabajador() {
@@ -24,15 +24,24 @@ export default function CuerpoRegistroTrabajador() {
     perfilProfesional: "",
   };
 
+  const API_URL = "https://your-service-3v1h.onrender.com";
 
   const [formData, setFormData] = useState(camposIniciales);
 
   const camposEsperados = infoParaRegistro.map((item) => item.name);
 
+  const [catalogoOficios, setCatalogoOficios] = useState([]);
+
   // Resetear datos al cargar
   useEffect(() => {
     localStorage.setItem("pagoRegistro", "");
     localStorage.setItem("pagoOrigen", "");
+
+    const cargarOficios = async () => {
+      const res = await axios.get(`${API_URL}/oficios`);
+      setCatalogoOficios(res.data);
+    };
+    cargarOficios();
   }, []);
 
   const handleChange = (e) => {
@@ -82,7 +91,6 @@ export default function CuerpoRegistroTrabajador() {
       return;
     }
 
-    const API_URL = "https://your-service-3v1h.onrender.com";
     try {
       // 1️⃣ Crear usuario
       const datosUsuario = {
@@ -112,8 +120,8 @@ export default function CuerpoRegistroTrabajador() {
       // 3️⃣ Registrar oficios del trabajador
       for (let oficio of formData.oficios) {
         await axios.post(`${API_URL}/trabajador-oficio`, {
-          id_perfil: idPerfil,
-          oficio: oficio,
+          id_perfiles: idPerfil,
+          id_oficios: oficio
         });
       }
 
@@ -227,14 +235,15 @@ export default function CuerpoRegistroTrabajador() {
             ))}
 
             {/* SECCION DE OFICIOS */}
+
             <div className="input-group">
               <label>Oficios</label>
 
               <select className="datos" onChange={agregarOficio}>
                 <option value="">Seleccionar oficio...</option>
-                {ListaDeOficios.map((oficio) => (
-                  <option key={oficio} value={oficio}>
-                    {oficio}
+                {catalogoOficios.map((oficio) => (
+                  <option key={oficio.id_oficios} value={oficio.id_oficios}>
+                    {oficio.nombre_oficio}
                   </option>
                 ))}
               </select>
