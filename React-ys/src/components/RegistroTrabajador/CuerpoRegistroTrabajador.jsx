@@ -119,7 +119,7 @@ export default function CuerpoRegistroTrabajador() {
 
       // 3️⃣ Registrar oficios del trabajador
       for (let oficio of formData.oficios) {
-        await axios.post(`${API_URL}/trabajador-oficio`, {
+        await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`, {
           id_perfiles: idPerfil,
           id_oficios: oficio
         });
@@ -249,15 +249,18 @@ export default function CuerpoRegistroTrabajador() {
               </select>
 
               <div className="contenedor-etiquetas">
-                {formData.oficios.map((o) => (
-                  <span
-                    key={o}
-                    className="tag-oficio"
-                    onClick={() => eliminarOficio(o)}
-                  >
-                    {o} ✕
-                  </span>
-                ))}
+                {formData.oficios.map((id) => {
+                  const oficio = catalogoOficios.find((o) => o.id_oficios === id);
+                  return (
+                    <span
+                      key={id}
+                      className="tag-oficio"
+                      onClick={() => eliminarOficio(id)}
+                    >
+                      {oficio?.nombre_oficio} ✕
+                    </span>
+                  );
+                })}
               </div>
 
               <p className="contenidoInputs">Puede seleccionar varios oficios.</p>
