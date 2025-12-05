@@ -215,7 +215,9 @@ export default function CuerpoPerfiles() {
 
                                     <div className="contenedor-etiquetas">
                                         {formData.oficios?.map((id) => {
-                                            const oficio = catalogoOficios.find((o) => o.id_oficios === id);
+                                            const oficio = catalogoOficios.find(
+                                                (o) => o.id_oficios === id || o.id_oficio === id
+                                            );
                                             return (
                                                 <span key={id} className="tag-oficio" onClick={() => eliminarOficio(id)}>
                                                     {oficio ? oficio.nombre_oficio : "Oficio no encontrado"} ✕
