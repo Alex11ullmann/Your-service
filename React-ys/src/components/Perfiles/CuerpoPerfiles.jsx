@@ -97,8 +97,14 @@ export default function CuerpoPerfiles() {
 
     // Manejo de oficios
     const agregarOficio = (e) => {
-        const oficio = Number(e.target.value);
-        if (oficio && !formData.oficios.includes(oficio)) {
+        const value = e.target.value;
+
+        // Evitamos valores inválidos
+        if (!value || value === "" || value === "undefined" || value === "null") return;
+
+        const oficio = Number(value);
+
+        if (!isNaN(oficio) && oficio > 0 && !formData.oficios.includes(oficio)) {
             setFormData((prev) => ({
                 ...prev,
                 oficios: [...prev.oficios, oficio],
@@ -133,12 +139,11 @@ export default function CuerpoPerfiles() {
             });
 
             // Registrar oficios del trabajador
-            for (let oficio of formData.oficios) {
-                await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`, {
-                    
-                });
-            }
+            const oficiosLimpios = formData.oficios.filter(o => o && !isNaN(o));
 
+            for (let oficio of oficiosLimpios) {
+                await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`);
+            }
 
             alert("✅ Cambios guardados correctamente");
             window.location.reload();
@@ -210,9 +215,7 @@ export default function CuerpoPerfiles() {
 
                                     <div className="contenedor-etiquetas">
                                         {formData.oficios?.map((id) => {
-                                            const oficio = catalogoOficios.find(
-                                                (o) => o.id_oficios === id || o.id_oficio === id
-                                            );
+                                            const oficio = catalogoOficios.find((o) => o.id_oficios === id);
                                             return (
                                                 <span key={id} className="tag-oficio" onClick={() => eliminarOficio(id)}>
                                                     {oficio ? oficio.nombre_oficio : "Oficio no encontrado"} ✕
