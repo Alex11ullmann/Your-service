@@ -17,25 +17,28 @@ export default function CuerpoLogin() {
     e.preventDefault();
     setError("");
     try {
-      const res = await axios.get(`${API_URL}/usuario/${id_usuario}`, {
+      const res = await axios.post(`${API_URL}/usuario/login`, {
         usuario,
         password,
       });
       const data = res.data;
 
+      // DETERMINAR TIPO DE USUARIO SEGÚN LA BD REAL
+      let tipo = "comun";
+      if (data.perfiles && data.perfiles.length > 0) {
+        if (data.perfiles[0].estrabajador === true) {
+          tipo = "trabajador";
+        }
+      }
+
       // GUARDAR SESIÓN
       localStorage.setItem("usuarioOn", "true");
       localStorage.setItem("id_usuario", data.id_usuario);
-      localStorage.setItem("tipoUsuario", data.tipoUsuario);
-
-      // Notificar a la app principal
-      window.dispatchEvent(new Event("storage"));
-
-      // REDIRECCIONAR
+      localStorage.setItem("tipoUsuario", tipo);
       navigate("/perfil", {
         state: {
-          esTrabajador: data.tipoUsuario === "trabajador",
-          perfil: data,
+          esTrabajador: tipo === "trabajador",
+          perfil: data.perfiles?.[0] ?? null,
         },
       });
 
