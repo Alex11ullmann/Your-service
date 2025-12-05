@@ -115,6 +115,11 @@ export default function CuerpoPerfiles() {
 
     // 2. GUARDAR CAMBIOS (PATCH)
     const handleGuardarCambios = async () => {
+        if (!idPerfil) {
+            console.error("❌ idPerfil es NULL o undefined. No se puede guardar.");
+            alert("El perfil no está cargado. Cerrá sesión y volvé a entrar.");
+            return;
+        }
         try {
             // Registrar datos del trabajador
             await axios.patch(`${API_URL}/perfiles/${idPerfil}`, {
@@ -126,17 +131,11 @@ export default function CuerpoPerfiles() {
                 email: formData.email,
                 descripcion: formData.perfilProfesional,
             });
-            
+
             // Registrar oficios del trabajador
             for (let oficio of formData.oficios) {
-                if (!oficio || isNaN(oficio)) {
-                    console.log("👉 Enviando oficio: ", oficio, "para perfil:", idPerfil);
-                    console.error("⚠️ Oficio inválido:", oficio);
-                    continue;
-                }
                 await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`, {
-                    id_perfiles: idPerfil,
-                    id_oficios: oficio
+                    
                 });
             }
 
