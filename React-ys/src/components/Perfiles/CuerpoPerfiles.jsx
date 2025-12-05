@@ -99,7 +99,6 @@ export default function CuerpoPerfiles() {
     const agregarOficio = (e) => {
         const value = e.target.value;
 
-        // Evitamos valores inválidos
         if (!value || value === "" || value === "undefined" || value === "null") return;
 
         const oficio = Number(value);
@@ -112,11 +111,18 @@ export default function CuerpoPerfiles() {
         }
     };
 
-    const eliminarOficio = (oficio) => {
-        setFormData((prev) => ({
-            ...prev,
-            oficios: prev.oficios.filter((o) => o !== oficio),
-        }));
+    const eliminarOficio = async (oficio) => {
+        try {
+            setFormData((prev) => ({
+                ...prev,
+                oficios: prev.oficios.filter((o) => o !== oficio),
+            }));
+
+            await axios.delete(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`);
+
+        } catch (error) {
+            console.error("❌ Error al eliminar oficio:", error);
+        }
     };
 
     // 2. GUARDAR CAMBIOS (PATCH)
@@ -175,6 +181,7 @@ export default function CuerpoPerfiles() {
 
             await axios.delete(`${API_URL}/usuarios/${idUsuario}`);
             await axios.delete(`${API_URL}/perfiles/${idPerfil}`);
+            await axios.delete(`${API_URL}/trbajador-oficio/${idUsuario}`);
 
             localStorage.clear();
             alert("Cuenta eliminada");
