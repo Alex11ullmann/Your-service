@@ -218,6 +218,9 @@ export default function CuerpoPerfiles() {
                                             const oficio = catalogoOficios.find(
                                                 (o) => o.id_oficios === id || o.id_oficio === id
                                             );
+                                            console.log("Catalogo:", catalogoOficios);
+                                            console.log("FormData oficios:", formData.oficios);
+
                                             return (
                                                 <span key={id} className="tag-oficio" onClick={() => eliminarOficio(id)}>
                                                     {oficio ? oficio.nombre_oficio : "Oficio no encontrado"} ✕

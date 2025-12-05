@@ -120,8 +120,6 @@ export default function CuerpoRegistroTrabajador() {
       // Registrar oficios del trabajador
       for (let oficio of formData.oficios) {
         await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`, {
-          id_perfiles: idPerfil,
-          id_oficios: oficio
         });
       }
 
