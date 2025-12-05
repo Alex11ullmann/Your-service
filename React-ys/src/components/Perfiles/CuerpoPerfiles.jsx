@@ -44,7 +44,7 @@ export default function CuerpoPerfiles() {
                 const userRes = await axios.get(`${API_URL}/usuarios/${idUsuario}`);
                 const usuario = userRes.data;
 
-                const idPerfilLocal = localStorage.getItem("id_perfiles");
+                const idPerfilLocal = localStorage.getItem("id_perfil");
 
                 if (!idPerfilLocal) {
                     console.warn("⚠️ No hay id_perfiles en localStorage.");
@@ -129,11 +129,16 @@ export default function CuerpoPerfiles() {
 
             // Registrar oficios del trabajador
             for (let oficio of formData.oficios) {
+                if (!oficio || isNaN(oficio)) {
+                    console.error("⚠️ Oficio inválido:", oficio);
+                    continue;
+                }
                 await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`, {
                     id_perfiles: idPerfil,
                     id_oficios: oficio
                 });
             }
+
 
             alert("✅ Cambios guardados correctamente");
             window.location.reload();
