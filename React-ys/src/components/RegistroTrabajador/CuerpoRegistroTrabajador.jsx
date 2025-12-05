@@ -116,8 +116,6 @@ export default function CuerpoRegistroTrabajador() {
 
       const resPerfil = await axios.post(`${API_URL}/perfiles`, datosPerfil);
       const idPerfil = resPerfil.data.id_perfiles;
-      console.log ("este es el id perfil ", idPerfil);
-      console.log("Respuesta backend PERFIL:", resPerfil.data.id_perfiles);
 
       // 3️⃣ Registrar oficios del trabajador
       for (let oficio of formData.oficios) {
@@ -128,6 +126,8 @@ export default function CuerpoRegistroTrabajador() {
       }
 
       // 4️⃣ Guardar estado de sesión
+      localStorage.setItem("id_usuario", idUsuario);
+      localStorage.setItem("id_perfil", idPerfil);
       localStorage.setItem("tipoUsuario", "trabajador");
       localStorage.setItem("usuarioOn", "true");
 

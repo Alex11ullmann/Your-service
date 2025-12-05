@@ -44,7 +44,7 @@ export default function CuerpoPerfiles() {
                 const userRes = await axios.get(`${API_URL}/usuarios/${idUsuario}`);
                 const usuario = userRes.data;
 
-                const perfilRes = await axios.get(`${API_URL}/perfiles/usuario/${idUsuario}`);
+                const perfilRes = await axios.get(`${API_URL}/perfiles/${idPerfil}`);
                 const perfil = perfilRes.data;
 
                 setIdPerfil(perfil.id_perfil);
