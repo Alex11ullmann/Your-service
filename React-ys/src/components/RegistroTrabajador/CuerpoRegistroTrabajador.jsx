@@ -116,7 +116,6 @@ export default function CuerpoRegistroTrabajador() {
 
       const resPerfil = await axios.post(`${API_URL}/perfiles`, datosPerfil);
       const idPerfil = resPerfil.data.id_perfiles;
-      console.log ("este es el id perfil ", resPerfil.data.id_usuario);
       console.log ("este es el id perfil ", idPerfil);
       console.log("Respuesta backend PERFIL:", resPerfil.data.id_perfiles);
 
