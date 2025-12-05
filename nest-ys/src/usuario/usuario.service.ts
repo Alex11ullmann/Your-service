@@ -96,13 +96,14 @@ export class UsuarioService {
 
   public async delete(id_usuario: number): Promise<boolean> {
     try {
-      const usuario = await this.findOne(id_usuario);
-      await this.usuarioRepo.delete(usuario);
-      return true;
-    } catch (error: any) {
-      if (error instanceof NotFoundException) {
-        throw error;
+      const result = await this.usuarioRepo.delete(id_usuario);
+      if (result.affected === 0) {
+        throw new NotFoundException('Usuario no encontrado');
       }
+      return true;
+      
+    } catch (error: any) {
+      if (error instanceof NotFoundException) throw error;
       throw new InternalServerErrorException(
         'Error al eliminar el usuario: ' + (error.message ?? ''),
       );

@@ -41,7 +41,7 @@ export class PerfilController {
   }
 
   @Delete(':id')
-  private delete(@Param('id', ParseIntPipe) id: number): Promise<boolean> {
-    return this.perfilService.delete(id);
+  private async delete(@Param('id', ParseIntPipe) id: number): Promise<boolean> {
+    return await this.perfilService.delete(id);
   }
 }
