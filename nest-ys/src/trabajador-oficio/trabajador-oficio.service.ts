@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable prettier/prettier */
-import { Injectable, ConflictException, NotFoundException, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, NotFoundException, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { TrabajadorOficio } from './entities/trabajador-oficio.entity';
@@ -29,8 +29,9 @@ export class TrabajadorOficioService {
       where: { perfil: { id_perfiles }, oficio: { id_oficios } },
     });
 
-    if (existente) throw new ConflictException('El oficio ya está asignado');
-
+    if (existente) {
+      return existente;
+    }
     const nuevo = this.trabajoRepo.create({ perfil, oficio });
     return await this.trabajoRepo.save(nuevo);
   }
