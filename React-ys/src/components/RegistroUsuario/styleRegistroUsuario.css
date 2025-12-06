@@ -74,7 +74,9 @@
     margin-top: 40px;
 }
 .btn-pago {
-    display: inline-block;
+    display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
     height: 6vw;
     width: 30vw;
     text-align: center;

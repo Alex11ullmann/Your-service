@@ -9,6 +9,7 @@ import InputSoloLetras from "../Validaciones/ValidarSoloLetras";
 import InputSoloLetrasYEspacio from "../Validaciones/ValidarSoloLetrasYEspacios";
 import BotonPago from "../BotonPago/BotonPago.jsx";
 import axios from "axios";
+import InputPassword from "../Validaciones/InputPassword";
 
 export default function CuerpoRegistroTrabajador() {
   const navigate = useNavigate();
@@ -25,18 +26,14 @@ export default function CuerpoRegistroTrabajador() {
   };
 
   const API_URL = "https://your-service-3v1h.onrender.com";
-
   const [formData, setFormData] = useState(camposIniciales);
-
   const camposEsperados = infoParaRegistro.map((item) => item.name);
-
   const [catalogoOficios, setCatalogoOficios] = useState([]);
 
   // Resetear datos al cargar
   useEffect(() => {
     localStorage.setItem("pagoRegistro", "");
     localStorage.setItem("pagoOrigen", "");
-
     const cargarOficios = async () => {
       const res = await axios.get(`${API_URL}/oficios`);
       setCatalogoOficios(res.data);
@@ -117,10 +114,8 @@ export default function CuerpoRegistroTrabajador() {
       const resPerfil = await axios.post(`${API_URL}/perfiles`, datosPerfil);
       const idPerfil = resPerfil.data.id_perfiles;
 
-      // Registrar oficios del trabajador
-      // Registrar oficios del trabajador (con limpieza de datos)
+      // Registrar oficios (limpios)
       const oficiosLimpios = formData.oficios.filter(o => Number(o) > 0);
-
       for (let oficio of oficiosLimpios) {
         await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`);
       }
@@ -139,7 +134,7 @@ export default function CuerpoRegistroTrabajador() {
     }
   };
 
-  const camposConValidacion = ["usuario", "password", "repPassword", "direccion"];
+  const camposConValidacion = ["usuario", "direccion"];
   const camposValidadosConEspacios = ["nombresYApellidos"];
   const camposSoloLetras = ["localidad"];
   const camposSoloNumeros = ["telefono", "dni"];
@@ -149,16 +144,19 @@ export default function CuerpoRegistroTrabajador() {
       <div className="linea">
         <h1>Bienvenido a la sección donde podrá crear su perfil de trabajador,</h1>
         <h1>por favor complete las siguientes secciones...</h1>
-
         <div className="logRegistro-container">
           <h2>Registrarse</h2>
-
           <form>
             {infoParaRegistro.map((data) => (
               <div className="input-group" key={data.id}>
                 <label htmlFor={data.id}>{data.label}</label>
-
-                {camposConValidacion.includes(data.name) ? (
+                {data.name === "password" || data.name === "repPassword" ? (
+                  <InputPassword
+                    value={formData[data.name]}
+                    onChange={handleChange}
+                    placeholder={data.placeholder}
+                  />
+                ) : camposConValidacion.includes(data.name) ? (
                   <InputValidado
                     type={data.type}
                     myStyle="datos"
@@ -237,10 +235,8 @@ export default function CuerpoRegistroTrabajador() {
             ))}
 
             {/* SECCION DE OFICIOS */}
-
             <div className="input-group">
               <label>Oficios</label>
-
               <select className="datos" onChange={agregarOficio}>
                 <option value="">Seleccionar oficio...</option>
                 {catalogoOficios.map((oficio) => (
@@ -249,7 +245,6 @@ export default function CuerpoRegistroTrabajador() {
                   </option>
                 ))}
               </select>
-
               <div className="contenedor-etiquetas">
                 {formData.oficios.map((id) => {
                   const oficio = catalogoOficios.find((o) => o.id_oficios === id);
@@ -264,7 +259,6 @@ export default function CuerpoRegistroTrabajador() {
                   );
                 })}
               </div>
-
               <p className="contenidoInputs">Puede seleccionar varios oficios.</p>
             </div>
           </form>
@@ -281,10 +275,8 @@ export default function CuerpoRegistroTrabajador() {
           }}
         />
         <h3>Perfil Profesional</h3>
-
         <p>Escriba aquí lo que quiera hacer saber a los demás sobre usted mismo.</p>
         <p>Experiencias, antigüedad, etc.</p>
-
         <textarea
           name="perfilProfesional"
           id="textareaqs"

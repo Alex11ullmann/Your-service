@@ -7,8 +7,10 @@ import InputValidado from "../Validaciones/ValidarCaracteres";
 import InputSoloNumeros from "../Validaciones/ValidarSoloNumeros";
 import InputSoloLetras from "../Validaciones/ValidarSoloLetras";
 import InputSoloLetrasYEspacio from "../Validaciones/ValidarSoloLetrasYEspacios";
+import InputEmail from "../Validaciones/ValidarEmail.jsx"
 import BotonPago from "../BotonPago/BotonPago.jsx";
 import axios from "axios";
+import InputPassword from "../Validaciones/InputPassword";
 
 export default function CuerpoRegistroUsuario() {
 
@@ -111,6 +113,7 @@ export default function CuerpoRegistroUsuario() {
     const camposValidadosConEspacios = ["nombresYApellidos"];
     const camposSoloLetras = ["localidad"];
     const camposSoloNumeros = ["telefono", "dni"];
+    const campoEmail = ["email"];
 
     return (
         <div className="cuerpoRegistro">
@@ -125,20 +128,37 @@ export default function CuerpoRegistroUsuario() {
                                 <label htmlFor={data.id}>{data.label}</label>
 
                                 {camposConValidacion.includes(data.name) ? (
-                                    <InputValidado
-                                        type={data.type}
-                                        myStyle="datos"
-                                        id={data.id}
-                                        name={data.name}
-                                        placeholder={data.placeholder}
-                                        value={formData[data.name]}
-                                        onChange={handleChange}
-                                        passwordValue={
-                                            data.name === "repPassword"
-                                                ? formData["password"]
-                                                : null
-                                        }
-                                    />
+                                    data.name === "password" || data.name === "repPassword" ? (
+                                        <InputPassword
+                                            myStyle="datos"
+                                            id={data.id}
+                                            name={data.name}
+                                            placeholder={data.placeholder}
+                                            maxLength={data.maxLength}
+                                            minLength={data.minLength}
+                                            required={data.required}
+                                            value={formData[data.name]}
+                                            onChange={handleChange}
+                                        />
+                                    ) : (
+                                        <InputValidado
+                                            type={data.type}
+                                            myStyle="datos"
+                                            id={data.id}
+                                            name={data.name}
+                                            placeholder={data.placeholder}
+                                            maxLength={data.maxLength}
+                                            minLength={data.minLength}
+                                            required={data.required}
+                                            value={formData[data.name]}
+                                            onChange={handleChange}
+                                            passwordValue={
+                                                data.name === "repPassword"
+                                                    ? formData["password"]
+                                                    : null
+                                            }
+                                        />
+                                    )
                                 ) : camposSoloNumeros.includes(data.name) ? (
                                     <InputSoloNumeros
                                         type={data.type}
@@ -146,6 +166,9 @@ export default function CuerpoRegistroUsuario() {
                                         id={data.id}
                                         name={data.name}
                                         placeholder={data.placeholder}
+                                        maxLength={data.maxLength}
+                                        minLength={data.minLength}
+                                        required={data.required}
                                         value={formData[data.name]}
                                         onChange={handleChange}
                                     />
@@ -156,6 +179,9 @@ export default function CuerpoRegistroUsuario() {
                                         id={data.id}
                                         name={data.name}
                                         placeholder={data.placeholder}
+                                        maxLength={data.maxLength}
+                                        minLength={data.minLength}
+                                        required={data.required}
                                         value={formData[data.name]}
                                         onChange={handleChange}
                                     />
@@ -166,9 +192,26 @@ export default function CuerpoRegistroUsuario() {
                                         id={data.id}
                                         name={data.name}
                                         placeholder={data.placeholder}
+                                        maxLength={data.maxLength}
+                                        minLength={data.minLength}
+                                        required={data.required}
                                         value={formData[data.name]}
                                         onChange={handleChange}
                                     />
+                                ) : campoEmail.includes(data.name) ? (
+                                    <InputEmail
+                                        type="email"
+                                        myStyle="datos"
+                                        id={data.id}
+                                        name={data.name}
+                                        placeholder={data.placeholder}
+                                        maxLength={data.maxLength}
+                                        minLength={data.minLength}
+                                        required={data.required}
+                                        value={formData[data.name]}
+                                        onChange={handleChange}
+                                    />
+
                                 ) : (
                                     <input
                                         type={data.type}
@@ -176,6 +219,9 @@ export default function CuerpoRegistroUsuario() {
                                         id={data.id}
                                         name={data.name}
                                         placeholder={data.placeholder}
+                                        maxLength={data.maxLength}
+                                        minLength={data.minLength}
+                                        required={data.required}
                                         value={formData[data.name]}
                                         onChange={handleChange}
                                     />

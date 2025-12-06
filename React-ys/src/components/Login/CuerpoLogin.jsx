@@ -4,6 +4,7 @@ import "./styleLogin.css";
 import { Link, useNavigate } from "react-router-dom";
 import InputValidado from "../Validaciones/ValidarCaracteres";
 import axios from "axios";
+import InputPassword from "../Validaciones/InputPassword";
 
 export default function CuerpoLogin() {
   const navigate = useNavigate();
@@ -11,7 +12,6 @@ export default function CuerpoLogin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const API_URL = "https://your-service-3v1h.onrender.com";
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +56,6 @@ export default function CuerpoLogin() {
     }
   };
 
-
   return (
     <div className="cuerpoLogIn">
       <div className="login-container">
@@ -78,8 +77,7 @@ export default function CuerpoLogin() {
             />
 
             <label htmlFor="password">Contraseña</label>
-            <InputValidado
-              type="password"
+            <InputPassword
               myStyle="recuadro"
               id="password"
               name="password"

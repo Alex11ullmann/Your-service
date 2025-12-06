@@ -8,13 +8,12 @@ export default function InputSoloLetras({
   maxLength,
   minLength,
   onChange,
-  value // <-- ahora recibimos value como prop
+  value 
 }) {
 
   const [valor, setValor] = useState(value || "");
   const [error, setError] = useState("");
 
-  // sincronizar cuando value cambie desde fuera (perfil)
   useEffect(() => {
     setValor(value || "");
   }, [value]);
@@ -22,15 +21,22 @@ export default function InputSoloLetras({
   const handleChange = (e) => {
     let input = e.target.value;
 
-    // permitir solo letras
-    const soloPermitidos = /^[a-zA-Z]*$/.test(input);
+    // Solo letras y espacios, sin permitir 2 espacios seguidos
+    const soloPermitidos = /^[a-zA-Z ]*$/.test(input) && !/ {2,}/.test(input);
     if (!soloPermitidos) return;
 
+    // Máximo 4 espacios permitidos en total
+    const cantEspacios = (input.match(/ /g) || []).length;
+    if (cantEspacios > 4) return;
+
+    // Máximo 1 mayúscula
     const cantMayus = (input.match(/[A-Z]/g) || []).length;
     if (cantMayus > 1) return;
 
+    // Respeta maxLength
     if (input.length > maxLength) return;
 
+    // Forzar primera letra mayúscula y resto minúsculas
     if (input.length > 0) {
       input = input[0].toUpperCase() + input.slice(1).toLowerCase();
     }
@@ -38,7 +44,6 @@ export default function InputSoloLetras({
     setValor(input);
     setError("");
 
-    // propagar cambio como evento compatible con handleChange del form
     if (onChange) {
       onChange({
         target: {
