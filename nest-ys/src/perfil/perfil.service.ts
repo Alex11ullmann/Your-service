@@ -41,7 +41,7 @@ export class PerfilService {
       const usuario = await this.usuarioRepo.findOne({
         where: { id_usuario: dto.id_usuario },
       });
-      if (!usuario) throw new BadRequestException('Usuario ya existe');
+      if (!usuario) throw new NotFoundException('Usuario no encontrado');
 
       const perfil = this.perfilRepo.create({ ...dto, usuario });
 
@@ -124,7 +124,7 @@ export class PerfilService {
         throw new NotFoundException('Perfil no encontrado');
       }
 
-      return true; // ✔ devuelve boolean
+      return true;
     } catch (error: any) {
       throw new InternalServerErrorException(
         'Error al eliminar el perfil: ' + (error.message ?? ''),
