@@ -16,8 +16,8 @@ import { Perfil } from './entities/perfil.entity';
 import { CreatePerfilDto } from './dto/create-perfil.dto';
 import { UpdatePerfilDto } from './dto/update-perfil.dto';
 import { Usuario } from '../usuario/entities/usuario.entity';
-import { Oficio } from 'src/oficio/entities/oficio.entity';
-import { TrabajadorOficio } from 'src/trabajador-oficio/entities/trabajador-oficio.entity';
+import { Oficio } from '../oficio/entities/oficio.entity';
+import { TrabajadorOficio } from '../trabajador-oficio/entities/trabajador-oficio.entity';
 
 @Injectable()
 export class PerfilService {
