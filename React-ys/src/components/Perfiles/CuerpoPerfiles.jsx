@@ -47,7 +47,19 @@ export default function CuerpoPerfiles() {
                 const idPerfilLocal = localStorage.getItem("id_perfiles");
 
                 if (!idPerfilLocal) {
-                    console.warn("⚠️ No hay id_perfiles en localStorage.");
+                    console.warn("⚠️ No hay id_perfiles: este usuario aún no tiene perfil creado.");
+                    setFormData({
+                        usuario: usuario.usuario,
+                        password: usuario.password,
+                        nombresYApellidos: "",
+                        localidad: "",
+                        direccion: "",
+                        telefono: "",
+                        dni: "",
+                        email: "",
+                        oficios: [],
+                        perfilProfesional: "",
+                    });
                     return;
                 }
 
@@ -179,7 +191,7 @@ export default function CuerpoPerfiles() {
         try {
             const idUsuario = localStorage.getItem("id_usuario");
             const idPerfilLocal = localStorage.getItem("id_perfiles");
-            
+
             for (let oficio of formData.oficios) {
                 await axios.delete(`${API_URL}/trabajador-oficio/${idPerfilLocal}/${oficio}`);
             };
