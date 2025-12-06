@@ -6,20 +6,28 @@ import CardsBuscar from "./CardBuscar.jsx";
 
 export default function CuerpoBuscar() {
     const [perfiles, setPerfiles] = useState([]);
+    const [perfilesFiltrados, setPerfilesFiltrados] = useState([]);
+
+    const [filtroCiudad, setFiltroCiudad] = useState("");
+    const [filtroOficio, setFiltroOficio] = useState("");
+
+    const [ciudades, setCiudades] = useState([]);
+    const [oficiosCatalogo, setOficiosCatalogo] = useState([]);
 
     useEffect(() => {
         async function fetchPerfiles() {
             try {
                 const res = await fetch("https://your-service-3v1h.onrender.com/perfiles");
                 const data = await res.json();
-                // Transformar cada perfil
+
+                // Transformar oficios
                 const transformados = data.map((p) => {
                     return {
                         ...p,
                         oficios: Array.isArray(p.oficios)
                             ? p.oficios
-                                .map((o) => o.oficio?.nombre_oficio)
-                                .sort((a, b) => a.localeCompare(b))
+                                  .map((o) => o.oficio?.nombre_oficio)
+                                  .sort((a, b) => a.localeCompare(b))
                             : [],
                     };
                 });
@@ -29,6 +37,22 @@ export default function CuerpoBuscar() {
                 );
 
                 setPerfiles(filtrados);
+                setPerfilesFiltrados(filtrados);
+
+                // Crear lista de ciudades sin repetir
+                const ciudadesUnicas = [...new Set(filtrados.map((p) => p.localidad))];
+                setCiudades(ciudadesUnicas);
+
+                // Crear lista de oficios sin repetir
+                const todosOficios = filtrados.flatMap((p) => p.oficios);
+                const oficiosUnicos = [...new Set(todosOficios)];
+
+                setOficiosCatalogo(
+                    oficiosUnicos.map((o, i) => ({
+                        id_oficios: i + 1,
+                        nombre_oficio: o
+                    }))
+                );
 
             } catch (err) {
                 console.error("❌ Error cargando perfiles:", err);
@@ -52,7 +76,6 @@ export default function CuerpoBuscar() {
                 p.oficios.includes(filtroOficio)
             );
         }
-
         setPerfilesFiltrados(resultado);
     }, [filtroCiudad, filtroOficio, perfiles]);
 
@@ -71,7 +94,6 @@ export default function CuerpoBuscar() {
                         </option>
                     ))}
                 </select>
-
                 <select
                     className="filtro-select"
                     value={filtroOficio}
@@ -88,7 +110,7 @@ export default function CuerpoBuscar() {
 
             <CardsBuscar
                 titulo="Trabajadores disponibles"
-                data={perfiles}
+                data={perfilesFiltrados}
                 mode="cards"
             />
         </div>
