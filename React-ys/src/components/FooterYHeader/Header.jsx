@@ -14,8 +14,6 @@ const Header = () => {
 
   const cargarDatosUsuario = () => {
     const sesion = localStorage.getItem("usuarioOn") === "true";
-    const tipo = localStorage.getItem("tipoUsuario");
-
     setUsuarioOn(sesion);
 
     if (!sesion) {
@@ -24,23 +22,22 @@ const Header = () => {
       return;
     }
 
-    let datos = {};
+    const perfil = localStorage.getItem("perfil")
+      ? JSON.parse(localStorage.getItem("perfil"))
+      : null;
 
-    if (tipo === "trabajador") {
-      datos = JSON.parse(localStorage.getItem("datosRegistroTrabajador")) || {};
+    if (perfil) {
+      setUsuario({
+        nombre: perfil.nombresYApellidos,
+        email: perfil.email,
+        localidad: perfil.localidad,
+      });
+
+      setImagenPerfil(perfil.imagenPerfil || SinPerfil);
     } else {
-      datos = JSON.parse(localStorage.getItem("datosRegistro")) || {};
+      setUsuario({});
+      setImagenPerfil(SinPerfil);
     }
-
-    const info = datos.formData || datos;
-
-    const img =
-      localStorage.getItem("imagenPerfilActual") ||
-      datos.imagenPerfil ||
-      SinPerfil;
-
-    setUsuario(info);
-    setImagenPerfil(img);
   };
 
   useEffect(() => {
@@ -81,7 +78,7 @@ const Header = () => {
           <div className="user-menu">
             <img src={imagenPerfil} alt="perfil" className="avatar" />
             <div className="dropdown">
-              <h3>{usuario.Usuario || usuario.nombreUsuario || "Usuario"}</h3>
+              <h3>{usuario.nombre ?? "Usuario"}</h3>
               <Link to="/perfil">Perfil</Link>
               <button onClick={handleLogout}>Salir</button>
             </div>

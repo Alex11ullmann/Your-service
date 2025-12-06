@@ -44,6 +44,7 @@ export default function CuerpoLogin() {
         localStorage.removeItem("id_perfiles");
       }
 
+      localStorage.setItem("perfil", JSON.stringify(data.perfiles?.[0] ?? null));
       navigate("/perfil", {
         state: {
           esTrabajador: tipo === "trabajador",
