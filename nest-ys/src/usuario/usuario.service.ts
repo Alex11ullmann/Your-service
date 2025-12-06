@@ -22,16 +22,17 @@ export class UsuarioService {
     private usuarioRepo: Repository<Usuario>,
   ) { }
 
-  public async login(usuario: string, password: string) {
-    const user = await this.usuarioRepo.findOne({
-      where: { usuario, password },
-      relations: ["perfiles"],
-    });
-    if (!user) {
-      throw new NotFoundException("Usuario o contraseña incorrectos");
-    }
-    return user;
-  }
+  async login(usuario: string, password: string) {
+  const user = await this.usuarioRepo.findOne({
+    where: { usuario, password },
+    relations: ['perfiles', 'perfiles.oficios', 'perfiles.oficios.oficio'],
+  });
+
+  if (!user) throw new NotFoundException('Usuario o contraseña incorrectos');
+
+  return user;
+}
+
 
   public async create(dto: CreateUsuarioDto): Promise<Usuario> {
     try {
