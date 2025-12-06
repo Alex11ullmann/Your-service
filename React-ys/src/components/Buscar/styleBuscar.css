@@ -100,3 +100,17 @@
   color: #666;
   padding: 8px 0;
 }
+
+.filtros-container {
+  display: flex;
+  gap: 1rem;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.filtro-select {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+}

@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-undef */
 import React, { useEffect, useState } from "react";
 import "../Buscar/styleBuscar.css";
 import CardsBuscar from "./CardBuscar.jsx";
@@ -15,7 +17,9 @@ export default function CuerpoBuscar() {
                     return {
                         ...p,
                         oficios: Array.isArray(p.oficios)
-                            ? p.oficios.map((o) => o.oficio?.nombre_oficio)
+                            ? p.oficios
+                                .map((o) => o.oficio?.nombre_oficio)
+                                .sort((a, b) => a.localeCompare(b))
                             : [],
                     };
                 });
@@ -34,8 +38,54 @@ export default function CuerpoBuscar() {
         fetchPerfiles();
     }, []);
 
+    useEffect(() => {
+        let resultado = [...perfiles];
+
+        // Filtrar por ciudad
+        if (filtroCiudad) {
+            resultado = resultado.filter((p) => p.localidad === filtroCiudad);
+        }
+
+        // Filtrar por oficio
+        if (filtroOficio) {
+            resultado = resultado.filter((p) =>
+                p.oficios.includes(filtroOficio)
+            );
+        }
+
+        setPerfilesFiltrados(resultado);
+    }, [filtroCiudad, filtroOficio, perfiles]);
+
     return (
         <div className="cuerpoCatalogo">
+            <div className="filtros-container">
+                <select
+                    className="filtro-select"
+                    value={filtroCiudad}
+                    onChange={(e) => setFiltroCiudad(e.target.value)}
+                >
+                    <option value="">Todas las ciudades</option>
+                    {ciudades.map((c, i) => (
+                        <option key={i} value={c}>
+                            {c}
+                        </option>
+                    ))}
+                </select>
+
+                <select
+                    className="filtro-select"
+                    value={filtroOficio}
+                    onChange={(e) => setFiltroOficio(e.target.value)}
+                >
+                    <option value="">Todos los oficios</option>
+                    {oficiosCatalogo.map((o) => (
+                        <option key={o.id_oficios} value={o.nombre_oficio}>
+                            {o.nombre_oficio}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
             <CardsBuscar
                 titulo="Trabajadores disponibles"
                 data={perfiles}
