@@ -16,6 +16,8 @@ import { Perfil } from './entities/perfil.entity';
 import { CreatePerfilDto } from './dto/create-perfil.dto';
 import { UpdatePerfilDto } from './dto/update-perfil.dto';
 import { Usuario } from '../usuario/entities/usuario.entity';
+import { Oficio } from 'src/oficio/entities/oficio.entity';
+import { TrabajadorOficio } from 'src/trabajador-oficio/entities/trabajador-oficio.entity';
 
 @Injectable()
 export class PerfilService {
@@ -24,32 +26,49 @@ export class PerfilService {
     private perfilRepo: Repository<Perfil>,
     @InjectRepository(Usuario)
     private usuarioRepo: Repository<Usuario>,
+    @InjectRepository(Oficio)
+    private oficioRepo: Repository<Oficio>,
+    @InjectRepository(TrabajadorOficio)
+    private trabajadorOficioRepo: Repository<TrabajadorOficio>,
   ) { }
 
   public async create(dto: CreatePerfilDto): Promise<Perfil> {
     try {
-      const dni = await this.perfilRepo.findOne({
-        where: { dni: dto.dni },
-      });
+      const dni = await this.perfilRepo.findOne({ where: { dni: dto.dni } });
       if (dni) throw new ConflictException('Dni ya existe');
 
-      const mail = await this.perfilRepo.findOne({
-        where: { email: dto.email },
-      });
+      const mail = await this.perfilRepo.findOne({ where: { email: dto.email } });
       if (mail) throw new ConflictException('Email ya existe');
 
       const usuario = await this.usuarioRepo.findOne({
         where: { id_usuario: dto.id_usuario },
       });
+
       if (!usuario) throw new NotFoundException('Usuario no encontrado');
 
-      const perfil = this.perfilRepo.create({ ...dto, usuario });
+      const perfilCreado = this.perfilRepo.create({ ...dto, usuario });
+      const perfil = await this.perfilRepo.save(perfilCreado);
 
-      return await this.perfilRepo.save(perfil);
+      if (dto.oficioIds && dto.oficioIds.length) {
+        for (const id_oficio of dto.oficioIds) {
+          const oficio = await this.oficioRepo.findOne({
+            where: { id_oficios: id_oficio },
+          });
+
+          if (!oficio) continue;
+          const relacion = this.trabajadorOficioRepo.create({
+            perfil,
+            oficio,
+          });
+
+          await this.trabajadorOficioRepo.save(relacion);
+        }
+      }
+      return await this.findOne(perfil.id_perfiles);
 
     } catch (error: any) {
       throw new InternalServerErrorException(
-        'Error al crear el perfil: ' + (error.message ?? ''),
+        'Error al crear el perfil: ' + (error.message ?? '')
       );
     }
   }

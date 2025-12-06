@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable prettier/prettier */
 import { Type } from 'class-transformer';
-import { IsBoolean, IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
+import { IsArray, IsBoolean, IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
 
 export class CreatePerfilDto {
   @IsString()
@@ -41,6 +41,11 @@ export class CreatePerfilDto {
 
   @IsBoolean()
   estrabajador: boolean;
+
+  @IsOptional()
+  @IsArray()
+  @Type(() => Number)
+  oficioIds?: number[];
 
   @IsInt()
   @Type(() => Number)
