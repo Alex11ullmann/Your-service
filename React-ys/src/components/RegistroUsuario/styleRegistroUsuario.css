@@ -75,11 +75,15 @@
 }
 .btn-pago {
     display: inline-block;
+    height: 5vw;
+    width: 30vw;
+    text-align: center;
+    align-content: center;
     padding: 12px 20px;
     background: #4caf50;
     color: white;
     border-radius: 8px;
-    font-size: 18px;
+    font-size: 1.8vw;
     text-decoration: none;
     margin: 20px 0;
     cursor: pointer;
