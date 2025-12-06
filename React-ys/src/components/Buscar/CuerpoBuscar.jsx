@@ -15,7 +15,7 @@ export default function CuerpoBuscar() {
                     return {
                         ...p,
                         oficios: Array.isArray(p.oficios)
-                            ? p.oficios.map((o) => o.oficio?.nombre)
+                            ? p.oficios.map((o) => o.oficio?.nombre_oficio)
                             : [],
                     };
                 });
