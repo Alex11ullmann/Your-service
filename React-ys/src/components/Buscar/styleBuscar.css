@@ -110,7 +110,9 @@
 
 .filtro-select {
   padding: 10px;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 1px solid #444;
+  font-size: 1.2vw;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  color: white;
+  background-color: rgb(47, 120, 255);
 }

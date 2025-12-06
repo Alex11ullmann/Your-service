@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import "./styleRegistroUsuario.css";
 import { infoParaRegistro } from "./InfoParaRegistro.jsx";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +15,9 @@ export default function CuerpoRegistroUsuario() {
     const navigate = useNavigate();
     const [pagoRealizado, setPagoRealizado] = useState(false);
 
+    const API_URL = "https://your-service-3v1h.onrender.com";
+
+    // Campos base
     const camposIniciales = infoParaRegistro.reduce((acc, item) => {
         if (item.name !== "oficios") acc[item.name] = "";
         return acc;
@@ -25,41 +29,39 @@ export default function CuerpoRegistroUsuario() {
         .filter(item => item.name !== "oficios")
         .map(item => item.name);
 
-    // Resetear storage al entrar a la página
     useEffect(() => {
         localStorage.setItem("pagoRegistro", "");
         localStorage.setItem("pagoOrigen", "");
     }, []);
 
+    // Cargar datos guardados si existen
     useEffect(() => {
-        const datosGuardados = localStorage.getItem("datosRegistro");
+        const datosGuardados = localStorage.getItem("datosRegistroUsuario");
         if (datosGuardados) {
-            const parsed = JSON.parse(datosGuardados);
-            setFormData({ ...camposIniciales, ...parsed });
+            setFormData(JSON.parse(datosGuardados));
         }
     }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
+        setFormData(prev => ({
+            ...prev,
             [name]: value,
         }));
     };
 
+    // GUARDAR USUARIO COMUN
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // VALIDAR PAGO DESDE EL COMPONENTE
         if (!pagoRealizado) {
             alert("⚠️ Debes realizar el pago antes de registrarte.");
             return;
         }
 
-        // VALIDAR CAMPOS
         for (let key of camposEsperados) {
             if (!formData[key] || String(formData[key]).trim() === "") {
-                alert("⚠️ Por favor completa todos los campos correctamente.");
+                alert("⚠️ Completa todos los campos correctamente.");
                 return;
             }
         }
@@ -68,45 +70,41 @@ export default function CuerpoRegistroUsuario() {
             alert("❌ Las contraseñas no coinciden.");
             return;
         }
+
         try {
-            localStorage.setItem("datosRegistro", JSON.stringify(formData));
+            const datosUsuario = {
+                usuario: formData.usuario,
+                password: formData.password,
+            };
+            const resUsuario = await axios.post(`${API_URL}/usuarios`, datosUsuario);
+            const idUsuario = resUsuario.data.id_usuario;
+            const datosPerfil = {
+                nombresYApellidos: formData.nombresYApellidos,
+                localidad: formData.localidad,
+                direccion: formData.direccion,
+                telefono: formData.telefono,
+                dni: formData.dni,
+                email: formData.email,
+                estrabajador: false, 
+                id_usuario: idUsuario,
+            };
+
+            const resPerfil = await axios.post(`${API_URL}/perfiles`, datosPerfil);
+            const idPerfil = resPerfil.data.id_perfiles;
+
+            // Guardar sesión
+            localStorage.setItem("id_usuario", idUsuario);
+            localStorage.setItem("id_perfiles", idPerfil);
             localStorage.setItem("tipoUsuario", "usuario");
             localStorage.setItem("usuarioOn", "true");
-            window.dispatchEvent(new Event("storage"));
-            try {
-                const datosUsuario = {
-                    usuario: formData.usuario,
-                    password: formData.password,
-                };
 
-                const resUsuario = await axios.post("http://localhost:3000/usuarios", datosUsuario);
+            navigate("/perfil", { state: { esTrabajador: false } });
 
-                const idUsuario = resUsuario.data.id;
-                console.log("Usuario creado (ID):", idUsuario);
-
-                const datosPerfil = {
-                    nombresYApellidos: formData.nombresYApellidos,
-                    localidad: formData.localidad,
-                    direccion: formData.direccion,
-                    telefono: formData.telefono,
-                    dni: formData.dni,
-                    email: formData.email,
-                    id_usuario: idUsuario,
-                };
-                await axios.post("http://localhost:3000/perfiles", datosPerfil);
-
-                navigate("/perfil", { state: { esTrabajador: false } });
-
-            } catch (error) {
-                console.error("❌ Error al enviar datos al backend:", error);
-                alert("Ocurrió un error al registrar el usuario.");
-            }
         } catch (error) {
-            console.error("❌ Error general en el registro:", error);
-            alert("Ocurrió un error al guardar los datos.");
+            console.error("❌ Error al registrar usuario/perfil:", error);
+            alert("Ocurrió un error durante el registro.");
         }
     };
-
 
     const camposConValidacion = ["usuario", "password", "repPassword", "direccion"];
     const camposValidadosConEspacios = ["nombresYApellidos"];
@@ -117,9 +115,10 @@ export default function CuerpoRegistroUsuario() {
         <div className="cuerpoRegistro">
             <div className="logRegistro-container">
                 <h2>Registrarse</h2>
+
                 <form onSubmit={handleSubmit}>
                     {infoParaRegistro
-                        .filter((data) => data.name !== "oficios")
+                        .filter(data => data.name !== "oficios")
                         .map((data) => (
                             <div className="input-group" key={data.id}>
                                 <label htmlFor={data.id}>{data.label}</label>
@@ -131,12 +130,13 @@ export default function CuerpoRegistroUsuario() {
                                         id={data.id}
                                         name={data.name}
                                         placeholder={data.placeholder}
-                                        maxLength={data.maxLength}
-                                        minLength={data.minLength}
-                                        required={data.required}
                                         value={formData[data.name]}
                                         onChange={handleChange}
-                                        passwordValue={data.name === "repPassword" ? formData["password"] : null}
+                                        passwordValue={
+                                            data.name === "repPassword"
+                                                ? formData["password"]
+                                                : null
+                                        }
                                     />
                                 ) : camposSoloNumeros.includes(data.name) ? (
                                     <InputSoloNumeros
@@ -145,9 +145,6 @@ export default function CuerpoRegistroUsuario() {
                                         id={data.id}
                                         name={data.name}
                                         placeholder={data.placeholder}
-                                        maxLength={data.maxLength}
-                                        minLength={data.minLength}
-                                        required={data.required}
                                         value={formData[data.name]}
                                         onChange={handleChange}
                                     />
@@ -158,9 +155,6 @@ export default function CuerpoRegistroUsuario() {
                                         id={data.id}
                                         name={data.name}
                                         placeholder={data.placeholder}
-                                        maxLength={data.maxLength}
-                                        minLength={data.minLength}
-                                        required={data.required}
                                         value={formData[data.name]}
                                         onChange={handleChange}
                                     />
@@ -171,9 +165,6 @@ export default function CuerpoRegistroUsuario() {
                                         id={data.id}
                                         name={data.name}
                                         placeholder={data.placeholder}
-                                        maxLength={data.maxLength}
-                                        minLength={data.minLength}
-                                        required={data.required}
                                         value={formData[data.name]}
                                         onChange={handleChange}
                                     />
@@ -184,9 +175,6 @@ export default function CuerpoRegistroUsuario() {
                                         id={data.id}
                                         name={data.name}
                                         placeholder={data.placeholder}
-                                        maxLength={data.maxLength}
-                                        minLength={data.minLength}
-                                        required={data.required}
                                         value={formData[data.name]}
                                         onChange={handleChange}
                                     />
@@ -197,12 +185,14 @@ export default function CuerpoRegistroUsuario() {
                                 )}
                             </div>
                         ))}
+
                     <div className="contenedor-pago">
                         <BotonPago
                             origen="usuario"
                             onPagoRealizado={(estado) => setPagoRealizado(estado)}
                         />
                     </div>
+
                     <button type="submit" id="guardar-btn" className="guardar-btn">
                         Registrarme
                     </button>
