@@ -15,7 +15,9 @@ export default function CuerpoBuscar() {
                 const filtrados = data.filter(
                     (p) =>
                         p.tipo === "trabajador" &&
-                        (Array.isArray(p.oficios) && p.oficios.length > 0)
+                        p.perfil && 
+                        Array.isArray(p.perfil.oficios) &&
+                        p.perfil.oficios.length > 0
                 );
 
                 setPerfiles(filtrados);
@@ -32,7 +34,6 @@ export default function CuerpoBuscar() {
             <CardsBuscar
                 titulo="Trabajadores disponibles"
                 data={perfiles}
-                dataKey="Usuario"
                 mode="cards"
             />
         </div>
