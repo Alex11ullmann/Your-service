@@ -87,9 +87,7 @@ export default function CuerpoRegistroUsuario() {
                 email: formData.email,
                 estrabajador: false,
                 id_usuario: idUsuario,
-                descripcion: formData.descripcion?.trim()?.length >= 20
-                    ? formData.descripcion.trim()
-                    : undefined,
+                descripcion: "La carga o modificacion de descripcion es solo para usuarios trabajadores"
             };
 
             const resPerfil = await axios.post(`${API_URL}/perfiles`, datosPerfil);
