@@ -32,8 +32,8 @@ export class Perfil {
   @Column({ name: 'email', type: 'varchar', length: 30, unique: true })
   email: string;
 
-  @Column({ name: 'descripcion', type: 'varchar', length: 600, })
-  descripcion?: string;
+  @Column({ name: 'descripcion', nullable: true, type: 'varchar', length: 600, })
+  descripcion: string | null;
 
   @Column({ name: 'estrabajador', type: 'boolean' })
   estrabajador: boolean;
