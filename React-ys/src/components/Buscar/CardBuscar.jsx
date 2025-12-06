@@ -15,7 +15,6 @@ export default function CardsBuscar({ titulo, data = [], mode = "dropdown" }) {
           ) : (
             data.map((item, index) => {
               const perfil = item.perfil ?? item;
-
               const nombre =
                 perfil.nombresYApellidos ||
                 perfil.nombre ||
