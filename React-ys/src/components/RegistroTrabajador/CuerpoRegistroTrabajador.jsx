@@ -118,9 +118,11 @@ export default function CuerpoRegistroTrabajador() {
       const idPerfil = resPerfil.data.id_perfiles;
 
       // Registrar oficios del trabajador
-      for (let oficio of formData.oficios) {
-        await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`, {
-        });
+      // Registrar oficios del trabajador (con limpieza de datos)
+      const oficiosLimpios = formData.oficios.filter(o => Number(o) > 0);
+
+      for (let oficio of oficiosLimpios) {
+        await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`);
       }
 
       // Guardar estado de sesión

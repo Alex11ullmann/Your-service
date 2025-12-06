@@ -111,7 +111,7 @@ export default function CuerpoPerfiles() {
     const agregarOficio = (e) => {
         const value = e.target.value;
 
-        if (!value || value === "" || value === "undefined" || value === "null") return;
+        if (!value || isNaN(Number(value))) return;
 
         const oficio = Number(value);
 
@@ -236,7 +236,8 @@ export default function CuerpoPerfiles() {
                                     </select>
 
                                     <div className="contenedor-etiquetas">
-                                        {formData.oficios?.map((id) => {
+                                        {formData.oficios?.filter(o => Number(o) > 0).map((id) => {
+
                                             const oficio = catalogoOficios.find(
                                                 (o) => o.id_oficios === id || o.id_oficio === id
                                             );
