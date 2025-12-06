@@ -85,9 +85,11 @@ export default function CuerpoRegistroUsuario() {
                 telefono: formData.telefono,
                 dni: formData.dni,
                 email: formData.email,
-                estrabajador: false, 
+                estrabajador: false,
                 id_usuario: idUsuario,
-                descripcion: "",
+                descripcion: formData.descripcion?.trim()?.length >= 20
+                    ? formData.descripcion.trim()
+                    : undefined,
             };
 
             const resPerfil = await axios.post(`${API_URL}/perfiles`, datosPerfil);
