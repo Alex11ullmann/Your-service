@@ -21,7 +21,6 @@ export default function CuerpoPerfiles() {
     const [idPerfil, setIdPerfil] = useState(null);
     const [catalogoOficios, setCatalogoOficios] = useState([]);
 
-    // 1. TRAER DATOS DEL BACKEND
     useEffect(() => {
         const fetchData = async () => {
             const usuarioActivo = localStorage.getItem("usuarioOn") === "true";
@@ -31,10 +30,7 @@ export default function CuerpoPerfiles() {
             }
 
             const idUsuario = localStorage.getItem("id_usuario");
-            if (!idUsuario) {
-                console.warn("⚠️ No hay id_usuario en localStorage.");
-                return;
-            }
+            if (!idUsuario) return;
 
             try {
                 const userRes = await axios.get(`${API_URL}/usuarios/${idUsuario}`);
@@ -43,10 +39,8 @@ export default function CuerpoPerfiles() {
                 const idPerfilLocal = localStorage.getItem("id_perfiles");
 
                 if (!idPerfilLocal) {
-                    console.warn("⚠️ No hay id_perfiles: este usuario aún no tiene perfil creado.");
                     setFormData({
                         usuario: usuario.usuario,
-                        password: usuario.password,
                         nombresYApellidos: "",
                         localidad: "",
                         direccion: "",
@@ -61,12 +55,10 @@ export default function CuerpoPerfiles() {
 
                 const perfilRes = await axios.get(`${API_URL}/perfiles/${idPerfilLocal}`);
                 const perfil = perfilRes.data;
-
                 setIdPerfil(perfil.id_perfiles);
 
                 const datosPerfil = {
                     usuario: usuario.usuario,
-                    password: usuario.password,
                     nombresYApellidos: perfil.nombresYApellidos,
                     localidad: perfil.localidad,
                     direccion: perfil.direccion,
@@ -80,7 +72,7 @@ export default function CuerpoPerfiles() {
                 setFormData(datosPerfil);
 
             } catch (error) {
-                console.error("❌ Error al cargar datos del perfil:", error);
+                console.error("❌ Error al cargar perfil:", error);
             }
         };
 
@@ -97,21 +89,16 @@ export default function CuerpoPerfiles() {
         fetchData();
     }, []);
 
-    // CONTROLADORES DE INPUTS
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    // Manejo de oficios
     const agregarOficio = (e) => {
-        const value = e.target.value;
+        const oficio = Number(e.target.value);
+        if (!oficio || isNaN(oficio)) return;
 
-        if (!value || isNaN(Number(value))) return;
-
-        const oficio = Number(value);
-
-        if (!isNaN(oficio) && oficio > 0 && !formData.oficios.includes(oficio)) {
+        if (!formData.oficios.includes(oficio)) {
             setFormData((prev) => ({
                 ...prev,
                 oficios: [...prev.oficios, oficio],
@@ -133,15 +120,13 @@ export default function CuerpoPerfiles() {
         }
     };
 
-    // 2. MODIFICAR CAMBIOS (PATCH)
     const handleGuardarCambios = async () => {
         if (!idPerfil) {
-            console.error("❌ idPerfil es NULL o undefined. No se puede guardar.");
             alert("El perfil no está cargado. Cerrá sesión y volvé a entrar.");
             return;
         }
+
         try {
-            // Registrar datos del trabajador
             await axios.patch(`${API_URL}/perfiles/${idPerfil}`, {
                 nombresYApellidos: formData.nombresYApellidos,
                 localidad: formData.localidad,
@@ -152,7 +137,6 @@ export default function CuerpoPerfiles() {
                 descripcion: formData.perfilProfesional,
             });
 
-            // Registrar oficios del trabajador
             const oficiosLimpios = formData.oficios.filter(o => o && !isNaN(o));
 
             for (let oficio of oficiosLimpios) {
@@ -161,13 +145,13 @@ export default function CuerpoPerfiles() {
 
             alert("✅ Cambios guardados correctamente");
             window.location.reload();
+
         } catch (error) {
             console.error("❌ Error en PATCH:", error);
             alert("No se pudieron guardar los cambios");
         }
     };
 
-    // 3. ELIMINAR CUENTA
     const handleEliminarCuenta = async () => {
         const inputPass = document.getElementById("inputEliminarPass").value.trim();
 
@@ -176,8 +160,15 @@ export default function CuerpoPerfiles() {
             return;
         }
 
-        if (inputPass !== formData.password) {
-            alert("❌ Contraseña incorrecta");
+        const usuarioNombre = formData.usuario;
+
+        try {
+            await axios.post(`${API_URL}/usuarios/login`, {
+                usuario: usuarioNombre,
+                password: inputPass
+            });
+        } catch (e) {
+            alert("❌ Contraseña incorrecta", e);
             return;
         }
 
@@ -190,7 +181,8 @@ export default function CuerpoPerfiles() {
 
             for (let oficio of formData.oficios) {
                 await axios.delete(`${API_URL}/trabajador-oficio/${idPerfilLocal}/${oficio}`);
-            };
+            }
+
             await axios.delete(`${API_URL}/perfiles/${idPerfilLocal}`);
             await axios.delete(`${API_URL}/usuarios/${idUsuario}`);
 
@@ -204,7 +196,7 @@ export default function CuerpoPerfiles() {
         }
     };
 
-    const camposConValidacion = ["usuario", "password", "repPassword", "direccion"];
+    const camposConValidacion = ["usuario"];
     const camposValidadosConEspacios = ["nombresYApellidos"];
     const camposSoloLetras = ["localidad"];
     const camposSoloNumeros = ["telefono", "dni"];
@@ -238,8 +230,7 @@ export default function CuerpoPerfiles() {
                                     </select>
 
                                     <div className="contenedor-etiquetas">
-                                        {formData.oficios?.filter(o => Number(o) > 0).map((id) => {
-
+                                        {formData.oficios?.map((id) => {
                                             const oficio = catalogoOficios.find(
                                                 (o) => o.id_oficios === id || o.id_oficio === id
                                             );
@@ -255,7 +246,7 @@ export default function CuerpoPerfiles() {
                             );
                         }
 
-                        // INPUTS NORMALES
+                        // INPUTS CON VALIDADORES
                         let InputComponent = null;
 
                         if (camposConValidacion.includes(data.name)) {
