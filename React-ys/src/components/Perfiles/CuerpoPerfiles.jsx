@@ -6,331 +6,293 @@ import InputValidado from "../Validaciones/ValidarCaracteres";
 import InputSoloNumeros from "../Validaciones/ValidarSoloNumeros";
 import InputSoloLetras from "../Validaciones/ValidarSoloLetras";
 import InputSoloLetrasYEspacio from "../Validaciones/ValidarSoloLetrasYEspacios";
+import InputEmail from "../Validaciones/ValidarEmail";
 import axios from "axios";
 
 export default function CuerpoPerfiles() {
-    const [formData, setFormData] = useState({});
-    const navigate = useNavigate();
+  const [formData, setFormData] = useState({});
+  const navigate = useNavigate();
 
-    const tipoUsuario = localStorage.getItem("tipoUsuario");
-    const esTrabajadorReal = tipoUsuario === "trabajador";
+  const tipoUsuario = localStorage.getItem("tipoUsuario");
+  const esTrabajadorReal = tipoUsuario === "trabajador";
 
-    const camposConValidacion = ["direccion"];
-    const camposSoloLetras = ["localidad"];
-    const camposSoloNumeros = ["telefono", "dni"];
-    const camposValidadosConEspacios = ["nombresYApellidos"];
+  // VALIDACIONES IGUALES A REGISTRO
+  const camposConValidacion = ["direccion", "password", "repPassword"];
+  const camposSoloLetras = ["localidad"];
+  const camposSoloNumeros = ["telefono", "dni"];
+  const camposValidadosConEspacios = ["nombresYApellidos"];
+  const campoEmail = ["email"];
 
-    const API_URL = "https://your-service-3v1h.onrender.com";
+  const API_URL = "https://your-service-3v1h.onrender.com";
 
-    const [idPerfil, setIdPerfil] = useState(null);
-    const [catalogoOficios, setCatalogoOficios] = useState([]);
+  const [idPerfil, setIdPerfil] = useState(null);
+  const [catalogoOficios, setCatalogoOficios] = useState([]);
 
-    // 1. TRAER DATOS DEL BACKEND
-    useEffect(() => {
-        const fetchData = async () => {
-            const usuarioActivo = localStorage.getItem("usuarioOn") === "true";
-            if (!usuarioActivo) {
-                setFormData({});
-                return;
-            }
+  // TRAER DATOS
+  useEffect(() => {
+    const fetchData = async () => {
+      const usuarioActivo = localStorage.getItem("usuarioOn") === "true";
+      if (!usuarioActivo) {
+        setFormData({});
+        return;
+      }
 
-            const idUsuario = localStorage.getItem("id_usuario");
-            if (!idUsuario) {
-                console.warn("⚠️ No hay id_usuario en localStorage.");
-                return;
-            }
+      const idUsuario = localStorage.getItem("id_usuario");
+      if (!idUsuario) return;
 
-            try {
-                const userRes = await axios.get(`${API_URL}/usuarios/${idUsuario}`);
-                const usuario = userRes.data;
+      try {
+        const userRes = await axios.get(`${API_URL}/usuarios/${idUsuario}`);
+        const usuario = userRes.data;
 
-                const idPerfilLocal = localStorage.getItem("id_perfiles");
+        const idPerfilLocal = localStorage.getItem("id_perfiles");
+        if (!idPerfilLocal) {
+          setFormData({
+            usuario: usuario.usuario,
+            password: usuario.password,
+            nombresYApellidos: "",
+            localidad: "",
+            direccion: "",
+            telefono: "",
+            dni: "",
+            email: "",
+            oficios: [],
+            perfilProfesional: "",
+          });
+          return;
+        }
 
-                if (!idPerfilLocal) {
-                    console.warn("⚠️ No hay id_perfiles: este usuario aún no tiene perfil creado.");
-                    setFormData({
-                        usuario: usuario.usuario,
-                        password: usuario.password,
-                        nombresYApellidos: "",
-                        localidad: "",
-                        direccion: "",
-                        telefono: "",
-                        dni: "",
-                        email: "",
-                        oficios: [],
-                        perfilProfesional: "",
-                    });
-                    return;
-                }
+        const perfilRes = await axios.get(`${API_URL}/perfiles/${idPerfilLocal}`);
+        const perfil = perfilRes.data;
 
-                const perfilRes = await axios.get(`${API_URL}/perfiles/${idPerfilLocal}`);
-                const perfil = perfilRes.data;
+        setIdPerfil(perfil.id_perfiles);
 
-                setIdPerfil(perfil.id_perfiles);
-
-                const datosPerfil = {
-                    usuario: usuario.usuario,
-                    password: usuario.password,
-                    nombresYApellidos: perfil.nombresYApellidos,
-                    localidad: perfil.localidad,
-                    direccion: perfil.direccion,
-                    telefono: perfil.telefono,
-                    dni: perfil.dni,
-                    email: perfil.email,
-                    oficios: perfil.oficios?.map((o) => o.oficio.id_oficios) || [],
-                    perfilProfesional: perfil.descripcion || "",
-                };
-
-                setFormData(datosPerfil);
-
-            } catch (error) {
-                console.error("❌ Error al cargar datos del perfil:", error);
-            }
-        };
-
-        const cargarOficios = async () => {
-            try {
-                const res = await axios.get(`${API_URL}/oficios`);
-                setCatalogoOficios(res.data);
-            } catch (error) {
-                console.error("❌ Error al cargar catálogo de oficios:", error);
-            }
-        };
-
-        cargarOficios();
-        fetchData();
-    }, []);
-
-    // CONTROLADORES DE INPUTS
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        setFormData({
+          usuario: usuario.usuario,
+          password: usuario.password,
+          nombresYApellidos: perfil.nombresYApellidos,
+          localidad: perfil.localidad,
+          direccion: perfil.direccion,
+          telefono: perfil.telefono,
+          dni: perfil.dni,
+          email: perfil.email,
+          oficios: perfil.oficios?.map((o) => o.oficio.id_oficios) || [],
+          perfilProfesional: perfil.descripcion || "",
+        });
+      } catch (error) {
+        console.error("❌ Error al cargar datos del perfil:", error);
+      }
     };
 
-    // Manejo de oficios
-    const agregarOficio = (e) => {
-        const value = e.target.value;
-
-        if (!value || isNaN(Number(value))) return;
-
-        const oficio = Number(value);
-
-        if (!isNaN(oficio) && oficio > 0 && !formData.oficios.includes(oficio)) {
-            setFormData((prev) => ({
-                ...prev,
-                oficios: [...prev.oficios, oficio],
-            }));
-        }
+    const cargarOficios = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/oficios`);
+        setCatalogoOficios(res.data);
+      } catch (error) {
+        console.error("❌ Error al cargar catálogo de oficios:", error);
+      }
     };
 
-    const eliminarOficio = async (oficio) => {
-        try {
-            setFormData((prev) => ({
-                ...prev,
-                oficios: prev.oficios.filter((o) => o !== oficio),
-            }));
+    cargarOficios();
+    fetchData();
+  }, []);
 
-            await axios.delete(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`);
+  // CONTROLADOR
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-        } catch (error) {
-            console.error("❌ Error al eliminar oficio:", error);
-        }
-    };
+  // AGREGAR OFICIO
+  const agregarOficio = (e) => {
+    const value = e.target.value;
+    if (!value || isNaN(Number(value))) return;
 
-    // 2. MODIFICAR CAMBIOS (PATCH)
-    const handleGuardarCambios = async () => {
-        if (!idPerfil) {
-            console.error("❌ idPerfil es NULL o undefined. No se puede guardar.");
-            alert("El perfil no está cargado. Cerrá sesión y volvé a entrar.");
-            return;
-        }
-        try {
-            // Registrar datos del trabajador
-            await axios.patch(`${API_URL}/perfiles/${idPerfil}`, {
-                nombresYApellidos: formData.nombresYApellidos,
-                localidad: formData.localidad,
-                direccion: formData.direccion,
-                telefono: formData.telefono,
-                dni: formData.dni,
-                email: formData.email,
-                descripcion: formData.perfilProfesional,
-            });
+    const oficio = Number(value);
+    if (!formData.oficios.includes(oficio)) {
+      setFormData((prev) => ({ ...prev, oficios: [...prev.oficios, oficio] }));
+    }
+  };
 
-            // Registrar oficios del trabajador
-            const oficiosLimpios = formData.oficios.filter(o => o && !isNaN(o));
+  const eliminarOficio = async (oficio) => {
+    try {
+      setFormData((prev) => ({
+        ...prev,
+        oficios: prev.oficios.filter((o) => o !== oficio),
+      }));
 
-            for (let oficio of oficiosLimpios) {
-                await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`);
-            }
+      await axios.delete(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`);
+    } catch (error) {
+      console.error("❌ Error al eliminar oficio:", error);
+    }
+  };
 
-            alert("✅ Cambios guardados correctamente");
-            window.location.reload();
-        } catch (error) {
-            console.error("❌ Error en PATCH:", error);
-            alert("No se pudieron guardar los cambios");
-        }
-    };
+  // GUARDAR CAMBIOS
+  const handleGuardarCambios = async () => {
+    if (!idPerfil) {
+      alert("El perfil no está cargado correctamente.");
+      return;
+    }
 
-    // 3. ELIMINAR CUENTA
-    const handleEliminarCuenta = async () => {
-        const inputPass = document.getElementById("inputEliminarPass").value.trim();
+    try {
+      await axios.patch(`${API_URL}/perfiles/${idPerfil}`, {
+        nombresYApellidos: formData.nombresYApellidos,
+        localidad: formData.localidad,
+        direccion: formData.direccion,
+        telefono: formData.telefono,
+        dni: formData.dni,
+        email: formData.email,
+        descripcion: formData.perfilProfesional,
+      });
 
-        if (!inputPass) {
-            alert("⚠️ Ingrese su contraseña para continuar");
-            return;
-        }
+      const oficiosLimpios = formData.oficios.filter((o) => Number(o) > 0);
+      for (let oficio of oficiosLimpios) {
+        await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`);
+      }
 
-        if (inputPass !== formData.password) {
-            alert("❌ Contraseña incorrecta");
-            return;
-        }
+      alert("Cambios guardados correctamente.");
+      window.location.reload();
+    } catch (error) {
+      console.error("❌ Error en PATCH:", error);
+      alert("No se pudieron guardar los cambios");
+    }
+  };
 
-        const confirmar = window.confirm("⚠️ ¿Seguro que querés eliminar tu cuenta?");
-        if (!confirmar) return;
+  // ELIMINAR CUENTA
+  const handleEliminarCuenta = async () => {
+    const inputPass = document.getElementById("inputEliminarPass").value.trim();
 
-        try {
-            const idUsuario = localStorage.getItem("id_usuario");
-            const idPerfilLocal = localStorage.getItem("id_perfiles");
+    if (inputPass !== formData.password) {
+      alert("❌ Contraseña incorrecta");
+      return;
+    }
 
-            for (let oficio of formData.oficios) {
-                await axios.delete(`${API_URL}/trabajador-oficio/${idPerfilLocal}/${oficio}`);
-            };
-            await axios.delete(`${API_URL}/perfiles/${idPerfilLocal}`);
-            await axios.delete(`${API_URL}/usuarios/${idUsuario}`);
+    const confirmar = window.confirm("¿Eliminar cuenta?");
+    if (!confirmar) return;
 
-            localStorage.clear();
-            alert("Cuenta eliminada");
-            navigate("/");
+    try {
+      const idUsuario = localStorage.getItem("id_usuario");
+      const idPerfilLocal = localStorage.getItem("id_perfiles");
 
-        } catch (error) {
-            console.error("❌ Error al eliminar cuenta:", error);
-            alert("No se pudo eliminar la cuenta");
-        }
-    };
+      for (let oficio of formData.oficios) {
+        await axios.delete(`${API_URL}/trabajador-oficio/${idPerfilLocal}/${oficio}`);
+      }
 
-    return (
-        <div className="cuerpo">
-            <div className="contenido">
-                <div className="formularios">
+      await axios.delete(`${API_URL}/perfiles/${idPerfilLocal}`);
+      await axios.delete(`${API_URL}/usuarios/${idUsuario}`);
 
-                    <h2>Nombre de Perfil:</h2>
-                    <h3>{formData.usuario}</h3>
+      localStorage.clear();
+      alert("Cuenta eliminada");
+      navigate("/");
+    } catch (error) {
+      console.error("❌ Error al eliminar cuenta:", error);
+    }
+  };
 
-                    {InfoPerfiles.map((data) => {
-                        if (data.name === "usuario") return null;
-                        if (data.name === "oficios" && !esTrabajadorReal) return null;
+  return (
+    <div className="cuerpo">
+      <div className="contenido">
+        <div className="formularios">
+          <h2>Nombre de Perfil:</h2>
+          <h3>{formData.usuario}</h3>
 
-                        // SELECT DE OFICIOS
-                        if (data.name === "oficios" && esTrabajadorReal) {
-                            return (
-                                <div className="modificar" key={data.name}>
-                                    <h4>{data.datos}:</h4>
+          {InfoPerfiles.map((data) => {
+            if (data.name === "usuario") return null;
+            if (data.name === "oficios" && !esTrabajadorReal) return null;
 
-                                    <select className="datos" onChange={agregarOficio} defaultValue="">
-                                        <option value="">Seleccionar oficio...</option>
-                                        {catalogoOficios.map((of) => (
-                                            <option key={of.id_oficios} value={of.id_oficios}>
-                                                {of.nombre_oficio}
-                                            </option>
-                                        ))}
-                                    </select>
+            if (data.name === "oficios") {
+              return (
+                <div className="modificar" key={data.name}>
+                  <h4>{data.datos}:</h4>
 
-                                    <div className="contenedor-etiquetas">
-                                        {formData.oficios?.filter(o => Number(o) > 0).map((id) => {
+                  <select className="datos" onChange={agregarOficio} defaultValue="">
+                    <option value="">Seleccionar oficio...</option>
+                    {catalogoOficios.map((of) => (
+                      <option key={of.id_oficios} value={of.id_oficios}>
+                        {of.nombre_oficio}
+                      </option>
+                    ))}
+                  </select>
 
-                                            const oficio = catalogoOficios.find(
-                                                (o) => o.id_oficios === id || o.id_oficio === id
-                                            );
+                  <div className="contenedor-etiquetas">
+                    {formData.oficios?.filter((o) => Number(o) > 0).map((id) => {
+                      const oficio = catalogoOficios.find(
+                        (o) => o.id_oficios === id || o.id_oficio === id
+                      );
 
-                                            return (
-                                                <span key={id} className="tag-oficio" onClick={() => eliminarOficio(id)}>
-                                                    {oficio ? oficio.nombre_oficio : "Oficio no encontrado"} ✕
-                                                </span>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            );
-                        }
-
-                        // INPUTS NORMALES
-                        let InputComponent = null;
-
-                        if (camposConValidacion.includes(data.name)) {
-                            InputComponent = InputValidado;
-                        } else if (camposSoloNumeros.includes(data.name)) {
-                            InputComponent = InputSoloNumeros;
-                        } else if (camposSoloLetras.includes(data.name)) {
-                            InputComponent = InputSoloLetras;
-                        } else if (camposValidadosConEspacios.includes(data.name)) {
-                            InputComponent = InputSoloLetrasYEspacio;
-                        }
-
-                        return (
-                            <div className="modificar" key={data.name}>
-                                <h4>{data.datos}:</h4>
-
-                                {InputComponent ? (
-                                    <InputComponent
-                                        name={data.name}
-                                        type="text"
-                                        value={formData[data.name] || ""}
-                                        onChange={handleChange}
-                                        minLength={data.minLength}
-                                        maxLength={data.maxLength}
-                                    />
-                                ) : (
-                                    <input
-                                        type="text"
-                                        name={data.name}
-                                        value={formData[data.name] || ""}
-                                        onChange={handleChange}
-                                        minLength={data.minLength}
-                                        maxLength={data.maxLength}
-                                    />
-                                )}
-                            </div>
-                        );
+                      return (
+                        <span key={id} className="tag-oficio" onClick={() => eliminarOficio(id)}>
+                          {oficio ? oficio.nombre_oficio : "Oficio no encontrado"} ✕
+                        </span>
+                      );
                     })}
-
-                    {esTrabajadorReal && (
-                        <div className="perfil-profesional">
-                            <h4>Perfil Profesional:</h4>
-                            <textarea
-                                id="textareaDescripcion"
-                                placeholder="📝 Min 20 - Max 600"
-                                minLength="20"
-                                maxLength="600"
-                                name="perfilProfesional"
-                                value={formData.perfilProfesional || ""}
-                                onChange={handleChange}
-                            />
-                        </div>
-                    )}
-
-                    <div className="opciones">
-                        <button
-                            id="guardarCambios"
-                            style={{ background: "#62a9f5ff" }}
-                            onClick={handleGuardarCambios}
-                        >
-                            Guardar Cambios 💾
-                        </button>
-
-                        <h3>Eliminar mi cuenta</h3>
-                        <input id="inputEliminarPass" type="password" placeholder="🔒 Contraseña" />
-
-                        <button
-                            id="btnEliminarCuenta"
-                            style={{ background: "rgba(240, 91, 91, 1)" }}
-                            onClick={handleEliminarCuenta}
-                        >
-                            Eliminar cuenta ❌
-                        </button>
-                    </div>
-
+                  </div>
                 </div>
-            </div>
+              );
+            }
+
+            let InputComponent = "input";
+
+            if (camposConValidacion.includes(data.name)) InputComponent = InputValidado;
+            else if (camposSoloNumeros.includes(data.name)) InputComponent = InputSoloNumeros;
+            else if (camposSoloLetras.includes(data.name)) InputComponent = InputSoloLetras;
+            else if (camposValidadosConEspacios.includes(data.name)) InputComponent = InputSoloLetrasYEspacio;
+            else if (campoEmail.includes(data.name)) InputComponent = InputEmail;
+
+            return (
+              <div className="modificar" key={data.name}>
+                <h4>{data.datos}:</h4>
+
+                <InputComponent
+                  type={data.type}
+                  className="datos"
+                  id={data.id}
+                  name={data.name}
+                  placeholder={data.placeholder}
+                  maxLength={data.maxLength}
+                  minLength={data.minLength}
+                  required={data.required}
+                  value={formData[data.name] || ""}
+                  onChange={handleChange}
+                />
+              </div>
+            );
+          })}
+
+          {/* Perfil profesional */}
+          <div className="modificar">
+            <h4>Perfil Profesional:</h4>
+            <textarea
+              name="perfilProfesional"
+              id="area-perfil"
+              className="datos"
+              placeholder="Min 20 caracts - Max 600"
+              minLength="20"
+              maxLength="600"
+              value={formData.perfilProfesional || ""}
+              onChange={handleChange}
+            ></textarea>
+          </div>
+
+          {/* BOTÓN GUARDAR */}
+          <div className="boton-guardar">
+            <button onClick={handleGuardarCambios}>Guardar cambios</button>
+          </div>
+
+          {/* ELIMINAR CUENTA */}
+          <div className="eliminar-cuenta">
+            <h4>Eliminar cuenta</h4>
+            <input
+              type="password"
+              id="inputEliminarPass"
+              placeholder="Ingrese su contraseña"
+              className="datos"
+            />
+            <button onClick={handleEliminarCuenta} className="btn-eliminar">
+              Eliminar cuenta
+            </button>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }

@@ -104,10 +104,8 @@
     background: rgb(243, 244, 247);
     font-size: 1vw;
     color: #007acc;
-    margin-left: -1.3vw;
     text-align: start;
 }
-
 
 .password-wrapper img {
   position: absolute;
