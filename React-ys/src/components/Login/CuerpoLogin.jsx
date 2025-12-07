@@ -16,33 +16,34 @@ export default function CuerpoLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
     try {
       const res = await axios.post(`${API_URL}/usuarios/login`, {
         usuario,
         password,
       });
-      const data = res.data;
 
-      // DETERMINAR TIPO DE USUARIO SEGÚN LA BD REAL
+      const data = res.data;
       let tipo = "comun";
-      if (data.perfiles && data.perfiles.length > 0) {
+
+      if (data.perfiles?.length > 0) {
         if (data.perfiles[0].estrabajador === true) {
           tipo = "trabajador";
         }
       }
 
-      // GUARDAR SESIÓN
       localStorage.setItem("usuarioOn", "true");
       localStorage.setItem("id_usuario", data.id_usuario);
       localStorage.setItem("tipoUsuario", tipo);
 
-      if (data.perfiles && data.perfiles.length > 0) {
+      if (data.perfiles?.length > 0) {
         localStorage.setItem("id_perfiles", data.perfiles[0].id_perfiles);
       } else {
         localStorage.removeItem("id_perfiles");
       }
 
       localStorage.setItem("perfil", JSON.stringify(data.perfiles?.[0] ?? null));
+
       navigate("/perfil", {
         state: {
           esTrabajador: tipo === "trabajador",
@@ -77,15 +78,18 @@ export default function CuerpoLogin() {
             />
 
             <label htmlFor="password">Contraseña</label>
-            <InputPassword
-              myStyle="recuadro"
-              id="password"
-              name="password"
-              placeholder="Contraseña"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+
+            <div className="password-wrapper">
+              <InputPassword
+                myStyle="recuadro"
+                id="password"
+                name="password"
+                placeholder="Contraseña"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
 
             {error && <p className="mensaje-error-login">{error}</p>}
           </div>

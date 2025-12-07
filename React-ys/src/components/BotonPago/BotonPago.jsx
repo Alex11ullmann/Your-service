@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 export default function BotonPago({ onPagoRealizado, origen }) {
 
     const [pago, setPago] = useState(false);

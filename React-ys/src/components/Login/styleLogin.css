@@ -87,3 +87,38 @@
 .login-btn:hover {
     background: #005f99;
 }
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input.recuadro,
+.password-wrapper input {
+    box-sizing: border-box;
+    border-radius: 0.5vw;
+    height: 2.2vw;
+    width: 14.5vw;
+    border: solid 1px #d8d5d5;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.4);
+    background: rgb(243, 244, 247);
+    font-size: 1vw;
+    color: #007acc;
+    margin-left: -1.3vw;
+    text-align: start;
+}
+
+
+.password-wrapper img {
+  position: absolute;
+  right: 10px;
+  top: 40%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  opacity: 0.5;
+  width: 22px;
+}
+
+.password-wrapper img:hover {
+  opacity: 1;
+}
