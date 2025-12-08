@@ -35,7 +35,7 @@ export default function InputEmail({
     };
 
     return (
-        <div style={{ marginBottom: "1rem" }}>
+        <div style={{ marginBottom: "1rem", minHeight: "3vw" }}>
             {label && <label htmlFor={name}>{label}</label>}
             <input
                 type="text"

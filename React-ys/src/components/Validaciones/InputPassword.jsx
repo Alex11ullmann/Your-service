@@ -12,7 +12,7 @@ export default function InputPassword({
 }) {
   const [show, setShow] = useState(false);
 
-  // --- VALIDACIÓN INTERNA DEL INPUT ---
+  // VALIDACIÓN INTERNA DEL INPUT
   const validarPassword = (e) => {
     let val = e.target.value;
 
@@ -20,7 +20,6 @@ export default function InputPassword({
     val = val.replace(/\s+/g, "");
 
     // Bloquear caracteres especiales no permitidos
-    // Solo letras y números
     val = val.replace(/[^A-Za-z0-9]/g, "");
 
     // Crear evento falso con el valor corregido y mandarlo al form
@@ -41,7 +40,7 @@ export default function InputPassword({
       <input
         type={show ? "text" : "password"}
         value={value}
-        onChange={validarPassword}   // ← ahora sí usa validación interna
+        onChange={validarPassword}
         placeholder={placeholder}
         name={name}
         id={id}
