@@ -107,6 +107,31 @@ export class PerfilService {
     }
   }
 
+  //   VERIFICACIONES DE CAMPOS ÚNICOS
+  async existeUsuario(usuario: string) {
+    const existe = await this.usuarioRepo.findOne({
+      where: { usuario },
+    });
+
+    return { existe: !!existe };
+  }
+
+  async existeDni(dni: string) {
+    const existe = await this.perfilRepo.findOne({
+      where: { dni },
+    });
+
+    return { existe: !!existe };
+  }
+
+  async existeEmail(email: string) {
+    const existe = await this.perfilRepo.findOne({
+      where: { email },
+    });
+
+    return { existe: !!existe };
+  }
+
   public async update(
     id_perfiles: number,
     dto: UpdatePerfilDto,
@@ -124,7 +149,9 @@ export class PerfilService {
       }
 
       Object.assign(perfil, dto);
+
       return await this.perfilRepo.save(perfil);
+
     } catch (error: any) {
       if (error instanceof NotFoundException) throw error;
       if (error instanceof BadRequestException) throw error;
@@ -144,6 +171,7 @@ export class PerfilService {
       }
 
       return true;
+      
     } catch (error: any) {
       throw new InternalServerErrorException(
         'Error al eliminar el perfil: ' + (error.message ?? ''),

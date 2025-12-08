@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable prettier/prettier */
@@ -18,7 +19,7 @@ import { Perfil } from './entities/perfil.entity';
 
 @Controller('perfiles')
 export class PerfilController {
-  constructor(private readonly perfilService: PerfilService) {}
+  constructor(private readonly perfilService: PerfilService) { }
 
   @Post()
   private create(@Body() dto: CreatePerfilDto): Promise<Perfil> {
@@ -33,6 +34,24 @@ export class PerfilController {
   @Get(':id')
   private findOne(@Param('id', ParseIntPipe) id: number): Promise<Perfil> {
     return this.perfilService.findOne(id);
+  }
+
+  // Verificar si un usuario existe
+  @Get('existe-usuario/:usuario')
+  async existeUsuario(@Param('usuario') usuario: string) {
+    return this.perfilService.existeUsuario(usuario);
+  }
+
+  // Verificar si un DNI existe
+  @Get('existe-dni/:dni')
+  async existeDni(@Param('dni') dni: string) {
+    return this.perfilService.existeDni(dni);
+  }
+
+  // Verificar si un email existe
+  @Get('existe-email/:email')
+  async existeEmail(@Param('email') email: string) {
+    return this.perfilService.existeEmail(email);
   }
 
   @Patch(':id')
