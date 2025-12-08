@@ -92,7 +92,6 @@ export default function CuerpoRegistroTrabajador() {
     }
   };
 
-
   // Manejo de oficios
   const agregarOficio = (e) => {
     const oficio = Number(e.target.value);
@@ -112,7 +111,7 @@ export default function CuerpoRegistroTrabajador() {
   };
 
   // GUARDAR DATOS
-  const handleGuardar = async (e) => {
+  const handleSubmit = async (e) => {
     if (e && e.preventDefault) e.preventDefault();
 
     // Validación pago
@@ -221,7 +220,7 @@ export default function CuerpoRegistroTrabajador() {
         <div className="logRegistro-container">
           <h2>Registrarse</h2>
 
-          <form onSubmit={handleGuardar}>
+          <form onSubmit={handleSubmit}>
             {infoParaRegistro
               .filter((data) => data.name !== "oficios")
               .map((data) => (
@@ -401,7 +400,7 @@ export default function CuerpoRegistroTrabajador() {
           type="button"
           value="Registrarme"
           id="botonguardar"
-          onClick={handleGuardar}
+          onClick={handleSubmit}
         />
       </div>
     </div>
