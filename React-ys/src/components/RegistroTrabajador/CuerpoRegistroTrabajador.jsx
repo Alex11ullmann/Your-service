@@ -318,10 +318,6 @@ export default function CuerpoRegistroTrabajador() {
                     />
                   )}
 
-                  {errores[data.name] && (
-                    <p className="errorTexto">{errores[data.name]}</p>
-                  )}
-
                   {data.helperText && (
                     <p className="contenidoInputs">{data.helperText}</p>
                   )}
