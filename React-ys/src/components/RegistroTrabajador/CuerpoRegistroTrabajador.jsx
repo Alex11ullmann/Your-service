@@ -112,30 +112,38 @@ export default function CuerpoRegistroTrabajador() {
   };
 
   // GUARDAR DATOS
-  const handleGuardar = async () => {
+  const handleGuardar = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+
+    // Validación pago
     if (!pagoRealizado) {
       alert("⚠️ Debes realizar el pago antes de registrarte.");
       return;
     }
+
     // VALIDACIÓN GENERAL DE CAMPOS VACÍOS
     for (let key of camposEsperados) {
       const valor = formData[key];
+
       // Texto vacío o con espacios
       if (typeof valor === "string" && valor.trim() === "") {
         alert("⚠️ Todos los campos deben estar completos. No pueden estar vacíos.");
         return;
       }
+
       // Campos numéricos vacíos
       if ((key === "dni" || key === "telefono") && !valor) {
         alert("⚠️ Todos los campos deben estar completos. No pueden estar vacíos.");
         return;
       }
     }
+
     // VALIDAR OFICIOS
     if (!formData.oficios || formData.oficios.length === 0) {
       alert("⚠️ Debes seleccionar al menos un oficio.");
       return;
     }
+
     // VALIDAR PERFIL PROFESIONAL
     if (
       !formData.perfilProfesional ||
@@ -144,6 +152,7 @@ export default function CuerpoRegistroTrabajador() {
       alert("⚠️ El Perfil Profesional debe tener al menos 20 caracteres.");
       return;
     }
+
     // VALIDAR CONTRASEÑAS
     if (formData.password !== formData.repPassword) {
       alert("❌ Las contraseñas no coinciden.");
@@ -196,6 +205,7 @@ export default function CuerpoRegistroTrabajador() {
     }
   };
 
+
   const camposConValidacion = ["usuario", "password", "repPassword", "direccion"];
   const camposValidadosConEspacios = ["nombresYApellidos"];
   const camposSoloLetras = ["localidad"];
@@ -211,107 +221,113 @@ export default function CuerpoRegistroTrabajador() {
         <div className="logRegistro-container">
           <h2>Registrarse</h2>
 
-          <form>
-            {infoParaRegistro.map((data) => (
-              <div className="input-group" key={data.id}>
-                <label htmlFor={data.id}>{data.label}</label>
+          <form onSubmit={handleSubmit}>
+            {infoParaRegistro
+              .filter((data) => data.name !== "oficios")
+              .map((data) => (
+                <div className="input-group" key={data.id}>
+                  <label htmlFor={data.id}>{data.label}</label>
 
-                {data.helperText && (
-                  <p className="contenidoInputs">{data.helperText}</p>
-                )}
+                  {data.helperText && (
+                    <p className="contenidoInputs">{data.helperText}</p>
+                  )}
 
-                {["usuario", "dni", "email"].includes(data.name) && errorUnico[data.name] && (
-                  <p className="error-unico">{errorUnico[data.name]}</p>
-                )}
+                  {["usuario", "dni", "email"].includes(data.name) && errorUnico[data.name] && (
+                    <p className="errorTexto">{errorUnico[data.name]}</p>
+                  )}
 
-                {camposConValidacion.includes(data.name) ? (
-                  <InputValidado
-                    type={data.type}
-                    myStyle="datos"
-                    id={data.id}
-                    name={data.name}
-                    placeholder={data.placeholder}
-                    maxLength={data.maxLength}
-                    minLength={data.minLength}
-                    required={data.required}
-                    value={formData[data.name]}
-                    onChange={handleChange}
-                    passwordValue={
-                      data.name === "repPassword"
-                        ? formData["password"]
-                        : null
-                    }
-                  />
-                ) : camposSoloNumeros.includes(data.name) ? (
-                  <InputSoloNumeros
-                    type={data.type}
-                    myStyle="datos"
-                    id={data.id}
-                    name={data.name}
-                    placeholder={data.placeholder}
-                    maxLength={data.maxLength}
-                    minLength={data.minLength}
-                    required={data.required}
-                    value={formData[data.name]}
-                    onChange={handleChange}
-                  />
-                ) : camposSoloLetras.includes(data.name) ? (
-                  <InputSoloLetras
-                    type={data.type}
-                    myStyle="datos"
-                    id={data.id}
-                    name={data.name}
-                    placeholder={data.placeholder}
-                    maxLength={data.maxLength}
-                    minLength={data.minLength}
-                    required={data.required}
-                    value={formData[data.name]}
-                    onChange={handleChange}
-                  />
-                ) : camposValidadosConEspacios.includes(data.name) ? (
-                  <InputSoloLetrasYEspacio
-                    type={data.type}
-                    myStyle="datos"
-                    id={data.id}
-                    name={data.name}
-                    placeholder={data.placeholder}
-                    maxLength={data.maxLength}
-                    minLength={data.minLength}
-                    required={data.required}
-                    value={formData[data.name]}
-                    onChange={handleChange}
-                  />
-                ) : campoEmail.includes(data.name) ? (
-                  <InputEmail
-                    type="email"
-                    myStyle="datos"
-                    id={data.id}
-                    name={data.name}
-                    placeholder={data.placeholder}
-                    required={data.required}
-                    value={formData[data.name]}
-                    onChange={handleChange}
-                  />
-                ) : (
-                  <input
-                    type={data.type}
-                    className="datos"
-                    id={data.id}
-                    name={data.name}
-                    placeholder={data.placeholder}
-                    maxLength={data.maxLength}
-                    minLength={data.minLength}
-                    required={data.required}
-                    value={formData[data.name]}
-                    onChange={handleChange}
-                  />
-                )}
+                  {camposConValidacion.includes(data.name) ? (
+                    <InputValidado
+                      type={data.type}
+                      myStyle="datos"
+                      id={data.id}
+                      name={data.name}
+                      placeholder={data.placeholder}
+                      maxLength={data.maxLength}
+                      minLength={data.minLength}
+                      required={data.required}
+                      value={formData[data.name]}
+                      onChange={handleChange}
+                      passwordValue={
+                        data.name === "repPassword"
+                          ? formData["password"]
+                          : null
+                      }
+                    />
+                  ) : camposSoloNumeros.includes(data.name) ? (
+                    <InputSoloNumeros
+                      type={data.type}
+                      myStyle="datos"
+                      id={data.id}
+                      name={data.name}
+                      placeholder={data.placeholder}
+                      maxLength={data.maxLength}
+                      minLength={data.minLength}
+                      required={data.required}
+                      value={formData[data.name]}
+                      onChange={handleChange}
+                    />
+                  ) : camposSoloLetras.includes(data.name) ? (
+                    <InputSoloLetras
+                      type={data.type}
+                      myStyle="datos"
+                      id={data.id}
+                      name={data.name}
+                      placeholder={data.placeholder}
+                      maxLength={data.maxLength}
+                      minLength={data.minLength}
+                      required={data.required}
+                      value={formData[data.name]}
+                      onChange={handleChange}
+                    />
+                  ) : camposValidadosConEspacios.includes(data.name) ? (
+                    <InputSoloLetrasYEspacio
+                      type={data.type}
+                      myStyle="datos"
+                      id={data.id}
+                      name={data.name}
+                      placeholder={data.placeholder}
+                      maxLength={data.maxLength}
+                      minLength={data.minLength}
+                      required={data.required}
+                      value={formData[data.name]}
+                      onChange={handleChange}
+                    />
+                  ) : campoEmail.includes(data.name) ? (
+                    <InputEmail
+                      type="email"
+                      myStyle="datos"
+                      id={data.id}
+                      name={data.name}
+                      placeholder={data.placeholder}
+                      required={data.required}
+                      value={formData[data.name]}
+                      onChange={handleChange}
+                    />
+                  ) : (
+                    <input
+                      type={data.type}
+                      className="datos"
+                      id={data.id}
+                      name={data.name}
+                      placeholder={data.placeholder}
+                      maxLength={data.maxLength}
+                      minLength={data.minLength}
+                      required={data.required}
+                      value={formData[data.name]}
+                      onChange={handleChange}
+                    />
+                  )}
 
-                {data.helperText && (
-                  <p className="contenidoInputs">{data.helperText}</p>
-                )}
-              </div>
-            ))}
+                  {errores[data.name] && (
+                    <p className="errorTexto">{errores[data.name]}</p>
+                  )}
+
+                  {data.helperText && (
+                    <p className="contenidoInputs">{data.helperText}</p>
+                  )}
+                </div>
+              ))}
 
             {/* SECCION DE OFICIOS */}
 

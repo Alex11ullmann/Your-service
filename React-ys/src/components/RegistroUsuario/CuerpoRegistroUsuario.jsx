@@ -85,7 +85,7 @@ export default function CuerpoRegistroUsuario() {
   };
 
   // Enviar formulario
-  const handleSubmit = async (e) => {
+  const handleGuardar = async (e) => {
     e.preventDefault();
     // Validación pago
     if (!pagoRealizado) {
@@ -170,7 +170,7 @@ export default function CuerpoRegistroUsuario() {
       <div className="logRegistro-container">
         <h2>Registrarse</h2>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleGuardar}>
           {infoParaRegistro
             .filter((data) => data.name !== "oficios")
             .map((data) => (

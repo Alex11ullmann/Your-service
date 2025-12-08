@@ -96,14 +96,13 @@
     justify-content: center;
 }
 
-
-.error-unico {
+.errorTexto {
   color: red;
   font-size: 1vw;
   margin-top: 0.5vw;
 }
 
-.error-unico,
-.error-unico * {
+.errorTexto,
+.errorTexto * {
   color: red !important;
 }
