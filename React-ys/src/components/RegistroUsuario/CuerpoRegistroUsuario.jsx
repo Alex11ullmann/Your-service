@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import "./styleRegistroUsuario.css";
 import { infoParaRegistro } from "./InfoParaRegistro.jsx";
@@ -16,13 +17,17 @@ export default function CuerpoRegistroUsuario() {
   const [pagoRealizado, setPagoRealizado] = useState(false);
   const API_URL = "https://your-service-3v1h.onrender.com";
 
-  // Campos base
   const camposIniciales = infoParaRegistro.reduce((acc, item) => {
     if (item.name !== "oficios") acc[item.name] = "";
     return acc;
   }, {});
 
   const [formData, setFormData] = useState(camposIniciales);
+  const [errores, setErrores] = useState({
+    usuario: "",
+    dni: "",
+    email: ""
+  });
 
   const camposEsperados = infoParaRegistro
     .filter((item) => item.name !== "oficios")
@@ -33,7 +38,6 @@ export default function CuerpoRegistroUsuario() {
     localStorage.setItem("pagoOrigen", "");
   }, []);
 
-  // Cargar datos guardados si existen
   useEffect(() => {
     const datosGuardados = localStorage.getItem("datosRegistroUsuario");
     if (datosGuardados) {
@@ -41,20 +45,51 @@ export default function CuerpoRegistroUsuario() {
     }
   }, []);
 
-  const handleChange = (e) => {
+  const verificarExistencia = async (campo, valor) => {
+    if (!valor || valor.trim() === "") return;
+
+    try {
+      if (campo === "usuario") {
+        const r = await axios.get(`${API_URL}/perfiles/existe-usuario/${valor}`);
+        setErrores((p) => ({ ...p, usuario: r.data.existe ? "Usuario ya existe" : "" }));
+      }
+
+      if (campo === "dni") {
+        const r = await axios.get(`${API_URL}/perfiles/existe-dni/${valor}`);
+        setErrores((p) => ({ ...p, dni: r.data.existe ? "DNI ya existe" : "" }));
+      }
+
+      if (campo === "email") {
+        const r = await axios.get(`${API_URL}/perfiles/existe-email/${valor}`);
+        setErrores((p) => ({ ...p, email: r.data.existe ? "Email ya existe" : "" }));
+      }
+    } catch (error) {
+      console.error("Error verificando campo único:", error);
+    }
+  };
+
+  const handleChange = async (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
+
+    if (["usuario", "dni", "email"].includes(name)) {
+      verificarExistencia(name, value);
+    }
   };
 
-  // GUARDAR USUARIO COMUN
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!pagoRealizado) {
       alert("⚠️ Debes realizar el pago antes de registrarte.");
+      return;
+    }
+
+    if (errores.usuario || errores.dni || errores.email) {
+      alert("⚠️ Corrige los errores antes de continuar.");
       return;
     }
 
@@ -95,7 +130,6 @@ export default function CuerpoRegistroUsuario() {
       const resPerfil = await axios.post(`${API_URL}/perfiles`, datosPerfil);
       const idPerfil = resPerfil.data.id_perfiles;
 
-      // Guardar sesión
       localStorage.setItem("id_usuario", idUsuario);
       localStorage.setItem("id_perfiles", idPerfil);
       localStorage.setItem("tipoUsuario", "usuario");
@@ -207,6 +241,10 @@ export default function CuerpoRegistroUsuario() {
                     value={formData[data.name]}
                     onChange={handleChange}
                   />
+                )}
+
+                {errores[data.name] && (
+                  <p className="errorTexto">{errores[data.name]}</p>
                 )}
 
                 {data.helperText && (

@@ -225,3 +225,9 @@ h2{
 .contenedorImagenes > img:hover {
     transform: scale(1.1); 
 }
+
+.error-unico {
+  color: red;
+  font-size: 1vw;
+  margin-top: 0.5vw;
+}

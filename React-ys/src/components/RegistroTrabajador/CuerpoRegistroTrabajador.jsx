@@ -15,6 +15,11 @@ import InputPassword from "../Validaciones/InputPassword";
 export default function CuerpoRegistroTrabajador() {
   const navigate = useNavigate();
   const [pagoRealizado, setPagoRealizado] = useState(false);
+  const [errorUnico, setErrorUnico] = useState({
+    usuario: "",
+    dni: "",
+    email: ""
+  });
 
   // Crear estructura base
   const camposIniciales = {
@@ -34,6 +39,34 @@ export default function CuerpoRegistroTrabajador() {
 
   const [catalogoOficios, setCatalogoOficios] = useState([]);
 
+  // Verificacion de campos con informacion ya existente
+  const verificarCampoUnico = async (campo, valor) => {
+    if (!valor) {
+      setErrorUnico(prev => ({ ...prev, [campo]: "" }));
+      return;
+    }
+
+    try {
+      const ruta = {
+        usuario: `/perfiles/existe-usuario/${valor}`,
+        dni: `/perfiles/existe-dni/${valor}`,
+        email: `/perfiles/existe-email/${valor}`,
+      };
+
+      const response = await axios.get(
+        `${API_URL}${ruta[campo]}`
+      );
+
+      setErrorUnico(prev => ({
+        ...prev,
+        [campo]: response.data.existe ? `⚠️ Este ${campo} ya existe.` : ""
+      }));
+
+    } catch (error) {
+      console.error("Error verificando campo único:", error);
+    }
+  };
+
   // Resetear datos al cargar
   useEffect(() => {
     localStorage.setItem("pagoRegistro", "");
@@ -48,11 +81,17 @@ export default function CuerpoRegistroTrabajador() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
+
+    if (["usuario", "dni", "email"].includes(name)) {
+      verificarCampoUnico(name, value);
+    }
   };
+
 
   // Manejo de oficios
   const agregarOficio = (e) => {
@@ -160,6 +199,14 @@ export default function CuerpoRegistroTrabajador() {
             {infoParaRegistro.map((data) => (
               <div className="input-group" key={data.id}>
                 <label htmlFor={data.id}>{data.label}</label>
+
+                {data.helperText && (
+                  <p className="contenidoInputs">{data.helperText}</p>
+                )}
+
+                {["usuario", "dni", "email"].includes(data.name) && errorUnico[data.name] && (
+                  <p className="error-unico">{errorUnico[data.name]}</p>
+                )}
 
                 {camposConValidacion.includes(data.name) ? (
                   <InputValidado

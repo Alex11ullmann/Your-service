@@ -11,11 +11,12 @@ import axios from "axios";
 
 export default function CuerpoPerfiles() {
     const [formData, setFormData] = useState({});
-    const navigate = useNavigate();
+    const [dniExistente, setDniExistente] = useState(false);
+    const [emailExistente, setEmailExistente] = useState(false);
 
+    const navigate = useNavigate();
     const tipoUsuario = localStorage.getItem("tipoUsuario");
     const esTrabajadorReal = tipoUsuario === "trabajador";
-
     const API_URL = "https://your-service-3v1h.onrender.com";
 
     const [idPerfil, setIdPerfil] = useState(null);
@@ -35,7 +36,6 @@ export default function CuerpoPerfiles() {
             try {
                 const userRes = await axios.get(`${API_URL}/usuarios/${idUsuario}`);
                 const usuario = userRes.data;
-
                 const idPerfilLocal = localStorage.getItem("id_perfiles");
 
                 if (!idPerfilLocal) {
@@ -57,7 +57,7 @@ export default function CuerpoPerfiles() {
                 const perfil = perfilRes.data;
                 setIdPerfil(perfil.id_perfiles);
 
-                const datosPerfil = {
+                setFormData({
                     usuario: usuario.usuario,
                     nombresYApellidos: perfil.nombresYApellidos,
                     localidad: perfil.localidad,
@@ -67,12 +67,9 @@ export default function CuerpoPerfiles() {
                     email: perfil.email,
                     oficios: perfil.oficios?.map((o) => o.oficio.id_oficios) || [],
                     perfilProfesional: perfil.descripcion || "",
-                };
-
-                setFormData(datosPerfil);
-
+                });
             } catch (error) {
-                console.error("❌ Error al cargar perfil:", error);
+                console.error("Error verificando campo único:", error);
             }
         };
 
@@ -81,7 +78,7 @@ export default function CuerpoPerfiles() {
                 const res = await axios.get(`${API_URL}/oficios`);
                 setCatalogoOficios(res.data);
             } catch (error) {
-                console.error("❌ Error al cargar catálogo de oficios:", error);
+                console.error("Error verificando campo único:", error);
             }
         };
 
@@ -89,9 +86,34 @@ export default function CuerpoPerfiles() {
         fetchData();
     }, []);
 
-    const handleChange = (e) => {
+    const validarUnicos = async (name, value) => {
+        if (!value) return;
+
+        try {
+            if (name === "dni") {
+                const res = await axios.get(`${API_URL}/perfiles/dni/${value}`);
+                const existe = res.data.existe && res.data.id_perfiles !== Number(idPerfil);
+                setDniExistente(existe);
+            }
+
+            if (name === "email") {
+                const res = await axios.get(`${API_URL}/perfiles/email/${value}`);
+                const existe = res.data.existe && res.data.id_perfiles !== Number(idPerfil);
+                setEmailExistente(existe);
+            }
+        } catch (err) {
+            console.error("Error verificando campo único:", err);
+        }
+    };
+
+    const handleChange = async (e) => {
         const { name, value } = e.target;
+
         setFormData((prev) => ({ ...prev, [name]: value }));
+
+        if (name === "dni" || name === "email") {
+            validarUnicos(name, value);
+        }
     };
 
     const agregarOficio = (e) => {
@@ -114,15 +136,24 @@ export default function CuerpoPerfiles() {
             }));
 
             await axios.delete(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`);
-
         } catch (error) {
-            console.error("❌ Error al eliminar oficio:", error);
+            console.error("Error verificando campo único:", error);
         }
     };
 
     const handleGuardarCambios = async () => {
         if (!idPerfil) {
             alert("El perfil no está cargado. Cerrá sesión y volvé a entrar.");
+            return;
+        }
+
+        if (dniExistente) {
+            alert("⚠️ El DNI ingresado ya está en uso.");
+            return;
+        }
+
+        if (emailExistente) {
+            alert("⚠️ El email ingresado ya está en uso.");
             return;
         }
 
@@ -137,18 +168,16 @@ export default function CuerpoPerfiles() {
                 descripcion: formData.perfilProfesional,
             });
 
-            const oficiosLimpios = formData.oficios.filter(o => o && !isNaN(o));
+            const oficiosLimpios = formData.oficios.filter((o) => o && !isNaN(o));
 
             for (let oficio of oficiosLimpios) {
                 await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`);
             }
 
-            alert("✅ Cambios guardados correctamente");
+            alert("Cambios guardados correctamente");
             window.location.reload();
-
         } catch (error) {
-            console.error("❌ Error en PATCH:", error);
-            alert("No se pudieron guardar los cambios");
+            alert("No se pudieron guardar los cambios", error);
         }
     };
 
@@ -156,7 +185,7 @@ export default function CuerpoPerfiles() {
         const inputPass = document.getElementById("inputEliminarPass").value.trim();
 
         if (!inputPass) {
-            alert("⚠️ Ingrese su contraseña para continuar");
+            alert("Ingrese su contraseña para continuar");
             return;
         }
 
@@ -165,14 +194,14 @@ export default function CuerpoPerfiles() {
         try {
             await axios.post(`${API_URL}/usuarios/login`, {
                 usuario: usuarioNombre,
-                password: inputPass
+                password: inputPass,
             });
         } catch (e) {
-            alert("❌ Contraseña incorrecta", e);
+            alert("Contraseña incorrecta", e);
             return;
         }
 
-        const confirmar = window.confirm("⚠️ ¿Seguro que querés eliminar tu cuenta?");
+        const confirmar = window.confirm("¿Seguro que querés eliminar tu cuenta?");
         if (!confirmar) return;
 
         try {
@@ -189,10 +218,8 @@ export default function CuerpoPerfiles() {
             localStorage.clear();
             alert("Cuenta eliminada");
             navigate("/");
-
         } catch (error) {
-            console.error("❌ Error al eliminar cuenta:", error);
-            alert("No se pudo eliminar la cuenta");
+            alert("No se pudo eliminar la cuenta", error);
         }
     };
 
@@ -206,7 +233,6 @@ export default function CuerpoPerfiles() {
         <div className="cuerpo">
             <div className="contenido">
                 <div className="formularios">
-
                     <h2>Nombre de Perfil:</h2>
                     <h3>{formData.usuario}</h3>
 
@@ -214,7 +240,6 @@ export default function CuerpoPerfiles() {
                         if (data.name === "usuario") return null;
                         if (data.name === "oficios" && !esTrabajadorReal) return null;
 
-                        // SELECT DE OFICIOS
                         if (data.name === "oficios" && esTrabajadorReal) {
                             return (
                                 <div className="modificar" key={data.name}>
@@ -246,7 +271,6 @@ export default function CuerpoPerfiles() {
                             );
                         }
 
-                        // INPUTS CON VALIDADORES
                         let InputComponent = null;
 
                         if (camposConValidacion.includes(data.name)) {
@@ -283,6 +307,14 @@ export default function CuerpoPerfiles() {
                                         minLength={data.minLength}
                                         maxLength={data.maxLength}
                                     />
+                                )}
+
+                                {data.name === "dni" && dniExistente && (
+                                    <p className="error-input">⚠️ Este DNI ya está registrado.</p>
+                                )}
+
+                                {data.name === "email" && emailExistente && (
+                                    <p className="error-input">⚠️ Este email ya está registrado.</p>
                                 )}
                             </div>
                         );
@@ -323,7 +355,6 @@ export default function CuerpoPerfiles() {
                             Eliminar cuenta ❌
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -269,3 +269,9 @@ h3 {
 .tag-oficio:hover {
   background: #0f4fa8;
 }
+
+.error-unico {
+  color: red;
+  font-size: 1vw;
+  margin-top: 0.5vw;
+}
