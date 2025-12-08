@@ -142,21 +142,34 @@ export default function CuerpoPerfiles() {
     };
 
     const handleGuardarCambios = async () => {
+        //VALIDACIÓN CAMPOS VACÍOS
+        const camposObligatorios = [
+            "nombresYApellidos",
+            "localidad",
+            "direccion",
+            "telefono",
+            "dni",
+            "email",
+        ];
 
-        // ********************************
-        // ⭐ VALIDACIÓN CAMPOS VACÍOS ⭐
-        // ********************************
-        for (let key in formData) {
-            if (
-                formData[key] === null ||
-                formData[key] === undefined ||
-                String(formData[key]).trim() === ""
-            ) {
-                alert("⚠️ Por favor completá todos los campos antes de guardar.");
+        // Si el perfil es trabajador, agregar más campos obligatorios
+        if (esTrabajadorReal) {
+            camposObligatorios.push("perfilProfesional");
+        }
+
+        for (let campo of camposObligatorios) {
+            const valor = formData[campo];
+            if (!valor || String(valor).trim() === "") {
+                alert("⚠️ Completá todos los campos obligatorios.");
                 return;
             }
         }
-        // ********************************
+
+        // Validación de oficios SOLO si es trabajador
+        if (esTrabajadorReal && formData.oficios.length === 0) {
+            alert("⚠️ Seleccioná al menos un oficio.");
+            return;
+        }
 
         if (!idPerfil) {
             alert("El perfil no está cargado. Cerrá sesión y volvé a entrar.");
