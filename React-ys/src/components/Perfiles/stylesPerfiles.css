@@ -231,3 +231,8 @@ h2{
   font-size: 1vw;
   margin-top: 0.5vw;
 }
+
+.error-unico,
+.error-unico * {
+  color: red !important;
+}

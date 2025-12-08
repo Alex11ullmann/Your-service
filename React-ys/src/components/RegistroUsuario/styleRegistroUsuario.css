@@ -96,8 +96,14 @@
     justify-content: center;
 }
 
+
 .error-unico {
   color: red;
   font-size: 1vw;
   margin-top: 0.5vw;
+}
+
+.error-unico,
+.error-unico * {
+  color: red !important;
 }
