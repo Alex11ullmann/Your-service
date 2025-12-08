@@ -16,21 +16,28 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client', 'dist'),
     }),
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+
     TypeOrmModule.forRoot({
-      "type": "mysql",
-      "host": process.env.MYSQL_ADDON_HOST,
-      "port": parseInt(process.env.MYSQL_ADDON_PORT ?? '3306'),
-      "username": process.env.MYSQL_ADDON_USER,
-      "password": process.env.MYSQL_ADDON_PASSWORD,
-      "database": process.env.MYSQL_ADDON_DB,
-      "entities": [__dirname +
-        "/**/**.entity.{js,ts}"
-      ],
-      "synchronize": true, //pasarlo a false luego de la primera vez que corremos todo
+      type: "mysql",
+      host: process.env.MYSQL_ADDON_HOST,
+      port: parseInt(process.env.MYSQL_ADDON_PORT ?? '3306'),
+      username: process.env.MYSQL_ADDON_USER,
+      password: process.env.MYSQL_ADDON_PASSWORD,
+      database: process.env.MYSQL_ADDON_DB,
+
+      autoLoadEntities: true,
+      synchronize: false,
+
+      poolSize: 5,
+      maxQueryExecutionTime: 1000,
+
+      extra: {
+        connectionLimit: 5,
+      },
     }),
 
     UsuarioModule,
