@@ -221,7 +221,11 @@ export default function CuerpoPerfiles() {
             alert("Cambios guardados correctamente");
             window.location.reload();
         } catch (error) {
-            alert("No se pudieron guardar los cambios", error);
+            if (error.response?.data?.message) {
+                alert("⚠️ " + error.response.data.message);
+            } else {
+                alert("No se pudieron guardar los cambios. Intentalo más tarde.");
+            }
         }
     };
 
