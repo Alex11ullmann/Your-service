@@ -13,7 +13,6 @@ export default function CuerpoPerfiles() {
     const [formData, setFormData] = useState({});
     const [dniExistente, setDniExistente] = useState(false);
     const [emailExistente, setEmailExistente] = useState(false);
-    const [errores, setErrores] = useState({});
 
     const navigate = useNavigate();
     const tipoUsuario = localStorage.getItem("tipoUsuario");
@@ -88,57 +87,29 @@ export default function CuerpoPerfiles() {
     }, []);
 
     const validarUnicos = async (name, value) => {
-        if (!value) {
-            // Si el campo quedó vacío, limpio el error
-            setErrores(prev => {
-                const nuevos = { ...prev };
-                delete nuevos[name];
-                return nuevos;
-            });
-            return;
-        }
+        if (!value) return;
 
         try {
             if (name === "dni") {
                 const res = await axios.get(`${API_URL}/perfiles/dni/${value}`);
                 const existe = res.data.existe && res.data.id_perfiles !== Number(idPerfil);
-
                 setDniExistente(existe);
-
-                setErrores(prev => ({
-                    ...prev,
-                    dni: existe ? "⚠️ Este DNI ya está registrado." : undefined
-                }));
             }
 
             if (name === "email") {
                 const res = await axios.get(`${API_URL}/perfiles/email/${value}`);
                 const existe = res.data.existe && res.data.id_perfiles !== Number(idPerfil);
-
                 setEmailExistente(existe);
-
-                setErrores(prev => ({
-                    ...prev,
-                    email: existe ? "⚠️ Este email ya está registrado." : undefined
-                }));
             }
         } catch (err) {
             console.error("Error verificando campo único:", err);
         }
     };
 
-
     const handleChange = async (e) => {
         const { name, value } = e.target;
 
         setFormData((prev) => ({ ...prev, [name]: value }));
-
-        // Limpia errores si el campo vuelve a tener valor
-        setErrores((prev) => {
-            const nuevos = { ...prev };
-            delete nuevos[name];
-            return nuevos;
-        });
 
         if (name === "dni" || name === "email") {
             validarUnicos(name, value);
@@ -171,39 +142,32 @@ export default function CuerpoPerfiles() {
     };
 
     const handleGuardarCambios = async () => {
-        //VALIDACIÓN CAMPOS VACÍOS
+
+        // ********************************
+        // ⭐ VALIDACIÓN CAMPOS VACÍOS ⭐
+        // ********************************
         for (let key in formData) {
-            const valor = formData[key];
-
-            // Caso especial para oficios
-            if (Array.isArray(valor)) {
-                if (valor.length === 0) {
-                    alert("⚠️ Por favor seleccioná al menos un oficio.");
-                    return;
-                }
-                continue; // seguir sin marcar error
-            }
-
-            // Validación normal para strings y números
             if (
-                valor === null ||
-                valor === undefined ||
-                String(valor).trim() === ""
+                formData[key] === null ||
+                formData[key] === undefined ||
+                String(formData[key]).trim() === ""
             ) {
                 alert("⚠️ Por favor completá todos los campos antes de guardar.");
                 return;
             }
         }
-
+        // ********************************
 
         if (!idPerfil) {
             alert("El perfil no está cargado. Cerrá sesión y volvé a entrar.");
             return;
         }
+
         if (dniExistente) {
             alert("⚠️ El DNI ingresado ya está en uso.");
             return;
         }
+
         if (emailExistente) {
             alert("⚠️ El email ingresado ya está en uso.");
             return;
@@ -360,15 +324,13 @@ export default function CuerpoPerfiles() {
                                         maxLength={data.maxLength}
                                     />
                                 )}
-                                {errores[data.name] && (
-                                    <p className="error-unico">{errores[data.name]}</p>
-                                )}
+
                                 {data.name === "dni" && dniExistente && (
-                                    <p className="error-unico">⚠️ Este DNI ya está registrado.</p>
+                                    <p className="error-input">⚠️ Este DNI ya está registrado.</p>
                                 )}
 
                                 {data.name === "email" && emailExistente && (
-                                    <p className="error-unico">⚠️ Este email ya está registrado.</p>
+                                    <p className="error-input">⚠️ Este email ya está registrado.</p>
                                 )}
                             </div>
                         );
