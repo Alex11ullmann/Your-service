@@ -23,11 +23,14 @@ export class UsuarioService {
   ) { }
 
   async login(usuario: string, password: string) {
-    const user = await this.usuarioRepo.findOne({
-      where: { usuario, password },
-      relations: ['perfiles', 'perfiles.oficios', 'perfiles.oficios.oficio'],
-    });
-
+    const user = await this.usuarioRepo
+      .createQueryBuilder("usuario")
+      .where("BINARY usuario.usuario = :usuario", { usuario })
+      .andWhere("BINARY usuario.password = :password", { password })
+      .leftJoinAndSelect("usuario.perfiles", "perfiles")
+      .leftJoinAndSelect("perfiles.oficios", "oficios")
+      .leftJoinAndSelect("oficios.oficio", "oficio")
+      .getOne();
     if (!user) throw new NotFoundException('Usuario o contraseña incorrectos');
 
     return user;
