@@ -92,19 +92,34 @@ export default function CuerpoPerfiles() {
         try {
             if (name === "dni") {
                 const res = await axios.get(`${API_URL}/perfiles/dni/${value}`);
-                const existe = res.data.existe && res.data.id_perfiles !== Number(idPerfil);
-                setDniExistente(existe);
+
+                const existeReal =
+                    res?.data?.existe === true &&
+                    Number(res?.data?.id_perfiles) !== Number(idPerfil);
+
+                setDniExistente(existeReal);
             }
 
             if (name === "email") {
                 const res = await axios.get(`${API_URL}/perfiles/email/${value}`);
-                const existe = res.data.existe && res.data.id_perfiles !== Number(idPerfil);
-                setEmailExistente(existe);
+
+                const existeReal =
+                    res?.data?.existe === true &&
+                    Number(res?.data?.id_perfiles) !== Number(idPerfil);
+
+                setEmailExistente(existeReal);
             }
         } catch (err) {
             console.error("Error verificando campo único:", err);
+
+            // si tu backend devuelve 404 cuando no encuentra, seteamos "no existe"
+            if (err.response?.status === 404) {
+                if (name === "dni") setDniExistente(false);
+                if (name === "email") setEmailExistente(false);
+            }
         }
     };
+
 
     const handleChange = async (e) => {
         const { name, value } = e.target;
