@@ -49,7 +49,7 @@ const Header = () => {
     return () => window.removeEventListener("app-session-changed", handler);
   }, []);
 
-  // 🔥 ACTUALIZAR HEADER SIEMPRE QUE CAMBIA LA RUTA
+  // ACTUALIZAR HEADER SIEMPRE QUE CAMBIA LA RUTA
   useEffect(() => {
     cargarDatosUsuario();
   }, [location.pathname]);

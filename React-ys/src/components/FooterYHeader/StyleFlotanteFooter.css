@@ -125,14 +125,7 @@ footer {
     }
 }
 
-/* --------------------------
-   🔥 MENÚ DE USUARIO
---------------------------- */
-.user-menu {
-  position: relative;
-  display: inline-block;
-}
-
+/* MENÚ DE USUARIO */
 .avatar {
   width: 3vw;
   height: 3vw;
@@ -155,14 +148,18 @@ footer {
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
+.user-menu {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 1.5vw;
+}
+
 .user-menu:hover .dropdown {
   display: flex;
   flex-direction: column;
 }
 
-/* -----------------------------
-   🔥 OCULTAR MENÚ SI ESTÁ OFF
------------------------------- */
+/* OCULTAR MENÚ SI ESTÁ OFF */
 .user-menu.hidden,
 .user-menu.hidden * {
   display: none !important;
