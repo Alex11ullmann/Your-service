@@ -226,13 +226,13 @@ h2{
     transform: scale(1.1); 
 }
 
-.error-input {
+.error-unico {
   color: red;
   font-size: 1vw;
   margin-top: 0.5vw;
 }
 
-.error-input,
-.error-input * {
+.error-unico,
+.error-unico * {
   color: red !important;
 }
