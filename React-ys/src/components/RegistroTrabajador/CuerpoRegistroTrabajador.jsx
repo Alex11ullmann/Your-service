@@ -221,7 +221,7 @@ export default function CuerpoRegistroTrabajador() {
         <div className="logRegistro-container">
           <h2>Registrarse</h2>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleGuardar}>
             {infoParaRegistro
               .filter((data) => data.name !== "oficios")
               .map((data) => (
