@@ -30,7 +30,7 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.MYSQL_ADDON_DB,
 
       autoLoadEntities: true,
-      synchronize: false,
+      synchronize: true, // Cambiar a false
 
       poolSize: 5,
       maxQueryExecutionTime: 1000,
