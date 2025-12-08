@@ -259,7 +259,7 @@ export default function CuerpoRegistroUsuario() {
                 )}
 
                 {errores[data.name] && (
-                  <p className="errorTexto">{errores[data.name]}</p>
+                  <p className="error-unico">{errores[data.name]}</p>
                 )}
 
                 {data.helperText && (
