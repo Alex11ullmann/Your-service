@@ -139,6 +139,28 @@ export class PerfilService {
     try {
       const perfil = await this.findOne(id_perfiles);
 
+      // VALIDAR DNI DUPLICADO
+      if (dto.dni) {
+        const existeDni = await this.perfilRepo.findOne({
+          where: { dni: dto.dni },
+        });
+
+        if (existeDni && existeDni.id_perfiles !== id_perfiles) {
+          throw new ConflictException('El DNI ya está registrado');
+        }
+      }
+
+      // VALIDAR EMAIL DUPLICADO
+      if (dto.email) {
+        const existeEmail = await this.perfilRepo.findOne({
+          where: { email: dto.email },
+        });
+        if (existeEmail && existeEmail.id_perfiles !== id_perfiles) {
+          throw new ConflictException('El email ya está registrado');
+        }
+      }
+
+      // Si cambia el usuario asociado
       if (dto.id_usuario) {
         const usuario = await this.usuarioRepo.findOne({
           where: { id_usuario: dto.id_usuario },
@@ -149,12 +171,12 @@ export class PerfilService {
       }
 
       Object.assign(perfil, dto);
-
       return await this.perfilRepo.save(perfil);
 
     } catch (error: any) {
       if (error instanceof NotFoundException) throw error;
       if (error instanceof BadRequestException) throw error;
+      if (error instanceof ConflictException) throw error;
 
       throw new InternalServerErrorException(
         'Error al actualizar el perfil: ' + (error.message ?? ''),
@@ -171,7 +193,7 @@ export class PerfilService {
       }
 
       return true;
-      
+
     } catch (error: any) {
       throw new InternalServerErrorException(
         'Error al eliminar el perfil: ' + (error.message ?? ''),
