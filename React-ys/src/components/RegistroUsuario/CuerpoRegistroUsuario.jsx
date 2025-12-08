@@ -17,6 +17,7 @@ export default function CuerpoRegistroUsuario() {
   const [pagoRealizado, setPagoRealizado] = useState(false);
   const API_URL = "https://your-service-3v1h.onrender.com";
 
+  // Crear estructura inicial del formulario
   const camposIniciales = infoParaRegistro.reduce((acc, item) => {
     if (item.name !== "oficios") acc[item.name] = "";
     return acc;
@@ -33,11 +34,13 @@ export default function CuerpoRegistroUsuario() {
     .filter((item) => item.name !== "oficios")
     .map((item) => item.name);
 
+  // Limpiar datos de pago
   useEffect(() => {
     localStorage.setItem("pagoRegistro", "");
     localStorage.setItem("pagoOrigen", "");
   }, []);
 
+  // Recuperar datos si el usuario vuelve
   useEffect(() => {
     const datosGuardados = localStorage.getItem("datosRegistroUsuario");
     if (datosGuardados) {
@@ -45,6 +48,7 @@ export default function CuerpoRegistroUsuario() {
     }
   }, []);
 
+  // Verificar campos únicos (usuario, dni, email)
   const verificarExistencia = async (campo, valor) => {
     if (!valor || valor.trim() === "") return;
 
@@ -53,12 +57,10 @@ export default function CuerpoRegistroUsuario() {
         const r = await axios.get(`${API_URL}/perfiles/existe-usuario/${valor}`);
         setErrores((p) => ({ ...p, usuario: r.data.existe ? "Usuario ya existe" : "" }));
       }
-
       if (campo === "dni") {
         const r = await axios.get(`${API_URL}/perfiles/existe-dni/${valor}`);
         setErrores((p) => ({ ...p, dni: r.data.existe ? "DNI ya existe" : "" }));
       }
-
       if (campo === "email") {
         const r = await axios.get(`${API_URL}/perfiles/existe-email/${valor}`);
         setErrores((p) => ({ ...p, email: r.data.existe ? "Email ya existe" : "" }));
@@ -68,8 +70,10 @@ export default function CuerpoRegistroUsuario() {
     }
   };
 
+  // Manejar cambios en inputs
   const handleChange = async (e) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -80,32 +84,41 @@ export default function CuerpoRegistroUsuario() {
     }
   };
 
+  // Enviar formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    // Validación pago
     if (!pagoRealizado) {
       alert("⚠️ Debes realizar el pago antes de registrarte.");
       return;
     }
-
+    // Validación campos únicos
     if (errores.usuario || errores.dni || errores.email) {
       alert("⚠️ Corrige los errores antes de continuar.");
       return;
     }
-
+    // Validación campos vacíos
     for (let key of camposEsperados) {
-      if (!formData[key] || String(formData[key]).trim() === "") {
+      const valor = formData[key];
+
+      if (typeof valor === "string" && valor.trim() === "") {
+        alert("⚠️ Completa todos los campos correctamente.");
+        return;
+      }
+
+      if ((key === "dni" || key === "telefono") && !valor) {
         alert("⚠️ Completa todos los campos correctamente.");
         return;
       }
     }
-
+    // Validación contraseñas
     if (formData.password !== formData.repPassword) {
       alert("❌ Las contraseñas no coinciden.");
       return;
     }
 
     try {
+      // Crear usuario
       const datosUsuario = {
         usuario: formData.usuario,
         password: formData.password,
@@ -114,6 +127,7 @@ export default function CuerpoRegistroUsuario() {
       const resUsuario = await axios.post(`${API_URL}/usuarios`, datosUsuario);
       const idUsuario = resUsuario.data.id_usuario;
 
+      // Crear perfil
       const datosPerfil = {
         nombresYApellidos: formData.nombresYApellidos,
         localidad: formData.localidad,
@@ -130,18 +144,21 @@ export default function CuerpoRegistroUsuario() {
       const resPerfil = await axios.post(`${API_URL}/perfiles`, datosPerfil);
       const idPerfil = resPerfil.data.id_perfiles;
 
+      // Guardar sesión
       localStorage.setItem("id_usuario", idUsuario);
       localStorage.setItem("id_perfiles", idPerfil);
       localStorage.setItem("tipoUsuario", "usuario");
       localStorage.setItem("usuarioOn", "true");
 
       navigate("/perfil", { state: { esTrabajador: false } });
+
     } catch (error) {
       console.error("❌ Error al registrar usuario/perfil:", error);
       alert("Ocurrió un error durante el registro.");
     }
   };
 
+  // Inputs según validación
   const camposConValidacion = ["usuario", "password", "repPassword", "direccion"];
   const camposValidadosConEspacios = ["nombresYApellidos"];
   const camposSoloLetras = ["localidad"];
@@ -173,9 +190,7 @@ export default function CuerpoRegistroUsuario() {
                     value={formData[data.name]}
                     onChange={handleChange}
                     passwordValue={
-                      data.name === "repPassword"
-                        ? formData["password"]
-                        : null
+                      data.name === "repPassword" ? formData["password"] : null
                     }
                   />
                 ) : camposSoloNumeros.includes(data.name) ? (

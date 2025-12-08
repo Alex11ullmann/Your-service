@@ -117,18 +117,36 @@ export default function CuerpoRegistroTrabajador() {
       alert("⚠️ Debes realizar el pago antes de registrarte.");
       return;
     }
+    // VALIDACIÓN GENERAL DE CAMPOS VACÍOS
     for (let key of camposEsperados) {
-      if (!formData[key] || String(formData[key]).trim() === "") {
-        alert("⚠️ Por favor completa todos los campos correctamente.");
+      const valor = formData[key];
+      // Texto vacío o con espacios
+      if (typeof valor === "string" && valor.trim() === "") {
+        alert("⚠️ Todos los campos deben estar completos. No pueden estar vacíos.");
+        return;
+      }
+      // Campos numéricos vacíos
+      if ((key === "dni" || key === "telefono") && !valor) {
+        alert("⚠️ Todos los campos deben estar completos. No pueden estar vacíos.");
         return;
       }
     }
-    if (formData.password !== formData.repPassword) {
-      alert("❌ Las contraseñas no coinciden.");
+    // VALIDAR OFICIOS
+    if (!formData.oficios || formData.oficios.length === 0) {
+      alert("⚠️ Debes seleccionar al menos un oficio.");
       return;
     }
-    if (!formData.perfilProfesional || formData.perfilProfesional.trim().length < 20) {
-      alert("⚠️ El campo Perfil Profesional debe tener al menos 20 caracteres.");
+    // VALIDAR PERFIL PROFESIONAL
+    if (
+      !formData.perfilProfesional ||
+      formData.perfilProfesional.trim().length < 20
+    ) {
+      alert("⚠️ El Perfil Profesional debe tener al menos 20 caracteres.");
+      return;
+    }
+    // VALIDAR CONTRASEÑAS
+    if (formData.password !== formData.repPassword) {
+      alert("❌ Las contraseñas no coinciden.");
       return;
     }
 
@@ -142,7 +160,7 @@ export default function CuerpoRegistroTrabajador() {
       const resUsuario = await axios.post(`${API_URL}/usuarios`, datosUsuario);
       const idUsuario = resUsuario.data.id_usuario;
 
-      // Crear perfil para el usuario
+      // Crear perfil
       const datosPerfil = {
         nombresYApellidos: formData.nombresYApellidos,
         localidad: formData.localidad,
@@ -158,15 +176,13 @@ export default function CuerpoRegistroTrabajador() {
       const resPerfil = await axios.post(`${API_URL}/perfiles`, datosPerfil);
       const idPerfil = resPerfil.data.id_perfiles;
 
-      // Registrar oficios del trabajador
-      // Registrar oficios del trabajador (con limpieza de datos)
+      // Registrar oficios
       const oficiosLimpios = formData.oficios.filter(o => Number(o) > 0);
-
       for (let oficio of oficiosLimpios) {
         await axios.post(`${API_URL}/trabajador-oficio/${idPerfil}/${oficio}`);
       }
 
-      // Guardar estado de sesión
+      // Guardar en localStorage
       localStorage.setItem("id_usuario", idUsuario);
       localStorage.setItem("id_perfiles", idPerfil);
       localStorage.setItem("tipoUsuario", "trabajador");

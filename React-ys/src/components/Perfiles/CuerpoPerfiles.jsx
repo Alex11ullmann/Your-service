@@ -142,16 +142,25 @@ export default function CuerpoPerfiles() {
     };
 
     const handleGuardarCambios = async () => {
+        //VALIDACIÓN CAMPOS VACÍOS
+        for (let key in formData) {
+            if (
+                formData[key] === null ||
+                formData[key] === undefined ||
+                String(formData[key]).trim() === ""
+            ) {
+                alert("⚠️ Por favor completá todos los campos antes de guardar.");
+                return;
+            }
+        }
         if (!idPerfil) {
             alert("El perfil no está cargado. Cerrá sesión y volvé a entrar.");
             return;
         }
-
         if (dniExistente) {
             alert("⚠️ El DNI ingresado ya está en uso.");
             return;
         }
-
         if (emailExistente) {
             alert("⚠️ El email ingresado ya está en uso.");
             return;
