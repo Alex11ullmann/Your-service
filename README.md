@@ -34,23 +34,18 @@ Tecnología sugerida:
 
 importante !!
 
-En su primera etapa:
-
-- Requiere instalacion de Live Server 
 - Requiere Visual Studio Code          
 - Navegador web moderno (Google Chrome, Firefox, Edge, etc.)
-- Conexión a internet (enlace videos)
-- HTML, CSS, JS 
-- JSON como base de datos simulada local (clientes.json, profecionales.json)
-- localStorage o fetch() con json-server para manejar persistencia.
+- Conexión a internet
+- HTML, CSS, JS, JSX, TS.
+- LocalStorage, axios o fetch() para manejar persistencia.
+- Actualmente esta operando a traves de Render, Firebase y Clever cloud.
 
-Actualmente:
-
-- Es una App Web funcionando mediante un servidor gratuito (CleverCloud).
 
 📌 Alcance del Proyecto
 
 - Este proyecto se encuentra en etapa de desarrollo inicial.
+
 - El alcance establecido para esta fase tiene el objetivo de documentar la estructura del proyecto para facilitar su continuidad futura.
 
 - En esta etapa, el proyecto abarca:
@@ -62,6 +57,8 @@ Actualmente:
 - Implementación de las funciones mínimas para lectura, modificación, eliminación y, registro e inicio de sesión.
 
 - Documentación del proceso de instalación y ejecución.
+
+
 
 ⚠️ Queda pendiente para versiones futuras:
 
@@ -80,6 +77,8 @@ Actualmente:
 - Darle funcionalidad a olvide mi contraseña.
 
 - Darle funcionalidad a contador de cuentas creadas y de trabajadores creados
+
+- Agregar Manejo de Imagenes de oficios realizados y de imagen de perfil
 
 ## 📝 Licencia
 

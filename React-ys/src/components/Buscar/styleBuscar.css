@@ -72,6 +72,7 @@
   overflow: hidden;
   transition: transform 0.15s;
   text-align: center;
+  padding: 0.5vw;
 }
 .card-item:hover {
   transform: translateY(-4px);
